@@ -1,0 +1,29 @@
+plugins {
+	id 'java'
+    id 'java-library'
+}
+
+jar {
+    archiveBaseName = 'cumulocitycorelibrary'
+    archiveVersion =  '10.13.0-188'
+}
+
+compileJava {
+    sourceCompatibility = '1.8'
+    targetCompatibility = '1.8'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+	implementation "com.google.guava:guava:$guavaVersion"
+	implementation "jakarta.ws.rs:jakarta.ws.rs-api:$jakartaVersion"
+	implementation "org.glassfish.jersey.core:jersey-client:$jerseyVersion"
+	implementation "org.glassfish.jersey.containers:jersey-container-servlet:$jerseyVersion"
+	implementation "org.glassfish.jersey.media:jersey-media-json-jackson:$jerseyVersion"
+	implementation "org.glassfish.jersey.media:jersey-media-multipart:$jerseyVersion"
+	implementation "org.glassfish.jersey.inject:jersey-hk2:$jerseyVersion"
+	implementation "javax.ws.rs:javax.ws.rs-api:$javaxWsVersion"
+}

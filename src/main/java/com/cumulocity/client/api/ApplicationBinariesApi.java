@@ -57,15 +57,13 @@ public class ApplicationBinariesApi extends AdaptableApi {
 	 * <p>
 	 * @param file The ZIP file to be uploaded.
 	 * @param id Unique identifier of the application.
-	 * @param xCumulocityProcessingMode Used to explicitly control the processing mode of the request. See [Processing mode](#processing-mode) for more details.
 	 * @return
 	 */
-	public Future<Application> uploadApplicationAttachment(final byte[] file, final String id, final String xCumulocityProcessingMode) {
+	public Future<Application> uploadApplicationAttachment(final byte[] file, final String id) {
 		final FormDataMultiPart multiPartEntity = new FormDataMultiPart();
 		multiPartEntity.field("file", file, MediaType.valueOf("application/zip"));
 		return getRootTarget().path("application").path("applications").path(valueOf(id)).path("binaries")
 				.request()
-				.header("X-Cumulocity-Processing-Mode", xCumulocityProcessingMode)
 				.header("Content-Type", "multipart/form-data")
 				.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.application+json")
 				.build("POST", Entity.entity(multiPartEntity, "multipart/form-data"))
@@ -106,12 +104,10 @@ public class ApplicationBinariesApi extends AdaptableApi {
 	 * <p>
 	 * @param id Unique identifier of the application.
 	 * @param binaryId Unique identifier of the binary.
-	 * @param xCumulocityProcessingMode Used to explicitly control the processing mode of the request. See [Processing mode](#processing-mode) for more details.
 	 */
-	public Future<Response> deleteApplicationAttachment(final String id, final String binaryId, final String xCumulocityProcessingMode) {
+	public Future<Response> deleteApplicationAttachment(final String id, final String binaryId) {
 		return getRootTarget().path("application").path("applications").path(valueOf(id)).path("binaries").path(valueOf(binaryId))
 				.request()
-				.header("X-Cumulocity-Processing-Mode", xCumulocityProcessingMode)
 				.header("Accept", "application/json")
 				.build("DELETE")
 				.submit();

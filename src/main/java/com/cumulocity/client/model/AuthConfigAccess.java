@@ -11,32 +11,19 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(Include.NON_NULL)
-public class InventoryAssignmentCollection {
+public class AuthConfigAccess {
 
 	/**
-	 * A URL linking to this resource.
+	 * Indicates whether the configuration is only accessible to the management tenant.
 	 */
-	private String self;
+	private boolean onlyManagementTenantAccess;
 
-	/**
-	 * An array of inventory assignments.
-	 */
-	private InventoryAssignment[] inventoryAssignments;
-
-	public String getSelf() {
-		return self;
+	public boolean getOnlyManagementTenantAccess() {
+		return onlyManagementTenantAccess;
 	}
 	
-	public void setSelf(final String self) {
-		this.self = self;
-	}
-
-	public InventoryAssignment[] getInventoryAssignments() {
-		return inventoryAssignments;
-	}
-	
-	public void setInventoryAssignments(final InventoryAssignment[] inventoryAssignments) {
-		this.inventoryAssignments = inventoryAssignments;
+	public void setOnlyManagementTenantAccess(final boolean onlyManagementTenantAccess) {
+		this.onlyManagementTenantAccess = onlyManagementTenantAccess;
 	}
 
 	@Override
@@ -51,9 +38,9 @@ public class InventoryAssignmentCollection {
 
 	@Override
 	public boolean equals(final Object r) {
-		if (r != null && r instanceof InventoryAssignmentCollection) {
-			InventoryAssignmentCollection comparer = (InventoryAssignmentCollection) r;
-			if (String.valueOf(comparer.getSelf()).equals(String.valueOf(this.getSelf())) && comparer.getInventoryAssignments().equals(this.getInventoryAssignments())) {
+		if (r != null && r instanceof AuthConfigAccess) {
+			AuthConfigAccess comparer = (AuthConfigAccess) r;
+			if (Boolean.valueOf(comparer.getOnlyManagementTenantAccess()).equals(Boolean.valueOf(this.getOnlyManagementTenantAccess()))) {
 				return true;
 			}
 		}

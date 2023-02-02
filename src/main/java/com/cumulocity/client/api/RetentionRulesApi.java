@@ -67,16 +67,14 @@ public class RetentionRulesApi extends AdaptableApi {
 	 * </ul>
 	 * <p>
 	 * @param body 
-	 * @param xCumulocityProcessingMode Used to explicitly control the processing mode of the request. See [Processing mode](#processing-mode) for more details.
 	 * @return
 	 */
-	public Future<RetentionRule> createRetentionRule(final RetentionRule body, final String xCumulocityProcessingMode) {
+	public Future<RetentionRule> createRetentionRule(final RetentionRule body) {
 		final JsonNode jsonNode = toJsonNode(body);
 		removeFromNode(jsonNode, "self");
 		removeFromNode(jsonNode, "id");
 		return getRootTarget().path("retention").path("retentions")
 				.request()
-				.header("X-Cumulocity-Processing-Mode", xCumulocityProcessingMode)
 				.header("Content-Type", "application/vnd.com.nsn.cumulocity.retentionrule+json")
 				.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.retentionrule+json")
 				.build("POST", Entity.json(jsonNode))
@@ -121,16 +119,14 @@ public class RetentionRulesApi extends AdaptableApi {
 	 * <p>
 	 * @param body 
 	 * @param id Unique identifier of the retention rule.
-	 * @param xCumulocityProcessingMode Used to explicitly control the processing mode of the request. See [Processing mode](#processing-mode) for more details.
 	 * @return
 	 */
-	public Future<RetentionRule> updateRetentionRule(final RetentionRule body, final String id, final String xCumulocityProcessingMode) {
+	public Future<RetentionRule> updateRetentionRule(final RetentionRule body, final String id) {
 		final JsonNode jsonNode = toJsonNode(body);
 		removeFromNode(jsonNode, "self");
 		removeFromNode(jsonNode, "id");
 		return getRootTarget().path("retention").path("retentions").path(valueOf(id))
 				.request()
-				.header("X-Cumulocity-Processing-Mode", xCumulocityProcessingMode)
 				.header("Content-Type", "application/vnd.com.nsn.cumulocity.retentionrule+json")
 				.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.retentionrule+json")
 				.build("PUT", Entity.json(jsonNode))
@@ -150,12 +146,10 @@ public class RetentionRulesApi extends AdaptableApi {
 	 * </ul>
 	 * <p>
 	 * @param id Unique identifier of the retention rule.
-	 * @param xCumulocityProcessingMode Used to explicitly control the processing mode of the request. See [Processing mode](#processing-mode) for more details.
 	 */
-	public Future<Response> deleteRetentionRule(final String id, final String xCumulocityProcessingMode) {
+	public Future<Response> deleteRetentionRule(final String id) {
 		return getRootTarget().path("retention").path("retentions").path(valueOf(id))
 				.request()
-				.header("X-Cumulocity-Processing-Mode", xCumulocityProcessingMode)
 				.header("Accept", "application/json")
 				.build("DELETE")
 				.submit();

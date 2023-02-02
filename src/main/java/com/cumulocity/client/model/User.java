@@ -70,6 +70,11 @@ public class User {
 	private boolean newsletter;
 
 	/**
+	 * Identifier of the parent user. If present, indicates that a user belongs to a user hierarchy by pointing to its direct ancestor. Can only be set by users with role USER_MANAGEMENT_ADMIN during user creation. Otherwise it's assigned automatically.
+	 */
+	private String owner;
+
+	/**
 	 * The user's password. Only Latin1 characters are allowed.
 	 * 
 	 * If you do not specify a password when creating a new user with a POST request, it must contain the property `sendPasswordResetEmail` with a value of `true`.
@@ -212,6 +217,14 @@ public class User {
 	
 	public void setNewsletter(final boolean newsletter) {
 		this.newsletter = newsletter;
+	}
+
+	public String getOwner() {
+		return owner;
+	}
+	
+	public void setOwner(final String owner) {
+		this.owner = owner;
 	}
 
 	public String getPassword() {
@@ -469,7 +482,7 @@ public class User {
 	public boolean equals(final Object r) {
 		if (r != null && r instanceof User) {
 			User comparer = (User) r;
-			if (comparer.getApplications().equals(this.getApplications()) && comparer.getCustomProperties().equals(this.getCustomProperties()) && String.valueOf(comparer.getDisplayName()).equals(String.valueOf(this.getDisplayName())) && String.valueOf(comparer.getEmail()).equals(String.valueOf(this.getEmail())) && Boolean.valueOf(comparer.getEnabled()).equals(Boolean.valueOf(this.getEnabled())) && String.valueOf(comparer.getFirstName()).equals(String.valueOf(this.getFirstName())) && comparer.getGroups().equals(this.getGroups()) && String.valueOf(comparer.getId()).equals(String.valueOf(this.getId())) && String.valueOf(comparer.getLastName()).equals(String.valueOf(this.getLastName())) && String.valueOf(comparer.getLastPasswordChange()).equals(String.valueOf(this.getLastPasswordChange())) && Boolean.valueOf(comparer.getNewsletter()).equals(Boolean.valueOf(this.getNewsletter())) && String.valueOf(comparer.getPassword()).equals(String.valueOf(this.getPassword())) && comparer.getPasswordStrength().equals(this.getPasswordStrength()) && String.valueOf(comparer.getPhone()).equals(String.valueOf(this.getPhone())) && comparer.getRoles().equals(this.getRoles()) && String.valueOf(comparer.getSelf()).equals(String.valueOf(this.getSelf())) && Boolean.valueOf(comparer.getSendPasswordResetEmail()).equals(Boolean.valueOf(this.getSendPasswordResetEmail())) && Boolean.valueOf(comparer.getShouldResetPassword()).equals(Boolean.valueOf(this.getShouldResetPassword())) && Boolean.valueOf(comparer.getTwoFactorAuthenticationEnabled()).equals(Boolean.valueOf(this.getTwoFactorAuthenticationEnabled())) && String.valueOf(comparer.getUserName()).equals(String.valueOf(this.getUserName())) && comparer.getDevicePermissions().equals(this.getDevicePermissions())) {
+			if (comparer.getApplications().equals(this.getApplications()) && comparer.getCustomProperties().equals(this.getCustomProperties()) && String.valueOf(comparer.getDisplayName()).equals(String.valueOf(this.getDisplayName())) && String.valueOf(comparer.getEmail()).equals(String.valueOf(this.getEmail())) && Boolean.valueOf(comparer.getEnabled()).equals(Boolean.valueOf(this.getEnabled())) && String.valueOf(comparer.getFirstName()).equals(String.valueOf(this.getFirstName())) && comparer.getGroups().equals(this.getGroups()) && String.valueOf(comparer.getId()).equals(String.valueOf(this.getId())) && String.valueOf(comparer.getLastName()).equals(String.valueOf(this.getLastName())) && String.valueOf(comparer.getLastPasswordChange()).equals(String.valueOf(this.getLastPasswordChange())) && Boolean.valueOf(comparer.getNewsletter()).equals(Boolean.valueOf(this.getNewsletter())) && String.valueOf(comparer.getOwner()).equals(String.valueOf(this.getOwner())) && String.valueOf(comparer.getPassword()).equals(String.valueOf(this.getPassword())) && comparer.getPasswordStrength().equals(this.getPasswordStrength()) && String.valueOf(comparer.getPhone()).equals(String.valueOf(this.getPhone())) && comparer.getRoles().equals(this.getRoles()) && String.valueOf(comparer.getSelf()).equals(String.valueOf(this.getSelf())) && Boolean.valueOf(comparer.getSendPasswordResetEmail()).equals(Boolean.valueOf(this.getSendPasswordResetEmail())) && Boolean.valueOf(comparer.getShouldResetPassword()).equals(Boolean.valueOf(this.getShouldResetPassword())) && Boolean.valueOf(comparer.getTwoFactorAuthenticationEnabled()).equals(Boolean.valueOf(this.getTwoFactorAuthenticationEnabled())) && String.valueOf(comparer.getUserName()).equals(String.valueOf(this.getUserName())) && comparer.getDevicePermissions().equals(this.getDevicePermissions())) {
 				return true;
 			}
 		}

@@ -39,6 +39,11 @@ public class CurrentTenant {
 	private String name;
 
 	/**
+	 * ID of the parent tenant.
+	 */
+	private String parent;
+
+	/**
 	 * A URL linking to this resource.
 	 */
 	private String self;
@@ -81,6 +86,14 @@ public class CurrentTenant {
 	
 	public void setName(final String name) {
 		this.name = name;
+	}
+
+	public String getParent() {
+		return parent;
+	}
+	
+	public void setParent(final String parent) {
+		this.parent = parent;
 	}
 
 	public String getSelf() {
@@ -147,7 +160,7 @@ public class CurrentTenant {
 	public boolean equals(final Object r) {
 		if (r != null && r instanceof CurrentTenant) {
 			CurrentTenant comparer = (CurrentTenant) r;
-			if (Boolean.valueOf(comparer.getAllowCreateTenants()).equals(Boolean.valueOf(this.getAllowCreateTenants())) && comparer.getApplications().equals(this.getApplications()) && comparer.getCustomProperties().equals(this.getCustomProperties()) && String.valueOf(comparer.getDomainName()).equals(String.valueOf(this.getDomainName())) && String.valueOf(comparer.getName()).equals(String.valueOf(this.getName())) && String.valueOf(comparer.getSelf()).equals(String.valueOf(this.getSelf()))) {
+			if (Boolean.valueOf(comparer.getAllowCreateTenants()).equals(Boolean.valueOf(this.getAllowCreateTenants())) && comparer.getApplications().equals(this.getApplications()) && comparer.getCustomProperties().equals(this.getCustomProperties()) && String.valueOf(comparer.getDomainName()).equals(String.valueOf(this.getDomainName())) && String.valueOf(comparer.getName()).equals(String.valueOf(this.getName())) && String.valueOf(comparer.getParent()).equals(String.valueOf(this.getParent())) && String.valueOf(comparer.getSelf()).equals(String.valueOf(this.getSelf()))) {
 				return true;
 			}
 		}

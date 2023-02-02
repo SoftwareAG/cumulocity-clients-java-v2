@@ -70,7 +70,7 @@ public class BulkOperationsApi extends AdaptableApi {
 	 *
 	 * <br>The following table gives an overview of the possible response codes and their meanings:</br>
 	 * <ul>
-	 * <li>200 A bulk operation was created.</li>
+	 * <li>201 A bulk operation was created.</li>
 	 * <li>401 Authentication information is missing or invalid.</li>
 	 * </ul>
 	 * <p>
@@ -81,7 +81,6 @@ public class BulkOperationsApi extends AdaptableApi {
 	public Future<BulkOperation> createBulkOperation(final BulkOperation body, final String xCumulocityProcessingMode) {
 		final JsonNode jsonNode = toJsonNode(body);
 		removeFromNode(jsonNode, "generalStatus");
-		removeFromNode(jsonNode, "failedParentId");
 		removeFromNode(jsonNode, "self");
 		removeFromNode(jsonNode, "progress");
 		removeFromNode(jsonNode, "id");
@@ -136,7 +135,6 @@ public class BulkOperationsApi extends AdaptableApi {
 	public Future<BulkOperation> updateBulkOperation(final BulkOperation body, final String id, final String xCumulocityProcessingMode) {
 		final JsonNode jsonNode = toJsonNode(body);
 		removeFromNode(jsonNode, "generalStatus");
-		removeFromNode(jsonNode, "failedParentId");
 		removeFromNode(jsonNode, "self");
 		removeFromNode(jsonNode, "progress");
 		removeFromNode(jsonNode, "id");

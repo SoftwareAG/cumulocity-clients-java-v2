@@ -22,7 +22,7 @@ public class C8yCellInfo {
 	private String radioType;
 
 	/**
-	 * Detailed information about the neighbouring cell towers.
+	 * Detailed information about the neighboring cell towers.
 	 */
 	private C8yCellTower[] cellTowers;
 

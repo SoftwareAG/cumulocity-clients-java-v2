@@ -9,6 +9,7 @@ import jakarta.ws.rs.client.Entity;
 import jakarta.ws.rs.client.WebTarget;
 import com.cumulocity.client.supplementary.AdaptableApi;
 import com.cumulocity.client.model.AuthConfig;
+import com.cumulocity.client.model.AuthConfigAccess;
 import com.cumulocity.client.model.LoginOptionCollection;
 
 /**
@@ -62,18 +63,43 @@ public class LoginOptionsApi extends AdaptableApi {
 	 * </ul>
 	 * <p>
 	 * @param body 
-	 * @param xCumulocityProcessingMode Used to explicitly control the processing mode of the request. See [Processing mode](#processing-mode) for more details.
 	 * @return
 	 */
-	public Future<AuthConfig> createLoginOption(final AuthConfig body, final String xCumulocityProcessingMode) {
+	public Future<AuthConfig> createLoginOption(final AuthConfig body) {
 		final JsonNode jsonNode = toJsonNode(body);
 		removeFromNode(jsonNode, "self");
 		return getRootTarget().path("tenant").path("loginOptions")
 				.request()
-				.header("X-Cumulocity-Processing-Mode", xCumulocityProcessingMode)
 				.header("Content-Type", "application/vnd.com.nsn.cumulocity.authconfig+json")
 				.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.authconfig+json")
 				.build("POST", Entity.json(jsonNode))
+				.submit(AuthConfig.class);
+	}
+	
+	/**
+	 * Update a tenant's access to the login option </br>
+	 * Update the tenant's access to the authentication configuration.  <section><h5>Required roles</h5> ROLE_TENANT_MANAGEMENT_ADMIN <b>AND</b> is the management tenant </section> 
+	 *
+	 * <br>The following table gives an overview of the possible response codes and their meanings:</br>
+	 * <ul>
+	 * <li>200 The login option was updated.</li>
+	 * <li>403 Not authorized to perform this operation.</li>
+	 * <li>404 Tenant not found.</li>
+	 * </ul>
+	 * <p>
+	 * @param body 
+	 * @param typeOrId The type or ID of the login option. The type's value is case insensitive and can be `OAUTH2`, `OAUTH2_INTERNAL` or `BASIC`.
+	 * @param targetTenant Unique identifier of a Cumulocity IoT tenant.
+	 * @return
+	 */
+	public Future<AuthConfig> updateLoginOption(final AuthConfigAccess body, final String typeOrId, final String targetTenant) {
+		final JsonNode jsonNode = toJsonNode(body);
+		return getRootTarget().path("tenant").path("loginOptions").path(valueOf(typeOrId)).path("restrict")
+			.queryParam("targetTenant", targetTenant)
+				.request()
+				.header("Content-Type", "application/json")
+				.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.authconfig+json")
+				.build("PUT", Entity.json(jsonNode))
 				.submit(AuthConfig.class);
 	}
 }

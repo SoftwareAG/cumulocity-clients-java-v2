@@ -49,13 +49,14 @@ public class ApplicationsApi extends AdaptableApi {
 	 * @param providedFor The ID of a tenant that is subscribed to the applications but doesn't own them.
 	 * @param subscriber The ID of a tenant that is subscribed to the applications.
 	 * @param tenant The ID of a tenant that either owns the application or is subscribed to the applications.
-	 * @param type The type of the application.
+	 * @param type The type of the application. It is possible to use multiple values separated by a comma. For example, `EXTERNAL,HOSTED` will return only applications with type `EXTERNAL` or `HOSTED`.
 	 * @param user The ID of a user that has access to the applications.
 	 * @param withTotalElements When set to `true`, the returned result will contain in the statistics object the total number of elements. Only applicable on [range queries](https://en.wikipedia.org/wiki/Range_query_(database)).
 	 * @param withTotalPages When set to `true`, the returned result will contain in the statistics object the total number of pages. Only applicable on [range queries](https://en.wikipedia.org/wiki/Range_query_(database)).
+	 * @param hasVersions When set to `true`, the returned result contains applications with an `applicationVersions` field that is not empty. When set to `false`, the result will contain applications with an empty `applicationVersions` field.
 	 * @return
 	 */
-	public Future<ApplicationCollection> getApplications(final int currentPage, final String name, final String owner, final int pageSize, final String providedFor, final String subscriber, final String tenant, final String type, final String user, final boolean withTotalElements, final boolean withTotalPages) {
+	public Future<ApplicationCollection> getApplications(final int currentPage, final String name, final String owner, final int pageSize, final String providedFor, final String subscriber, final String tenant, final String type, final String user, final boolean withTotalElements, final boolean withTotalPages, final boolean hasVersions) {
 		return getRootTarget().path("application").path("applications")
 			.queryParam("currentPage", valueOf(currentPage))
 			.queryParam("name", name)
@@ -68,6 +69,7 @@ public class ApplicationsApi extends AdaptableApi {
 			.queryParam("user", user)
 			.queryParam("withTotalElements", valueOf(withTotalElements))
 			.queryParam("withTotalPages", valueOf(withTotalPages))
+			.queryParam("hasVersions", valueOf(hasVersions))
 				.request()
 				.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.applicationcollection+json")
 				.build("GET")

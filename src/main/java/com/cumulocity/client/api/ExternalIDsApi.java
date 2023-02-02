@@ -59,16 +59,14 @@ public class ExternalIDsApi extends AdaptableApi {
 	 * <p>
 	 * @param body 
 	 * @param id Unique identifier of the managed object.
-	 * @param xCumulocityProcessingMode Used to explicitly control the processing mode of the request. See [Processing mode](#processing-mode) for more details.
 	 * @return
 	 */
-	public Future<ExternalId> createExternalId(final ExternalId body, final String id, final String xCumulocityProcessingMode) {
+	public Future<ExternalId> createExternalId(final ExternalId body, final String id) {
 		final JsonNode jsonNode = toJsonNode(body);
 		removeFromNode(jsonNode, "managedObject");
 		removeFromNode(jsonNode, "self");
 		return getRootTarget().path("identity").path("globalIds").path(valueOf(id)).path("externalIds")
 				.request()
-				.header("X-Cumulocity-Processing-Mode", xCumulocityProcessingMode)
 				.header("Content-Type", "application/vnd.com.nsn.cumulocity.externalid+json")
 				.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.externalid+json")
 				.build("POST", Entity.json(jsonNode))
@@ -111,12 +109,10 @@ public class ExternalIDsApi extends AdaptableApi {
 	 * <p>
 	 * @param type The identifier used in the external system that Cumulocity IoT interfaces with.
 	 * @param externalId The type of the external identifier.
-	 * @param xCumulocityProcessingMode Used to explicitly control the processing mode of the request. See [Processing mode](#processing-mode) for more details.
 	 */
-	public Future<Response> deleteExternalId(final String type, final String externalId, final String xCumulocityProcessingMode) {
+	public Future<Response> deleteExternalId(final String type, final String externalId) {
 		return getRootTarget().path("identity").path("externalIds").path(valueOf(type)).path(valueOf(externalId))
 				.request()
-				.header("X-Cumulocity-Processing-Mode", xCumulocityProcessingMode)
 				.header("Accept", "application/json")
 				.build("DELETE")
 				.submit();

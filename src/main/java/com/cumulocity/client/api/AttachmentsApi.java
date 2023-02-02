@@ -58,13 +58,11 @@ public class AttachmentsApi extends AdaptableApi {
 	 * <p>
 	 * @param body 
 	 * @param id Unique identifier of the event.
-	 * @param xCumulocityProcessingMode Used to explicitly control the processing mode of the request. See [Processing mode](#processing-mode) for more details.
 	 * @return
 	 */
-	public Future<EventBinary> replaceEventAttachment(final byte[] body, final String id, final String xCumulocityProcessingMode) {
+	public Future<EventBinary> replaceEventAttachment(final byte[] body, final String id) {
 		return getRootTarget().path("event").path("events").path(valueOf(id)).path("binaries")
 				.request()
-				.header("X-Cumulocity-Processing-Mode", xCumulocityProcessingMode)
 				.header("Content-Type", "text/plain")
 				.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.event+json")
 				.build("PUT", Entity.text(body))
@@ -85,13 +83,11 @@ public class AttachmentsApi extends AdaptableApi {
 	 * <p>
 	 * @param body 
 	 * @param id Unique identifier of the event.
-	 * @param xCumulocityProcessingMode Used to explicitly control the processing mode of the request. See [Processing mode](#processing-mode) for more details.
 	 * @return
 	 */
-	public Future<EventBinary> uploadEventAttachment(final byte[] body, final String id, final String xCumulocityProcessingMode) {
+	public Future<EventBinary> uploadEventAttachment(final byte[] body, final String id) {
 		return getRootTarget().path("event").path("events").path(valueOf(id)).path("binaries")
 				.request()
-				.header("X-Cumulocity-Processing-Mode", xCumulocityProcessingMode)
 				.header("Content-Type", "text/plain")
 				.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.event+json")
 				.build("POST", Entity.text(body))
@@ -113,16 +109,14 @@ public class AttachmentsApi extends AdaptableApi {
 	 * @param pObject 
 	 * @param file Path of the file to be uploaded.
 	 * @param id Unique identifier of the event.
-	 * @param xCumulocityProcessingMode Used to explicitly control the processing mode of the request. See [Processing mode](#processing-mode) for more details.
 	 * @return
 	 */
-	public Future<EventBinary> uploadEventAttachment(final BinaryInfo pObject, final byte[] file, final String id, final String xCumulocityProcessingMode) {
+	public Future<EventBinary> uploadEventAttachment(final BinaryInfo pObject, final byte[] file, final String id) {
 		final FormDataMultiPart multiPartEntity = new FormDataMultiPart();
 		multiPartEntity.field("object", pObject, MediaType.valueOf("application/json"));
 		multiPartEntity.field("file", file, MediaType.valueOf("text/plain"));
 		return getRootTarget().path("event").path("events").path(valueOf(id)).path("binaries")
 				.request()
-				.header("X-Cumulocity-Processing-Mode", xCumulocityProcessingMode)
 				.header("Content-Type", "multipart/form-data")
 				.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.event+json")
 				.build("POST", Entity.entity(multiPartEntity, "multipart/form-data"))
@@ -141,12 +135,10 @@ public class AttachmentsApi extends AdaptableApi {
 	 * </ul>
 	 * <p>
 	 * @param id Unique identifier of the event.
-	 * @param xCumulocityProcessingMode Used to explicitly control the processing mode of the request. See [Processing mode](#processing-mode) for more details.
 	 */
-	public Future<Response> deleteEventAttachment(final String id, final String xCumulocityProcessingMode) {
+	public Future<Response> deleteEventAttachment(final String id) {
 		return getRootTarget().path("event").path("events").path(valueOf(id)).path("binaries")
 				.request()
-				.header("X-Cumulocity-Processing-Mode", xCumulocityProcessingMode)
 				.header("Accept", "application/json")
 				.build("DELETE")
 				.submit();

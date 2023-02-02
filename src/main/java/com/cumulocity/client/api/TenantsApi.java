@@ -94,10 +94,9 @@ public class TenantsApi extends AdaptableApi {
 	 * </ul>
 	 * <p>
 	 * @param body 
-	 * @param xCumulocityProcessingMode Used to explicitly control the processing mode of the request. See [Processing mode](#processing-mode) for more details.
 	 * @return
 	 */
-	public Future<Tenant> createTenant(final Tenant body, final String xCumulocityProcessingMode) {
+	public Future<Tenant> createTenant(final Tenant body) {
 		final JsonNode jsonNode = toJsonNode(body);
 		removeFromNode(jsonNode, "allowCreateTenants");
 		removeFromNode(jsonNode, "parent");
@@ -109,7 +108,6 @@ public class TenantsApi extends AdaptableApi {
 		removeFromNode(jsonNode, "status");
 		return getRootTarget().path("tenant").path("tenants")
 				.request()
-				.header("X-Cumulocity-Processing-Mode", xCumulocityProcessingMode)
 				.header("Content-Type", "application/vnd.com.nsn.cumulocity.tenant+json")
 				.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.tenant+json")
 				.build("POST", Entity.json(jsonNode))
@@ -125,10 +123,13 @@ public class TenantsApi extends AdaptableApi {
 	 * <li>200 The request has succeeded and the information is sent in the response.</li>
 	 * <li>401 Authentication information is missing or invalid.</li>
 	 * </ul>
+	 * <p>
+	 * @param withParent When set to `true`, the returned result will contain the parent of the current tenant.
 	 * @return
 	 */
-	public Future<CurrentTenant> getCurrentTenant() {
+	public Future<CurrentTenant> getCurrentTenant(final boolean withParent) {
 		return getRootTarget().path("tenant").path("currentTenant")
+			.queryParam("withParent", valueOf(withParent))
 				.request()
 				.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.currenttenant+json")
 				.build("GET")
@@ -164,7 +165,7 @@ public class TenantsApi extends AdaptableApi {
 	 *
 	 * <br>The following table gives an overview of the possible response codes and their meanings:</br>
 	 * <ul>
-	 * <li>201 A tenant was updated.</li>
+	 * <li>200 A tenant was updated.</li>
 	 * <li>401 Authentication information is missing or invalid.</li>
 	 * <li>403 Not authorized to perform this operation.</li>
 	 * <li>404 Tenant not found.</li>
@@ -173,10 +174,9 @@ public class TenantsApi extends AdaptableApi {
 	 * <p>
 	 * @param body 
 	 * @param tenantId Unique identifier of a Cumulocity IoT tenant.
-	 * @param xCumulocityProcessingMode Used to explicitly control the processing mode of the request. See [Processing mode](#processing-mode) for more details.
 	 * @return
 	 */
-	public Future<Tenant> updateTenant(final Tenant body, final String tenantId, final String xCumulocityProcessingMode) {
+	public Future<Tenant> updateTenant(final Tenant body, final String tenantId) {
 		final JsonNode jsonNode = toJsonNode(body);
 		removeFromNode(jsonNode, "adminName");
 		removeFromNode(jsonNode, "allowCreateTenants");
@@ -189,7 +189,6 @@ public class TenantsApi extends AdaptableApi {
 		removeFromNode(jsonNode, "status");
 		return getRootTarget().path("tenant").path("tenants").path(valueOf(tenantId))
 				.request()
-				.header("X-Cumulocity-Processing-Mode", xCumulocityProcessingMode)
 				.header("Content-Type", "application/vnd.com.nsn.cumulocity.tenant+json")
 				.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.tenant+json")
 				.build("PUT", Entity.json(jsonNode))
@@ -209,12 +208,10 @@ public class TenantsApi extends AdaptableApi {
 	 * </ul>
 	 * <p>
 	 * @param tenantId Unique identifier of a Cumulocity IoT tenant.
-	 * @param xCumulocityProcessingMode Used to explicitly control the processing mode of the request. See [Processing mode](#processing-mode) for more details.
 	 */
-	public Future<Response> deleteTenant(final String tenantId, final String xCumulocityProcessingMode) {
+	public Future<Response> deleteTenant(final String tenantId) {
 		return getRootTarget().path("tenant").path("tenants").path(valueOf(tenantId))
 				.request()
-				.header("X-Cumulocity-Processing-Mode", xCumulocityProcessingMode)
 				.header("Accept", "application/json")
 				.build("DELETE")
 				.submit();

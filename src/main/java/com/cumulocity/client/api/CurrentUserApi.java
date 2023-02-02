@@ -49,7 +49,7 @@ public class CurrentUserApi extends AdaptableApi {
 	
 	/**
 	 * Update the current user </br>
-	 * Update the current user.  <section><h5>Required roles</h5> ROLE_USER_MANAGEMENT_ADMIN </section> 
+	 * Update the current user.  <section><h5>Required roles</h5> ROLE_USER_MANAGEMENT_OWN_ADMIN </section> 
 	 *
 	 * <br>The following table gives an overview of the possible response codes and their meanings:</br>
 	 * <ul>
@@ -59,10 +59,9 @@ public class CurrentUserApi extends AdaptableApi {
 	 * </ul>
 	 * <p>
 	 * @param body 
-	 * @param xCumulocityProcessingMode Used to explicitly control the processing mode of the request. See [Processing mode](#processing-mode) for more details.
 	 * @return
 	 */
-	public Future<CurrentUser> updateCurrentUser(final CurrentUser body, final String xCumulocityProcessingMode) {
+	public Future<CurrentUser> updateCurrentUser(final CurrentUser body) {
 		final JsonNode jsonNode = toJsonNode(body);
 		removeFromNode(jsonNode, "self");
 		removeFromNode(jsonNode, "effectiveRoles");
@@ -73,7 +72,6 @@ public class CurrentUserApi extends AdaptableApi {
 		removeFromNode(jsonNode, "devicePermissions");
 		return getRootTarget().path("user").path("currentUser")
 				.request()
-				.header("X-Cumulocity-Processing-Mode", xCumulocityProcessingMode)
 				.header("Content-Type", "application/vnd.com.nsn.cumulocity.currentuser+json")
 				.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.currentuser+json")
 				.build("PUT", Entity.json(jsonNode))
@@ -92,13 +90,11 @@ public class CurrentUserApi extends AdaptableApi {
 	 * </ul>
 	 * <p>
 	 * @param body 
-	 * @param xCumulocityProcessingMode Used to explicitly control the processing mode of the request. See [Processing mode](#processing-mode) for more details.
 	 */
-	public Future<Response> updateCurrentUserPassword(final PasswordChange body, final String xCumulocityProcessingMode) {
+	public Future<Response> updateCurrentUserPassword(final PasswordChange body) {
 		final JsonNode jsonNode = toJsonNode(body);
 		return getRootTarget().path("user").path("currentUser").path("password")
 				.request()
-				.header("X-Cumulocity-Processing-Mode", xCumulocityProcessingMode)
 				.header("Content-Type", "application/json")
 				.header("Accept", "application/json")
 				.build("PUT", Entity.json(jsonNode))
@@ -114,14 +110,11 @@ public class CurrentUserApi extends AdaptableApi {
 	 * <li>200 The request has succeeded and the secret is sent in the response.</li>
 	 * <li>401 Authentication information is missing or invalid.</li>
 	 * </ul>
-	 * <p>
-	 * @param xCumulocityProcessingMode Used to explicitly control the processing mode of the request. See [Processing mode](#processing-mode) for more details.
 	 * @return
 	 */
-	public Future<CurrentUserTotpSecret> generateTfaSecret(final String xCumulocityProcessingMode) {
+	public Future<CurrentUserTotpSecret> generateTfaSecret() {
 		return getRootTarget().path("user").path("currentUser").path("totpSecret")
 				.request()
-				.header("X-Cumulocity-Processing-Mode", xCumulocityProcessingMode)
 				.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/json")
 				.build("POST")
 				.submit(CurrentUserTotpSecret.class);
@@ -160,13 +153,11 @@ public class CurrentUserApi extends AdaptableApi {
 	 * </ul>
 	 * <p>
 	 * @param body 
-	 * @param xCumulocityProcessingMode Used to explicitly control the processing mode of the request. See [Processing mode](#processing-mode) for more details.
 	 */
-	public Future<Response> setTfaState(final CurrentUserTotpSecretActivity body, final String xCumulocityProcessingMode) {
+	public Future<Response> setTfaState(final CurrentUserTotpSecretActivity body) {
 		final JsonNode jsonNode = toJsonNode(body);
 		return getRootTarget().path("user").path("currentUser").path("totpSecret").path("activity")
 				.request()
-				.header("X-Cumulocity-Processing-Mode", xCumulocityProcessingMode)
 				.header("Content-Type", "application/json")
 				.header("Accept", "application/json")
 				.build("POST", Entity.json(jsonNode))
@@ -187,13 +178,11 @@ public class CurrentUserApi extends AdaptableApi {
 	 * </ul>
 	 * <p>
 	 * @param body 
-	 * @param xCumulocityProcessingMode Used to explicitly control the processing mode of the request. See [Processing mode](#processing-mode) for more details.
 	 */
-	public Future<Response> verifyTfaCode(final CurrentUserTotpCode body, final String xCumulocityProcessingMode) {
+	public Future<Response> verifyTfaCode(final CurrentUserTotpCode body) {
 		final JsonNode jsonNode = toJsonNode(body);
 		return getRootTarget().path("user").path("currentUser").path("totpSecret").path("verify")
 				.request()
-				.header("X-Cumulocity-Processing-Mode", xCumulocityProcessingMode)
 				.header("Content-Type", "application/json")
 				.header("Accept", "application/json")
 				.build("POST", Entity.json(jsonNode))

@@ -59,7 +59,7 @@ public class SubscriptionsApi extends AdaptableApi {
 	 *
 	 * <br>The following table gives an overview of the possible response codes and their meanings:</br>
 	 * <ul>
-	 * <li>200 A notification subscription was created.</li>
+	 * <li>201 A notification subscription was created.</li>
 	 * <li>401 Authentication information is missing or invalid.</li>
 	 * <li>403 Not enough permissions/roles to perform this operation.</li>
 	 * <li>404 Managed object not found.</li>

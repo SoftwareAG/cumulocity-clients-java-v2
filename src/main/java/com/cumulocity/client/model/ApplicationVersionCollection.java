@@ -11,32 +11,19 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(Include.NON_NULL)
-public class InventoryAssignmentCollection {
+public class ApplicationVersionCollection {
 
 	/**
-	 * A URL linking to this resource.
+	 * An array of application versions.
 	 */
-	private String self;
+	private ApplicationVersion[] versions;
 
-	/**
-	 * An array of inventory assignments.
-	 */
-	private InventoryAssignment[] inventoryAssignments;
-
-	public String getSelf() {
-		return self;
+	public ApplicationVersion[] getVersions() {
+		return versions;
 	}
 	
-	public void setSelf(final String self) {
-		this.self = self;
-	}
-
-	public InventoryAssignment[] getInventoryAssignments() {
-		return inventoryAssignments;
-	}
-	
-	public void setInventoryAssignments(final InventoryAssignment[] inventoryAssignments) {
-		this.inventoryAssignments = inventoryAssignments;
+	public void setVersions(final ApplicationVersion[] versions) {
+		this.versions = versions;
 	}
 
 	@Override
@@ -51,9 +38,9 @@ public class InventoryAssignmentCollection {
 
 	@Override
 	public boolean equals(final Object r) {
-		if (r != null && r instanceof InventoryAssignmentCollection) {
-			InventoryAssignmentCollection comparer = (InventoryAssignmentCollection) r;
-			if (String.valueOf(comparer.getSelf()).equals(String.valueOf(this.getSelf())) && comparer.getInventoryAssignments().equals(this.getInventoryAssignments())) {
+		if (r != null && r instanceof ApplicationVersionCollection) {
+			ApplicationVersionCollection comparer = (ApplicationVersionCollection) r;
+			if (comparer.getVersions().equals(this.getVersions())) {
 				return true;
 			}
 		}

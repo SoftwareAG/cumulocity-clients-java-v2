@@ -11,32 +11,45 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(Include.NON_NULL)
-public class InventoryAssignmentCollection {
+public class ApplicationVersion {
 
 	/**
-	 * A URL linking to this resource.
+	 * Unique identifier of the version.
 	 */
-	private String self;
+	private String version;
 
 	/**
-	 * An array of inventory assignments.
+	 * Unique identifier of the binary file assigned to the version.
 	 */
-	private InventoryAssignment[] inventoryAssignments;
+	private String binaryId;
 
-	public String getSelf() {
-		return self;
+	/**
+	 * Tag assigned to the version. Version tags must be unique across all versions and version fields of application versions.
+	 */
+	private String[] tag;
+
+	public String getVersion() {
+		return version;
 	}
 	
-	public void setSelf(final String self) {
-		this.self = self;
+	public void setVersion(final String version) {
+		this.version = version;
 	}
 
-	public InventoryAssignment[] getInventoryAssignments() {
-		return inventoryAssignments;
+	public String getBinaryId() {
+		return binaryId;
 	}
 	
-	public void setInventoryAssignments(final InventoryAssignment[] inventoryAssignments) {
-		this.inventoryAssignments = inventoryAssignments;
+	public void setBinaryId(final String binaryId) {
+		this.binaryId = binaryId;
+	}
+
+	public String[] getTag() {
+		return tag;
+	}
+	
+	public void setTag(final String[] tag) {
+		this.tag = tag;
 	}
 
 	@Override
@@ -51,9 +64,9 @@ public class InventoryAssignmentCollection {
 
 	@Override
 	public boolean equals(final Object r) {
-		if (r != null && r instanceof InventoryAssignmentCollection) {
-			InventoryAssignmentCollection comparer = (InventoryAssignmentCollection) r;
-			if (String.valueOf(comparer.getSelf()).equals(String.valueOf(this.getSelf())) && comparer.getInventoryAssignments().equals(this.getInventoryAssignments())) {
+		if (r != null && r instanceof ApplicationVersion) {
+			ApplicationVersion comparer = (ApplicationVersion) r;
+			if (String.valueOf(comparer.getVersion()).equals(String.valueOf(this.getVersion())) && String.valueOf(comparer.getBinaryId()).equals(String.valueOf(this.getBinaryId())) && comparer.getTag().equals(this.getTag())) {
 				return true;
 			}
 		}

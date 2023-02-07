@@ -82,16 +82,14 @@ public class BinariesApi extends AdaptableApi {
 	 * <p>
 	 * @param pObject 
 	 * @param file Path of the file to be uploaded.
-	 * @param xCumulocityProcessingMode Used to explicitly control the processing mode of the request. See [Processing mode](#processing-mode) for more details.
 	 * @return
 	 */
-	public Future<Binary> uploadBinary(final BinaryInfo pObject, final byte[] file, final String xCumulocityProcessingMode) {
+	public Future<Binary> uploadBinary(final BinaryInfo pObject, final byte[] file) {
 		final FormDataMultiPart multiPartEntity = new FormDataMultiPart();
 		multiPartEntity.field("object", pObject, MediaType.valueOf("application/json"));
 		multiPartEntity.field("file", file, MediaType.valueOf("text/plain"));
 		return getRootTarget().path("inventory").path("binaries")
 				.request()
-				.header("X-Cumulocity-Processing-Mode", xCumulocityProcessingMode)
 				.header("Content-Type", "multipart/form-data")
 				.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.managedobject+json")
 				.build("POST", Entity.entity(multiPartEntity, "multipart/form-data"))
@@ -130,13 +128,11 @@ public class BinariesApi extends AdaptableApi {
 	 * <p>
 	 * @param body 
 	 * @param id Unique identifier of the managed object.
-	 * @param xCumulocityProcessingMode Used to explicitly control the processing mode of the request. See [Processing mode](#processing-mode) for more details.
 	 * @return
 	 */
-	public Future<Binary> replaceBinary(final byte[] body, final String id, final String xCumulocityProcessingMode) {
+	public Future<Binary> replaceBinary(final byte[] body, final String id) {
 		return getRootTarget().path("inventory").path("binaries").path(valueOf(id))
 				.request()
-				.header("X-Cumulocity-Processing-Mode", xCumulocityProcessingMode)
 				.header("Content-Type", "text/plain")
 				.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.managedobject+json")
 				.build("PUT", Entity.text(body))
@@ -154,12 +150,10 @@ public class BinariesApi extends AdaptableApi {
 	 * </ul>
 	 * <p>
 	 * @param id Unique identifier of the managed object.
-	 * @param xCumulocityProcessingMode Used to explicitly control the processing mode of the request. See [Processing mode](#processing-mode) for more details.
 	 */
-	public Future<Response> removeBinary(final String id, final String xCumulocityProcessingMode) {
+	public Future<Response> removeBinary(final String id) {
 		return getRootTarget().path("inventory").path("binaries").path(valueOf(id))
 				.request()
-				.header("X-Cumulocity-Processing-Mode", xCumulocityProcessingMode)
 				.header("Accept", "application/json")
 				.build("DELETE")
 				.submit();

@@ -56,11 +56,10 @@ public class CurrentApplicationApi extends AdaptableApi {
 	 * </ul>
 	 * <p>
 	 * @param body 
-	 * @param xCumulocityProcessingMode Used to explicitly control the processing mode of the request. See [Processing mode](#processing-mode) for more details.
 	 * @return
 	 */
 	@Deprecated
-	public Future<Application> updateCurrentApplication(final Application body, final String xCumulocityProcessingMode) {
+	public Future<Application> updateCurrentApplication(final Application body) {
 		final JsonNode jsonNode = toJsonNode(body);
 		removeFromNode(jsonNode, "owner");
 		removeFromNode(jsonNode, "activeVersionId");
@@ -69,7 +68,6 @@ public class CurrentApplicationApi extends AdaptableApi {
 		removeFromNode(jsonNode, "resourcesUrl");
 		return getRootTarget().path("application").path("currentApplication")
 				.request()
-				.header("X-Cumulocity-Processing-Mode", xCumulocityProcessingMode)
 				.header("Content-Type", "application/vnd.com.nsn.cumulocity.application+json")
 				.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.application+json")
 				.build("PUT", Entity.json(jsonNode))

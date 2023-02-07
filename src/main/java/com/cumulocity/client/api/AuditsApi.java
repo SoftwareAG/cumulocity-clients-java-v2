@@ -82,10 +82,9 @@ public class AuditsApi extends AdaptableApi {
 	 * </ul>
 	 * <p>
 	 * @param body 
-	 * @param xCumulocityProcessingMode Used to explicitly control the processing mode of the request. See [Processing mode](#processing-mode) for more details.
 	 * @return
 	 */
-	public Future<AuditRecord> createAuditRecord(final AuditRecord body, final String xCumulocityProcessingMode) {
+	public Future<AuditRecord> createAuditRecord(final AuditRecord body) {
 		final JsonNode jsonNode = toJsonNode(body);
 		removeFromNode(jsonNode, "severity");
 		removeFromNode(jsonNode, "application");
@@ -97,7 +96,6 @@ public class AuditsApi extends AdaptableApi {
 		removeFromNode(jsonNode, "source", "self");
 		return getRootTarget().path("audit").path("auditRecords")
 				.request()
-				.header("X-Cumulocity-Processing-Mode", xCumulocityProcessingMode)
 				.header("Content-Type", "application/vnd.com.nsn.cumulocity.auditrecord+json")
 				.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.auditrecord+json")
 				.build("POST", Entity.json(jsonNode))

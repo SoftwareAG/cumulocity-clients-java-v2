@@ -65,15 +65,13 @@ public class OptionsApi extends AdaptableApi {
 	 * </ul>
 	 * <p>
 	 * @param body 
-	 * @param xCumulocityProcessingMode Used to explicitly control the processing mode of the request. See [Processing mode](#processing-mode) for more details.
 	 * @return
 	 */
-	public Future<Option> createOption(final Option body, final String xCumulocityProcessingMode) {
+	public Future<Option> createOption(final Option body) {
 		final JsonNode jsonNode = toJsonNode(body);
 		removeFromNode(jsonNode, "self");
 		return getRootTarget().path("tenant").path("options")
 				.request()
-				.header("X-Cumulocity-Processing-Mode", xCumulocityProcessingMode)
 				.header("Content-Type", "application/vnd.com.nsn.cumulocity.option+json")
 				.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.option+json")
 				.build("POST", Entity.json(jsonNode))
@@ -114,14 +112,12 @@ public class OptionsApi extends AdaptableApi {
 	 * <p>
 	 * @param body 
 	 * @param category The category of the options.
-	 * @param xCumulocityProcessingMode Used to explicitly control the processing mode of the request. See [Processing mode](#processing-mode) for more details.
 	 * @return
 	 */
-	public Future<CategoryOptions> updateOptionsByCategory(final CategoryOptions body, final String category, final String xCumulocityProcessingMode) {
+	public Future<CategoryOptions> updateOptionsByCategory(final CategoryOptions body, final String category) {
 		final JsonNode jsonNode = toJsonNode(body);
 		return getRootTarget().path("tenant").path("options").path(valueOf(category))
 				.request()
-				.header("X-Cumulocity-Processing-Mode", xCumulocityProcessingMode)
 				.header("Content-Type", "application/json")
 				.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.option+json")
 				.build("PUT", Entity.json(jsonNode))
@@ -166,14 +162,12 @@ public class OptionsApi extends AdaptableApi {
 	 * @param body 
 	 * @param category The category of the options.
 	 * @param key The key of an option.
-	 * @param xCumulocityProcessingMode Used to explicitly control the processing mode of the request. See [Processing mode](#processing-mode) for more details.
 	 * @return
 	 */
-	public Future<Option> updateOption(final CategoryKeyOption body, final String category, final String key, final String xCumulocityProcessingMode) {
+	public Future<Option> updateOption(final CategoryKeyOption body, final String category, final String key) {
 		final JsonNode jsonNode = toJsonNode(body);
 		return getRootTarget().path("tenant").path("options").path(valueOf(category)).path(valueOf(key))
 				.request()
-				.header("X-Cumulocity-Processing-Mode", xCumulocityProcessingMode)
 				.header("Content-Type", "application/json")
 				.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.option+json")
 				.build("PUT", Entity.json(jsonNode))
@@ -193,12 +187,10 @@ public class OptionsApi extends AdaptableApi {
 	 * <p>
 	 * @param category The category of the options.
 	 * @param key The key of an option.
-	 * @param xCumulocityProcessingMode Used to explicitly control the processing mode of the request. See [Processing mode](#processing-mode) for more details.
 	 */
-	public Future<Response> deleteOption(final String category, final String key, final String xCumulocityProcessingMode) {
+	public Future<Response> deleteOption(final String category, final String key) {
 		return getRootTarget().path("tenant").path("options").path(valueOf(category)).path(valueOf(key))
 				.request()
-				.header("X-Cumulocity-Processing-Mode", xCumulocityProcessingMode)
 				.header("Accept", "application/json")
 				.build("DELETE")
 				.submit();

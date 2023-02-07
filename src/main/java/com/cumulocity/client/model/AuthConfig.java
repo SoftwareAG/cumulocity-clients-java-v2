@@ -62,6 +62,11 @@ public class AuthConfig {
 	private RequestRepresentation logoutRequest;
 
 	/**
+	 * Indicates whether the configuration is only accessible to the management tenant.
+	 */
+	private boolean onlyManagementTenantAccess;
+
+	/**
 	 * SSO specific. Describes the process of internal user creation during login with the external authorization server.
 	 */
 	private OnNewUser onNewUser;
@@ -206,6 +211,14 @@ public class AuthConfig {
 	
 	public void setLogoutRequest(final RequestRepresentation logoutRequest) {
 		this.logoutRequest = logoutRequest;
+	}
+
+	public boolean getOnlyManagementTenantAccess() {
+		return onlyManagementTenantAccess;
+	}
+	
+	public void setOnlyManagementTenantAccess(final boolean onlyManagementTenantAccess) {
+		this.onlyManagementTenantAccess = onlyManagementTenantAccess;
 	}
 
 	public OnNewUser getOnNewUser() {
@@ -1132,7 +1145,7 @@ public class AuthConfig {
 	public boolean equals(final Object r) {
 		if (r != null && r instanceof AuthConfig) {
 			AuthConfig comparer = (AuthConfig) r;
-			if (comparer.getAccessTokenToUserDataMapping().equals(this.getAccessTokenToUserDataMapping()) && String.valueOf(comparer.getAudience()).equals(String.valueOf(this.getAudience())) && comparer.getAuthorizationRequest().equals(this.getAuthorizationRequest()) && comparer.getAuthenticationRestrictions().equals(this.getAuthenticationRestrictions()) && String.valueOf(comparer.getButtonName()).equals(String.valueOf(this.getButtonName())) && String.valueOf(comparer.getClientId()).equals(String.valueOf(this.getClientId())) && comparer.getGrantType().equals(this.getGrantType()) && String.valueOf(comparer.getId()).equals(String.valueOf(this.getId())) && String.valueOf(comparer.getIssuer()).equals(String.valueOf(this.getIssuer())) && comparer.getLogoutRequest().equals(this.getLogoutRequest()) && comparer.getOnNewUser().equals(this.getOnNewUser()) && String.valueOf(comparer.getProviderName()).equals(String.valueOf(this.getProviderName())) && String.valueOf(comparer.getRedirectToPlatform()).equals(String.valueOf(this.getRedirectToPlatform())) && comparer.getRefreshRequest().equals(this.getRefreshRequest()) && String.valueOf(comparer.getSelf()).equals(String.valueOf(this.getSelf())) && comparer.getSessionConfiguration().equals(this.getSessionConfiguration()) && comparer.getSignatureVerificationConfig().equals(this.getSignatureVerificationConfig()) && String.valueOf(comparer.getTemplate()).equals(String.valueOf(this.getTemplate())) && comparer.getTokenRequest().equals(this.getTokenRequest()) && comparer.getType().equals(this.getType()) && comparer.getUserIdConfig().equals(this.getUserIdConfig()) && comparer.getUserManagementSource().equals(this.getUserManagementSource()) && Boolean.valueOf(comparer.getVisibleOnLoginPage()).equals(Boolean.valueOf(this.getVisibleOnLoginPage()))) {
+			if (comparer.getAccessTokenToUserDataMapping().equals(this.getAccessTokenToUserDataMapping()) && String.valueOf(comparer.getAudience()).equals(String.valueOf(this.getAudience())) && comparer.getAuthorizationRequest().equals(this.getAuthorizationRequest()) && comparer.getAuthenticationRestrictions().equals(this.getAuthenticationRestrictions()) && String.valueOf(comparer.getButtonName()).equals(String.valueOf(this.getButtonName())) && String.valueOf(comparer.getClientId()).equals(String.valueOf(this.getClientId())) && comparer.getGrantType().equals(this.getGrantType()) && String.valueOf(comparer.getId()).equals(String.valueOf(this.getId())) && String.valueOf(comparer.getIssuer()).equals(String.valueOf(this.getIssuer())) && comparer.getLogoutRequest().equals(this.getLogoutRequest()) && Boolean.valueOf(comparer.getOnlyManagementTenantAccess()).equals(Boolean.valueOf(this.getOnlyManagementTenantAccess())) && comparer.getOnNewUser().equals(this.getOnNewUser()) && String.valueOf(comparer.getProviderName()).equals(String.valueOf(this.getProviderName())) && String.valueOf(comparer.getRedirectToPlatform()).equals(String.valueOf(this.getRedirectToPlatform())) && comparer.getRefreshRequest().equals(this.getRefreshRequest()) && String.valueOf(comparer.getSelf()).equals(String.valueOf(this.getSelf())) && comparer.getSessionConfiguration().equals(this.getSessionConfiguration()) && comparer.getSignatureVerificationConfig().equals(this.getSignatureVerificationConfig()) && String.valueOf(comparer.getTemplate()).equals(String.valueOf(this.getTemplate())) && comparer.getTokenRequest().equals(this.getTokenRequest()) && comparer.getType().equals(this.getType()) && comparer.getUserIdConfig().equals(this.getUserIdConfig()) && comparer.getUserManagementSource().equals(this.getUserManagementSource()) && Boolean.valueOf(comparer.getVisibleOnLoginPage()).equals(Boolean.valueOf(this.getVisibleOnLoginPage()))) {
 				return true;
 			}
 		}

@@ -64,7 +64,7 @@ public class GroupsApi extends AdaptableApi {
 	 *
 	 * <br>The following table gives an overview of the possible response codes and their meanings:</br>
 	 * <ul>
-	 * <li>200 A user group was created.</li>
+	 * <li>201 A user group was created.</li>
 	 * <li>401 Authentication information is missing or invalid.</li>
 	 * <li>403 Not enough permissions/roles to perform this operation.</li>
 	 * <li>409 Duplicate – Group name already exists.</li>
@@ -73,10 +73,9 @@ public class GroupsApi extends AdaptableApi {
 	 * <p>
 	 * @param body 
 	 * @param tenantId Unique identifier of a Cumulocity IoT tenant.
-	 * @param xCumulocityProcessingMode Used to explicitly control the processing mode of the request. See [Processing mode](#processing-mode) for more details.
 	 * @return
 	 */
-	public Future<Group> createUserGroup(final Group body, final String tenantId, final String xCumulocityProcessingMode) {
+	public Future<Group> createUserGroup(final Group body, final String tenantId) {
 		final JsonNode jsonNode = toJsonNode(body);
 		removeFromNode(jsonNode, "roles");
 		removeFromNode(jsonNode, "self");
@@ -86,7 +85,6 @@ public class GroupsApi extends AdaptableApi {
 		removeFromNode(jsonNode, "applications");
 		return getRootTarget().path("user").path(valueOf(tenantId)).path("groups")
 				.request()
-				.header("X-Cumulocity-Processing-Mode", xCumulocityProcessingMode)
 				.header("Content-Type", "application/vnd.com.nsn.cumulocity.group+json")
 				.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.group+json")
 				.build("POST", Entity.json(jsonNode))
@@ -133,10 +131,9 @@ public class GroupsApi extends AdaptableApi {
 	 * @param body 
 	 * @param tenantId Unique identifier of a Cumulocity IoT tenant.
 	 * @param groupId Unique identifier of the user group.
-	 * @param xCumulocityProcessingMode Used to explicitly control the processing mode of the request. See [Processing mode](#processing-mode) for more details.
 	 * @return
 	 */
-	public Future<Group> updateUserGroup(final Group body, final String tenantId, final int groupId, final String xCumulocityProcessingMode) {
+	public Future<Group> updateUserGroup(final Group body, final String tenantId, final int groupId) {
 		final JsonNode jsonNode = toJsonNode(body);
 		removeFromNode(jsonNode, "roles");
 		removeFromNode(jsonNode, "self");
@@ -146,7 +143,6 @@ public class GroupsApi extends AdaptableApi {
 		removeFromNode(jsonNode, "applications");
 		return getRootTarget().path("user").path(valueOf(tenantId)).path("groups").path(valueOf(groupId))
 				.request()
-				.header("X-Cumulocity-Processing-Mode", xCumulocityProcessingMode)
 				.header("Content-Type", "application/vnd.com.nsn.cumulocity.group+json")
 				.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.group+json")
 				.build("PUT", Entity.json(jsonNode))
@@ -167,12 +163,10 @@ public class GroupsApi extends AdaptableApi {
 	 * <p>
 	 * @param tenantId Unique identifier of a Cumulocity IoT tenant.
 	 * @param groupId Unique identifier of the user group.
-	 * @param xCumulocityProcessingMode Used to explicitly control the processing mode of the request. See [Processing mode](#processing-mode) for more details.
 	 */
-	public Future<Response> deleteUserGroup(final String tenantId, final int groupId, final String xCumulocityProcessingMode) {
+	public Future<Response> deleteUserGroup(final String tenantId, final int groupId) {
 		return getRootTarget().path("user").path(valueOf(tenantId)).path("groups").path(valueOf(groupId))
 				.request()
-				.header("X-Cumulocity-Processing-Mode", xCumulocityProcessingMode)
 				.header("Accept", "application/json")
 				.build("DELETE")
 				.submit();

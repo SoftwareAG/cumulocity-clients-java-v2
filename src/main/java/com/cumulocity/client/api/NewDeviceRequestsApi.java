@@ -59,7 +59,7 @@ public class NewDeviceRequestsApi extends AdaptableApi {
 	 *
 	 * <br>The following table gives an overview of the possible response codes and their meanings:</br>
 	 * <ul>
-	 * <li>200 A new device request was created.</li>
+	 * <li>201 A new device request was created.</li>
 	 * <li>401 Authentication information is missing or invalid.</li>
 	 * <li>422 Unprocessable Entity – invalid payload.</li>
 	 * </ul>
@@ -116,16 +116,14 @@ public class NewDeviceRequestsApi extends AdaptableApi {
 	 * <p>
 	 * @param body 
 	 * @param requestId Unique identifier of the new device request.
-	 * @param xCumulocityProcessingMode Used to explicitly control the processing mode of the request. See [Processing mode](#processing-mode) for more details.
 	 * @return
 	 */
-	public Future<NewDeviceRequest> updateNewDeviceRequest(final NewDeviceRequest body, final String requestId, final String xCumulocityProcessingMode) {
+	public Future<NewDeviceRequest> updateNewDeviceRequest(final NewDeviceRequest body, final String requestId) {
 		final JsonNode jsonNode = toJsonNode(body);
 		removeFromNode(jsonNode, "self");
 		removeFromNode(jsonNode, "id");
 		return getRootTarget().path("devicecontrol").path("newDeviceRequests").path(valueOf(requestId))
 				.request()
-				.header("X-Cumulocity-Processing-Mode", xCumulocityProcessingMode)
 				.header("Content-Type", "application/vnd.com.nsn.cumulocity.newdevicerequest+json")
 				.header("Accept", "application/vnd.com.nsn.cumulocity.newdevicerequest+json, application/vnd.com.nsn.cumulocity.error+json")
 				.build("PUT", Entity.json(jsonNode))
@@ -145,12 +143,10 @@ public class NewDeviceRequestsApi extends AdaptableApi {
 	 * </ul>
 	 * <p>
 	 * @param requestId Unique identifier of the new device request.
-	 * @param xCumulocityProcessingMode Used to explicitly control the processing mode of the request. See [Processing mode](#processing-mode) for more details.
 	 */
-	public Future<Response> deleteNewDeviceRequest(final String requestId, final String xCumulocityProcessingMode) {
+	public Future<Response> deleteNewDeviceRequest(final String requestId) {
 		return getRootTarget().path("devicecontrol").path("newDeviceRequests").path(valueOf(requestId))
 				.request()
-				.header("X-Cumulocity-Processing-Mode", xCumulocityProcessingMode)
 				.header("Accept", "application/json")
 				.build("DELETE")
 				.submit();

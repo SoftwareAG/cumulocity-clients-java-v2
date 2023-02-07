@@ -194,7 +194,7 @@ public class ManagedObjectsApi extends AdaptableApi {
 	
 	/**
 	 * Update a specific managed object </br>
-	 * Update a specific managed object (for example, device) by a given ID.  For example, if you want to specify that your managed object is a device, you must add the fragment `c8y_IsDevice`.  <section><h5>Required roles</h5> ROLE_INVENTORY_ADMIN <b>OR</b> owner of the source <b>OR</b> MANAGE_OBJECT_ADMIN permission on the source </section> 
+	 * Update a specific managed object (for example, device) by a given ID.  For example, if you want to specify that your managed object is a device, you must add the fragment `c8y_IsDevice`.   The endpoint can also be used as a device availability heartbeat.  If you only specifiy the `id`, it updates the date when the last message was received and no other property.  The response then only contains the `id` instead of the full managed object.  <section><h5>Required roles</h5> ROLE_INVENTORY_ADMIN <b>OR</b> owner of the source <b>OR</b> MANAGE_OBJECT_ADMIN permission on the source </section> 
 	 *
 	 * <br>The following table gives an overview of the possible response codes and their meanings:</br>
 	 * <ul>

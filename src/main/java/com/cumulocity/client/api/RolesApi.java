@@ -58,7 +58,7 @@ public class RolesApi extends AdaptableApi {
 	
 	/**
 	 * Retrieve a user role by name </br>
-	 * Retrieve a user role by name.  <section><h5>Required roles</h5> ROLE_USER_MANAGEMENT_READ <b>OR</b> ROLE_USER_MANAGEMENT_CREATE <b>AND</b> current user has acces to the role with this name </section> 
+	 * Retrieve a user role by name.  <section><h5>Required roles</h5> ROLE_USER_MANAGEMENT_READ <b>OR</b> ROLE_USER_MANAGEMENT_CREATE <b>AND</b> current user has access to the role with this name </section> 
 	 *
 	 * <br>The following table gives an overview of the possible response codes and their meanings:</br>
 	 * <ul>
@@ -112,7 +112,7 @@ public class RolesApi extends AdaptableApi {
 	 *
 	 * <br>The following table gives an overview of the possible response codes and their meanings:</br>
 	 * <ul>
-	 * <li>200 A user role was assigned to a user group.</li>
+	 * <li>201 A user role was assigned to a user group.</li>
 	 * <li>401 Authentication information is missing or invalid.</li>
 	 * <li>403 Not authorized to perform this operation.</li>
 	 * <li>404 Group not found.</li>
@@ -123,14 +123,12 @@ public class RolesApi extends AdaptableApi {
 	 * @param body 
 	 * @param tenantId Unique identifier of a Cumulocity IoT tenant.
 	 * @param groupId Unique identifier of the user group.
-	 * @param xCumulocityProcessingMode Used to explicitly control the processing mode of the request. See [Processing mode](#processing-mode) for more details.
 	 * @return
 	 */
-	public Future<RoleReference> assignGroupRole(final SubscribedRole body, final String tenantId, final int groupId, final String xCumulocityProcessingMode) {
+	public Future<RoleReference> assignGroupRole(final SubscribedRole body, final String tenantId, final int groupId) {
 		final JsonNode jsonNode = toJsonNode(body);
 		return getRootTarget().path("user").path(valueOf(tenantId)).path("groups").path(valueOf(groupId)).path("roles")
 				.request()
-				.header("X-Cumulocity-Processing-Mode", xCumulocityProcessingMode)
 				.header("Content-Type", "application/vnd.com.nsn.cumulocity.rolereference+json")
 				.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.rolereference+json")
 				.build("POST", Entity.json(jsonNode))
@@ -152,12 +150,10 @@ public class RolesApi extends AdaptableApi {
 	 * @param tenantId Unique identifier of a Cumulocity IoT tenant.
 	 * @param groupId Unique identifier of the user group.
 	 * @param roleId Unique identifier of the user role.
-	 * @param xCumulocityProcessingMode Used to explicitly control the processing mode of the request. See [Processing mode](#processing-mode) for more details.
 	 */
-	public Future<Response> unassignGroupRole(final String tenantId, final int groupId, final String roleId, final String xCumulocityProcessingMode) {
+	public Future<Response> unassignGroupRole(final String tenantId, final int groupId, final String roleId) {
 		return getRootTarget().path("user").path(valueOf(tenantId)).path("groups").path(valueOf(groupId)).path("roles").path(valueOf(roleId))
 				.request()
-				.header("X-Cumulocity-Processing-Mode", xCumulocityProcessingMode)
 				.header("Accept", "application/json")
 				.build("DELETE")
 				.submit();
@@ -165,11 +161,11 @@ public class RolesApi extends AdaptableApi {
 	
 	/**
 	 * Assign a role to specific user in a specific tenant </br>
-	 * Assign a role to a specific user (by a given user ID) in a specific tenant (by a given tenant ID).  When a role is assigned to a user, a corresponding audit record is created with type "User" and activity "User updated".  <section><h5>Required roles</h5> ROLE_USER_MANAGEMENT_READ <b>OR</b> ROLE_USER_MANAGEMENT_CREATE <b>AND</b> is parent of the user </section> 
+	 * Assign a role to a specific user (by a given user ID) in a specific tenant (by a given tenant ID).  When a role is assigned to a user, a corresponding audit record is created with type "User" and activity "User updated".  <section><h5>Required roles</h5> ROLE_USER_MANAGEMENT_ADMIN to assign any role to root users in a user hierarchy <b>OR</b> users that are not in any hierarchy<br/> ROLE_USER_MANAGEMENT_ADMIN to assign roles accessible by the parent of assigned user to non-root users in a user hierarchy<br/> ROLE_USER_MANAGEMENT_CREATE to assign roles accessible by the current user <b>AND</b> accessible by the parent of the assigned user to the descendants of the current user in a user hierarchy </section> 
 	 *
 	 * <br>The following table gives an overview of the possible response codes and their meanings:</br>
 	 * <ul>
-	 * <li>200 A user role was assigned to a user.</li>
+	 * <li>201 A user role was assigned to a user.</li>
 	 * <li>401 Authentication information is missing or invalid.</li>
 	 * <li>403 Not enough permissions/roles to perform this operation.</li>
 	 * <li>404 User not found.</li>
@@ -179,14 +175,12 @@ public class RolesApi extends AdaptableApi {
 	 * @param body 
 	 * @param tenantId Unique identifier of a Cumulocity IoT tenant.
 	 * @param userId Unique identifier of the a user.
-	 * @param xCumulocityProcessingMode Used to explicitly control the processing mode of the request. See [Processing mode](#processing-mode) for more details.
 	 * @return
 	 */
-	public Future<RoleReference> assignUserRole(final SubscribedRole body, final String tenantId, final String userId, final String xCumulocityProcessingMode) {
+	public Future<RoleReference> assignUserRole(final SubscribedRole body, final String tenantId, final String userId) {
 		final JsonNode jsonNode = toJsonNode(body);
 		return getRootTarget().path("user").path(valueOf(tenantId)).path("users").path(valueOf(userId)).path("roles")
 				.request()
-				.header("X-Cumulocity-Processing-Mode", xCumulocityProcessingMode)
 				.header("Content-Type", "application/vnd.com.nsn.cumulocity.rolereference+json")
 				.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.rolereference+json")
 				.build("POST", Entity.json(jsonNode))
@@ -208,12 +202,10 @@ public class RolesApi extends AdaptableApi {
 	 * @param tenantId Unique identifier of a Cumulocity IoT tenant.
 	 * @param userId Unique identifier of the a user.
 	 * @param roleId Unique identifier of the user role.
-	 * @param xCumulocityProcessingMode Used to explicitly control the processing mode of the request. See [Processing mode](#processing-mode) for more details.
 	 */
-	public Future<Response> unassignUserRole(final String tenantId, final String userId, final String roleId, final String xCumulocityProcessingMode) {
+	public Future<Response> unassignUserRole(final String tenantId, final String userId, final String roleId) {
 		return getRootTarget().path("user").path(valueOf(tenantId)).path("users").path(valueOf(userId)).path("roles").path(valueOf(roleId))
 				.request()
-				.header("X-Cumulocity-Processing-Mode", xCumulocityProcessingMode)
 				.header("Accept", "application/json")
 				.build("DELETE")
 				.submit();

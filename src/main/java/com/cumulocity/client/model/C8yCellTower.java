@@ -27,7 +27,7 @@ public class C8yCellTower {
 	private Number mobileCountryCode;
 
 	/**
-	 * The Mobile Noetwork Code (MNC) for GSM, WCDMA and LTE. The SystemID (sid) for CDMA.
+	 * The Mobile Network Code (MNC) for GSM, WCDMA and LTE. The SystemID (sid) for CDMA.
 	 */
 	private Number mobileNetworkCode;
 
@@ -37,7 +37,7 @@ public class C8yCellTower {
 	private Number locationAreaCode;
 
 	/**
-	 * The Cell ID (CID) for GSM, WCDMA and LTE. The Basestation ID for CDMA.
+	 * The Cell ID (CID) for GSM, WCDMA and LTE. The base station ID for CDMA.
 	 */
 	private Number cellId;
 

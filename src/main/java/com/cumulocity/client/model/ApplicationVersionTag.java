@@ -11,32 +11,26 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(Include.NON_NULL)
-public class InventoryAssignmentCollection {
+public class ApplicationVersionTag {
 
 	/**
-	 * A URL linking to this resource.
+	 * Tag assigned to the version. Version tags must be unique across all versions and version fields of application versions.
 	 */
-	private String self;
+	private String[] tag;
 
-	/**
-	 * An array of inventory assignments.
-	 */
-	private InventoryAssignment[] inventoryAssignments;
+	public ApplicationVersionTag() {
+	}
 
-	public String getSelf() {
-		return self;
+	public ApplicationVersionTag(final String[] tag) {
+		this.tag = tag;
+	}
+
+	public String[] getTag() {
+		return tag;
 	}
 	
-	public void setSelf(final String self) {
-		this.self = self;
-	}
-
-	public InventoryAssignment[] getInventoryAssignments() {
-		return inventoryAssignments;
-	}
-	
-	public void setInventoryAssignments(final InventoryAssignment[] inventoryAssignments) {
-		this.inventoryAssignments = inventoryAssignments;
+	public void setTag(final String[] tag) {
+		this.tag = tag;
 	}
 
 	@Override
@@ -51,9 +45,9 @@ public class InventoryAssignmentCollection {
 
 	@Override
 	public boolean equals(final Object r) {
-		if (r != null && r instanceof InventoryAssignmentCollection) {
-			InventoryAssignmentCollection comparer = (InventoryAssignmentCollection) r;
-			if (String.valueOf(comparer.getSelf()).equals(String.valueOf(this.getSelf())) && comparer.getInventoryAssignments().equals(this.getInventoryAssignments())) {
+		if (r != null && r instanceof ApplicationVersionTag) {
+			ApplicationVersionTag comparer = (ApplicationVersionTag) r;
+			if (comparer.getTag().equals(this.getTag())) {
 				return true;
 			}
 		}

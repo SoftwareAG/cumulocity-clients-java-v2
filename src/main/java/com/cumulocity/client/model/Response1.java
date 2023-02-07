@@ -3,6 +3,7 @@
 
 package com.cumulocity.client.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
@@ -11,33 +12,43 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(Include.NON_NULL)
-public class InventoryAssignmentCollection {
+public class Response1 {
 
 	/**
-	 * A URL linking to this resource.
+	 * The status of the notification subscription deletion.
 	 */
-	private String self;
+	private Result result;
 
+	public Result getResult() {
+		return result;
+	}
+	
+	public void setResult(final Result result) {
+		this.result = result;
+	}
+
+	
 	/**
-	 * An array of inventory assignments.
+	 * The status of the notification subscription deletion.
+	 * [DONE, SCHEDULED]
 	 */
-	private InventoryAssignment[] inventoryAssignments;
-
-	public String getSelf() {
-		return self;
-	}
+	public enum Result {
+		@JsonProperty("DONE")
+		DONE("DONE"),
+		@JsonProperty("SCHEDULED")
+		SCHEDULED("SCHEDULED");
 	
-	public void setSelf(final String self) {
-		this.self = self;
+		private String value;
+	
+		Result(final String value) {
+			this.value = value;
+		}
+	
+		public String getValue() {
+			return value;
+		}
 	}
 
-	public InventoryAssignment[] getInventoryAssignments() {
-		return inventoryAssignments;
-	}
-	
-	public void setInventoryAssignments(final InventoryAssignment[] inventoryAssignments) {
-		this.inventoryAssignments = inventoryAssignments;
-	}
 
 	@Override
 	public String toString() {
@@ -51,9 +62,9 @@ public class InventoryAssignmentCollection {
 
 	@Override
 	public boolean equals(final Object r) {
-		if (r != null && r instanceof InventoryAssignmentCollection) {
-			InventoryAssignmentCollection comparer = (InventoryAssignmentCollection) r;
-			if (String.valueOf(comparer.getSelf()).equals(String.valueOf(this.getSelf())) && comparer.getInventoryAssignments().equals(this.getInventoryAssignments())) {
+		if (r != null && r instanceof Response1) {
+			Response1 comparer = (Response1) r;
+			if (comparer.getResult().equals(this.getResult())) {
 				return true;
 			}
 		}

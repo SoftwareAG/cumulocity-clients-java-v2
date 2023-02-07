@@ -67,7 +67,7 @@ public class Tenant {
 	private CustomProperties customProperties;
 
 	/**
-	 * URL of the tenant's domain. The domain name permits only the use of alphanumeric characters separated by dots `.`, hyphens `-` and underscores `_`.
+	 * URL of the tenant's domain. The domain name permits only the use of alphanumeric characters separated by dots `.` and hyphens `-`.
 	 */
 	private String domain;
 

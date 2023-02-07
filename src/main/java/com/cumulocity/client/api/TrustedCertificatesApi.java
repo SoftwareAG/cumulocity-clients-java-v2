@@ -74,10 +74,9 @@ public class TrustedCertificatesApi extends AdaptableApi {
 	 * <p>
 	 * @param body 
 	 * @param tenantId Unique identifier of a Cumulocity IoT tenant.
-	 * @param xCumulocityProcessingMode Used to explicitly control the processing mode of the request. See [Processing mode](#processing-mode) for more details.
 	 * @return
 	 */
-	public Future<TrustedCertificate> addTrustedCertificate(final TrustedCertificate body, final String tenantId, final String xCumulocityProcessingMode) {
+	public Future<TrustedCertificate> addTrustedCertificate(final TrustedCertificate body, final String tenantId) {
 		final JsonNode jsonNode = toJsonNode(body);
 		removeFromNode(jsonNode, "notAfter");
 		removeFromNode(jsonNode, "serialNumber");
@@ -90,7 +89,6 @@ public class TrustedCertificatesApi extends AdaptableApi {
 		removeFromNode(jsonNode, "notBefore");
 		return getRootTarget().path("tenant").path("tenants").path(valueOf(tenantId)).path("trusted-certificates")
 				.request()
-				.header("X-Cumulocity-Processing-Mode", xCumulocityProcessingMode)
 				.header("Content-Type", "application/json")
 				.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/json")
 				.build("POST", Entity.json(jsonNode))
@@ -112,10 +110,9 @@ public class TrustedCertificatesApi extends AdaptableApi {
 	 * <p>
 	 * @param body 
 	 * @param tenantId Unique identifier of a Cumulocity IoT tenant.
-	 * @param xCumulocityProcessingMode Used to explicitly control the processing mode of the request. See [Processing mode](#processing-mode) for more details.
 	 * @return
 	 */
-	public Future<TrustedCertificateCollection> addTrustedCertificates(final TrustedCertificateCollection body, final String tenantId, final String xCumulocityProcessingMode) {
+	public Future<TrustedCertificateCollection> addTrustedCertificates(final TrustedCertificateCollection body, final String tenantId) {
 		final JsonNode jsonNode = toJsonNode(body);
 		removeFromNode(jsonNode, "next");
 		removeFromNode(jsonNode, "prev");
@@ -123,7 +120,6 @@ public class TrustedCertificatesApi extends AdaptableApi {
 		removeFromNode(jsonNode, "statistics");
 		return getRootTarget().path("tenant").path("tenants").path(valueOf(tenantId)).path("trusted-certificates").path("bulk")
 				.request()
-				.header("X-Cumulocity-Processing-Mode", xCumulocityProcessingMode)
 				.header("Content-Type", "application/json")
 				.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/json")
 				.build("POST", Entity.json(jsonNode))
@@ -167,10 +163,9 @@ public class TrustedCertificatesApi extends AdaptableApi {
 	 * @param body 
 	 * @param tenantId Unique identifier of a Cumulocity IoT tenant.
 	 * @param fingerprint Unique identifier of a trusted certificate.
-	 * @param xCumulocityProcessingMode Used to explicitly control the processing mode of the request. See [Processing mode](#processing-mode) for more details.
 	 * @return
 	 */
-	public Future<TrustedCertificate> updateTrustedCertificate(final TrustedCertificate body, final String tenantId, final String fingerprint, final String xCumulocityProcessingMode) {
+	public Future<TrustedCertificate> updateTrustedCertificate(final TrustedCertificate body, final String tenantId, final String fingerprint) {
 		final JsonNode jsonNode = toJsonNode(body);
 		removeFromNode(jsonNode, "notAfter");
 		removeFromNode(jsonNode, "serialNumber");
@@ -184,7 +179,6 @@ public class TrustedCertificatesApi extends AdaptableApi {
 		removeFromNode(jsonNode, "notBefore");
 		return getRootTarget().path("tenant").path("tenants").path(valueOf(tenantId)).path("trusted-certificates").path(valueOf(fingerprint))
 				.request()
-				.header("X-Cumulocity-Processing-Mode", xCumulocityProcessingMode)
 				.header("Content-Type", "application/json")
 				.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/json")
 				.build("PUT", Entity.json(jsonNode))
@@ -204,12 +198,10 @@ public class TrustedCertificatesApi extends AdaptableApi {
 	 * <p>
 	 * @param tenantId Unique identifier of a Cumulocity IoT tenant.
 	 * @param fingerprint Unique identifier of a trusted certificate.
-	 * @param xCumulocityProcessingMode Used to explicitly control the processing mode of the request. See [Processing mode](#processing-mode) for more details.
 	 */
-	public Future<Response> removeTrustedCertificate(final String tenantId, final String fingerprint, final String xCumulocityProcessingMode) {
+	public Future<Response> removeTrustedCertificate(final String tenantId, final String fingerprint) {
 		return getRootTarget().path("tenant").path("tenants").path(valueOf(tenantId)).path("trusted-certificates").path(valueOf(fingerprint))
 				.request()
-				.header("X-Cumulocity-Processing-Mode", xCumulocityProcessingMode)
 				.header("Accept", "application/json")
 				.build("DELETE")
 				.submit();
@@ -231,14 +223,12 @@ public class TrustedCertificatesApi extends AdaptableApi {
 	 * @param body 
 	 * @param tenantId Unique identifier of a Cumulocity IoT tenant.
 	 * @param fingerprint Unique identifier of a trusted certificate.
-	 * @param xCumulocityProcessingMode Used to explicitly control the processing mode of the request. See [Processing mode](#processing-mode) for more details.
 	 * @return
 	 */
-	public Future<TrustedCertificate> proveCertificatePossession(final UploadedTrustedCertSignedVerificationCode body, final String tenantId, final String fingerprint, final String xCumulocityProcessingMode) {
+	public Future<TrustedCertificate> proveCertificatePossession(final UploadedTrustedCertSignedVerificationCode body, final String tenantId, final String fingerprint) {
 		final JsonNode jsonNode = toJsonNode(body);
 		return getRootTarget().path("tenant").path("tenants").path(valueOf(tenantId)).path("trusted-certificates-pop").path(valueOf(fingerprint)).path("pop")
 				.request()
-				.header("X-Cumulocity-Processing-Mode", xCumulocityProcessingMode)
 				.header("Content-Type", "application/json")
 				.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/json")
 				.build("POST", Entity.json(jsonNode))
@@ -259,13 +249,11 @@ public class TrustedCertificatesApi extends AdaptableApi {
 	 * <p>
 	 * @param tenantId Unique identifier of a Cumulocity IoT tenant.
 	 * @param fingerprint Unique identifier of a trusted certificate.
-	 * @param xCumulocityProcessingMode Used to explicitly control the processing mode of the request. See [Processing mode](#processing-mode) for more details.
 	 * @return
 	 */
-	public Future<TrustedCertificate> confirmCertificate(final String tenantId, final String fingerprint, final String xCumulocityProcessingMode) {
+	public Future<TrustedCertificate> confirmCertificate(final String tenantId, final String fingerprint) {
 		return getRootTarget().path("tenant").path("tenants").path(valueOf(tenantId)).path("trusted-certificates-pop").path(valueOf(fingerprint)).path("confirmed")
 				.request()
-				.header("X-Cumulocity-Processing-Mode", xCumulocityProcessingMode)
 				.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/json")
 				.build("POST")
 				.submit(TrustedCertificate.class);
@@ -284,13 +272,11 @@ public class TrustedCertificatesApi extends AdaptableApi {
 	 * <p>
 	 * @param tenantId Unique identifier of a Cumulocity IoT tenant.
 	 * @param fingerprint Unique identifier of a trusted certificate.
-	 * @param xCumulocityProcessingMode Used to explicitly control the processing mode of the request. See [Processing mode](#processing-mode) for more details.
 	 * @return
 	 */
-	public Future<TrustedCertificate> generateVerificationCode(final String tenantId, final String fingerprint, final String xCumulocityProcessingMode) {
+	public Future<TrustedCertificate> generateVerificationCode(final String tenantId, final String fingerprint) {
 		return getRootTarget().path("tenant").path("tenants").path(valueOf(tenantId)).path("trusted-certificates-pop").path(valueOf(fingerprint)).path("verification-code")
 				.request()
-				.header("X-Cumulocity-Processing-Mode", xCumulocityProcessingMode)
 				.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/json")
 				.build("POST")
 				.submit(TrustedCertificate.class);

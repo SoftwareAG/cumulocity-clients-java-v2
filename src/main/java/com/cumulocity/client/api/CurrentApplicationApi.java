@@ -37,11 +37,11 @@ public class CurrentApplicationApi extends AdaptableApi {
 	 * @return
 	 */
 	public Future<Application> getCurrentApplication() {
-		return getRootTarget().path("application").path("currentApplication")
-				.request()
-				.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.application+json")
-				.build("GET")
-				.submit(Application.class);
+		return adapt().path("application").path("currentApplication")
+			.request()
+			.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.application+json")
+			.build("GET")
+			.submit(Application.class);
 	}
 	
 	/**
@@ -66,12 +66,12 @@ public class CurrentApplicationApi extends AdaptableApi {
 		removeFromNode(jsonNode, "self");
 		removeFromNode(jsonNode, "id");
 		removeFromNode(jsonNode, "resourcesUrl");
-		return getRootTarget().path("application").path("currentApplication")
-				.request()
-				.header("Content-Type", "application/vnd.com.nsn.cumulocity.application+json")
-				.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.application+json")
-				.build("PUT", Entity.json(jsonNode))
-				.submit(Application.class);
+		return adapt().path("application").path("currentApplication")
+			.request()
+			.header("Content-Type", "application/vnd.com.nsn.cumulocity.application+json")
+			.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.application+json")
+			.build("PUT", Entity.json(jsonNode))
+			.submit(Application.class);
 	}
 	
 	/**
@@ -87,11 +87,11 @@ public class CurrentApplicationApi extends AdaptableApi {
 	 * @return
 	 */
 	public Future<ApplicationSettings[]> getCurrentApplicationSettings() {
-		return getRootTarget().path("application").path("currentApplication").path("settings")
-				.request()
-				.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.applicationsettings+json")
-				.build("GET")
-				.submit(ApplicationSettings[].class);
+		return adapt().path("application").path("currentApplication").path("settings")
+			.request()
+			.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.applicationsettings+json")
+			.build("GET")
+			.submit(ApplicationSettings[].class);
 	}
 	
 	/**
@@ -106,10 +106,10 @@ public class CurrentApplicationApi extends AdaptableApi {
 	 * @return
 	 */
 	public Future<ApplicationUserCollection> getSubscribedUsers() {
-		return getRootTarget().path("application").path("currentApplication").path("subscriptions")
-				.request()
-				.header("Accept", "application/vnd.com.nsn.cumulocity.applicationusercollection+json, application/vnd.com.nsn.cumulocity.error+json")
-				.build("GET")
-				.submit(ApplicationUserCollection.class);
+		return adapt().path("application").path("currentApplication").path("subscriptions")
+			.request()
+			.header("Accept", "application/vnd.com.nsn.cumulocity.applicationusercollection+json, application/vnd.com.nsn.cumulocity.error+json")
+			.build("GET")
+			.submit(ApplicationUserCollection.class);
 	}
 }

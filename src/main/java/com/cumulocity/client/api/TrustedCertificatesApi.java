@@ -48,15 +48,15 @@ public class TrustedCertificatesApi extends AdaptableApi {
 	 * @return
 	 */
 	public Future<TrustedCertificateCollection> getTrustedCertificates(final String tenantId, final int currentPage, final int pageSize, final boolean withTotalElements, final boolean withTotalPages) {
-		return getRootTarget().path("tenant").path("tenants").path(valueOf(tenantId)).path("trusted-certificates")
-			.queryParam("currentPage", valueOf(currentPage))
-			.queryParam("pageSize", valueOf(pageSize))
-			.queryParam("withTotalElements", valueOf(withTotalElements))
-			.queryParam("withTotalPages", valueOf(withTotalPages))
-				.request()
-				.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/json")
-				.build("GET")
-				.submit(TrustedCertificateCollection.class);
+		return adapt().path("tenant").path("tenants").path(valueOf(tenantId)).path("trusted-certificates")
+			.queryParam("currentPage", currentPage)
+			.queryParam("pageSize", pageSize)
+			.queryParam("withTotalElements", withTotalElements)
+			.queryParam("withTotalPages", withTotalPages)
+			.request()
+			.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/json")
+			.build("GET")
+			.submit(TrustedCertificateCollection.class);
 	}
 	
 	/**
@@ -87,12 +87,12 @@ public class TrustedCertificatesApi extends AdaptableApi {
 		removeFromNode(jsonNode, "version");
 		removeFromNode(jsonNode, "issuer");
 		removeFromNode(jsonNode, "notBefore");
-		return getRootTarget().path("tenant").path("tenants").path(valueOf(tenantId)).path("trusted-certificates")
-				.request()
-				.header("Content-Type", "application/json")
-				.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/json")
-				.build("POST", Entity.json(jsonNode))
-				.submit(TrustedCertificate.class);
+		return adapt().path("tenant").path("tenants").path(valueOf(tenantId)).path("trusted-certificates")
+			.request()
+			.header("Content-Type", "application/json")
+			.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/json")
+			.build("POST", Entity.json(jsonNode))
+			.submit(TrustedCertificate.class);
 	}
 	
 	/**
@@ -118,12 +118,12 @@ public class TrustedCertificatesApi extends AdaptableApi {
 		removeFromNode(jsonNode, "prev");
 		removeFromNode(jsonNode, "self");
 		removeFromNode(jsonNode, "statistics");
-		return getRootTarget().path("tenant").path("tenants").path(valueOf(tenantId)).path("trusted-certificates").path("bulk")
-				.request()
-				.header("Content-Type", "application/json")
-				.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/json")
-				.build("POST", Entity.json(jsonNode))
-				.submit(TrustedCertificateCollection.class);
+		return adapt().path("tenant").path("tenants").path(valueOf(tenantId)).path("trusted-certificates").path("bulk")
+			.request()
+			.header("Content-Type", "application/json")
+			.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/json")
+			.build("POST", Entity.json(jsonNode))
+			.submit(TrustedCertificateCollection.class);
 	}
 	
 	/**
@@ -141,11 +141,11 @@ public class TrustedCertificatesApi extends AdaptableApi {
 	 * @return
 	 */
 	public Future<TrustedCertificate> getTrustedCertificate(final String tenantId, final String fingerprint) {
-		return getRootTarget().path("tenant").path("tenants").path(valueOf(tenantId)).path("trusted-certificates").path(valueOf(fingerprint))
-				.request()
-				.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/json")
-				.build("GET")
-				.submit(TrustedCertificate.class);
+		return adapt().path("tenant").path("tenants").path(valueOf(tenantId)).path("trusted-certificates").path(valueOf(fingerprint))
+			.request()
+			.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/json")
+			.build("GET")
+			.submit(TrustedCertificate.class);
 	}
 	
 	/**
@@ -177,12 +177,12 @@ public class TrustedCertificatesApi extends AdaptableApi {
 		removeFromNode(jsonNode, "version");
 		removeFromNode(jsonNode, "issuer");
 		removeFromNode(jsonNode, "notBefore");
-		return getRootTarget().path("tenant").path("tenants").path(valueOf(tenantId)).path("trusted-certificates").path(valueOf(fingerprint))
-				.request()
-				.header("Content-Type", "application/json")
-				.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/json")
-				.build("PUT", Entity.json(jsonNode))
-				.submit(TrustedCertificate.class);
+		return adapt().path("tenant").path("tenants").path(valueOf(tenantId)).path("trusted-certificates").path(valueOf(fingerprint))
+			.request()
+			.header("Content-Type", "application/json")
+			.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/json")
+			.build("PUT", Entity.json(jsonNode))
+			.submit(TrustedCertificate.class);
 	}
 	
 	/**
@@ -200,11 +200,11 @@ public class TrustedCertificatesApi extends AdaptableApi {
 	 * @param fingerprint Unique identifier of a trusted certificate.
 	 */
 	public Future<Response> removeTrustedCertificate(final String tenantId, final String fingerprint) {
-		return getRootTarget().path("tenant").path("tenants").path(valueOf(tenantId)).path("trusted-certificates").path(valueOf(fingerprint))
-				.request()
-				.header("Accept", "application/json")
-				.build("DELETE")
-				.submit();
+		return adapt().path("tenant").path("tenants").path(valueOf(tenantId)).path("trusted-certificates").path(valueOf(fingerprint))
+			.request()
+			.header("Accept", "application/json")
+			.build("DELETE")
+			.submit();
 	}
 	
 	/**
@@ -227,12 +227,12 @@ public class TrustedCertificatesApi extends AdaptableApi {
 	 */
 	public Future<TrustedCertificate> proveCertificatePossession(final UploadedTrustedCertSignedVerificationCode body, final String tenantId, final String fingerprint) {
 		final JsonNode jsonNode = toJsonNode(body);
-		return getRootTarget().path("tenant").path("tenants").path(valueOf(tenantId)).path("trusted-certificates-pop").path(valueOf(fingerprint)).path("pop")
-				.request()
-				.header("Content-Type", "application/json")
-				.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/json")
-				.build("POST", Entity.json(jsonNode))
-				.submit(TrustedCertificate.class);
+		return adapt().path("tenant").path("tenants").path(valueOf(tenantId)).path("trusted-certificates-pop").path(valueOf(fingerprint)).path("pop")
+			.request()
+			.header("Content-Type", "application/json")
+			.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/json")
+			.build("POST", Entity.json(jsonNode))
+			.submit(TrustedCertificate.class);
 	}
 	
 	/**
@@ -252,11 +252,11 @@ public class TrustedCertificatesApi extends AdaptableApi {
 	 * @return
 	 */
 	public Future<TrustedCertificate> confirmCertificate(final String tenantId, final String fingerprint) {
-		return getRootTarget().path("tenant").path("tenants").path(valueOf(tenantId)).path("trusted-certificates-pop").path(valueOf(fingerprint)).path("confirmed")
-				.request()
-				.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/json")
-				.build("POST")
-				.submit(TrustedCertificate.class);
+		return adapt().path("tenant").path("tenants").path(valueOf(tenantId)).path("trusted-certificates-pop").path(valueOf(fingerprint)).path("confirmed")
+			.request()
+			.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/json")
+			.build("POST")
+			.submit(TrustedCertificate.class);
 	}
 	
 	/**
@@ -275,10 +275,10 @@ public class TrustedCertificatesApi extends AdaptableApi {
 	 * @return
 	 */
 	public Future<TrustedCertificate> generateVerificationCode(final String tenantId, final String fingerprint) {
-		return getRootTarget().path("tenant").path("tenants").path(valueOf(tenantId)).path("trusted-certificates-pop").path(valueOf(fingerprint)).path("verification-code")
-				.request()
-				.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/json")
-				.build("POST")
-				.submit(TrustedCertificate.class);
+		return adapt().path("tenant").path("tenants").path(valueOf(tenantId)).path("trusted-certificates-pop").path(valueOf(fingerprint)).path("verification-code")
+			.request()
+			.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/json")
+			.build("POST")
+			.submit(TrustedCertificate.class);
 	}
 }

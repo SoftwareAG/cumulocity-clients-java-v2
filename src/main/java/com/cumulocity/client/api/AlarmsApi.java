@@ -55,28 +55,28 @@ public class AlarmsApi extends AdaptableApi {
 	 * @return
 	 */
 	public Future<AlarmCollection> getAlarms(final String createdFrom, final String createdTo, final int currentPage, final String dateFrom, final String dateTo, final String lastUpdatedFrom, final String lastUpdatedTo, final int pageSize, final boolean resolved, final String[] severity, final String source, final String[] status, final String[] type, final boolean withSourceAssets, final boolean withSourceDevices, final boolean withTotalElements, final boolean withTotalPages) {
-		return getRootTarget().path("alarm").path("alarms")
+		return adapt().path("alarm").path("alarms")
 			.queryParam("createdFrom", createdFrom)
 			.queryParam("createdTo", createdTo)
-			.queryParam("currentPage", valueOf(currentPage))
+			.queryParam("currentPage", currentPage)
 			.queryParam("dateFrom", dateFrom)
 			.queryParam("dateTo", dateTo)
 			.queryParam("lastUpdatedFrom", lastUpdatedFrom)
 			.queryParam("lastUpdatedTo", lastUpdatedTo)
-			.queryParam("pageSize", valueOf(pageSize))
-			.queryParam("resolved", valueOf(resolved))
-			.queryParam("severity", valueOf(severity))
+			.queryParam("pageSize", pageSize)
+			.queryParam("resolved", resolved)
+			.queryParam("severity", severity, false)
 			.queryParam("source", source)
-			.queryParam("status", valueOf(status))
-			.queryParam("type", valueOf(type))
-			.queryParam("withSourceAssets", valueOf(withSourceAssets))
-			.queryParam("withSourceDevices", valueOf(withSourceDevices))
-			.queryParam("withTotalElements", valueOf(withTotalElements))
-			.queryParam("withTotalPages", valueOf(withTotalPages))
-				.request()
-				.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.alarmcollection+json")
-				.build("GET")
-				.submit(AlarmCollection.class);
+			.queryParam("status", status, false)
+			.queryParam("type", type, false)
+			.queryParam("withSourceAssets", withSourceAssets)
+			.queryParam("withSourceDevices", withSourceDevices)
+			.queryParam("withTotalElements", withTotalElements)
+			.queryParam("withTotalPages", withTotalPages)
+			.request()
+			.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.alarmcollection+json")
+			.build("GET")
+			.submit(AlarmCollection.class);
 	}
 	
 	/**
@@ -118,23 +118,23 @@ public class AlarmsApi extends AdaptableApi {
 		removeFromNode(jsonNode, "text");
 		removeFromNode(jsonNode, "time");
 		removeFromNode(jsonNode, "type");
-		return getRootTarget().path("alarm").path("alarms")
+		return adapt().path("alarm").path("alarms")
 			.queryParam("createdFrom", createdFrom)
 			.queryParam("createdTo", createdTo)
 			.queryParam("dateFrom", dateFrom)
 			.queryParam("dateTo", dateTo)
-			.queryParam("resolved", valueOf(resolved))
-			.queryParam("severity", valueOf(severity))
+			.queryParam("resolved", resolved)
+			.queryParam("severity", severity, false)
 			.queryParam("source", source)
-			.queryParam("status", valueOf(status))
-			.queryParam("withSourceAssets", valueOf(withSourceAssets))
-			.queryParam("withSourceDevices", valueOf(withSourceDevices))
-				.request()
-				.header("X-Cumulocity-Processing-Mode", xCumulocityProcessingMode)
-				.header("Content-Type", "application/vnd.com.nsn.cumulocity.alarm+json")
-				.header("Accept", "application/json")
-				.build("PUT", Entity.json(jsonNode))
-				.submit();
+			.queryParam("status", status, false)
+			.queryParam("withSourceAssets", withSourceAssets)
+			.queryParam("withSourceDevices", withSourceDevices)
+			.request()
+			.header("X-Cumulocity-Processing-Mode", xCumulocityProcessingMode)
+			.header("Content-Type", "application/vnd.com.nsn.cumulocity.alarm+json")
+			.header("Accept", "application/json")
+			.build("PUT", Entity.json(jsonNode))
+			.submit();
 	}
 	
 	/**
@@ -162,13 +162,13 @@ public class AlarmsApi extends AdaptableApi {
 		removeFromNode(jsonNode, "self");
 		removeFromNode(jsonNode, "id");
 		removeFromNode(jsonNode, "source", "self");
-		return getRootTarget().path("alarm").path("alarms")
-				.request()
-				.header("X-Cumulocity-Processing-Mode", xCumulocityProcessingMode)
-				.header("Content-Type", "application/vnd.com.nsn.cumulocity.alarm+json")
-				.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.alarm+json")
-				.build("POST", Entity.json(jsonNode))
-				.submit(Alarm.class);
+		return adapt().path("alarm").path("alarms")
+			.request()
+			.header("X-Cumulocity-Processing-Mode", xCumulocityProcessingMode)
+			.header("Content-Type", "application/vnd.com.nsn.cumulocity.alarm+json")
+			.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.alarm+json")
+			.build("POST", Entity.json(jsonNode))
+			.submit(Alarm.class);
 	}
 	
 	/**
@@ -196,23 +196,23 @@ public class AlarmsApi extends AdaptableApi {
 	 * @param withSourceDevices When set to `true` also alarms for related source devices will be included in the request. When this parameter is provided a `source` must be specified.
 	 */
 	public Future<Response> deleteAlarms(final String xCumulocityProcessingMode, final String createdFrom, final String createdTo, final String dateFrom, final String dateTo, final boolean resolved, final String[] severity, final String source, final String[] status, final String[] type, final boolean withSourceAssets, final boolean withSourceDevices) {
-		return getRootTarget().path("alarm").path("alarms")
+		return adapt().path("alarm").path("alarms")
 			.queryParam("createdFrom", createdFrom)
 			.queryParam("createdTo", createdTo)
 			.queryParam("dateFrom", dateFrom)
 			.queryParam("dateTo", dateTo)
-			.queryParam("resolved", valueOf(resolved))
-			.queryParam("severity", valueOf(severity))
+			.queryParam("resolved", resolved)
+			.queryParam("severity", severity, false)
 			.queryParam("source", source)
-			.queryParam("status", valueOf(status))
-			.queryParam("type", valueOf(type))
-			.queryParam("withSourceAssets", valueOf(withSourceAssets))
-			.queryParam("withSourceDevices", valueOf(withSourceDevices))
-				.request()
-				.header("X-Cumulocity-Processing-Mode", xCumulocityProcessingMode)
-				.header("Accept", "application/json")
-				.build("DELETE")
-				.submit();
+			.queryParam("status", status, false)
+			.queryParam("type", type, false)
+			.queryParam("withSourceAssets", withSourceAssets)
+			.queryParam("withSourceDevices", withSourceDevices)
+			.request()
+			.header("X-Cumulocity-Processing-Mode", xCumulocityProcessingMode)
+			.header("Accept", "application/json")
+			.build("DELETE")
+			.submit();
 	}
 	
 	/**
@@ -231,11 +231,11 @@ public class AlarmsApi extends AdaptableApi {
 	 * @return
 	 */
 	public Future<Alarm> getAlarm(final String id) {
-		return getRootTarget().path("alarm").path("alarms").path(valueOf(id))
-				.request()
-				.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.alarm+json")
-				.build("GET")
-				.submit(Alarm.class);
+		return adapt().path("alarm").path("alarms").path(valueOf(id))
+			.request()
+			.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.alarm+json")
+			.build("GET")
+			.submit(Alarm.class);
 	}
 	
 	/**
@@ -267,13 +267,13 @@ public class AlarmsApi extends AdaptableApi {
 		removeFromNode(jsonNode, "source");
 		removeFromNode(jsonNode, "time");
 		removeFromNode(jsonNode, "type");
-		return getRootTarget().path("alarm").path("alarms").path(valueOf(id))
-				.request()
-				.header("X-Cumulocity-Processing-Mode", xCumulocityProcessingMode)
-				.header("Content-Type", "application/vnd.com.nsn.cumulocity.alarm+json")
-				.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.alarm+json")
-				.build("PUT", Entity.json(jsonNode))
-				.submit(Alarm.class);
+		return adapt().path("alarm").path("alarms").path(valueOf(id))
+			.request()
+			.header("X-Cumulocity-Processing-Mode", xCumulocityProcessingMode)
+			.header("Content-Type", "application/vnd.com.nsn.cumulocity.alarm+json")
+			.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.alarm+json")
+			.build("PUT", Entity.json(jsonNode))
+			.submit(Alarm.class);
 	}
 	
 	/**
@@ -298,19 +298,19 @@ public class AlarmsApi extends AdaptableApi {
 	 * @return
 	 */
 	public Future<Integer> getNumberOfAlarms(final String dateFrom, final String dateTo, final boolean resolved, final String[] severity, final String source, final String[] status, final String[] type, final boolean withSourceAssets, final boolean withSourceDevices) {
-		return getRootTarget().path("alarm").path("alarms").path("count")
+		return adapt().path("alarm").path("alarms").path("count")
 			.queryParam("dateFrom", dateFrom)
 			.queryParam("dateTo", dateTo)
-			.queryParam("resolved", valueOf(resolved))
-			.queryParam("severity", valueOf(severity))
+			.queryParam("resolved", resolved)
+			.queryParam("severity", severity, false)
 			.queryParam("source", source)
-			.queryParam("status", valueOf(status))
-			.queryParam("type", valueOf(type))
-			.queryParam("withSourceAssets", valueOf(withSourceAssets))
-			.queryParam("withSourceDevices", valueOf(withSourceDevices))
-				.request()
-				.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, text/plain, application/json")
-				.build("GET")
-				.submit(Integer.class);
+			.queryParam("status", status, false)
+			.queryParam("type", type, false)
+			.queryParam("withSourceAssets", withSourceAssets)
+			.queryParam("withSourceDevices", withSourceDevices)
+			.request()
+			.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, text/plain, application/json")
+			.build("GET")
+			.submit(Integer.class);
 	}
 }

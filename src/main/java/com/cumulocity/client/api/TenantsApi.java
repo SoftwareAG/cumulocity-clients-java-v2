@@ -69,15 +69,15 @@ public class TenantsApi extends AdaptableApi {
 	 * @return
 	 */
 	public Future<TenantCollection> getTenants(final int currentPage, final int pageSize, final boolean withTotalElements, final boolean withTotalPages) {
-		return getRootTarget().path("tenant").path("tenants")
-			.queryParam("currentPage", valueOf(currentPage))
-			.queryParam("pageSize", valueOf(pageSize))
-			.queryParam("withTotalElements", valueOf(withTotalElements))
-			.queryParam("withTotalPages", valueOf(withTotalPages))
-				.request()
-				.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.tenantcollection+json")
-				.build("GET")
-				.submit(TenantCollection.class);
+		return adapt().path("tenant").path("tenants")
+			.queryParam("currentPage", currentPage)
+			.queryParam("pageSize", pageSize)
+			.queryParam("withTotalElements", withTotalElements)
+			.queryParam("withTotalPages", withTotalPages)
+			.request()
+			.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.tenantcollection+json")
+			.build("GET")
+			.submit(TenantCollection.class);
 	}
 	
 	/**
@@ -106,12 +106,12 @@ public class TenantsApi extends AdaptableApi {
 		removeFromNode(jsonNode, "ownedApplications");
 		removeFromNode(jsonNode, "applications");
 		removeFromNode(jsonNode, "status");
-		return getRootTarget().path("tenant").path("tenants")
-				.request()
-				.header("Content-Type", "application/vnd.com.nsn.cumulocity.tenant+json")
-				.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.tenant+json")
-				.build("POST", Entity.json(jsonNode))
-				.submit(Tenant.class);
+		return adapt().path("tenant").path("tenants")
+			.request()
+			.header("Content-Type", "application/vnd.com.nsn.cumulocity.tenant+json")
+			.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.tenant+json")
+			.build("POST", Entity.json(jsonNode))
+			.submit(Tenant.class);
 	}
 	
 	/**
@@ -128,12 +128,12 @@ public class TenantsApi extends AdaptableApi {
 	 * @return
 	 */
 	public Future<CurrentTenant> getCurrentTenant(final boolean withParent) {
-		return getRootTarget().path("tenant").path("currentTenant")
-			.queryParam("withParent", valueOf(withParent))
-				.request()
-				.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.currenttenant+json")
-				.build("GET")
-				.submit(CurrentTenant.class);
+		return adapt().path("tenant").path("currentTenant")
+			.queryParam("withParent", withParent)
+			.request()
+			.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.currenttenant+json")
+			.build("GET")
+			.submit(CurrentTenant.class);
 	}
 	
 	/**
@@ -152,11 +152,11 @@ public class TenantsApi extends AdaptableApi {
 	 * @return
 	 */
 	public Future<Tenant> getTenant(final String tenantId) {
-		return getRootTarget().path("tenant").path("tenants").path(valueOf(tenantId))
-				.request()
-				.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.tenant+json")
-				.build("GET")
-				.submit(Tenant.class);
+		return adapt().path("tenant").path("tenants").path(valueOf(tenantId))
+			.request()
+			.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.tenant+json")
+			.build("GET")
+			.submit(Tenant.class);
 	}
 	
 	/**
@@ -187,12 +187,12 @@ public class TenantsApi extends AdaptableApi {
 		removeFromNode(jsonNode, "ownedApplications");
 		removeFromNode(jsonNode, "applications");
 		removeFromNode(jsonNode, "status");
-		return getRootTarget().path("tenant").path("tenants").path(valueOf(tenantId))
-				.request()
-				.header("Content-Type", "application/vnd.com.nsn.cumulocity.tenant+json")
-				.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.tenant+json")
-				.build("PUT", Entity.json(jsonNode))
-				.submit(Tenant.class);
+		return adapt().path("tenant").path("tenants").path(valueOf(tenantId))
+			.request()
+			.header("Content-Type", "application/vnd.com.nsn.cumulocity.tenant+json")
+			.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.tenant+json")
+			.build("PUT", Entity.json(jsonNode))
+			.submit(Tenant.class);
 	}
 	
 	/**
@@ -210,11 +210,11 @@ public class TenantsApi extends AdaptableApi {
 	 * @param tenantId Unique identifier of a Cumulocity IoT tenant.
 	 */
 	public Future<Response> deleteTenant(final String tenantId) {
-		return getRootTarget().path("tenant").path("tenants").path(valueOf(tenantId))
-				.request()
-				.header("Accept", "application/json")
-				.build("DELETE")
-				.submit();
+		return adapt().path("tenant").path("tenants").path(valueOf(tenantId))
+			.request()
+			.header("Accept", "application/json")
+			.build("DELETE")
+			.submit();
 	}
 	
 	/**
@@ -232,10 +232,10 @@ public class TenantsApi extends AdaptableApi {
 	 * @return
 	 */
 	public Future<TenantTfaData> getTenantTfaSettings(final String tenantId) {
-		return getRootTarget().path("tenant").path("tenants").path(valueOf(tenantId)).path("tfa")
-				.request()
-				.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/json")
-				.build("GET")
-				.submit(TenantTfaData.class);
+		return adapt().path("tenant").path("tenants").path(valueOf(tenantId)).path("tfa")
+			.request()
+			.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/json")
+			.build("GET")
+			.submit(TenantTfaData.class);
 	}
 }

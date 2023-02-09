@@ -52,13 +52,13 @@ public class DeviceCredentialsApi extends AdaptableApi {
 		removeFromNode(jsonNode, "tenantId");
 		removeFromNode(jsonNode, "self");
 		removeFromNode(jsonNode, "username");
-		return getRootTarget().path("devicecontrol").path("deviceCredentials")
-				.request()
-				.header("X-Cumulocity-Processing-Mode", xCumulocityProcessingMode)
-				.header("Content-Type", "application/vnd.com.nsn.cumulocity.devicecredentials+json")
-				.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.devicecredentials+json")
-				.build("POST", Entity.json(jsonNode))
-				.submit(DeviceCredentials.class);
+		return adapt().path("devicecontrol").path("deviceCredentials")
+			.request()
+			.header("X-Cumulocity-Processing-Mode", xCumulocityProcessingMode)
+			.header("Content-Type", "application/vnd.com.nsn.cumulocity.devicecredentials+json")
+			.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.devicecredentials+json")
+			.build("POST", Entity.json(jsonNode))
+			.submit(DeviceCredentials.class);
 	}
 	
 	/**
@@ -78,12 +78,12 @@ public class DeviceCredentialsApi extends AdaptableApi {
 	public Future<BulkNewDeviceRequest> createBulkDeviceCredentials(final byte[] file, final String xCumulocityProcessingMode) {
 		final FormDataMultiPart multiPartEntity = new FormDataMultiPart();
 		multiPartEntity.field("file", file, MediaType.valueOf("text/csv"));
-		return getRootTarget().path("devicecontrol").path("bulkNewDeviceRequests")
-				.request()
-				.header("X-Cumulocity-Processing-Mode", xCumulocityProcessingMode)
-				.header("Content-Type", "multipart/form-data")
-				.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.bulknewdevicerequest+json")
-				.build("POST", Entity.entity(multiPartEntity, "multipart/form-data"))
-				.submit(BulkNewDeviceRequest.class);
+		return adapt().path("devicecontrol").path("bulkNewDeviceRequests")
+			.request()
+			.header("X-Cumulocity-Processing-Mode", xCumulocityProcessingMode)
+			.header("Content-Type", "multipart/form-data")
+			.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.bulknewdevicerequest+json")
+			.build("POST", Entity.entity(multiPartEntity, "multipart/form-data"))
+			.submit(BulkNewDeviceRequest.class);
 	}
 }

@@ -39,11 +39,11 @@ public class ExternalIDsApi extends AdaptableApi {
 	 * @return
 	 */
 	public Future<ExternalIds> getExternalIds(final String id) {
-		return getRootTarget().path("identity").path("globalIds").path(valueOf(id)).path("externalIds")
-				.request()
-				.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.externalidcollection+json")
-				.build("GET")
-				.submit(ExternalIds.class);
+		return adapt().path("identity").path("globalIds").path(valueOf(id)).path("externalIds")
+			.request()
+			.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.externalidcollection+json")
+			.build("GET")
+			.submit(ExternalIds.class);
 	}
 	
 	/**
@@ -65,12 +65,12 @@ public class ExternalIDsApi extends AdaptableApi {
 		final JsonNode jsonNode = toJsonNode(body);
 		removeFromNode(jsonNode, "managedObject");
 		removeFromNode(jsonNode, "self");
-		return getRootTarget().path("identity").path("globalIds").path(valueOf(id)).path("externalIds")
-				.request()
-				.header("Content-Type", "application/vnd.com.nsn.cumulocity.externalid+json")
-				.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.externalid+json")
-				.build("POST", Entity.json(jsonNode))
-				.submit(ExternalId.class);
+		return adapt().path("identity").path("globalIds").path(valueOf(id)).path("externalIds")
+			.request()
+			.header("Content-Type", "application/vnd.com.nsn.cumulocity.externalid+json")
+			.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.externalid+json")
+			.build("POST", Entity.json(jsonNode))
+			.submit(ExternalId.class);
 	}
 	
 	/**
@@ -89,11 +89,11 @@ public class ExternalIDsApi extends AdaptableApi {
 	 * @return
 	 */
 	public Future<ExternalId> getExternalId(final String type, final String externalId) {
-		return getRootTarget().path("identity").path("externalIds").path(valueOf(type)).path(valueOf(externalId))
-				.request()
-				.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.externalid+json")
-				.build("GET")
-				.submit(ExternalId.class);
+		return adapt().path("identity").path("externalIds").path(valueOf(type)).path(valueOf(externalId))
+			.request()
+			.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.externalid+json")
+			.build("GET")
+			.submit(ExternalId.class);
 	}
 	
 	/**
@@ -111,10 +111,10 @@ public class ExternalIDsApi extends AdaptableApi {
 	 * @param externalId The type of the external identifier.
 	 */
 	public Future<Response> deleteExternalId(final String type, final String externalId) {
-		return getRootTarget().path("identity").path("externalIds").path(valueOf(type)).path(valueOf(externalId))
-				.request()
-				.header("Accept", "application/json")
-				.build("DELETE")
-				.submit();
+		return adapt().path("identity").path("externalIds").path(valueOf(type)).path(valueOf(externalId))
+			.request()
+			.header("Accept", "application/json")
+			.build("DELETE")
+			.submit();
 	}
 }

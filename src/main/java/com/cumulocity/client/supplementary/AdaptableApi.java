@@ -3,22 +3,28 @@
 
 package com.cumulocity.client.supplementary;
 
+import jakarta.ws.rs.client.Invocation;
 import jakarta.ws.rs.client.WebTarget;
+
+import java.util.Arrays;
+import java.util.Objects;
+import java.util.stream.Collectors;
+
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
 public class AdaptableApi {
 
-		private final WebTarget rootTarget;
-	
-		protected AdaptableApi(final WebTarget rootTarget) {
-			this.rootTarget = rootTarget;
-		}
-	
-		protected WebTarget getRootTarget() {
-			return rootTarget;
-		}
+	private final WebTarget rootTarget;
+
+	protected AdaptableApi(final WebTarget rootTarget) {
+		this.rootTarget = rootTarget;
+	}
+
+	protected AdaptableApi.Builder adapt() {
+		return new Builder(rootTarget);
+	}
 
 	protected String valueOf(final Object s) {
 		return s != null ? String.valueOf(s) : null;
@@ -42,6 +48,76 @@ public class AdaptableApi {
 				final ObjectNode objectNode = (ObjectNode) currentNode;
 				objectNode.remove(nodeName);
 			}
+		}
+	}
+
+	protected class Builder {
+
+		private WebTarget target;
+
+		public Builder(final WebTarget target) {
+			this.target = target;
+		}
+
+		public Builder path(final String s) {
+			target = target.path(s);
+			return this;
+		}
+
+		/**
+		 * Appends a path query based on the passed <code>key</code>/<code>value</code> pair if <code>value</code> is not null.
+		 * 
+		 * The parameter will be serialized as <code>?key=value</code>.
+		 * 
+		 * @param <T>
+		 * @param key
+		 * @param value
+		 * @return
+		 */
+		public <T> Builder queryParam(final String key, final T value) {
+			target = target.queryParam(key, value);
+			return this;
+		}
+
+		public <T> Builder queryParam(final String key, final T[] values) {
+			return queryParam(key, values, true);
+		}
+
+		/**
+		 * Appends a path query based on the passed <code>key</code>/<code>value</code> pair if <code>value</code> is not null.
+		 *
+		 * The parameter <code>explode</code> defines the serialization method:
+		 *
+		 * <li>
+		 * <ul>If <code>true</code>, parameter will be serialized as <code>?key=1&key=2&key=3</code>.</ul>
+		 * <ul>If <code>false</code>, parameter will be serialized as <code>?key=1,2,3</code>.</ul>
+		 * </li>
+		 *
+		 * @param <T>
+		 * @param key
+		 * @param values
+		 * @param explode
+		 * @return
+		 */
+		public <T> Builder queryParam(final String key, final T[] values, final boolean explode) {
+			if (values != null) {
+				if (explode) {
+					for (final T v : values) {
+						target = target.queryParam(key, v);
+					}
+				} else {
+					target = target.queryParam(key, joinToString(values));
+				}
+			}
+			return this;
+		}
+
+		public Invocation.Builder request() {
+			return target.request();
+		}
+
+		protected <T> String joinToString(final T[] many) {
+			return Arrays.stream(many).filter(Objects::nonNull).map(Objects::toString).collect(Collectors.joining(","));
 		}
 	}
 }

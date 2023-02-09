@@ -40,11 +40,11 @@ public class CurrentUserApi extends AdaptableApi {
 	 * @return
 	 */
 	public Future<CurrentUser> getCurrentUser() {
-		return getRootTarget().path("user").path("currentUser")
-				.request()
-				.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.currentuser+json")
-				.build("GET")
-				.submit(CurrentUser.class);
+		return adapt().path("user").path("currentUser")
+			.request()
+			.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.currentuser+json")
+			.build("GET")
+			.submit(CurrentUser.class);
 	}
 	
 	/**
@@ -70,12 +70,12 @@ public class CurrentUserApi extends AdaptableApi {
 		removeFromNode(jsonNode, "lastPasswordChange");
 		removeFromNode(jsonNode, "twoFactorAuthenticationEnabled");
 		removeFromNode(jsonNode, "devicePermissions");
-		return getRootTarget().path("user").path("currentUser")
-				.request()
-				.header("Content-Type", "application/vnd.com.nsn.cumulocity.currentuser+json")
-				.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.currentuser+json")
-				.build("PUT", Entity.json(jsonNode))
-				.submit(CurrentUser.class);
+		return adapt().path("user").path("currentUser")
+			.request()
+			.header("Content-Type", "application/vnd.com.nsn.cumulocity.currentuser+json")
+			.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.currentuser+json")
+			.build("PUT", Entity.json(jsonNode))
+			.submit(CurrentUser.class);
 	}
 	
 	/**
@@ -93,12 +93,12 @@ public class CurrentUserApi extends AdaptableApi {
 	 */
 	public Future<Response> updateCurrentUserPassword(final PasswordChange body) {
 		final JsonNode jsonNode = toJsonNode(body);
-		return getRootTarget().path("user").path("currentUser").path("password")
-				.request()
-				.header("Content-Type", "application/json")
-				.header("Accept", "application/json")
-				.build("PUT", Entity.json(jsonNode))
-				.submit();
+		return adapt().path("user").path("currentUser").path("password")
+			.request()
+			.header("Content-Type", "application/json")
+			.header("Accept", "application/json")
+			.build("PUT", Entity.json(jsonNode))
+			.submit();
 	}
 	
 	/**
@@ -113,11 +113,11 @@ public class CurrentUserApi extends AdaptableApi {
 	 * @return
 	 */
 	public Future<CurrentUserTotpSecret> generateTfaSecret() {
-		return getRootTarget().path("user").path("currentUser").path("totpSecret")
-				.request()
-				.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/json")
-				.build("POST")
-				.submit(CurrentUserTotpSecret.class);
+		return adapt().path("user").path("currentUser").path("totpSecret")
+			.request()
+			.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/json")
+			.build("POST")
+			.submit(CurrentUserTotpSecret.class);
 	}
 	
 	/**
@@ -133,11 +133,11 @@ public class CurrentUserApi extends AdaptableApi {
 	 * @return
 	 */
 	public Future<CurrentUserTotpSecretActivity> getTfaState() {
-		return getRootTarget().path("user").path("currentUser").path("totpSecret").path("activity")
-				.request()
-				.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/json")
-				.build("GET")
-				.submit(CurrentUserTotpSecretActivity.class);
+		return adapt().path("user").path("currentUser").path("totpSecret").path("activity")
+			.request()
+			.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/json")
+			.build("GET")
+			.submit(CurrentUserTotpSecretActivity.class);
 	}
 	
 	/**
@@ -156,12 +156,12 @@ public class CurrentUserApi extends AdaptableApi {
 	 */
 	public Future<Response> setTfaState(final CurrentUserTotpSecretActivity body) {
 		final JsonNode jsonNode = toJsonNode(body);
-		return getRootTarget().path("user").path("currentUser").path("totpSecret").path("activity")
-				.request()
-				.header("Content-Type", "application/json")
-				.header("Accept", "application/json")
-				.build("POST", Entity.json(jsonNode))
-				.submit();
+		return adapt().path("user").path("currentUser").path("totpSecret").path("activity")
+			.request()
+			.header("Content-Type", "application/json")
+			.header("Accept", "application/json")
+			.build("POST", Entity.json(jsonNode))
+			.submit();
 	}
 	
 	/**
@@ -181,11 +181,11 @@ public class CurrentUserApi extends AdaptableApi {
 	 */
 	public Future<Response> verifyTfaCode(final CurrentUserTotpCode body) {
 		final JsonNode jsonNode = toJsonNode(body);
-		return getRootTarget().path("user").path("currentUser").path("totpSecret").path("verify")
-				.request()
-				.header("Content-Type", "application/json")
-				.header("Accept", "application/json")
-				.build("POST", Entity.json(jsonNode))
-				.submit();
+		return adapt().path("user").path("currentUser").path("totpSecret").path("verify")
+			.request()
+			.header("Content-Type", "application/json")
+			.header("Accept", "application/json")
+			.build("POST", Entity.json(jsonNode))
+			.submit();
 	}
 }

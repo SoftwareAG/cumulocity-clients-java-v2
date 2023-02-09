@@ -40,13 +40,13 @@ public class TokensApi extends AdaptableApi {
 	 */
 	public Future<NotificationToken> createToken(final NotificationTokenClaims body, final String xCumulocityProcessingMode) {
 		final JsonNode jsonNode = toJsonNode(body);
-		return getRootTarget().path("notification2").path("token")
-				.request()
-				.header("X-Cumulocity-Processing-Mode", xCumulocityProcessingMode)
-				.header("Content-Type", "application/json")
-				.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/json")
-				.build("POST", Entity.json(jsonNode))
-				.submit(NotificationToken.class);
+		return adapt().path("notification2").path("token")
+			.request()
+			.header("X-Cumulocity-Processing-Mode", xCumulocityProcessingMode)
+			.header("Content-Type", "application/json")
+			.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/json")
+			.build("POST", Entity.json(jsonNode))
+			.submit(NotificationToken.class);
 	}
 	
 	/**
@@ -64,12 +64,12 @@ public class TokensApi extends AdaptableApi {
 	 * @return
 	 */
 	public Future<Response1> unsubscribeSubscriber(final String xCumulocityProcessingMode, final String token) {
-		return getRootTarget().path("notification2").path("unsubscribe")
+		return adapt().path("notification2").path("unsubscribe")
 			.queryParam("token", token)
-				.request()
-				.header("X-Cumulocity-Processing-Mode", xCumulocityProcessingMode)
-				.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/json")
-				.build("POST")
-				.submit(Response1.class);
+			.request()
+			.header("X-Cumulocity-Processing-Mode", xCumulocityProcessingMode)
+			.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/json")
+			.build("POST")
+			.submit(Response1.class);
 	}
 }

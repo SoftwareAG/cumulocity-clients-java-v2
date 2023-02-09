@@ -50,22 +50,22 @@ public class MeasurementsApi extends AdaptableApi {
 	 * @return
 	 */
 	public Future<MeasurementCollection> getMeasurements(final int currentPage, final String dateFrom, final String dateTo, final int pageSize, final boolean revert, final String source, final String type, final String valueFragmentSeries, final String valueFragmentType, final boolean withTotalElements, final boolean withTotalPages) {
-		return getRootTarget().path("measurement").path("measurements")
-			.queryParam("currentPage", valueOf(currentPage))
+		return adapt().path("measurement").path("measurements")
+			.queryParam("currentPage", currentPage)
 			.queryParam("dateFrom", dateFrom)
 			.queryParam("dateTo", dateTo)
-			.queryParam("pageSize", valueOf(pageSize))
-			.queryParam("revert", valueOf(revert))
+			.queryParam("pageSize", pageSize)
+			.queryParam("revert", revert)
 			.queryParam("source", source)
 			.queryParam("type", type)
 			.queryParam("valueFragmentSeries", valueFragmentSeries)
 			.queryParam("valueFragmentType", valueFragmentType)
-			.queryParam("withTotalElements", valueOf(withTotalElements))
-			.queryParam("withTotalPages", valueOf(withTotalPages))
-				.request()
-				.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.measurementcollection+json")
-				.build("GET")
-				.submit(MeasurementCollection.class);
+			.queryParam("withTotalElements", withTotalElements)
+			.queryParam("withTotalPages", withTotalPages)
+			.request()
+			.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.measurementcollection+json")
+			.build("GET")
+			.submit(MeasurementCollection.class);
 	}
 	
 	/**
@@ -89,13 +89,13 @@ public class MeasurementsApi extends AdaptableApi {
 		removeFromNode(jsonNode, "self");
 		removeFromNode(jsonNode, "id");
 		removeFromNode(jsonNode, "source", "self");
-		return getRootTarget().path("measurement").path("measurements")
-				.request()
-				.header("X-Cumulocity-Processing-Mode", xCumulocityProcessingMode)
-				.header("Content-Type", "application/vnd.com.nsn.cumulocity.measurement+json")
-				.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.measurement+json, application/vnd.com.nsn.cumulocity.measurementcollection+json")
-				.build("POST", Entity.json(jsonNode))
-				.submit(Measurement.class);
+		return adapt().path("measurement").path("measurements")
+			.request()
+			.header("X-Cumulocity-Processing-Mode", xCumulocityProcessingMode)
+			.header("Content-Type", "application/vnd.com.nsn.cumulocity.measurement+json")
+			.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.measurement+json, application/vnd.com.nsn.cumulocity.measurementcollection+json")
+			.build("POST", Entity.json(jsonNode))
+			.submit(Measurement.class);
 	}
 	
 	/**
@@ -120,13 +120,13 @@ public class MeasurementsApi extends AdaptableApi {
 		removeFromNode(jsonNode, "prev");
 		removeFromNode(jsonNode, "self");
 		removeFromNode(jsonNode, "statistics");
-		return getRootTarget().path("measurement").path("measurements")
-				.request()
-				.header("X-Cumulocity-Processing-Mode", xCumulocityProcessingMode)
-				.header("Content-Type", "application/vnd.com.nsn.cumulocity.measurementcollection+json")
-				.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.measurement+json, application/vnd.com.nsn.cumulocity.measurementcollection+json")
-				.build("POST", Entity.json(jsonNode))
-				.submit(MeasurementCollection.class);
+		return adapt().path("measurement").path("measurements")
+			.request()
+			.header("X-Cumulocity-Processing-Mode", xCumulocityProcessingMode)
+			.header("Content-Type", "application/vnd.com.nsn.cumulocity.measurementcollection+json")
+			.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.measurement+json, application/vnd.com.nsn.cumulocity.measurementcollection+json")
+			.build("POST", Entity.json(jsonNode))
+			.submit(MeasurementCollection.class);
 	}
 	
 	/**
@@ -148,17 +148,17 @@ public class MeasurementsApi extends AdaptableApi {
 	 * @param type The type of measurement to search for.
 	 */
 	public Future<Response> deleteMeasurements(final String xCumulocityProcessingMode, final String dateFrom, final String dateTo, final String fragmentType, final String source, final String type) {
-		return getRootTarget().path("measurement").path("measurements")
+		return adapt().path("measurement").path("measurements")
 			.queryParam("dateFrom", dateFrom)
 			.queryParam("dateTo", dateTo)
 			.queryParam("fragmentType", fragmentType)
 			.queryParam("source", source)
 			.queryParam("type", type)
-				.request()
-				.header("X-Cumulocity-Processing-Mode", xCumulocityProcessingMode)
-				.header("Accept", "application/json")
-				.build("DELETE")
-				.submit();
+			.request()
+			.header("X-Cumulocity-Processing-Mode", xCumulocityProcessingMode)
+			.header("Accept", "application/json")
+			.build("DELETE")
+			.submit();
 	}
 	
 	/**
@@ -176,11 +176,11 @@ public class MeasurementsApi extends AdaptableApi {
 	 * @return
 	 */
 	public Future<Measurement> getMeasurement(final String id) {
-		return getRootTarget().path("measurement").path("measurements").path(valueOf(id))
-				.request()
-				.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.measurement+json")
-				.build("GET")
-				.submit(Measurement.class);
+		return adapt().path("measurement").path("measurements").path(valueOf(id))
+			.request()
+			.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.measurement+json")
+			.build("GET")
+			.submit(Measurement.class);
 	}
 	
 	/**
@@ -199,12 +199,12 @@ public class MeasurementsApi extends AdaptableApi {
 	 * @param xCumulocityProcessingMode Used to explicitly control the processing mode of the request. See [Processing mode](#processing-mode) for more details.
 	 */
 	public Future<Response> deleteMeasurement(final String id, final String xCumulocityProcessingMode) {
-		return getRootTarget().path("measurement").path("measurements").path(valueOf(id))
-				.request()
-				.header("X-Cumulocity-Processing-Mode", xCumulocityProcessingMode)
-				.header("Accept", "application/json")
-				.build("DELETE")
-				.submit();
+		return adapt().path("measurement").path("measurements").path(valueOf(id))
+			.request()
+			.header("X-Cumulocity-Processing-Mode", xCumulocityProcessingMode)
+			.header("Accept", "application/json")
+			.build("DELETE")
+			.submit();
 	}
 	
 	/**
@@ -226,16 +226,16 @@ public class MeasurementsApi extends AdaptableApi {
 	 * @return
 	 */
 	public Future<MeasurementSeries> getMeasurementSeries(final String aggregationType, final String dateFrom, final String dateTo, final boolean revert, final String[] series, final String source) {
-		return getRootTarget().path("measurement").path("measurements").path("series")
+		return adapt().path("measurement").path("measurements").path("series")
 			.queryParam("aggregationType", aggregationType)
 			.queryParam("dateFrom", dateFrom)
 			.queryParam("dateTo", dateTo)
-			.queryParam("revert", valueOf(revert))
-			.queryParam("series", valueOf(series))
+			.queryParam("revert", revert)
+			.queryParam("series", series, true)
 			.queryParam("source", source)
-				.request()
-				.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/json")
-				.build("GET")
-				.submit(MeasurementSeries.class);
+			.request()
+			.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/json")
+			.build("GET")
+			.submit(MeasurementSeries.class);
 	}
 }

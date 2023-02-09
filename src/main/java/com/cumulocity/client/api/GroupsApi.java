@@ -47,15 +47,15 @@ public class GroupsApi extends AdaptableApi {
 	 * @return
 	 */
 	public Future<UserGroupCollection> getTenantUserGroups(final String tenantId, final int currentPage, final int pageSize, final boolean withTotalElements, final boolean withTotalPages) {
-		return getRootTarget().path("user").path(valueOf(tenantId)).path("groups")
-			.queryParam("currentPage", valueOf(currentPage))
-			.queryParam("pageSize", valueOf(pageSize))
-			.queryParam("withTotalElements", valueOf(withTotalElements))
-			.queryParam("withTotalPages", valueOf(withTotalPages))
-				.request()
-				.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.groupcollection+json")
-				.build("GET")
-				.submit(UserGroupCollection.class);
+		return adapt().path("user").path(valueOf(tenantId)).path("groups")
+			.queryParam("currentPage", currentPage)
+			.queryParam("pageSize", pageSize)
+			.queryParam("withTotalElements", withTotalElements)
+			.queryParam("withTotalPages", withTotalPages)
+			.request()
+			.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.groupcollection+json")
+			.build("GET")
+			.submit(UserGroupCollection.class);
 	}
 	
 	/**
@@ -83,12 +83,12 @@ public class GroupsApi extends AdaptableApi {
 		removeFromNode(jsonNode, "devicePermissions");
 		removeFromNode(jsonNode, "users");
 		removeFromNode(jsonNode, "applications");
-		return getRootTarget().path("user").path(valueOf(tenantId)).path("groups")
-				.request()
-				.header("Content-Type", "application/vnd.com.nsn.cumulocity.group+json")
-				.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.group+json")
-				.build("POST", Entity.json(jsonNode))
-				.submit(Group.class);
+		return adapt().path("user").path(valueOf(tenantId)).path("groups")
+			.request()
+			.header("Content-Type", "application/vnd.com.nsn.cumulocity.group+json")
+			.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.group+json")
+			.build("POST", Entity.json(jsonNode))
+			.submit(Group.class);
 	}
 	
 	/**
@@ -108,11 +108,11 @@ public class GroupsApi extends AdaptableApi {
 	 * @return
 	 */
 	public Future<Group> getUserGroup(final String tenantId, final int groupId) {
-		return getRootTarget().path("user").path(valueOf(tenantId)).path("groups").path(valueOf(groupId))
-				.request()
-				.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.group+json")
-				.build("GET")
-				.submit(Group.class);
+		return adapt().path("user").path(valueOf(tenantId)).path("groups").path(valueOf(groupId))
+			.request()
+			.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.group+json")
+			.build("GET")
+			.submit(Group.class);
 	}
 	
 	/**
@@ -141,12 +141,12 @@ public class GroupsApi extends AdaptableApi {
 		removeFromNode(jsonNode, "devicePermissions");
 		removeFromNode(jsonNode, "users");
 		removeFromNode(jsonNode, "applications");
-		return getRootTarget().path("user").path(valueOf(tenantId)).path("groups").path(valueOf(groupId))
-				.request()
-				.header("Content-Type", "application/vnd.com.nsn.cumulocity.group+json")
-				.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.group+json")
-				.build("PUT", Entity.json(jsonNode))
-				.submit(Group.class);
+		return adapt().path("user").path(valueOf(tenantId)).path("groups").path(valueOf(groupId))
+			.request()
+			.header("Content-Type", "application/vnd.com.nsn.cumulocity.group+json")
+			.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.group+json")
+			.build("PUT", Entity.json(jsonNode))
+			.submit(Group.class);
 	}
 	
 	/**
@@ -165,11 +165,11 @@ public class GroupsApi extends AdaptableApi {
 	 * @param groupId Unique identifier of the user group.
 	 */
 	public Future<Response> deleteUserGroup(final String tenantId, final int groupId) {
-		return getRootTarget().path("user").path(valueOf(tenantId)).path("groups").path(valueOf(groupId))
-				.request()
-				.header("Accept", "application/json")
-				.build("DELETE")
-				.submit();
+		return adapt().path("user").path(valueOf(tenantId)).path("groups").path(valueOf(groupId))
+			.request()
+			.header("Accept", "application/json")
+			.build("DELETE")
+			.submit();
 	}
 	
 	/**
@@ -189,11 +189,11 @@ public class GroupsApi extends AdaptableApi {
 	 * @return
 	 */
 	public Future<Group> getUserGroupByName(final String tenantId, final String groupName) {
-		return getRootTarget().path("user").path(valueOf(tenantId)).path("groupByName").path(valueOf(groupName))
-				.request()
-				.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.group+json")
-				.build("GET")
-				.submit(Group.class);
+		return adapt().path("user").path(valueOf(tenantId)).path("groupByName").path(valueOf(groupName))
+			.request()
+			.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.group+json")
+			.build("GET")
+			.submit(Group.class);
 	}
 	
 	/**
@@ -217,14 +217,14 @@ public class GroupsApi extends AdaptableApi {
 	 * @return
 	 */
 	public Future<GroupReferenceCollection> getUserGroups(final String tenantId, final String userId, final int currentPage, final int pageSize, final boolean withTotalElements, final boolean withTotalPages) {
-		return getRootTarget().path("user").path(valueOf(tenantId)).path("users").path(valueOf(userId)).path("groups")
-			.queryParam("currentPage", valueOf(currentPage))
-			.queryParam("pageSize", valueOf(pageSize))
-			.queryParam("withTotalElements", valueOf(withTotalElements))
-			.queryParam("withTotalPages", valueOf(withTotalPages))
-				.request()
-				.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.groupreferencecollection+json")
-				.build("GET")
-				.submit(GroupReferenceCollection.class);
+		return adapt().path("user").path(valueOf(tenantId)).path("users").path(valueOf(userId)).path("groups")
+			.queryParam("currentPage", currentPage)
+			.queryParam("pageSize", pageSize)
+			.queryParam("withTotalElements", withTotalElements)
+			.queryParam("withTotalPages", withTotalPages)
+			.request()
+			.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.groupreferencecollection+json")
+			.build("GET")
+			.submit(GroupReferenceCollection.class);
 	}
 }

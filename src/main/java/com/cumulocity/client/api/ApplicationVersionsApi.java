@@ -43,13 +43,13 @@ public class ApplicationVersionsApi extends AdaptableApi {
 	 * @return
 	 */
 	public Future<ApplicationVersion> getApplicationVersion(final String id, final String version, final String tag) {
-		return getRootTarget().path("application").path("applications").path(valueOf(id)).path("versions?version=1.0")
+		return adapt().path("application").path("applications").path(valueOf(id)).path("versions?version=1.0")
 			.queryParam("version", version)
 			.queryParam("tag", tag)
-				.request()
-				.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.applicationVersion+json")
-				.build("GET")
-				.submit(ApplicationVersion.class);
+			.request()
+			.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.applicationVersion+json")
+			.build("GET")
+			.submit(ApplicationVersion.class);
 	}
 	
 	/**
@@ -68,11 +68,11 @@ public class ApplicationVersionsApi extends AdaptableApi {
 	 * @return
 	 */
 	public Future<ApplicationVersionCollection> getApplicationVersions(final String id) {
-		return getRootTarget().path("application").path("applications").path(valueOf(id)).path("versions")
-				.request()
-				.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.applicationVersionCollection+json")
-				.build("GET")
-				.submit(ApplicationVersionCollection.class);
+		return adapt().path("application").path("applications").path(valueOf(id)).path("versions")
+			.request()
+			.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.applicationVersionCollection+json")
+			.build("GET")
+			.submit(ApplicationVersionCollection.class);
 	}
 	
 	/**
@@ -97,12 +97,12 @@ public class ApplicationVersionsApi extends AdaptableApi {
 		final FormDataMultiPart multiPartEntity = new FormDataMultiPart();
 		multiPartEntity.field("applicationBinary", applicationBinary, MediaType.valueOf("application/zip"));
 		multiPartEntity.field("applicationVersion", applicationVersion, MediaType.valueOf("text/plain"));
-		return getRootTarget().path("application").path("applications").path(valueOf(id)).path("versions")
-				.request()
-				.header("Content-Type", "multipart/form-data")
-				.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.applicationVersion+json")
-				.build("POST", Entity.entity(multiPartEntity, "multipart/form-data"))
-				.submit(ApplicationVersion.class);
+		return adapt().path("application").path("applications").path(valueOf(id)).path("versions")
+			.request()
+			.header("Content-Type", "multipart/form-data")
+			.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.applicationVersion+json")
+			.build("POST", Entity.entity(multiPartEntity, "multipart/form-data"))
+			.submit(ApplicationVersion.class);
 	}
 	
 	/**
@@ -123,13 +123,13 @@ public class ApplicationVersionsApi extends AdaptableApi {
 	 * @param tag The tag of the application version.
 	 */
 	public Future<Response> deleteApplicationVersion(final String id, final String version, final String tag) {
-		return getRootTarget().path("application").path("applications").path(valueOf(id)).path("versions")
+		return adapt().path("application").path("applications").path(valueOf(id)).path("versions")
 			.queryParam("version", version)
 			.queryParam("tag", tag)
-				.request()
-				.header("Accept", "application/json")
-				.build("DELETE")
-				.submit();
+			.request()
+			.header("Accept", "application/json")
+			.build("DELETE")
+			.submit();
 	}
 	
 	/**
@@ -152,11 +152,11 @@ public class ApplicationVersionsApi extends AdaptableApi {
 	 */
 	public Future<ApplicationVersion> updateApplicationVersion(final ApplicationVersionTag body, final String id, final String version) {
 		final JsonNode jsonNode = toJsonNode(body);
-		return getRootTarget().path("application").path("applications").path(valueOf(id)).path("versions").path(valueOf(version))
-				.request()
-				.header("Content-Type", "application/json")
-				.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.applicationVersion+json")
-				.build("PUT", Entity.json(jsonNode))
-				.submit(ApplicationVersion.class);
+		return adapt().path("application").path("applications").path(valueOf(id)).path("versions").path(valueOf(version))
+			.request()
+			.header("Content-Type", "application/json")
+			.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.applicationVersion+json")
+			.build("PUT", Entity.json(jsonNode))
+			.submit(ApplicationVersion.class);
 	}
 }

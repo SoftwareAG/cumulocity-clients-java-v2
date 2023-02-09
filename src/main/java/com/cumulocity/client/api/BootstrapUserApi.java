@@ -33,10 +33,10 @@ public class BootstrapUserApi extends AdaptableApi {
 	 * @return
 	 */
 	public Future<BootstrapUser> getBootstrapUser(final String id) {
-		return getRootTarget().path("application").path("applications").path(valueOf(id)).path("bootstrapUser")
-				.request()
-				.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.user+json")
-				.build("GET")
-				.submit(BootstrapUser.class);
+		return adapt().path("application").path("applications").path(valueOf(id)).path("bootstrapUser")
+			.request()
+			.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.user+json")
+			.build("GET")
+			.submit(BootstrapUser.class);
 	}
 }

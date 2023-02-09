@@ -43,14 +43,14 @@ public class OptionsApi extends AdaptableApi {
 	 * @return
 	 */
 	public Future<OptionCollection> getOptions(final int currentPage, final int pageSize, final boolean withTotalPages) {
-		return getRootTarget().path("tenant").path("options")
-			.queryParam("currentPage", valueOf(currentPage))
-			.queryParam("pageSize", valueOf(pageSize))
-			.queryParam("withTotalPages", valueOf(withTotalPages))
-				.request()
-				.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.optioncollection+json")
-				.build("GET")
-				.submit(OptionCollection.class);
+		return adapt().path("tenant").path("options")
+			.queryParam("currentPage", currentPage)
+			.queryParam("pageSize", pageSize)
+			.queryParam("withTotalPages", withTotalPages)
+			.request()
+			.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.optioncollection+json")
+			.build("GET")
+			.submit(OptionCollection.class);
 	}
 	
 	/**
@@ -70,12 +70,12 @@ public class OptionsApi extends AdaptableApi {
 	public Future<Option> createOption(final Option body) {
 		final JsonNode jsonNode = toJsonNode(body);
 		removeFromNode(jsonNode, "self");
-		return getRootTarget().path("tenant").path("options")
-				.request()
-				.header("Content-Type", "application/vnd.com.nsn.cumulocity.option+json")
-				.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.option+json")
-				.build("POST", Entity.json(jsonNode))
-				.submit(Option.class);
+		return adapt().path("tenant").path("options")
+			.request()
+			.header("Content-Type", "application/vnd.com.nsn.cumulocity.option+json")
+			.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.option+json")
+			.build("POST", Entity.json(jsonNode))
+			.submit(Option.class);
 	}
 	
 	/**
@@ -92,11 +92,11 @@ public class OptionsApi extends AdaptableApi {
 	 * @return
 	 */
 	public Future<CategoryOptions> getOptionsByCategory(final String category) {
-		return getRootTarget().path("tenant").path("options").path(valueOf(category))
-				.request()
-				.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.option+json")
-				.build("GET")
-				.submit(CategoryOptions.class);
+		return adapt().path("tenant").path("options").path(valueOf(category))
+			.request()
+			.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.option+json")
+			.build("GET")
+			.submit(CategoryOptions.class);
 	}
 	
 	/**
@@ -116,12 +116,12 @@ public class OptionsApi extends AdaptableApi {
 	 */
 	public Future<CategoryOptions> updateOptionsByCategory(final CategoryOptions body, final String category) {
 		final JsonNode jsonNode = toJsonNode(body);
-		return getRootTarget().path("tenant").path("options").path(valueOf(category))
-				.request()
-				.header("Content-Type", "application/json")
-				.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.option+json")
-				.build("PUT", Entity.json(jsonNode))
-				.submit(CategoryOptions.class);
+		return adapt().path("tenant").path("options").path(valueOf(category))
+			.request()
+			.header("Content-Type", "application/json")
+			.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.option+json")
+			.build("PUT", Entity.json(jsonNode))
+			.submit(CategoryOptions.class);
 	}
 	
 	/**
@@ -140,11 +140,11 @@ public class OptionsApi extends AdaptableApi {
 	 * @return
 	 */
 	public Future<Option> getOption(final String category, final String key) {
-		return getRootTarget().path("tenant").path("options").path(valueOf(category)).path(valueOf(key))
-				.request()
-				.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.option+json")
-				.build("GET")
-				.submit(Option.class);
+		return adapt().path("tenant").path("options").path(valueOf(category)).path(valueOf(key))
+			.request()
+			.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.option+json")
+			.build("GET")
+			.submit(Option.class);
 	}
 	
 	/**
@@ -166,12 +166,12 @@ public class OptionsApi extends AdaptableApi {
 	 */
 	public Future<Option> updateOption(final CategoryKeyOption body, final String category, final String key) {
 		final JsonNode jsonNode = toJsonNode(body);
-		return getRootTarget().path("tenant").path("options").path(valueOf(category)).path(valueOf(key))
-				.request()
-				.header("Content-Type", "application/json")
-				.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.option+json")
-				.build("PUT", Entity.json(jsonNode))
-				.submit(Option.class);
+		return adapt().path("tenant").path("options").path(valueOf(category)).path(valueOf(key))
+			.request()
+			.header("Content-Type", "application/json")
+			.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.option+json")
+			.build("PUT", Entity.json(jsonNode))
+			.submit(Option.class);
 	}
 	
 	/**
@@ -189,10 +189,10 @@ public class OptionsApi extends AdaptableApi {
 	 * @param key The key of an option.
 	 */
 	public Future<Response> deleteOption(final String category, final String key) {
-		return getRootTarget().path("tenant").path("options").path(valueOf(category)).path(valueOf(key))
-				.request()
-				.header("Accept", "application/json")
-				.build("DELETE")
-				.submit();
+		return adapt().path("tenant").path("options").path(valueOf(category)).path(valueOf(key))
+			.request()
+			.header("Accept", "application/json")
+			.build("DELETE")
+			.submit();
 	}
 }

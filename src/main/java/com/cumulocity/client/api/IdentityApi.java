@@ -35,10 +35,10 @@ public class IdentityApi extends AdaptableApi {
 	 * @return
 	 */
 	public Future<IdentityApiResource> getIdentityApiResource() {
-		return getRootTarget().path("identity")
-				.request()
-				.header("Accept", "application/vnd.com.nsn.cumulocity.identityapi+json, application/vnd.com.nsn.cumulocity.error+json")
-				.build("GET")
-				.submit(IdentityApiResource.class);
+		return adapt().path("identity")
+			.request()
+			.header("Accept", "application/vnd.com.nsn.cumulocity.identityapi+json, application/vnd.com.nsn.cumulocity.error+json")
+			.build("GET")
+			.submit(IdentityApiResource.class);
 	}
 }

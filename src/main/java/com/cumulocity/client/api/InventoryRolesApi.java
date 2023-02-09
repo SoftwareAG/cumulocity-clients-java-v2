@@ -44,14 +44,14 @@ public class InventoryRolesApi extends AdaptableApi {
 	 * @return
 	 */
 	public Future<InventoryRoleCollection> getInventoryRoles(final int currentPage, final int pageSize, final boolean withTotalElements) {
-		return getRootTarget().path("user").path("inventoryroles")
-			.queryParam("currentPage", valueOf(currentPage))
-			.queryParam("pageSize", valueOf(pageSize))
-			.queryParam("withTotalElements", valueOf(withTotalElements))
-				.request()
-				.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.inventoryrolecollection+json")
-				.build("GET")
-				.submit(InventoryRoleCollection.class);
+		return adapt().path("user").path("inventoryroles")
+			.queryParam("currentPage", currentPage)
+			.queryParam("pageSize", pageSize)
+			.queryParam("withTotalElements", withTotalElements)
+			.request()
+			.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.inventoryrolecollection+json")
+			.build("GET")
+			.submit(InventoryRoleCollection.class);
 	}
 	
 	/**
@@ -73,12 +73,12 @@ public class InventoryRolesApi extends AdaptableApi {
 		final JsonNode jsonNode = toJsonNode(body);
 		removeFromNode(jsonNode, "self");
 		removeFromNode(jsonNode, "id");
-		return getRootTarget().path("user").path("inventoryroles")
-				.request()
-				.header("Content-Type", "application/vnd.com.nsn.cumulocity.inventoryrole+json")
-				.header("Accept", "application/vnd.com.nsn.cumulocity.inventoryrole+json, application/vnd.com.nsn.cumulocity.error+json")
-				.build("POST", Entity.json(jsonNode))
-				.submit(InventoryRole.class);
+		return adapt().path("user").path("inventoryroles")
+			.request()
+			.header("Content-Type", "application/vnd.com.nsn.cumulocity.inventoryrole+json")
+			.header("Accept", "application/vnd.com.nsn.cumulocity.inventoryrole+json, application/vnd.com.nsn.cumulocity.error+json")
+			.build("POST", Entity.json(jsonNode))
+			.submit(InventoryRole.class);
 	}
 	
 	/**
@@ -96,11 +96,11 @@ public class InventoryRolesApi extends AdaptableApi {
 	 * @return
 	 */
 	public Future<InventoryRole> getInventoryRole(final int id) {
-		return getRootTarget().path("user").path("inventoryroles").path(valueOf(id))
-				.request()
-				.header("Accept", "application/vnd.com.nsn.cumulocity.inventoryrole+json, application/vnd.com.nsn.cumulocity.error+json")
-				.build("GET")
-				.submit(InventoryRole.class);
+		return adapt().path("user").path("inventoryroles").path(valueOf(id))
+			.request()
+			.header("Accept", "application/vnd.com.nsn.cumulocity.inventoryrole+json, application/vnd.com.nsn.cumulocity.error+json")
+			.build("GET")
+			.submit(InventoryRole.class);
 	}
 	
 	/**
@@ -123,12 +123,12 @@ public class InventoryRolesApi extends AdaptableApi {
 		final JsonNode jsonNode = toJsonNode(body);
 		removeFromNode(jsonNode, "self");
 		removeFromNode(jsonNode, "id");
-		return getRootTarget().path("user").path("inventoryroles").path(valueOf(id))
-				.request()
-				.header("Content-Type", "application/vnd.com.nsn.cumulocity.inventoryrole+json")
-				.header("Accept", "application/vnd.com.nsn.cumulocity.inventoryrole+json, application/vnd.com.nsn.cumulocity.error+json")
-				.build("PUT", Entity.json(jsonNode))
-				.submit(InventoryRole.class);
+		return adapt().path("user").path("inventoryroles").path(valueOf(id))
+			.request()
+			.header("Content-Type", "application/vnd.com.nsn.cumulocity.inventoryrole+json")
+			.header("Accept", "application/vnd.com.nsn.cumulocity.inventoryrole+json, application/vnd.com.nsn.cumulocity.error+json")
+			.build("PUT", Entity.json(jsonNode))
+			.submit(InventoryRole.class);
 	}
 	
 	/**
@@ -146,11 +146,11 @@ public class InventoryRolesApi extends AdaptableApi {
 	 * @param id Unique identifier of the inventory role.
 	 */
 	public Future<Response> deleteInventoryRole(final int id) {
-		return getRootTarget().path("user").path("inventoryroles").path(valueOf(id))
-				.request()
-				.header("Accept", "application/json")
-				.build("DELETE")
-				.submit();
+		return adapt().path("user").path("inventoryroles").path(valueOf(id))
+			.request()
+			.header("Accept", "application/json")
+			.build("DELETE")
+			.submit();
 	}
 	
 	/**
@@ -170,11 +170,11 @@ public class InventoryRolesApi extends AdaptableApi {
 	 * @return
 	 */
 	public Future<InventoryAssignmentCollection> getUserInventoryRoles(final String tenantId, final String userId) {
-		return getRootTarget().path("user").path(valueOf(tenantId)).path("users").path(valueOf(userId)).path("roles").path("inventory")
-				.request()
-				.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.inventoryassignmentcollection+json")
-				.build("GET")
-				.submit(InventoryAssignmentCollection.class);
+		return adapt().path("user").path(valueOf(tenantId)).path("users").path(valueOf(userId)).path("roles").path("inventory")
+			.request()
+			.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.inventoryassignmentcollection+json")
+			.build("GET")
+			.submit(InventoryAssignmentCollection.class);
 	}
 	
 	/**
@@ -199,12 +199,12 @@ public class InventoryRolesApi extends AdaptableApi {
 		final JsonNode jsonNode = toJsonNode(body);
 		removeFromNode(jsonNode, "self");
 		removeFromNode(jsonNode, "id");
-		return getRootTarget().path("user").path(valueOf(tenantId)).path("users").path(valueOf(userId)).path("roles").path("inventory")
-				.request()
-				.header("Content-Type", "application/vnd.com.nsn.cumulocity.inventoryassignment+json")
-				.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.inventoryassignment+json")
-				.build("POST", Entity.json(jsonNode))
-				.submit(InventoryAssignment.class);
+		return adapt().path("user").path(valueOf(tenantId)).path("users").path(valueOf(userId)).path("roles").path("inventory")
+			.request()
+			.header("Content-Type", "application/vnd.com.nsn.cumulocity.inventoryassignment+json")
+			.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.inventoryassignment+json")
+			.build("POST", Entity.json(jsonNode))
+			.submit(InventoryAssignment.class);
 	}
 	
 	/**
@@ -225,11 +225,11 @@ public class InventoryRolesApi extends AdaptableApi {
 	 * @return
 	 */
 	public Future<InventoryAssignment> getUserInventoryRole(final String tenantId, final String userId, final int id) {
-		return getRootTarget().path("user").path(valueOf(tenantId)).path("users").path(valueOf(userId)).path("roles").path("inventory").path(valueOf(id))
-				.request()
-				.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.inventoryassignment+json")
-				.build("GET")
-				.submit(InventoryAssignment.class);
+		return adapt().path("user").path(valueOf(tenantId)).path("users").path(valueOf(userId)).path("roles").path("inventory").path(valueOf(id))
+			.request()
+			.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.inventoryassignment+json")
+			.build("GET")
+			.submit(InventoryAssignment.class);
 	}
 	
 	/**
@@ -253,12 +253,12 @@ public class InventoryRolesApi extends AdaptableApi {
 	 */
 	public Future<InventoryAssignment> updateUserInventoryRole(final InventoryAssignmentReference body, final String tenantId, final String userId, final int id) {
 		final JsonNode jsonNode = toJsonNode(body);
-		return getRootTarget().path("user").path(valueOf(tenantId)).path("users").path(valueOf(userId)).path("roles").path("inventory").path(valueOf(id))
-				.request()
-				.header("Content-Type", "application/vnd.com.nsn.cumulocity.inventoryassignment+json")
-				.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.inventoryassignment+json")
-				.build("PUT", Entity.json(jsonNode))
-				.submit(InventoryAssignment.class);
+		return adapt().path("user").path(valueOf(tenantId)).path("users").path(valueOf(userId)).path("roles").path("inventory").path(valueOf(id))
+			.request()
+			.header("Content-Type", "application/vnd.com.nsn.cumulocity.inventoryassignment+json")
+			.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.inventoryassignment+json")
+			.build("PUT", Entity.json(jsonNode))
+			.submit(InventoryAssignment.class);
 	}
 	
 	/**
@@ -278,10 +278,10 @@ public class InventoryRolesApi extends AdaptableApi {
 	 * @param id Unique identifier of the inventory assignment.
 	 */
 	public Future<Response> unassignUserInventoryRole(final String tenantId, final String userId, final int id) {
-		return getRootTarget().path("user").path(valueOf(tenantId)).path("users").path(valueOf(userId)).path("roles").path("inventory").path(valueOf(id))
-				.request()
-				.header("Accept", "application/json")
-				.build("DELETE")
-				.submit();
+		return adapt().path("user").path(valueOf(tenantId)).path("users").path(valueOf(userId)).path("roles").path("inventory").path(valueOf(id))
+			.request()
+			.header("Accept", "application/json")
+			.build("DELETE")
+			.submit();
 	}
 }

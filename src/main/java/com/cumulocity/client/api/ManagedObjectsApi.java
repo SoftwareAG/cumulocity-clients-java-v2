@@ -62,31 +62,31 @@ public class ManagedObjectsApi extends AdaptableApi {
 	 * @return
 	 */
 	public Future<ManagedObjectCollection> getManagedObjects(final String childAdditionId, final String childAssetId, final String childDeviceId, final int currentPage, final String fragmentType, final String[] ids, final boolean onlyRoots, final String owner, final int pageSize, final String q, final String query, final boolean skipChildrenNames, final String text, final String type, final boolean withChildren, final boolean withChildrenCount, final boolean withGroups, final boolean withParents, final boolean withTotalElements, final boolean withTotalPages) {
-		return getRootTarget().path("inventory").path("managedObjects")
+		return adapt().path("inventory").path("managedObjects")
 			.queryParam("childAdditionId", childAdditionId)
 			.queryParam("childAssetId", childAssetId)
 			.queryParam("childDeviceId", childDeviceId)
-			.queryParam("currentPage", valueOf(currentPage))
+			.queryParam("currentPage", currentPage)
 			.queryParam("fragmentType", fragmentType)
-			.queryParam("ids", valueOf(ids))
-			.queryParam("onlyRoots", valueOf(onlyRoots))
+			.queryParam("ids", ids, false)
+			.queryParam("onlyRoots", onlyRoots)
 			.queryParam("owner", owner)
-			.queryParam("pageSize", valueOf(pageSize))
+			.queryParam("pageSize", pageSize)
 			.queryParam("q", q)
 			.queryParam("query", query)
-			.queryParam("skipChildrenNames", valueOf(skipChildrenNames))
+			.queryParam("skipChildrenNames", skipChildrenNames)
 			.queryParam("text", text)
 			.queryParam("type", type)
-			.queryParam("withChildren", valueOf(withChildren))
-			.queryParam("withChildrenCount", valueOf(withChildrenCount))
-			.queryParam("withGroups", valueOf(withGroups))
-			.queryParam("withParents", valueOf(withParents))
-			.queryParam("withTotalElements", valueOf(withTotalElements))
-			.queryParam("withTotalPages", valueOf(withTotalPages))
-				.request()
-				.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.managedobjectcollection+json")
-				.build("GET")
-				.submit(ManagedObjectCollection.class);
+			.queryParam("withChildren", withChildren)
+			.queryParam("withChildrenCount", withChildrenCount)
+			.queryParam("withGroups", withGroups)
+			.queryParam("withParents", withParents)
+			.queryParam("withTotalElements", withTotalElements)
+			.queryParam("withTotalPages", withTotalPages)
+			.request()
+			.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.managedobjectcollection+json")
+			.build("GET")
+			.submit(ManagedObjectCollection.class);
 	}
 	
 	/**
@@ -117,13 +117,13 @@ public class ManagedObjectsApi extends AdaptableApi {
 		removeFromNode(jsonNode, "assetParents");
 		removeFromNode(jsonNode, "deviceParents");
 		removeFromNode(jsonNode, "id");
-		return getRootTarget().path("inventory").path("managedObjects")
-				.request()
-				.header("X-Cumulocity-Processing-Mode", xCumulocityProcessingMode)
-				.header("Content-Type", "application/vnd.com.nsn.cumulocity.managedobject+json")
-				.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.managedobject+json")
-				.build("POST", Entity.json(jsonNode))
-				.submit(ManagedObject.class);
+		return adapt().path("inventory").path("managedObjects")
+			.request()
+			.header("X-Cumulocity-Processing-Mode", xCumulocityProcessingMode)
+			.header("Content-Type", "application/vnd.com.nsn.cumulocity.managedobject+json")
+			.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.managedobject+json")
+			.build("POST", Entity.json(jsonNode))
+			.submit(ManagedObject.class);
 	}
 	
 	/**
@@ -147,19 +147,19 @@ public class ManagedObjectsApi extends AdaptableApi {
 	 * @return
 	 */
 	public Future<Integer> getNumberOfManagedObjects(final String childAdditionId, final String childAssetId, final String childDeviceId, final String fragmentType, final String[] ids, final String owner, final String text, final String type) {
-		return getRootTarget().path("inventory").path("managedObjects").path("count")
+		return adapt().path("inventory").path("managedObjects").path("count")
 			.queryParam("childAdditionId", childAdditionId)
 			.queryParam("childAssetId", childAssetId)
 			.queryParam("childDeviceId", childDeviceId)
 			.queryParam("fragmentType", fragmentType)
-			.queryParam("ids", valueOf(ids))
+			.queryParam("ids", ids, false)
 			.queryParam("owner", owner)
 			.queryParam("text", text)
 			.queryParam("type", type)
-				.request()
-				.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, text/plain,application/json")
-				.build("GET")
-				.submit(Integer.class);
+			.request()
+			.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, text/plain,application/json")
+			.build("GET")
+			.submit(Integer.class);
 	}
 	
 	/**
@@ -181,15 +181,15 @@ public class ManagedObjectsApi extends AdaptableApi {
 	 * @return
 	 */
 	public Future<ManagedObject> getManagedObject(final String id, final boolean skipChildrenNames, final boolean withChildren, final boolean withChildrenCount, final boolean withParents) {
-		return getRootTarget().path("inventory").path("managedObjects").path(valueOf(id))
-			.queryParam("skipChildrenNames", valueOf(skipChildrenNames))
-			.queryParam("withChildren", valueOf(withChildren))
-			.queryParam("withChildrenCount", valueOf(withChildrenCount))
-			.queryParam("withParents", valueOf(withParents))
-				.request()
-				.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.managedobject+json")
-				.build("GET")
-				.submit(ManagedObject.class);
+		return adapt().path("inventory").path("managedObjects").path(valueOf(id))
+			.queryParam("skipChildrenNames", skipChildrenNames)
+			.queryParam("withChildren", withChildren)
+			.queryParam("withChildrenCount", withChildrenCount)
+			.queryParam("withParents", withParents)
+			.request()
+			.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.managedobject+json")
+			.build("GET")
+			.submit(ManagedObject.class);
 	}
 	
 	/**
@@ -221,13 +221,13 @@ public class ManagedObjectsApi extends AdaptableApi {
 		removeFromNode(jsonNode, "assetParents");
 		removeFromNode(jsonNode, "deviceParents");
 		removeFromNode(jsonNode, "id");
-		return getRootTarget().path("inventory").path("managedObjects").path(valueOf(id))
-				.request()
-				.header("X-Cumulocity-Processing-Mode", xCumulocityProcessingMode)
-				.header("Content-Type", "application/vnd.com.nsn.cumulocity.managedobject+json")
-				.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.managedobject+json")
-				.build("PUT", Entity.json(jsonNode))
-				.submit(ManagedObject.class);
+		return adapt().path("inventory").path("managedObjects").path(valueOf(id))
+			.request()
+			.header("X-Cumulocity-Processing-Mode", xCumulocityProcessingMode)
+			.header("Content-Type", "application/vnd.com.nsn.cumulocity.managedobject+json")
+			.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.managedobject+json")
+			.build("PUT", Entity.json(jsonNode))
+			.submit(ManagedObject.class);
 	}
 	
 	/**
@@ -249,15 +249,15 @@ public class ManagedObjectsApi extends AdaptableApi {
 	 * @param withDeviceUser When set to `true` and the managed object is a device, it deletes the associated device user (credentials).
 	 */
 	public Future<Response> deleteManagedObject(final String id, final String xCumulocityProcessingMode, final boolean cascade, final boolean forceCascade, final boolean withDeviceUser) {
-		return getRootTarget().path("inventory").path("managedObjects").path(valueOf(id))
-			.queryParam("cascade", valueOf(cascade))
-			.queryParam("forceCascade", valueOf(forceCascade))
-			.queryParam("withDeviceUser", valueOf(withDeviceUser))
-				.request()
-				.header("X-Cumulocity-Processing-Mode", xCumulocityProcessingMode)
-				.header("Accept", "application/json")
-				.build("DELETE")
-				.submit();
+		return adapt().path("inventory").path("managedObjects").path(valueOf(id))
+			.queryParam("cascade", cascade)
+			.queryParam("forceCascade", forceCascade)
+			.queryParam("withDeviceUser", withDeviceUser)
+			.request()
+			.header("X-Cumulocity-Processing-Mode", xCumulocityProcessingMode)
+			.header("Accept", "application/json")
+			.build("DELETE")
+			.submit();
 	}
 	
 	/**
@@ -275,11 +275,11 @@ public class ManagedObjectsApi extends AdaptableApi {
 	 * @return
 	 */
 	public Future<String> getLatestAvailability(final String id) {
-		return getRootTarget().path("inventory").path("managedObjects").path(valueOf(id)).path("availability")
-				.request()
-				.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, text/plain, application/json")
-				.build("GET")
-				.submit(String.class);
+		return adapt().path("inventory").path("managedObjects").path(valueOf(id)).path("availability")
+			.request()
+			.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, text/plain, application/json")
+			.build("GET")
+			.submit(String.class);
 	}
 	
 	/**
@@ -297,11 +297,11 @@ public class ManagedObjectsApi extends AdaptableApi {
 	 * @return
 	 */
 	public Future<SupportedMeasurements> getSupportedMeasurements(final String id) {
-		return getRootTarget().path("inventory").path("managedObjects").path(valueOf(id)).path("supportedMeasurements")
-				.request()
-				.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/json")
-				.build("GET")
-				.submit(SupportedMeasurements.class);
+		return adapt().path("inventory").path("managedObjects").path(valueOf(id)).path("supportedMeasurements")
+			.request()
+			.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/json")
+			.build("GET")
+			.submit(SupportedMeasurements.class);
 	}
 	
 	/**
@@ -319,11 +319,11 @@ public class ManagedObjectsApi extends AdaptableApi {
 	 * @return
 	 */
 	public Future<SupportedSeries> getSupportedSeries(final String id) {
-		return getRootTarget().path("inventory").path("managedObjects").path(valueOf(id)).path("supportedSeries")
-				.request()
-				.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/json")
-				.build("GET")
-				.submit(SupportedSeries.class);
+		return adapt().path("inventory").path("managedObjects").path(valueOf(id)).path("supportedSeries")
+			.request()
+			.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/json")
+			.build("GET")
+			.submit(SupportedSeries.class);
 	}
 	
 	/**
@@ -341,11 +341,11 @@ public class ManagedObjectsApi extends AdaptableApi {
 	 * @return
 	 */
 	public Future<ManagedObjectUser> getManagedObjectUser(final String id) {
-		return getRootTarget().path("inventory").path("managedObjects").path(valueOf(id)).path("user")
-				.request()
-				.header("Accept", "application/vnd.com.nsn.cumulocity.managedobjectuser+json, application/vnd.com.nsn.cumulocity.error+json")
-				.build("GET")
-				.submit(ManagedObjectUser.class);
+		return adapt().path("inventory").path("managedObjects").path(valueOf(id)).path("user")
+			.request()
+			.header("Accept", "application/vnd.com.nsn.cumulocity.managedobjectuser+json, application/vnd.com.nsn.cumulocity.error+json")
+			.build("GET")
+			.submit(ManagedObjectUser.class);
 	}
 	
 	/**
@@ -368,12 +368,12 @@ public class ManagedObjectsApi extends AdaptableApi {
 		final JsonNode jsonNode = toJsonNode(body);
 		removeFromNode(jsonNode, "self");
 		removeFromNode(jsonNode, "userName");
-		return getRootTarget().path("inventory").path("managedObjects").path(valueOf(id)).path("user")
-				.request()
-				.header("X-Cumulocity-Processing-Mode", xCumulocityProcessingMode)
-				.header("Content-Type", "application/vnd.com.nsn.cumulocity.managedobjectuser+json")
-				.header("Accept", "application/vnd.com.nsn.cumulocity.managedobjectuser+json, application/vnd.com.nsn.cumulocity.error+json")
-				.build("PUT", Entity.json(jsonNode))
-				.submit(ManagedObjectUser.class);
+		return adapt().path("inventory").path("managedObjects").path(valueOf(id)).path("user")
+			.request()
+			.header("X-Cumulocity-Processing-Mode", xCumulocityProcessingMode)
+			.header("Content-Type", "application/vnd.com.nsn.cumulocity.managedobjectuser+json")
+			.header("Accept", "application/vnd.com.nsn.cumulocity.managedobjectuser+json, application/vnd.com.nsn.cumulocity.error+json")
+			.build("PUT", Entity.json(jsonNode))
+			.submit(ManagedObjectUser.class);
 	}
 }

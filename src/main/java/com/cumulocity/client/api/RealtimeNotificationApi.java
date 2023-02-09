@@ -244,12 +244,12 @@ public class RealtimeNotificationApi extends AdaptableApi {
 		removeFromNode(jsonNode, "data");
 		removeFromNode(jsonNode, "error");
 		removeFromNode(jsonNode, "successful");
-		return getRootTarget().path("notification").path("realtime")
-				.request()
-				.header("X-Cumulocity-Processing-Mode", xCumulocityProcessingMode)
-				.header("Content-Type", "application/json")
-				.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/json")
-				.build("POST", Entity.json(jsonNode))
-				.submit(RealtimeNotification.class);
+		return adapt().path("notification").path("realtime")
+			.request()
+			.header("X-Cumulocity-Processing-Mode", xCumulocityProcessingMode)
+			.header("Content-Type", "application/json")
+			.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/json")
+			.build("POST", Entity.json(jsonNode))
+			.submit(RealtimeNotification.class);
 	}
 }

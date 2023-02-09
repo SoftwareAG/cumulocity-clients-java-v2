@@ -106,17 +106,17 @@ public class UsageStatisticsApi extends AdaptableApi {
 	 * @return
 	 */
 	public Future<TenantUsageStatisticsCollection> getTenantUsageStatisticsCollectionResource(final int currentPage, final String dateFrom, final String dateTo, final int pageSize, final boolean withTotalElements, final boolean withTotalPages) {
-		return getRootTarget().path("tenant").path("statistics")
-			.queryParam("currentPage", valueOf(currentPage))
+		return adapt().path("tenant").path("statistics")
+			.queryParam("currentPage", currentPage)
 			.queryParam("dateFrom", dateFrom)
 			.queryParam("dateTo", dateTo)
-			.queryParam("pageSize", valueOf(pageSize))
-			.queryParam("withTotalElements", valueOf(withTotalElements))
-			.queryParam("withTotalPages", valueOf(withTotalPages))
-				.request()
-				.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.tenantusagestatisticscollection+json")
-				.build("GET")
-				.submit(TenantUsageStatisticsCollection.class);
+			.queryParam("pageSize", pageSize)
+			.queryParam("withTotalElements", withTotalElements)
+			.queryParam("withTotalPages", withTotalPages)
+			.request()
+			.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.tenantusagestatisticscollection+json")
+			.build("GET")
+			.submit(TenantUsageStatisticsCollection.class);
 	}
 	
 	/**
@@ -137,14 +137,14 @@ public class UsageStatisticsApi extends AdaptableApi {
 	 * @return
 	 */
 	public Future<SummaryTenantUsageStatistics> getTenantUsageStatistics(final String dateFrom, final String dateTo, final String tenant) {
-		return getRootTarget().path("tenant").path("statistics").path("summary")
+		return adapt().path("tenant").path("statistics").path("summary")
 			.queryParam("dateFrom", dateFrom)
 			.queryParam("dateTo", dateTo)
 			.queryParam("tenant", tenant)
-				.request()
-				.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.tenantusagestatisticssummary+json")
-				.build("GET")
-				.submit(SummaryTenantUsageStatistics.class);
+			.request()
+			.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.tenantusagestatisticssummary+json")
+			.build("GET")
+			.submit(SummaryTenantUsageStatistics.class);
 	}
 	
 	/**
@@ -162,13 +162,13 @@ public class UsageStatisticsApi extends AdaptableApi {
 	 * @return
 	 */
 	public Future<SummaryAllTenantsUsageStatistics[]> getTenantsUsageStatistics(final String dateFrom, final String dateTo) {
-		return getRootTarget().path("tenant").path("statistics").path("allTenantsSummary")
+		return adapt().path("tenant").path("statistics").path("allTenantsSummary")
 			.queryParam("dateFrom", dateFrom)
 			.queryParam("dateTo", dateTo)
-				.request()
-				.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/json")
-				.build("GET")
-				.submit(SummaryAllTenantsUsageStatistics[].class);
+			.request()
+			.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/json")
+			.build("GET")
+			.submit(SummaryAllTenantsUsageStatistics[].class);
 	}
 	
 	/**
@@ -189,16 +189,16 @@ public class UsageStatisticsApi extends AdaptableApi {
 	 * @return
 	 */
 	public Future<TenantUsageStatisticsFileCollection> getMetadata(final int currentPage, final String dateFrom, final String dateTo, final int pageSize, final boolean withTotalPages) {
-		return getRootTarget().path("tenant").path("statistics").path("files")
-			.queryParam("currentPage", valueOf(currentPage))
+		return adapt().path("tenant").path("statistics").path("files")
+			.queryParam("currentPage", currentPage)
 			.queryParam("dateFrom", dateFrom)
 			.queryParam("dateTo", dateTo)
-			.queryParam("pageSize", valueOf(pageSize))
-			.queryParam("withTotalPages", valueOf(withTotalPages))
-				.request()
-				.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.tenantStatisticsfilecollection+json")
-				.build("GET")
-				.submit(TenantUsageStatisticsFileCollection.class);
+			.queryParam("pageSize", pageSize)
+			.queryParam("withTotalPages", withTotalPages)
+			.request()
+			.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.tenantStatisticsfilecollection+json")
+			.build("GET")
+			.submit(TenantUsageStatisticsFileCollection.class);
 	}
 	
 	/**
@@ -217,12 +217,12 @@ public class UsageStatisticsApi extends AdaptableApi {
 	 */
 	public Future<StatisticsFile> generateStatisticsFile(final RangeStatisticsFile body) {
 		final JsonNode jsonNode = toJsonNode(body);
-		return getRootTarget().path("tenant").path("statistics").path("files")
-				.request()
-				.header("Content-Type", "application/vnd.com.nsn.cumulocity.tenantstatisticsdate+json")
-				.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.tenantstatisticsfile+json")
-				.build("POST", Entity.json(jsonNode))
-				.submit(StatisticsFile.class);
+		return adapt().path("tenant").path("statistics").path("files")
+			.request()
+			.header("Content-Type", "application/vnd.com.nsn.cumulocity.tenantstatisticsdate+json")
+			.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.tenantstatisticsfile+json")
+			.build("POST", Entity.json(jsonNode))
+			.submit(StatisticsFile.class);
 	}
 	
 	/**
@@ -239,11 +239,11 @@ public class UsageStatisticsApi extends AdaptableApi {
 	 * @param id Unique identifier of the statistics file.
 	 */
 	public Future<Response> getStatisticsFile(final String id) {
-		return getRootTarget().path("tenant").path("statistics").path("files").path(valueOf(id))
-				.request()
-				.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/octet-stream")
-				.build("GET")
-				.submit();
+		return adapt().path("tenant").path("statistics").path("files").path(valueOf(id))
+			.request()
+			.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/octet-stream")
+			.build("GET")
+			.submit();
 	}
 	
 	/**
@@ -259,10 +259,10 @@ public class UsageStatisticsApi extends AdaptableApi {
 	 * @param month Date (format YYYY-MM-dd) specifying the month for which the statistics file will be downloaded (the day value is ignored).
 	 */
 	public Future<Response> getLatestStatisticsFile(final String month) {
-		return getRootTarget().path("tenant").path("statistics").path("files").path("latest").path(valueOf(month))
-				.request()
-				.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/octet-stream")
-				.build("GET")
-				.submit();
+		return adapt().path("tenant").path("statistics").path("files").path("latest").path(valueOf(month))
+			.request()
+			.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/octet-stream")
+			.build("GET")
+			.submit();
 	}
 }

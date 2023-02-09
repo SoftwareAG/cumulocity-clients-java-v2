@@ -54,21 +54,21 @@ public class AuditsApi extends AdaptableApi {
 	 * @return
 	 */
 	public Future<AuditRecordCollection> getAuditRecords(final String application, final int currentPage, final String dateFrom, final String dateTo, final int pageSize, final String source, final String type, final String user, final boolean withTotalElements, final boolean withTotalPages) {
-		return getRootTarget().path("audit").path("auditRecords")
+		return adapt().path("audit").path("auditRecords")
 			.queryParam("application", application)
-			.queryParam("currentPage", valueOf(currentPage))
+			.queryParam("currentPage", currentPage)
 			.queryParam("dateFrom", dateFrom)
 			.queryParam("dateTo", dateTo)
-			.queryParam("pageSize", valueOf(pageSize))
+			.queryParam("pageSize", pageSize)
 			.queryParam("source", source)
 			.queryParam("type", type)
 			.queryParam("user", user)
-			.queryParam("withTotalElements", valueOf(withTotalElements))
-			.queryParam("withTotalPages", valueOf(withTotalPages))
-				.request()
-				.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.auditrecordcollection+json")
-				.build("GET")
-				.submit(AuditRecordCollection.class);
+			.queryParam("withTotalElements", withTotalElements)
+			.queryParam("withTotalPages", withTotalPages)
+			.request()
+			.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.auditrecordcollection+json")
+			.build("GET")
+			.submit(AuditRecordCollection.class);
 	}
 	
 	/**
@@ -94,12 +94,12 @@ public class AuditsApi extends AdaptableApi {
 		removeFromNode(jsonNode, "self");
 		removeFromNode(jsonNode, "id");
 		removeFromNode(jsonNode, "source", "self");
-		return getRootTarget().path("audit").path("auditRecords")
-				.request()
-				.header("Content-Type", "application/vnd.com.nsn.cumulocity.auditrecord+json")
-				.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.auditrecord+json")
-				.build("POST", Entity.json(jsonNode))
-				.submit(AuditRecord.class);
+		return adapt().path("audit").path("auditRecords")
+			.request()
+			.header("Content-Type", "application/vnd.com.nsn.cumulocity.auditrecord+json")
+			.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.auditrecord+json")
+			.build("POST", Entity.json(jsonNode))
+			.submit(AuditRecord.class);
 	}
 	
 	/**
@@ -116,10 +116,10 @@ public class AuditsApi extends AdaptableApi {
 	 * @return
 	 */
 	public Future<AuditRecord> getAuditRecord(final String id) {
-		return getRootTarget().path("audit").path("auditRecords").path(valueOf(id))
-				.request()
-				.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.auditrecord+json")
-				.build("GET")
-				.submit(AuditRecord.class);
+		return adapt().path("audit").path("auditRecords").path(valueOf(id))
+			.request()
+			.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.auditrecord+json")
+			.build("GET")
+			.submit(AuditRecord.class);
 	}
 }

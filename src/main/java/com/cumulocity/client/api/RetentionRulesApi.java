@@ -43,15 +43,15 @@ public class RetentionRulesApi extends AdaptableApi {
 	 * @return
 	 */
 	public Future<RetentionRuleCollection> getRetentionRules(final int currentPage, final int pageSize, final boolean withTotalElements, final boolean withTotalPages) {
-		return getRootTarget().path("retention").path("retentions")
-			.queryParam("currentPage", valueOf(currentPage))
-			.queryParam("pageSize", valueOf(pageSize))
-			.queryParam("withTotalElements", valueOf(withTotalElements))
-			.queryParam("withTotalPages", valueOf(withTotalPages))
-				.request()
-				.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.retentionrulecollection+json")
-				.build("GET")
-				.submit(RetentionRuleCollection.class);
+		return adapt().path("retention").path("retentions")
+			.queryParam("currentPage", currentPage)
+			.queryParam("pageSize", pageSize)
+			.queryParam("withTotalElements", withTotalElements)
+			.queryParam("withTotalPages", withTotalPages)
+			.request()
+			.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.retentionrulecollection+json")
+			.build("GET")
+			.submit(RetentionRuleCollection.class);
 	}
 	
 	/**
@@ -73,12 +73,12 @@ public class RetentionRulesApi extends AdaptableApi {
 		final JsonNode jsonNode = toJsonNode(body);
 		removeFromNode(jsonNode, "self");
 		removeFromNode(jsonNode, "id");
-		return getRootTarget().path("retention").path("retentions")
-				.request()
-				.header("Content-Type", "application/vnd.com.nsn.cumulocity.retentionrule+json")
-				.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.retentionrule+json")
-				.build("POST", Entity.json(jsonNode))
-				.submit(RetentionRule.class);
+		return adapt().path("retention").path("retentions")
+			.request()
+			.header("Content-Type", "application/vnd.com.nsn.cumulocity.retentionrule+json")
+			.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.retentionrule+json")
+			.build("POST", Entity.json(jsonNode))
+			.submit(RetentionRule.class);
 	}
 	
 	/**
@@ -97,11 +97,11 @@ public class RetentionRulesApi extends AdaptableApi {
 	 * @return
 	 */
 	public Future<RetentionRule> getRetentionRule(final String id) {
-		return getRootTarget().path("retention").path("retentions").path(valueOf(id))
-				.request()
-				.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.retentionrule+json")
-				.build("GET")
-				.submit(RetentionRule.class);
+		return adapt().path("retention").path("retentions").path(valueOf(id))
+			.request()
+			.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.retentionrule+json")
+			.build("GET")
+			.submit(RetentionRule.class);
 	}
 	
 	/**
@@ -125,12 +125,12 @@ public class RetentionRulesApi extends AdaptableApi {
 		final JsonNode jsonNode = toJsonNode(body);
 		removeFromNode(jsonNode, "self");
 		removeFromNode(jsonNode, "id");
-		return getRootTarget().path("retention").path("retentions").path(valueOf(id))
-				.request()
-				.header("Content-Type", "application/vnd.com.nsn.cumulocity.retentionrule+json")
-				.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.retentionrule+json")
-				.build("PUT", Entity.json(jsonNode))
-				.submit(RetentionRule.class);
+		return adapt().path("retention").path("retentions").path(valueOf(id))
+			.request()
+			.header("Content-Type", "application/vnd.com.nsn.cumulocity.retentionrule+json")
+			.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.retentionrule+json")
+			.build("PUT", Entity.json(jsonNode))
+			.submit(RetentionRule.class);
 	}
 	
 	/**
@@ -148,10 +148,10 @@ public class RetentionRulesApi extends AdaptableApi {
 	 * @param id Unique identifier of the retention rule.
 	 */
 	public Future<Response> deleteRetentionRule(final String id) {
-		return getRootTarget().path("retention").path("retentions").path(valueOf(id))
-				.request()
-				.header("Accept", "application/json")
-				.build("DELETE")
-				.submit();
+		return adapt().path("retention").path("retentions").path(valueOf(id))
+			.request()
+			.header("Accept", "application/json")
+			.build("DELETE")
+			.submit();
 	}
 }

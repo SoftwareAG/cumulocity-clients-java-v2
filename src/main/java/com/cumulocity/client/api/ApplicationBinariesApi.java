@@ -38,11 +38,11 @@ public class ApplicationBinariesApi extends AdaptableApi {
 	 * @return
 	 */
 	public Future<ApplicationBinaries> getApplicationAttachments(final String id) {
-		return getRootTarget().path("application").path("applications").path(valueOf(id)).path("binaries")
-				.request()
-				.header("Accept", "application/vnd.com.nsn.cumulocity.applicationbinaries+json, application/vnd.com.nsn.cumulocity.error+json")
-				.build("GET")
-				.submit(ApplicationBinaries.class);
+		return adapt().path("application").path("applications").path(valueOf(id)).path("binaries")
+			.request()
+			.header("Accept", "application/vnd.com.nsn.cumulocity.applicationbinaries+json, application/vnd.com.nsn.cumulocity.error+json")
+			.build("GET")
+			.submit(ApplicationBinaries.class);
 	}
 	
 	/**
@@ -62,12 +62,12 @@ public class ApplicationBinariesApi extends AdaptableApi {
 	public Future<Application> uploadApplicationAttachment(final byte[] file, final String id) {
 		final FormDataMultiPart multiPartEntity = new FormDataMultiPart();
 		multiPartEntity.field("file", file, MediaType.valueOf("application/zip"));
-		return getRootTarget().path("application").path("applications").path(valueOf(id)).path("binaries")
-				.request()
-				.header("Content-Type", "multipart/form-data")
-				.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.application+json")
-				.build("POST", Entity.entity(multiPartEntity, "multipart/form-data"))
-				.submit(Application.class);
+		return adapt().path("application").path("applications").path(valueOf(id)).path("binaries")
+			.request()
+			.header("Content-Type", "multipart/form-data")
+			.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.application+json")
+			.build("POST", Entity.entity(multiPartEntity, "multipart/form-data"))
+			.submit(Application.class);
 	}
 	
 	/**
@@ -84,11 +84,11 @@ public class ApplicationBinariesApi extends AdaptableApi {
 	 * @param binaryId Unique identifier of the binary.
 	 */
 	public Future<Response> getApplicationAttachment(final String id, final String binaryId) {
-		return getRootTarget().path("application").path("applications").path(valueOf(id)).path("binaries").path(valueOf(binaryId))
-				.request()
-				.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/zip")
-				.build("GET")
-				.submit();
+		return adapt().path("application").path("applications").path(valueOf(id)).path("binaries").path(valueOf(binaryId))
+			.request()
+			.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/zip")
+			.build("GET")
+			.submit();
 	}
 	
 	/**
@@ -106,10 +106,10 @@ public class ApplicationBinariesApi extends AdaptableApi {
 	 * @param binaryId Unique identifier of the binary.
 	 */
 	public Future<Response> deleteApplicationAttachment(final String id, final String binaryId) {
-		return getRootTarget().path("application").path("applications").path(valueOf(id)).path("binaries").path(valueOf(binaryId))
-				.request()
-				.header("Accept", "application/json")
-				.build("DELETE")
-				.submit();
+		return adapt().path("application").path("applications").path(valueOf(id)).path("binaries").path(valueOf(binaryId))
+			.request()
+			.header("Accept", "application/json")
+			.build("DELETE")
+			.submit();
 	}
 }

@@ -72,11 +72,11 @@ public class SystemOptionsApi extends AdaptableApi {
 	 * @return
 	 */
 	public Future<SystemOptionCollection> getSystemOptions() {
-		return getRootTarget().path("tenant").path("system").path("options")
-				.request()
-				.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.optioncollection+json")
-				.build("GET")
-				.submit(SystemOptionCollection.class);
+		return adapt().path("tenant").path("system").path("options")
+			.request()
+			.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.optioncollection+json")
+			.build("GET")
+			.submit(SystemOptionCollection.class);
 	}
 	
 	/**
@@ -95,10 +95,10 @@ public class SystemOptionsApi extends AdaptableApi {
 	 * @return
 	 */
 	public Future<SystemOption> getSystemOption(final String category, final String key) {
-		return getRootTarget().path("tenant").path("system").path("options").path(valueOf(category)).path(valueOf(key))
-				.request()
-				.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.option+json")
-				.build("GET")
-				.submit(SystemOption.class);
+		return adapt().path("tenant").path("system").path("options").path(valueOf(category)).path(valueOf(key))
+			.request()
+			.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.option+json")
+			.build("GET")
+			.submit(SystemOption.class);
 	}
 }

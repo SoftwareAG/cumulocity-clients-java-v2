@@ -42,15 +42,15 @@ public class NewDeviceRequestsApi extends AdaptableApi {
 	 * @return
 	 */
 	public Future<NewDeviceRequestCollection> getNewDeviceRequests(final int currentPage, final int pageSize, final boolean withTotalElements, final boolean withTotalPages) {
-		return getRootTarget().path("devicecontrol").path("newDeviceRequests")
-			.queryParam("currentPage", valueOf(currentPage))
-			.queryParam("pageSize", valueOf(pageSize))
-			.queryParam("withTotalElements", valueOf(withTotalElements))
-			.queryParam("withTotalPages", valueOf(withTotalPages))
-				.request()
-				.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.newdevicerequestcollection+json")
-				.build("GET")
-				.submit(NewDeviceRequestCollection.class);
+		return adapt().path("devicecontrol").path("newDeviceRequests")
+			.queryParam("currentPage", currentPage)
+			.queryParam("pageSize", pageSize)
+			.queryParam("withTotalElements", withTotalElements)
+			.queryParam("withTotalPages", withTotalPages)
+			.request()
+			.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.newdevicerequestcollection+json")
+			.build("GET")
+			.submit(NewDeviceRequestCollection.class);
 	}
 	
 	/**
@@ -72,13 +72,13 @@ public class NewDeviceRequestsApi extends AdaptableApi {
 		final JsonNode jsonNode = toJsonNode(body);
 		removeFromNode(jsonNode, "self");
 		removeFromNode(jsonNode, "status");
-		return getRootTarget().path("devicecontrol").path("newDeviceRequests")
-				.request()
-				.header("X-Cumulocity-Processing-Mode", xCumulocityProcessingMode)
-				.header("Content-Type", "application/vnd.com.nsn.cumulocity.newdevicerequest+json")
-				.header("Accept", "application/vnd.com.nsn.cumulocity.newdevicerequest+json, application/vnd.com.nsn.cumulocity.error+json")
-				.build("POST", Entity.json(jsonNode))
-				.submit(NewDeviceRequest.class);
+		return adapt().path("devicecontrol").path("newDeviceRequests")
+			.request()
+			.header("X-Cumulocity-Processing-Mode", xCumulocityProcessingMode)
+			.header("Content-Type", "application/vnd.com.nsn.cumulocity.newdevicerequest+json")
+			.header("Accept", "application/vnd.com.nsn.cumulocity.newdevicerequest+json, application/vnd.com.nsn.cumulocity.error+json")
+			.build("POST", Entity.json(jsonNode))
+			.submit(NewDeviceRequest.class);
 	}
 	
 	/**
@@ -96,11 +96,11 @@ public class NewDeviceRequestsApi extends AdaptableApi {
 	 * @return
 	 */
 	public Future<NewDeviceRequest> getNewDeviceRequest(final String requestId) {
-		return getRootTarget().path("devicecontrol").path("newDeviceRequests").path(valueOf(requestId))
-				.request()
-				.header("Accept", "application/vnd.com.nsn.cumulocity.newdevicerequest+json, application/vnd.com.nsn.cumulocity.error+json")
-				.build("GET")
-				.submit(NewDeviceRequest.class);
+		return adapt().path("devicecontrol").path("newDeviceRequests").path(valueOf(requestId))
+			.request()
+			.header("Accept", "application/vnd.com.nsn.cumulocity.newdevicerequest+json, application/vnd.com.nsn.cumulocity.error+json")
+			.build("GET")
+			.submit(NewDeviceRequest.class);
 	}
 	
 	/**
@@ -122,12 +122,12 @@ public class NewDeviceRequestsApi extends AdaptableApi {
 		final JsonNode jsonNode = toJsonNode(body);
 		removeFromNode(jsonNode, "self");
 		removeFromNode(jsonNode, "id");
-		return getRootTarget().path("devicecontrol").path("newDeviceRequests").path(valueOf(requestId))
-				.request()
-				.header("Content-Type", "application/vnd.com.nsn.cumulocity.newdevicerequest+json")
-				.header("Accept", "application/vnd.com.nsn.cumulocity.newdevicerequest+json, application/vnd.com.nsn.cumulocity.error+json")
-				.build("PUT", Entity.json(jsonNode))
-				.submit(NewDeviceRequest.class);
+		return adapt().path("devicecontrol").path("newDeviceRequests").path(valueOf(requestId))
+			.request()
+			.header("Content-Type", "application/vnd.com.nsn.cumulocity.newdevicerequest+json")
+			.header("Accept", "application/vnd.com.nsn.cumulocity.newdevicerequest+json, application/vnd.com.nsn.cumulocity.error+json")
+			.build("PUT", Entity.json(jsonNode))
+			.submit(NewDeviceRequest.class);
 	}
 	
 	/**
@@ -145,10 +145,10 @@ public class NewDeviceRequestsApi extends AdaptableApi {
 	 * @param requestId Unique identifier of the new device request.
 	 */
 	public Future<Response> deleteNewDeviceRequest(final String requestId) {
-		return getRootTarget().path("devicecontrol").path("newDeviceRequests").path(valueOf(requestId))
-				.request()
-				.header("Accept", "application/json")
-				.build("DELETE")
-				.submit();
+		return adapt().path("devicecontrol").path("newDeviceRequests").path(valueOf(requestId))
+			.request()
+			.header("Accept", "application/json")
+			.build("DELETE")
+			.submit();
 	}
 }

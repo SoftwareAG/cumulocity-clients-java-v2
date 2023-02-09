@@ -57,23 +57,23 @@ public class ApplicationsApi extends AdaptableApi {
 	 * @return
 	 */
 	public Future<ApplicationCollection> getApplications(final int currentPage, final String name, final String owner, final int pageSize, final String providedFor, final String subscriber, final String tenant, final String type, final String user, final boolean withTotalElements, final boolean withTotalPages, final boolean hasVersions) {
-		return getRootTarget().path("application").path("applications")
-			.queryParam("currentPage", valueOf(currentPage))
+		return adapt().path("application").path("applications")
+			.queryParam("currentPage", currentPage)
 			.queryParam("name", name)
 			.queryParam("owner", owner)
-			.queryParam("pageSize", valueOf(pageSize))
+			.queryParam("pageSize", pageSize)
 			.queryParam("providedFor", providedFor)
 			.queryParam("subscriber", subscriber)
 			.queryParam("tenant", tenant)
 			.queryParam("type", type)
 			.queryParam("user", user)
-			.queryParam("withTotalElements", valueOf(withTotalElements))
-			.queryParam("withTotalPages", valueOf(withTotalPages))
-			.queryParam("hasVersions", valueOf(hasVersions))
-				.request()
-				.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.applicationcollection+json")
-				.build("GET")
-				.submit(ApplicationCollection.class);
+			.queryParam("withTotalElements", withTotalElements)
+			.queryParam("withTotalPages", withTotalPages)
+			.queryParam("hasVersions", hasVersions)
+			.request()
+			.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.applicationcollection+json")
+			.build("GET")
+			.submit(ApplicationCollection.class);
 	}
 	
 	/**
@@ -99,13 +99,13 @@ public class ApplicationsApi extends AdaptableApi {
 		removeFromNode(jsonNode, "self");
 		removeFromNode(jsonNode, "id");
 		removeFromNode(jsonNode, "resourcesUrl");
-		return getRootTarget().path("application").path("applications")
-				.request()
-				.header("X-Cumulocity-Processing-Mode", xCumulocityProcessingMode)
-				.header("Content-Type", "application/vnd.com.nsn.cumulocity.application+json")
-				.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.application+json")
-				.build("POST", Entity.json(jsonNode))
-				.submit(Application.class);
+		return adapt().path("application").path("applications")
+			.request()
+			.header("X-Cumulocity-Processing-Mode", xCumulocityProcessingMode)
+			.header("Content-Type", "application/vnd.com.nsn.cumulocity.application+json")
+			.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.application+json")
+			.build("POST", Entity.json(jsonNode))
+			.submit(Application.class);
 	}
 	
 	/**
@@ -123,11 +123,11 @@ public class ApplicationsApi extends AdaptableApi {
 	 * @return
 	 */
 	public Future<Application> getApplication(final String id) {
-		return getRootTarget().path("application").path("applications").path(valueOf(id))
-				.request()
-				.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.application+json")
-				.build("GET")
-				.submit(Application.class);
+		return adapt().path("application").path("applications").path(valueOf(id))
+			.request()
+			.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.application+json")
+			.build("GET")
+			.submit(Application.class);
 	}
 	
 	/**
@@ -154,13 +154,13 @@ public class ApplicationsApi extends AdaptableApi {
 		removeFromNode(jsonNode, "id");
 		removeFromNode(jsonNode, "type");
 		removeFromNode(jsonNode, "resourcesUrl");
-		return getRootTarget().path("application").path("applications").path(valueOf(id))
-				.request()
-				.header("X-Cumulocity-Processing-Mode", xCumulocityProcessingMode)
-				.header("Content-Type", "application/vnd.com.nsn.cumulocity.application+json")
-				.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.application+json")
-				.build("PUT", Entity.json(jsonNode))
-				.submit(Application.class);
+		return adapt().path("application").path("applications").path(valueOf(id))
+			.request()
+			.header("X-Cumulocity-Processing-Mode", xCumulocityProcessingMode)
+			.header("Content-Type", "application/vnd.com.nsn.cumulocity.application+json")
+			.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.application+json")
+			.build("PUT", Entity.json(jsonNode))
+			.submit(Application.class);
 	}
 	
 	/**
@@ -180,13 +180,13 @@ public class ApplicationsApi extends AdaptableApi {
 	 * @param xCumulocityProcessingMode Used to explicitly control the processing mode of the request. See [Processing mode](#processing-mode) for more details.
 	 */
 	public Future<Response> deleteApplication(final String id, final boolean force, final String xCumulocityProcessingMode) {
-		return getRootTarget().path("application").path("applications").path(valueOf(id))
-			.queryParam("force", valueOf(force))
-				.request()
-				.header("X-Cumulocity-Processing-Mode", xCumulocityProcessingMode)
-				.header("Accept", "application/json")
-				.build("DELETE")
-				.submit();
+		return adapt().path("application").path("applications").path(valueOf(id))
+			.queryParam("force", force)
+			.request()
+			.header("X-Cumulocity-Processing-Mode", xCumulocityProcessingMode)
+			.header("Accept", "application/json")
+			.build("DELETE")
+			.submit();
 	}
 	
 	/**
@@ -205,12 +205,12 @@ public class ApplicationsApi extends AdaptableApi {
 	 * @return
 	 */
 	public Future<Application> copyApplication(final String id, final String xCumulocityProcessingMode) {
-		return getRootTarget().path("application").path("applications").path(valueOf(id)).path("clone")
-				.request()
-				.header("X-Cumulocity-Processing-Mode", xCumulocityProcessingMode)
-				.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.application+json")
-				.build("POST")
-				.submit(Application.class);
+		return adapt().path("application").path("applications").path(valueOf(id)).path("clone")
+			.request()
+			.header("X-Cumulocity-Processing-Mode", xCumulocityProcessingMode)
+			.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.application+json")
+			.build("POST")
+			.submit(Application.class);
 	}
 	
 	/**
@@ -227,11 +227,11 @@ public class ApplicationsApi extends AdaptableApi {
 	 * @return
 	 */
 	public Future<ApplicationCollection> getApplicationsByName(final String name) {
-		return getRootTarget().path("application").path("applicationsByName").path(valueOf(name))
-				.request()
-				.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.applicationcollection+json")
-				.build("GET")
-				.submit(ApplicationCollection.class);
+		return adapt().path("application").path("applicationsByName").path(valueOf(name))
+			.request()
+			.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.applicationcollection+json")
+			.build("GET")
+			.submit(ApplicationCollection.class);
 	}
 	
 	/**
@@ -248,11 +248,11 @@ public class ApplicationsApi extends AdaptableApi {
 	 * @return
 	 */
 	public Future<ApplicationCollection> getApplicationsByTenant(final String tenantId) {
-		return getRootTarget().path("application").path("applicationsByTenant").path(valueOf(tenantId))
-				.request()
-				.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.applicationcollection+json")
-				.build("GET")
-				.submit(ApplicationCollection.class);
+		return adapt().path("application").path("applicationsByTenant").path(valueOf(tenantId))
+			.request()
+			.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.applicationcollection+json")
+			.build("GET")
+			.submit(ApplicationCollection.class);
 	}
 	
 	/**
@@ -273,15 +273,15 @@ public class ApplicationsApi extends AdaptableApi {
 	 * @return
 	 */
 	public Future<ApplicationCollection> getApplicationsByOwner(final String tenantId, final int currentPage, final int pageSize, final boolean withTotalElements, final boolean withTotalPages) {
-		return getRootTarget().path("application").path("applicationsByOwner").path(valueOf(tenantId))
-			.queryParam("currentPage", valueOf(currentPage))
-			.queryParam("pageSize", valueOf(pageSize))
-			.queryParam("withTotalElements", valueOf(withTotalElements))
-			.queryParam("withTotalPages", valueOf(withTotalPages))
-				.request()
-				.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.applicationcollection+json")
-				.build("GET")
-				.submit(ApplicationCollection.class);
+		return adapt().path("application").path("applicationsByOwner").path(valueOf(tenantId))
+			.queryParam("currentPage", currentPage)
+			.queryParam("pageSize", pageSize)
+			.queryParam("withTotalElements", withTotalElements)
+			.queryParam("withTotalPages", withTotalPages)
+			.request()
+			.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.applicationcollection+json")
+			.build("GET")
+			.submit(ApplicationCollection.class);
 	}
 	
 	/**
@@ -302,14 +302,14 @@ public class ApplicationsApi extends AdaptableApi {
 	 * @return
 	 */
 	public Future<ApplicationCollection> getApplicationsByUser(final String username, final int currentPage, final int pageSize, final boolean withTotalElements, final boolean withTotalPages) {
-		return getRootTarget().path("application").path("applicationsByUser").path(valueOf(username))
-			.queryParam("currentPage", valueOf(currentPage))
-			.queryParam("pageSize", valueOf(pageSize))
-			.queryParam("withTotalElements", valueOf(withTotalElements))
-			.queryParam("withTotalPages", valueOf(withTotalPages))
-				.request()
-				.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.applicationcollection+json")
-				.build("GET")
-				.submit(ApplicationCollection.class);
+		return adapt().path("application").path("applicationsByUser").path(valueOf(username))
+			.queryParam("currentPage", currentPage)
+			.queryParam("pageSize", pageSize)
+			.queryParam("withTotalElements", withTotalElements)
+			.queryParam("withTotalPages", withTotalPages)
+			.request()
+			.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.applicationcollection+json")
+			.build("GET")
+			.submit(ApplicationCollection.class);
 	}
 }

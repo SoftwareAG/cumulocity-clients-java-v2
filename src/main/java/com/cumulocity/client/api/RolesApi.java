@@ -45,15 +45,15 @@ public class RolesApi extends AdaptableApi {
 	 * @return
 	 */
 	public Future<UserRoleCollection> getUserRoles(final int currentPage, final int pageSize, final boolean withTotalElements, final boolean withTotalPages) {
-		return getRootTarget().path("user").path("roles")
-			.queryParam("currentPage", valueOf(currentPage))
-			.queryParam("pageSize", valueOf(pageSize))
-			.queryParam("withTotalElements", valueOf(withTotalElements))
-			.queryParam("withTotalPages", valueOf(withTotalPages))
-				.request()
-				.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.rolecollection+json")
-				.build("GET")
-				.submit(UserRoleCollection.class);
+		return adapt().path("user").path("roles")
+			.queryParam("currentPage", currentPage)
+			.queryParam("pageSize", pageSize)
+			.queryParam("withTotalElements", withTotalElements)
+			.queryParam("withTotalPages", withTotalPages)
+			.request()
+			.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.rolecollection+json")
+			.build("GET")
+			.submit(UserRoleCollection.class);
 	}
 	
 	/**
@@ -71,11 +71,11 @@ public class RolesApi extends AdaptableApi {
 	 * @return
 	 */
 	public Future<Role> getUserRole(final String name) {
-		return getRootTarget().path("user").path("roles").path(valueOf(name))
-				.request()
-				.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.role+json")
-				.build("GET")
-				.submit(Role.class);
+		return adapt().path("user").path("roles").path(valueOf(name))
+			.request()
+			.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.role+json")
+			.build("GET")
+			.submit(Role.class);
 	}
 	
 	/**
@@ -97,13 +97,13 @@ public class RolesApi extends AdaptableApi {
 	 * @return
 	 */
 	public Future<RoleReferenceCollection> getGroupRoles(final String tenantId, final int groupId, final int currentPage, final int pageSize) {
-		return getRootTarget().path("user").path(valueOf(tenantId)).path("groups").path(valueOf(groupId)).path("roles")
-			.queryParam("currentPage", valueOf(currentPage))
-			.queryParam("pageSize", valueOf(pageSize))
-				.request()
-				.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.rolereferencecollection+json")
-				.build("GET")
-				.submit(RoleReferenceCollection.class);
+		return adapt().path("user").path(valueOf(tenantId)).path("groups").path(valueOf(groupId)).path("roles")
+			.queryParam("currentPage", currentPage)
+			.queryParam("pageSize", pageSize)
+			.request()
+			.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.rolereferencecollection+json")
+			.build("GET")
+			.submit(RoleReferenceCollection.class);
 	}
 	
 	/**
@@ -127,12 +127,12 @@ public class RolesApi extends AdaptableApi {
 	 */
 	public Future<RoleReference> assignGroupRole(final SubscribedRole body, final String tenantId, final int groupId) {
 		final JsonNode jsonNode = toJsonNode(body);
-		return getRootTarget().path("user").path(valueOf(tenantId)).path("groups").path(valueOf(groupId)).path("roles")
-				.request()
-				.header("Content-Type", "application/vnd.com.nsn.cumulocity.rolereference+json")
-				.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.rolereference+json")
-				.build("POST", Entity.json(jsonNode))
-				.submit(RoleReference.class);
+		return adapt().path("user").path(valueOf(tenantId)).path("groups").path(valueOf(groupId)).path("roles")
+			.request()
+			.header("Content-Type", "application/vnd.com.nsn.cumulocity.rolereference+json")
+			.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.rolereference+json")
+			.build("POST", Entity.json(jsonNode))
+			.submit(RoleReference.class);
 	}
 	
 	/**
@@ -152,11 +152,11 @@ public class RolesApi extends AdaptableApi {
 	 * @param roleId Unique identifier of the user role.
 	 */
 	public Future<Response> unassignGroupRole(final String tenantId, final int groupId, final String roleId) {
-		return getRootTarget().path("user").path(valueOf(tenantId)).path("groups").path(valueOf(groupId)).path("roles").path(valueOf(roleId))
-				.request()
-				.header("Accept", "application/json")
-				.build("DELETE")
-				.submit();
+		return adapt().path("user").path(valueOf(tenantId)).path("groups").path(valueOf(groupId)).path("roles").path(valueOf(roleId))
+			.request()
+			.header("Accept", "application/json")
+			.build("DELETE")
+			.submit();
 	}
 	
 	/**
@@ -179,12 +179,12 @@ public class RolesApi extends AdaptableApi {
 	 */
 	public Future<RoleReference> assignUserRole(final SubscribedRole body, final String tenantId, final String userId) {
 		final JsonNode jsonNode = toJsonNode(body);
-		return getRootTarget().path("user").path(valueOf(tenantId)).path("users").path(valueOf(userId)).path("roles")
-				.request()
-				.header("Content-Type", "application/vnd.com.nsn.cumulocity.rolereference+json")
-				.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.rolereference+json")
-				.build("POST", Entity.json(jsonNode))
-				.submit(RoleReference.class);
+		return adapt().path("user").path(valueOf(tenantId)).path("users").path(valueOf(userId)).path("roles")
+			.request()
+			.header("Content-Type", "application/vnd.com.nsn.cumulocity.rolereference+json")
+			.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.rolereference+json")
+			.build("POST", Entity.json(jsonNode))
+			.submit(RoleReference.class);
 	}
 	
 	/**
@@ -204,10 +204,10 @@ public class RolesApi extends AdaptableApi {
 	 * @param roleId Unique identifier of the user role.
 	 */
 	public Future<Response> unassignUserRole(final String tenantId, final String userId, final String roleId) {
-		return getRootTarget().path("user").path(valueOf(tenantId)).path("users").path(valueOf(userId)).path("roles").path(valueOf(roleId))
-				.request()
-				.header("Accept", "application/json")
-				.build("DELETE")
-				.submit();
+		return adapt().path("user").path(valueOf(tenantId)).path("users").path(valueOf(userId)).path("roles").path(valueOf(roleId))
+			.request()
+			.header("Accept", "application/json")
+			.build("DELETE")
+			.submit();
 	}
 }

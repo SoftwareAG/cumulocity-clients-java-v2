@@ -54,20 +54,20 @@ public class UsersApi extends AdaptableApi {
 	 * @return
 	 */
 	public Future<UserCollection> getUsers(final String tenantId, final int currentPage, final String[] groups, final boolean onlyDevices, final String owner, final int pageSize, final String username, final boolean withSubusersCount, final boolean withTotalElements, final boolean withTotalPages) {
-		return getRootTarget().path("user").path(valueOf(tenantId)).path("users")
-			.queryParam("currentPage", valueOf(currentPage))
-			.queryParam("groups", valueOf(groups))
-			.queryParam("onlyDevices", valueOf(onlyDevices))
+		return adapt().path("user").path(valueOf(tenantId)).path("users")
+			.queryParam("currentPage", currentPage)
+			.queryParam("groups", groups, false)
+			.queryParam("onlyDevices", onlyDevices)
 			.queryParam("owner", owner)
-			.queryParam("pageSize", valueOf(pageSize))
+			.queryParam("pageSize", pageSize)
 			.queryParam("username", username)
-			.queryParam("withSubusersCount", valueOf(withSubusersCount))
-			.queryParam("withTotalElements", valueOf(withTotalElements))
-			.queryParam("withTotalPages", valueOf(withTotalPages))
-				.request()
-				.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.usercollection+json")
-				.build("GET")
-				.submit(UserCollection.class);
+			.queryParam("withSubusersCount", withSubusersCount)
+			.queryParam("withTotalElements", withTotalElements)
+			.queryParam("withTotalPages", withTotalPages)
+			.request()
+			.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.usercollection+json")
+			.build("GET")
+			.submit(UserCollection.class);
 	}
 	
 	/**
@@ -100,12 +100,12 @@ public class UsersApi extends AdaptableApi {
 		removeFromNode(jsonNode, "twoFactorAuthenticationEnabled");
 		removeFromNode(jsonNode, "devicePermissions");
 		removeFromNode(jsonNode, "applications");
-		return getRootTarget().path("user").path(valueOf(tenantId)).path("users")
-				.request()
-				.header("Content-Type", "application/vnd.com.nsn.cumulocity.user+json")
-				.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.user+json")
-				.build("POST", Entity.json(jsonNode))
-				.submit(User.class);
+		return adapt().path("user").path(valueOf(tenantId)).path("users")
+			.request()
+			.header("Content-Type", "application/vnd.com.nsn.cumulocity.user+json")
+			.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.user+json")
+			.build("POST", Entity.json(jsonNode))
+			.submit(User.class);
 	}
 	
 	/**
@@ -125,11 +125,11 @@ public class UsersApi extends AdaptableApi {
 	 * @return
 	 */
 	public Future<User> getUser(final String tenantId, final String userId) {
-		return getRootTarget().path("user").path(valueOf(tenantId)).path("users").path(valueOf(userId))
-				.request()
-				.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.user+json")
-				.build("GET")
-				.submit(User.class);
+		return adapt().path("user").path(valueOf(tenantId)).path("users").path(valueOf(userId))
+			.request()
+			.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.user+json")
+			.build("GET")
+			.submit(User.class);
 	}
 	
 	/**
@@ -164,12 +164,12 @@ public class UsersApi extends AdaptableApi {
 		removeFromNode(jsonNode, "twoFactorAuthenticationEnabled");
 		removeFromNode(jsonNode, "devicePermissions");
 		removeFromNode(jsonNode, "applications");
-		return getRootTarget().path("user").path(valueOf(tenantId)).path("users").path(valueOf(userId))
-				.request()
-				.header("Content-Type", "application/vnd.com.nsn.cumulocity.user+json")
-				.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.user+json")
-				.build("PUT", Entity.json(jsonNode))
-				.submit(User.class);
+		return adapt().path("user").path(valueOf(tenantId)).path("users").path(valueOf(userId))
+			.request()
+			.header("Content-Type", "application/vnd.com.nsn.cumulocity.user+json")
+			.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.user+json")
+			.build("PUT", Entity.json(jsonNode))
+			.submit(User.class);
 	}
 	
 	/**
@@ -188,11 +188,11 @@ public class UsersApi extends AdaptableApi {
 	 * @param userId Unique identifier of the a user.
 	 */
 	public Future<Response> deleteUser(final String tenantId, final String userId) {
-		return getRootTarget().path("user").path(valueOf(tenantId)).path("users").path(valueOf(userId))
-				.request()
-				.header("Accept", "application/json")
-				.build("DELETE")
-				.submit();
+		return adapt().path("user").path(valueOf(tenantId)).path("users").path(valueOf(userId))
+			.request()
+			.header("Accept", "application/json")
+			.build("DELETE")
+			.submit();
 	}
 	
 	/**
@@ -213,12 +213,12 @@ public class UsersApi extends AdaptableApi {
 	 */
 	public Future<Response> updateUserPassword(final PasswordChange body, final String tenantId, final String userId) {
 		final JsonNode jsonNode = toJsonNode(body);
-		return getRootTarget().path("user").path(valueOf(tenantId)).path("users").path(valueOf(userId)).path("password")
-				.request()
-				.header("Content-Type", "application/json")
-				.header("Accept", "application/json")
-				.build("PUT", Entity.json(jsonNode))
-				.submit();
+		return adapt().path("user").path(valueOf(tenantId)).path("users").path(valueOf(userId)).path("password")
+			.request()
+			.header("Content-Type", "application/json")
+			.header("Accept", "application/json")
+			.build("PUT", Entity.json(jsonNode))
+			.submit();
 	}
 	
 	/**
@@ -238,11 +238,11 @@ public class UsersApi extends AdaptableApi {
 	 * @return
 	 */
 	public Future<UserTfaData> getUserTfaSettings(final String tenantId, final String userId) {
-		return getRootTarget().path("user").path(valueOf(tenantId)).path("users").path(valueOf(userId)).path("tfa")
-				.request()
-				.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/json")
-				.build("GET")
-				.submit(UserTfaData.class);
+		return adapt().path("user").path(valueOf(tenantId)).path("users").path(valueOf(userId)).path("tfa")
+			.request()
+			.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/json")
+			.build("GET")
+			.submit(UserTfaData.class);
 	}
 	
 	/**
@@ -262,11 +262,11 @@ public class UsersApi extends AdaptableApi {
 	 * @return
 	 */
 	public Future<User> getUserByUsername(final String tenantId, final String username) {
-		return getRootTarget().path("user").path(valueOf(tenantId)).path("userByName").path(valueOf(username))
-				.request()
-				.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.user+json")
-				.build("GET")
-				.submit(User.class);
+		return adapt().path("user").path(valueOf(tenantId)).path("userByName").path(valueOf(username))
+			.request()
+			.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.user+json")
+			.build("GET")
+			.submit(User.class);
 	}
 	
 	/**
@@ -289,14 +289,14 @@ public class UsersApi extends AdaptableApi {
 	 * @return
 	 */
 	public Future<UserReferenceCollection> getUsersFromUserGroup(final String tenantId, final int groupId, final int currentPage, final int pageSize, final boolean withTotalElements) {
-		return getRootTarget().path("user").path(valueOf(tenantId)).path("groups").path(valueOf(groupId)).path("users")
-			.queryParam("currentPage", valueOf(currentPage))
-			.queryParam("pageSize", valueOf(pageSize))
-			.queryParam("withTotalElements", valueOf(withTotalElements))
-				.request()
-				.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.userreferencecollection+json")
-				.build("GET")
-				.submit(UserReferenceCollection.class);
+		return adapt().path("user").path(valueOf(tenantId)).path("groups").path(valueOf(groupId)).path("users")
+			.queryParam("currentPage", currentPage)
+			.queryParam("pageSize", pageSize)
+			.queryParam("withTotalElements", withTotalElements)
+			.request()
+			.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.userreferencecollection+json")
+			.build("GET")
+			.submit(UserReferenceCollection.class);
 	}
 	
 	/**
@@ -319,12 +319,12 @@ public class UsersApi extends AdaptableApi {
 	 */
 	public Future<UserReference> assignUserToUserGroup(final SubscribedUser body, final String tenantId, final int groupId) {
 		final JsonNode jsonNode = toJsonNode(body);
-		return getRootTarget().path("user").path(valueOf(tenantId)).path("groups").path(valueOf(groupId)).path("users")
-				.request()
-				.header("Content-Type", "application/vnd.com.nsn.cumulocity.userreference+json")
-				.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.userreference+json")
-				.build("POST", Entity.json(jsonNode))
-				.submit(UserReference.class);
+		return adapt().path("user").path(valueOf(tenantId)).path("groups").path(valueOf(groupId)).path("users")
+			.request()
+			.header("Content-Type", "application/vnd.com.nsn.cumulocity.userreference+json")
+			.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.userreference+json")
+			.build("POST", Entity.json(jsonNode))
+			.submit(UserReference.class);
 	}
 	
 	/**
@@ -344,11 +344,11 @@ public class UsersApi extends AdaptableApi {
 	 * @param userId Unique identifier of the a user.
 	 */
 	public Future<Response> removeUserFromUserGroup(final String tenantId, final int groupId, final String userId) {
-		return getRootTarget().path("user").path(valueOf(tenantId)).path("groups").path(valueOf(groupId)).path("users").path(valueOf(userId))
-				.request()
-				.header("Accept", "application/json")
-				.build("DELETE")
-				.submit();
+		return adapt().path("user").path(valueOf(tenantId)).path("groups").path(valueOf(groupId)).path("users").path(valueOf(userId))
+			.request()
+			.header("Accept", "application/json")
+			.build("DELETE")
+			.submit();
 	}
 	
 	/**
@@ -365,12 +365,12 @@ public class UsersApi extends AdaptableApi {
 	 * @param xXSRFTOKEN Prevents XRSF attack of the authenticated user. This parameter is specific to OAI-Secure authentication.
 	 */
 	public Future<Response> logout(final String cookie, final String xXSRFTOKEN) {
-		return getRootTarget().path("user").path("logout")
-				.request()
-				.header("Cookie", cookie)
-				.header("X-XSRF-TOKEN", xXSRFTOKEN)
-				.header("Accept", "application/json")
-				.build("POST")
-				.submit();
+		return adapt().path("user").path("logout")
+			.request()
+			.header("Cookie", cookie)
+			.header("X-XSRF-TOKEN", xXSRFTOKEN)
+			.header("Accept", "application/json")
+			.build("POST")
+			.submit();
 	}
 }

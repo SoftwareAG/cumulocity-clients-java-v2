@@ -41,13 +41,13 @@ public class LoginOptionsApi extends AdaptableApi {
 	 * @return
 	 */
 	public Future<LoginOptionCollection> getLoginOptions(final boolean management, final String tenantId) {
-		return getRootTarget().path("tenant").path("loginOptions")
-			.queryParam("management", valueOf(management))
+		return adapt().path("tenant").path("loginOptions")
+			.queryParam("management", management)
 			.queryParam("tenantId", tenantId)
-				.request()
-				.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.loginoptioncollection+json")
-				.build("GET")
-				.submit(LoginOptionCollection.class);
+			.request()
+			.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.loginoptioncollection+json")
+			.build("GET")
+			.submit(LoginOptionCollection.class);
 	}
 	
 	/**
@@ -68,12 +68,12 @@ public class LoginOptionsApi extends AdaptableApi {
 	public Future<AuthConfig> createLoginOption(final AuthConfig body) {
 		final JsonNode jsonNode = toJsonNode(body);
 		removeFromNode(jsonNode, "self");
-		return getRootTarget().path("tenant").path("loginOptions")
-				.request()
-				.header("Content-Type", "application/vnd.com.nsn.cumulocity.authconfig+json")
-				.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.authconfig+json")
-				.build("POST", Entity.json(jsonNode))
-				.submit(AuthConfig.class);
+		return adapt().path("tenant").path("loginOptions")
+			.request()
+			.header("Content-Type", "application/vnd.com.nsn.cumulocity.authconfig+json")
+			.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.authconfig+json")
+			.build("POST", Entity.json(jsonNode))
+			.submit(AuthConfig.class);
 	}
 	
 	/**
@@ -94,12 +94,12 @@ public class LoginOptionsApi extends AdaptableApi {
 	 */
 	public Future<AuthConfig> updateLoginOption(final AuthConfigAccess body, final String typeOrId, final String targetTenant) {
 		final JsonNode jsonNode = toJsonNode(body);
-		return getRootTarget().path("tenant").path("loginOptions").path(valueOf(typeOrId)).path("restrict")
+		return adapt().path("tenant").path("loginOptions").path(valueOf(typeOrId)).path("restrict")
 			.queryParam("targetTenant", targetTenant)
-				.request()
-				.header("Content-Type", "application/json")
-				.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.authconfig+json")
-				.build("PUT", Entity.json(jsonNode))
-				.submit(AuthConfig.class);
+			.request()
+			.header("Content-Type", "application/json")
+			.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.authconfig+json")
+			.build("PUT", Entity.json(jsonNode))
+			.submit(AuthConfig.class);
 	}
 }

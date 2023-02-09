@@ -38,11 +38,11 @@ public class AttachmentsApi extends AdaptableApi {
 	 * @param id Unique identifier of the event.
 	 */
 	public Future<Response> getEventAttachment(final String id) {
-		return getRootTarget().path("event").path("events").path(valueOf(id)).path("binaries")
-				.request()
-				.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/octet-stream")
-				.build("GET")
-				.submit();
+		return adapt().path("event").path("events").path(valueOf(id)).path("binaries")
+			.request()
+			.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/octet-stream")
+			.build("GET")
+			.submit();
 	}
 	
 	/**
@@ -61,12 +61,12 @@ public class AttachmentsApi extends AdaptableApi {
 	 * @return
 	 */
 	public Future<EventBinary> replaceEventAttachment(final byte[] body, final String id) {
-		return getRootTarget().path("event").path("events").path(valueOf(id)).path("binaries")
-				.request()
-				.header("Content-Type", "text/plain")
-				.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.event+json")
-				.build("PUT", Entity.text(body))
-				.submit(EventBinary.class);
+		return adapt().path("event").path("events").path(valueOf(id)).path("binaries")
+			.request()
+			.header("Content-Type", "text/plain")
+			.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.event+json")
+			.build("PUT", Entity.text(body))
+			.submit(EventBinary.class);
 	}
 	
 	/**
@@ -86,12 +86,12 @@ public class AttachmentsApi extends AdaptableApi {
 	 * @return
 	 */
 	public Future<EventBinary> uploadEventAttachment(final byte[] body, final String id) {
-		return getRootTarget().path("event").path("events").path(valueOf(id)).path("binaries")
-				.request()
-				.header("Content-Type", "text/plain")
-				.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.event+json")
-				.build("POST", Entity.text(body))
-				.submit(EventBinary.class);
+		return adapt().path("event").path("events").path(valueOf(id)).path("binaries")
+			.request()
+			.header("Content-Type", "text/plain")
+			.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.event+json")
+			.build("POST", Entity.text(body))
+			.submit(EventBinary.class);
 	}
 	
 	/**
@@ -115,12 +115,12 @@ public class AttachmentsApi extends AdaptableApi {
 		final FormDataMultiPart multiPartEntity = new FormDataMultiPart();
 		multiPartEntity.field("object", pObject, MediaType.valueOf("application/json"));
 		multiPartEntity.field("file", file, MediaType.valueOf("text/plain"));
-		return getRootTarget().path("event").path("events").path(valueOf(id)).path("binaries")
-				.request()
-				.header("Content-Type", "multipart/form-data")
-				.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.event+json")
-				.build("POST", Entity.entity(multiPartEntity, "multipart/form-data"))
-				.submit(EventBinary.class);
+		return adapt().path("event").path("events").path(valueOf(id)).path("binaries")
+			.request()
+			.header("Content-Type", "multipart/form-data")
+			.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.event+json")
+			.build("POST", Entity.entity(multiPartEntity, "multipart/form-data"))
+			.submit(EventBinary.class);
 	}
 	
 	/**
@@ -137,10 +137,10 @@ public class AttachmentsApi extends AdaptableApi {
 	 * @param id Unique identifier of the event.
 	 */
 	public Future<Response> deleteEventAttachment(final String id) {
-		return getRootTarget().path("event").path("events").path(valueOf(id)).path("binaries")
-				.request()
-				.header("Accept", "application/json")
-				.build("DELETE")
-				.submit();
+		return adapt().path("event").path("events").path(valueOf(id)).path("binaries")
+			.request()
+			.header("Accept", "application/json")
+			.build("DELETE")
+			.submit();
 	}
 }

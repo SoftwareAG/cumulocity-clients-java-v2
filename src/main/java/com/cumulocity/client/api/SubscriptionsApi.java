@@ -41,16 +41,16 @@ public class SubscriptionsApi extends AdaptableApi {
 	 * @return
 	 */
 	public Future<NotificationSubscriptionCollection> getSubscriptions(final String context, final int currentPage, final int pageSize, final String source, final boolean withTotalPages) {
-		return getRootTarget().path("notification2").path("subscriptions")
+		return adapt().path("notification2").path("subscriptions")
 			.queryParam("context", context)
-			.queryParam("currentPage", valueOf(currentPage))
-			.queryParam("pageSize", valueOf(pageSize))
+			.queryParam("currentPage", currentPage)
+			.queryParam("pageSize", pageSize)
 			.queryParam("source", source)
-			.queryParam("withTotalPages", valueOf(withTotalPages))
-				.request()
-				.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.subscriptioncollection+json")
-				.build("GET")
-				.submit(NotificationSubscriptionCollection.class);
+			.queryParam("withTotalPages", withTotalPages)
+			.request()
+			.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.subscriptioncollection+json")
+			.build("GET")
+			.submit(NotificationSubscriptionCollection.class);
 	}
 	
 	/**
@@ -76,13 +76,13 @@ public class SubscriptionsApi extends AdaptableApi {
 		removeFromNode(jsonNode, "self");
 		removeFromNode(jsonNode, "id");
 		removeFromNode(jsonNode, "source", "self");
-		return getRootTarget().path("notification2").path("subscriptions")
-				.request()
-				.header("X-Cumulocity-Processing-Mode", xCumulocityProcessingMode)
-				.header("Content-Type", "application/vnd.com.nsn.cumulocity.subscription+json")
-				.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.subscription+json")
-				.build("POST", Entity.json(jsonNode))
-				.submit(NotificationSubscription.class);
+		return adapt().path("notification2").path("subscriptions")
+			.request()
+			.header("X-Cumulocity-Processing-Mode", xCumulocityProcessingMode)
+			.header("Content-Type", "application/vnd.com.nsn.cumulocity.subscription+json")
+			.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.subscription+json")
+			.build("POST", Entity.json(jsonNode))
+			.submit(NotificationSubscription.class);
 	}
 	
 	/**
@@ -102,14 +102,14 @@ public class SubscriptionsApi extends AdaptableApi {
 	 * @param source The managed object ID to which the subscription is associated.
 	 */
 	public Future<Response> deleteSubscriptions(final String xCumulocityProcessingMode, final String context, final String source) {
-		return getRootTarget().path("notification2").path("subscriptions")
+		return adapt().path("notification2").path("subscriptions")
 			.queryParam("context", context)
 			.queryParam("source", source)
-				.request()
-				.header("X-Cumulocity-Processing-Mode", xCumulocityProcessingMode)
-				.header("Accept", "application/json")
-				.build("DELETE")
-				.submit();
+			.request()
+			.header("X-Cumulocity-Processing-Mode", xCumulocityProcessingMode)
+			.header("Accept", "application/json")
+			.build("DELETE")
+			.submit();
 	}
 	
 	/**
@@ -128,11 +128,11 @@ public class SubscriptionsApi extends AdaptableApi {
 	 * @return
 	 */
 	public Future<NotificationSubscription> getSubscription(final String id) {
-		return getRootTarget().path("notification2").path("subscriptions").path(valueOf(id))
-				.request()
-				.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.subscription+json")
-				.build("GET")
-				.submit(NotificationSubscription.class);
+		return adapt().path("notification2").path("subscriptions").path(valueOf(id))
+			.request()
+			.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.subscription+json")
+			.build("GET")
+			.submit(NotificationSubscription.class);
 	}
 	
 	/**
@@ -151,11 +151,11 @@ public class SubscriptionsApi extends AdaptableApi {
 	 * @param xCumulocityProcessingMode Used to explicitly control the processing mode of the request. See [Processing mode](#processing-mode) for more details.
 	 */
 	public Future<Response> deleteSubscription(final String id, final String xCumulocityProcessingMode) {
-		return getRootTarget().path("notification2").path("subscriptions").path(valueOf(id))
-				.request()
-				.header("X-Cumulocity-Processing-Mode", xCumulocityProcessingMode)
-				.header("Accept", "application/json")
-				.build("DELETE")
-				.submit();
+		return adapt().path("notification2").path("subscriptions").path(valueOf(id))
+			.request()
+			.header("X-Cumulocity-Processing-Mode", xCumulocityProcessingMode)
+			.header("Accept", "application/json")
+			.build("DELETE")
+			.submit();
 	}
 }

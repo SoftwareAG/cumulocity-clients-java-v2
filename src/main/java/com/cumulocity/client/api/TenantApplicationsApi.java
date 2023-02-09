@@ -45,15 +45,15 @@ public class TenantApplicationsApi extends AdaptableApi {
 	 * @return
 	 */
 	public Future<ApplicationReferenceCollection> getSubscribedApplications(final String tenantId, final int currentPage, final int pageSize, final boolean withTotalElements, final boolean withTotalPages) {
-		return getRootTarget().path("tenant").path("tenants").path(valueOf(tenantId)).path("applications")
-			.queryParam("currentPage", valueOf(currentPage))
-			.queryParam("pageSize", valueOf(pageSize))
-			.queryParam("withTotalElements", valueOf(withTotalElements))
-			.queryParam("withTotalPages", valueOf(withTotalPages))
-				.request()
-				.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.applicationreferencecollection+json")
-				.build("GET")
-				.submit(ApplicationReferenceCollection.class);
+		return adapt().path("tenant").path("tenants").path(valueOf(tenantId)).path("applications")
+			.queryParam("currentPage", currentPage)
+			.queryParam("pageSize", pageSize)
+			.queryParam("withTotalElements", withTotalElements)
+			.queryParam("withTotalPages", withTotalPages)
+			.request()
+			.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.applicationreferencecollection+json")
+			.build("GET")
+			.submit(ApplicationReferenceCollection.class);
 	}
 	
 	/**
@@ -75,12 +75,12 @@ public class TenantApplicationsApi extends AdaptableApi {
 	 */
 	public Future<ApplicationReference> subscribeApplication(final SubscribedApplicationReference body, final String tenantId) {
 		final JsonNode jsonNode = toJsonNode(body);
-		return getRootTarget().path("tenant").path("tenants").path(valueOf(tenantId)).path("applications")
-				.request()
-				.header("Content-Type", "application/vnd.com.nsn.cumulocity.applicationreference+json")
-				.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.applicationreference+json")
-				.build("POST", Entity.json(jsonNode))
-				.submit(ApplicationReference.class);
+		return adapt().path("tenant").path("tenants").path(valueOf(tenantId)).path("applications")
+			.request()
+			.header("Content-Type", "application/vnd.com.nsn.cumulocity.applicationreference+json")
+			.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.applicationreference+json")
+			.build("POST", Entity.json(jsonNode))
+			.submit(ApplicationReference.class);
 	}
 	
 	/**
@@ -98,10 +98,10 @@ public class TenantApplicationsApi extends AdaptableApi {
 	 * @param applicationId Unique identifier of the application.
 	 */
 	public Future<Response> unsubscribeApplication(final String tenantId, final String applicationId) {
-		return getRootTarget().path("tenant").path("tenants").path(valueOf(tenantId)).path("applications").path(valueOf(applicationId))
-				.request()
-				.header("Accept", "application/json")
-				.build("DELETE")
-				.submit();
+		return adapt().path("tenant").path("tenants").path(valueOf(tenantId)).path("applications").path(valueOf(applicationId))
+			.request()
+			.header("Accept", "application/json")
+			.build("DELETE")
+			.submit();
 	}
 }

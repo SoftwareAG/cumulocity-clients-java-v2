@@ -50,23 +50,23 @@ public class OperationsApi extends AdaptableApi {
 	 * @return
 	 */
 	public Future<OperationCollection> getOperations(final String agentId, final String bulkOperationId, final int currentPage, final String dateFrom, final String dateTo, final String deviceId, final String fragmentType, final int pageSize, final boolean revert, final String status, final boolean withTotalElements, final boolean withTotalPages) {
-		return getRootTarget().path("devicecontrol").path("operations")
+		return adapt().path("devicecontrol").path("operations")
 			.queryParam("agentId", agentId)
 			.queryParam("bulkOperationId", bulkOperationId)
-			.queryParam("currentPage", valueOf(currentPage))
+			.queryParam("currentPage", currentPage)
 			.queryParam("dateFrom", dateFrom)
 			.queryParam("dateTo", dateTo)
 			.queryParam("deviceId", deviceId)
 			.queryParam("fragmentType", fragmentType)
-			.queryParam("pageSize", valueOf(pageSize))
-			.queryParam("revert", valueOf(revert))
+			.queryParam("pageSize", pageSize)
+			.queryParam("revert", revert)
 			.queryParam("status", status)
-			.queryParam("withTotalElements", valueOf(withTotalElements))
-			.queryParam("withTotalPages", valueOf(withTotalPages))
-				.request()
-				.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.operationcollection+json")
-				.build("GET")
-				.submit(OperationCollection.class);
+			.queryParam("withTotalElements", withTotalElements)
+			.queryParam("withTotalPages", withTotalPages)
+			.request()
+			.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.operationcollection+json")
+			.build("GET")
+			.submit(OperationCollection.class);
 	}
 	
 	/**
@@ -93,13 +93,13 @@ public class OperationsApi extends AdaptableApi {
 		removeFromNode(jsonNode, "self");
 		removeFromNode(jsonNode, "id");
 		removeFromNode(jsonNode, "status");
-		return getRootTarget().path("devicecontrol").path("operations")
-				.request()
-				.header("X-Cumulocity-Processing-Mode", xCumulocityProcessingMode)
-				.header("Content-Type", "application/vnd.com.nsn.cumulocity.operation+json")
-				.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.operation+json")
-				.build("POST", Entity.json(jsonNode))
-				.submit(Operation.class);
+		return adapt().path("devicecontrol").path("operations")
+			.request()
+			.header("X-Cumulocity-Processing-Mode", xCumulocityProcessingMode)
+			.header("Content-Type", "application/vnd.com.nsn.cumulocity.operation+json")
+			.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.operation+json")
+			.build("POST", Entity.json(jsonNode))
+			.submit(Operation.class);
 	}
 	
 	/**
@@ -121,17 +121,17 @@ public class OperationsApi extends AdaptableApi {
 	 * @param status Status of the operation.
 	 */
 	public Future<Response> deleteOperations(final String xCumulocityProcessingMode, final String agentId, final String dateFrom, final String dateTo, final String deviceId, final String status) {
-		return getRootTarget().path("devicecontrol").path("operations")
+		return adapt().path("devicecontrol").path("operations")
 			.queryParam("agentId", agentId)
 			.queryParam("dateFrom", dateFrom)
 			.queryParam("dateTo", dateTo)
 			.queryParam("deviceId", deviceId)
 			.queryParam("status", status)
-				.request()
-				.header("X-Cumulocity-Processing-Mode", xCumulocityProcessingMode)
-				.header("Accept", "application/json")
-				.build("DELETE")
-				.submit();
+			.request()
+			.header("X-Cumulocity-Processing-Mode", xCumulocityProcessingMode)
+			.header("Accept", "application/json")
+			.build("DELETE")
+			.submit();
 	}
 	
 	/**
@@ -149,11 +149,11 @@ public class OperationsApi extends AdaptableApi {
 	 * @return
 	 */
 	public Future<Operation> getOperation(final String id) {
-		return getRootTarget().path("devicecontrol").path("operations").path(valueOf(id))
-				.request()
-				.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.operation+json")
-				.build("GET")
-				.submit(Operation.class);
+		return adapt().path("devicecontrol").path("operations").path(valueOf(id))
+			.request()
+			.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.operation+json")
+			.build("GET")
+			.submit(Operation.class);
 	}
 	
 	/**
@@ -182,12 +182,12 @@ public class OperationsApi extends AdaptableApi {
 		removeFromNode(jsonNode, "self");
 		removeFromNode(jsonNode, "id");
 		removeFromNode(jsonNode, "deviceId");
-		return getRootTarget().path("devicecontrol").path("operations").path(valueOf(id))
-				.request()
-				.header("X-Cumulocity-Processing-Mode", xCumulocityProcessingMode)
-				.header("Content-Type", "application/vnd.com.nsn.cumulocity.operation+json")
-				.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.operation+json")
-				.build("PUT", Entity.json(jsonNode))
-				.submit(Operation.class);
+		return adapt().path("devicecontrol").path("operations").path(valueOf(id))
+			.request()
+			.header("X-Cumulocity-Processing-Mode", xCumulocityProcessingMode)
+			.header("Content-Type", "application/vnd.com.nsn.cumulocity.operation+json")
+			.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.operation+json")
+			.build("PUT", Entity.json(jsonNode))
+			.submit(Operation.class);
 	}
 }

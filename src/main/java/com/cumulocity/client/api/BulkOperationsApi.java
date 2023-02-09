@@ -54,14 +54,14 @@ public class BulkOperationsApi extends AdaptableApi {
 	 * @return
 	 */
 	public Future<BulkOperationCollection> getBulkOperations(final int currentPage, final int pageSize, final boolean withTotalElements) {
-		return getRootTarget().path("devicecontrol").path("bulkoperations")
-			.queryParam("currentPage", valueOf(currentPage))
-			.queryParam("pageSize", valueOf(pageSize))
-			.queryParam("withTotalElements", valueOf(withTotalElements))
-				.request()
-				.header("Accept", "application/vnd.com.nsn.cumulocity.bulkoperationcollection+json, application/vnd.com.nsn.cumulocity.error+json")
-				.build("GET")
-				.submit(BulkOperationCollection.class);
+		return adapt().path("devicecontrol").path("bulkoperations")
+			.queryParam("currentPage", currentPage)
+			.queryParam("pageSize", pageSize)
+			.queryParam("withTotalElements", withTotalElements)
+			.request()
+			.header("Accept", "application/vnd.com.nsn.cumulocity.bulkoperationcollection+json, application/vnd.com.nsn.cumulocity.error+json")
+			.build("GET")
+			.submit(BulkOperationCollection.class);
 	}
 	
 	/**
@@ -85,13 +85,13 @@ public class BulkOperationsApi extends AdaptableApi {
 		removeFromNode(jsonNode, "progress");
 		removeFromNode(jsonNode, "id");
 		removeFromNode(jsonNode, "status");
-		return getRootTarget().path("devicecontrol").path("bulkoperations")
-				.request()
-				.header("X-Cumulocity-Processing-Mode", xCumulocityProcessingMode)
-				.header("Content-Type", "application/vnd.com.nsn.cumulocity.bulkoperation+json")
-				.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.bulkoperation+json")
-				.build("POST", Entity.json(jsonNode))
-				.submit(BulkOperation.class);
+		return adapt().path("devicecontrol").path("bulkoperations")
+			.request()
+			.header("X-Cumulocity-Processing-Mode", xCumulocityProcessingMode)
+			.header("Content-Type", "application/vnd.com.nsn.cumulocity.bulkoperation+json")
+			.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.bulkoperation+json")
+			.build("POST", Entity.json(jsonNode))
+			.submit(BulkOperation.class);
 	}
 	
 	/**
@@ -109,11 +109,11 @@ public class BulkOperationsApi extends AdaptableApi {
 	 * @return
 	 */
 	public Future<BulkOperation> getBulkOperation(final String id) {
-		return getRootTarget().path("devicecontrol").path("bulkoperations").path(valueOf(id))
-				.request()
-				.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.bulkoperation+json")
-				.build("GET")
-				.submit(BulkOperation.class);
+		return adapt().path("devicecontrol").path("bulkoperations").path(valueOf(id))
+			.request()
+			.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.bulkoperation+json")
+			.build("GET")
+			.submit(BulkOperation.class);
 	}
 	
 	/**
@@ -139,13 +139,13 @@ public class BulkOperationsApi extends AdaptableApi {
 		removeFromNode(jsonNode, "progress");
 		removeFromNode(jsonNode, "id");
 		removeFromNode(jsonNode, "status");
-		return getRootTarget().path("devicecontrol").path("bulkoperations").path(valueOf(id))
-				.request()
-				.header("X-Cumulocity-Processing-Mode", xCumulocityProcessingMode)
-				.header("Content-Type", "application/vnd.com.nsn.cumulocity.bulkoperation+json")
-				.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.bulkoperation+json")
-				.build("PUT", Entity.json(jsonNode))
-				.submit(BulkOperation.class);
+		return adapt().path("devicecontrol").path("bulkoperations").path(valueOf(id))
+			.request()
+			.header("X-Cumulocity-Processing-Mode", xCumulocityProcessingMode)
+			.header("Content-Type", "application/vnd.com.nsn.cumulocity.bulkoperation+json")
+			.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.bulkoperation+json")
+			.build("PUT", Entity.json(jsonNode))
+			.submit(BulkOperation.class);
 	}
 	
 	/**
@@ -164,11 +164,11 @@ public class BulkOperationsApi extends AdaptableApi {
 	 * @param xCumulocityProcessingMode Used to explicitly control the processing mode of the request. See [Processing mode](#processing-mode) for more details.
 	 */
 	public Future<Response> deleteBulkOperation(final String id, final String xCumulocityProcessingMode) {
-		return getRootTarget().path("devicecontrol").path("bulkoperations").path(valueOf(id))
-				.request()
-				.header("X-Cumulocity-Processing-Mode", xCumulocityProcessingMode)
-				.header("Accept", "application/json")
-				.build("DELETE")
-				.submit();
+		return adapt().path("devicecontrol").path("bulkoperations").path(valueOf(id))
+			.request()
+			.header("X-Cumulocity-Processing-Mode", xCumulocityProcessingMode)
+			.header("Accept", "application/json")
+			.build("DELETE")
+			.submit();
 	}
 }

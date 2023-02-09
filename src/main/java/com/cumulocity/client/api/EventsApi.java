@@ -55,28 +55,28 @@ public class EventsApi extends AdaptableApi {
 	 * @return
 	 */
 	public Future<EventCollection> getEvents(final String createdFrom, final String createdTo, final int currentPage, final String dateFrom, final String dateTo, final String fragmentType, final String fragmentValue, final String lastUpdatedFrom, final String lastUpdatedTo, final int pageSize, final boolean revert, final String source, final String type, final boolean withSourceAssets, final boolean withSourceDevices, final boolean withTotalElements, final boolean withTotalPages) {
-		return getRootTarget().path("event").path("events")
+		return adapt().path("event").path("events")
 			.queryParam("createdFrom", createdFrom)
 			.queryParam("createdTo", createdTo)
-			.queryParam("currentPage", valueOf(currentPage))
+			.queryParam("currentPage", currentPage)
 			.queryParam("dateFrom", dateFrom)
 			.queryParam("dateTo", dateTo)
 			.queryParam("fragmentType", fragmentType)
 			.queryParam("fragmentValue", fragmentValue)
 			.queryParam("lastUpdatedFrom", lastUpdatedFrom)
 			.queryParam("lastUpdatedTo", lastUpdatedTo)
-			.queryParam("pageSize", valueOf(pageSize))
-			.queryParam("revert", valueOf(revert))
+			.queryParam("pageSize", pageSize)
+			.queryParam("revert", revert)
 			.queryParam("source", source)
 			.queryParam("type", type)
-			.queryParam("withSourceAssets", valueOf(withSourceAssets))
-			.queryParam("withSourceDevices", valueOf(withSourceDevices))
-			.queryParam("withTotalElements", valueOf(withTotalElements))
-			.queryParam("withTotalPages", valueOf(withTotalPages))
-				.request()
-				.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.eventcollection+json")
-				.build("GET")
-				.submit(EventCollection.class);
+			.queryParam("withSourceAssets", withSourceAssets)
+			.queryParam("withSourceDevices", withSourceDevices)
+			.queryParam("withTotalElements", withTotalElements)
+			.queryParam("withTotalPages", withTotalPages)
+			.request()
+			.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.eventcollection+json")
+			.build("GET")
+			.submit(EventCollection.class);
 	}
 	
 	/**
@@ -102,13 +102,13 @@ public class EventsApi extends AdaptableApi {
 		removeFromNode(jsonNode, "self");
 		removeFromNode(jsonNode, "id");
 		removeFromNode(jsonNode, "source", "self");
-		return getRootTarget().path("event").path("events")
-				.request()
-				.header("X-Cumulocity-Processing-Mode", xCumulocityProcessingMode)
-				.header("Content-Type", "application/vnd.com.nsn.cumulocity.event+json")
-				.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.event+json")
-				.build("POST", Entity.json(jsonNode))
-				.submit(Event.class);
+		return adapt().path("event").path("events")
+			.request()
+			.header("X-Cumulocity-Processing-Mode", xCumulocityProcessingMode)
+			.header("Content-Type", "application/vnd.com.nsn.cumulocity.event+json")
+			.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.event+json")
+			.build("POST", Entity.json(jsonNode))
+			.submit(Event.class);
 	}
 	
 	/**
@@ -132,7 +132,7 @@ public class EventsApi extends AdaptableApi {
 	 * @param type The type of event to search for.
 	 */
 	public Future<Response> deleteEvents(final String xCumulocityProcessingMode, final String createdFrom, final String createdTo, final String dateFrom, final String dateTo, final String fragmentType, final String source, final String type) {
-		return getRootTarget().path("event").path("events")
+		return adapt().path("event").path("events")
 			.queryParam("createdFrom", createdFrom)
 			.queryParam("createdTo", createdTo)
 			.queryParam("dateFrom", dateFrom)
@@ -140,11 +140,11 @@ public class EventsApi extends AdaptableApi {
 			.queryParam("fragmentType", fragmentType)
 			.queryParam("source", source)
 			.queryParam("type", type)
-				.request()
-				.header("X-Cumulocity-Processing-Mode", xCumulocityProcessingMode)
-				.header("Accept", "application/json")
-				.build("DELETE")
-				.submit();
+			.request()
+			.header("X-Cumulocity-Processing-Mode", xCumulocityProcessingMode)
+			.header("Accept", "application/json")
+			.build("DELETE")
+			.submit();
 	}
 	
 	/**
@@ -162,11 +162,11 @@ public class EventsApi extends AdaptableApi {
 	 * @return
 	 */
 	public Future<Event> getEvent(final String id) {
-		return getRootTarget().path("event").path("events").path(valueOf(id))
-				.request()
-				.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.event+json")
-				.build("GET")
-				.submit(Event.class);
+		return adapt().path("event").path("events").path(valueOf(id))
+			.request()
+			.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.event+json")
+			.build("GET")
+			.submit(Event.class);
 	}
 	
 	/**
@@ -195,13 +195,13 @@ public class EventsApi extends AdaptableApi {
 		removeFromNode(jsonNode, "source");
 		removeFromNode(jsonNode, "time");
 		removeFromNode(jsonNode, "type");
-		return getRootTarget().path("event").path("events").path(valueOf(id))
-				.request()
-				.header("X-Cumulocity-Processing-Mode", xCumulocityProcessingMode)
-				.header("Content-Type", "application/vnd.com.nsn.cumulocity.event+json")
-				.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.event+json")
-				.build("PUT", Entity.json(jsonNode))
-				.submit(Event.class);
+		return adapt().path("event").path("events").path(valueOf(id))
+			.request()
+			.header("X-Cumulocity-Processing-Mode", xCumulocityProcessingMode)
+			.header("Content-Type", "application/vnd.com.nsn.cumulocity.event+json")
+			.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.event+json")
+			.build("PUT", Entity.json(jsonNode))
+			.submit(Event.class);
 	}
 	
 	/**
@@ -220,11 +220,11 @@ public class EventsApi extends AdaptableApi {
 	 * @param xCumulocityProcessingMode Used to explicitly control the processing mode of the request. See [Processing mode](#processing-mode) for more details.
 	 */
 	public Future<Response> deleteEvent(final String id, final String xCumulocityProcessingMode) {
-		return getRootTarget().path("event").path("events").path(valueOf(id))
-				.request()
-				.header("X-Cumulocity-Processing-Mode", xCumulocityProcessingMode)
-				.header("Accept", "application/json")
-				.build("DELETE")
-				.submit();
+		return adapt().path("event").path("events").path(valueOf(id))
+			.request()
+			.header("X-Cumulocity-Processing-Mode", xCumulocityProcessingMode)
+			.header("Accept", "application/json")
+			.build("DELETE")
+			.submit();
 	}
 }

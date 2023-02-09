@@ -51,21 +51,21 @@ public class BinariesApi extends AdaptableApi {
 	 * @return
 	 */
 	public Future<BinaryCollection> getBinaries(final String childAdditionId, final String childAssetId, final String childDeviceId, final int currentPage, final String[] ids, final String owner, final int pageSize, final String text, final String type, final boolean withTotalPages) {
-		return getRootTarget().path("inventory").path("binaries")
+		return adapt().path("inventory").path("binaries")
 			.queryParam("childAdditionId", childAdditionId)
 			.queryParam("childAssetId", childAssetId)
 			.queryParam("childDeviceId", childDeviceId)
-			.queryParam("currentPage", valueOf(currentPage))
-			.queryParam("ids", valueOf(ids))
+			.queryParam("currentPage", currentPage)
+			.queryParam("ids", ids, false)
 			.queryParam("owner", owner)
-			.queryParam("pageSize", valueOf(pageSize))
+			.queryParam("pageSize", pageSize)
 			.queryParam("text", text)
 			.queryParam("type", type)
-			.queryParam("withTotalPages", valueOf(withTotalPages))
-				.request()
-				.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.managedobjectcollection+json")
-				.build("GET")
-				.submit(BinaryCollection.class);
+			.queryParam("withTotalPages", withTotalPages)
+			.request()
+			.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.managedobjectcollection+json")
+			.build("GET")
+			.submit(BinaryCollection.class);
 	}
 	
 	/**
@@ -88,12 +88,12 @@ public class BinariesApi extends AdaptableApi {
 		final FormDataMultiPart multiPartEntity = new FormDataMultiPart();
 		multiPartEntity.field("object", pObject, MediaType.valueOf("application/json"));
 		multiPartEntity.field("file", file, MediaType.valueOf("text/plain"));
-		return getRootTarget().path("inventory").path("binaries")
-				.request()
-				.header("Content-Type", "multipart/form-data")
-				.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.managedobject+json")
-				.build("POST", Entity.entity(multiPartEntity, "multipart/form-data"))
-				.submit(Binary.class);
+		return adapt().path("inventory").path("binaries")
+			.request()
+			.header("Content-Type", "multipart/form-data")
+			.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.managedobject+json")
+			.build("POST", Entity.entity(multiPartEntity, "multipart/form-data"))
+			.submit(Binary.class);
 	}
 	
 	/**
@@ -109,11 +109,11 @@ public class BinariesApi extends AdaptableApi {
 	 * @param id Unique identifier of the managed object.
 	 */
 	public Future<Response> getBinary(final String id) {
-		return getRootTarget().path("inventory").path("binaries").path(valueOf(id))
-				.request()
-				.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/octet-stream")
-				.build("GET")
-				.submit();
+		return adapt().path("inventory").path("binaries").path(valueOf(id))
+			.request()
+			.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/octet-stream")
+			.build("GET")
+			.submit();
 	}
 	
 	/**
@@ -131,12 +131,12 @@ public class BinariesApi extends AdaptableApi {
 	 * @return
 	 */
 	public Future<Binary> replaceBinary(final byte[] body, final String id) {
-		return getRootTarget().path("inventory").path("binaries").path(valueOf(id))
-				.request()
-				.header("Content-Type", "text/plain")
-				.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.managedobject+json")
-				.build("PUT", Entity.text(body))
-				.submit(Binary.class);
+		return adapt().path("inventory").path("binaries").path(valueOf(id))
+			.request()
+			.header("Content-Type", "text/plain")
+			.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.managedobject+json")
+			.build("PUT", Entity.text(body))
+			.submit(Binary.class);
 	}
 	
 	/**
@@ -152,10 +152,10 @@ public class BinariesApi extends AdaptableApi {
 	 * @param id Unique identifier of the managed object.
 	 */
 	public Future<Response> removeBinary(final String id) {
-		return getRootTarget().path("inventory").path("binaries").path(valueOf(id))
-				.request()
-				.header("Accept", "application/json")
-				.build("DELETE")
-				.submit();
+		return adapt().path("inventory").path("binaries").path(valueOf(id))
+			.request()
+			.header("Accept", "application/json")
+			.build("DELETE")
+			.submit();
 	}
 }

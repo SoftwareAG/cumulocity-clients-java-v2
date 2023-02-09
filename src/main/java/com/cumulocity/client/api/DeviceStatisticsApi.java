@@ -72,15 +72,15 @@ public class DeviceStatisticsApi extends AdaptableApi {
 	 * @return
 	 */
 	public Future<DeviceStatisticsCollection> getMonthlyDeviceStatistics(final String tenantId, final String date, final int currentPage, final String deviceId, final int pageSize, final boolean withTotalPages) {
-		return getRootTarget().path("tenant").path("statistics").path("device").path(valueOf(tenantId)).path("monthly").path(valueOf(date))
-			.queryParam("currentPage", valueOf(currentPage))
+		return adapt().path("tenant").path("statistics").path("device").path(valueOf(tenantId)).path("monthly").path(valueOf(date))
+			.queryParam("currentPage", currentPage)
 			.queryParam("deviceId", deviceId)
-			.queryParam("pageSize", valueOf(pageSize))
-			.queryParam("withTotalPages", valueOf(withTotalPages))
-				.request()
-				.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/json")
-				.build("GET")
-				.submit(DeviceStatisticsCollection.class);
+			.queryParam("pageSize", pageSize)
+			.queryParam("withTotalPages", withTotalPages)
+			.request()
+			.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/json")
+			.build("GET")
+			.submit(DeviceStatisticsCollection.class);
 	}
 	
 	/**
@@ -103,14 +103,14 @@ public class DeviceStatisticsApi extends AdaptableApi {
 	 * @return
 	 */
 	public Future<DeviceStatisticsCollection> getDailyDeviceStatistics(final String tenantId, final String date, final int currentPage, final String deviceId, final int pageSize, final boolean withTotalPages) {
-		return getRootTarget().path("tenant").path("statistics").path("device").path(valueOf(tenantId)).path("daily").path(valueOf(date))
-			.queryParam("currentPage", valueOf(currentPage))
+		return adapt().path("tenant").path("statistics").path("device").path(valueOf(tenantId)).path("daily").path(valueOf(date))
+			.queryParam("currentPage", currentPage)
 			.queryParam("deviceId", deviceId)
-			.queryParam("pageSize", valueOf(pageSize))
-			.queryParam("withTotalPages", valueOf(withTotalPages))
-				.request()
-				.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/json")
-				.build("GET")
-				.submit(DeviceStatisticsCollection.class);
+			.queryParam("pageSize", pageSize)
+			.queryParam("withTotalPages", withTotalPages)
+			.request()
+			.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/json")
+			.build("GET")
+			.submit(DeviceStatisticsCollection.class);
 	}
 }

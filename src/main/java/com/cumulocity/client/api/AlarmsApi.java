@@ -44,17 +44,17 @@ public class AlarmsApi extends AdaptableApi {
 	 * @param lastUpdatedTo End date or date and time of the last update made.
 	 * @param pageSize Indicates how many entries of the collection shall be returned. The upper limit for one page is 2,000 objects.
 	 * @param resolved When set to `true` only alarms with status CLEARED will be fetched, whereas `false` will fetch all alarms with status ACTIVE or ACKNOWLEDGED.
-	 * @param severity The severity of the alarm to search for.
+	 * @param severity The severity of the alarm to search for. >**&#9432; Info:** If you query for multiple alarm severities at once, comma-separate the values. 
 	 * @param source The managed object ID to which the alarm is associated.
-	 * @param status The status of the alarm to search for.
-	 * @param type The types of alarm to search for (comma separated).
+	 * @param status The status of the alarm to search for. >**&#9432; Info:** If you query for multiple alarm statuses at once, comma-separate the values. 
+	 * @param type The types of alarm to search for. >**&#9432; Info:** If you query for multiple alarm types at once, comma-separate the values. Space characters in alarm types must be escaped. 
 	 * @param withSourceAssets When set to `true` also alarms for related source assets will be included in the request. When this parameter is provided a `source` must be specified.
 	 * @param withSourceDevices When set to `true` also alarms for related source devices will be included in the request. When this parameter is provided a `source` must be specified.
 	 * @param withTotalElements When set to `true`, the returned result will contain in the statistics object the total number of elements. Only applicable on [range queries](https://en.wikipedia.org/wiki/Range_query_(database)).
 	 * @param withTotalPages When set to `true`, the returned result will contain in the statistics object the total number of pages. Only applicable on [range queries](https://en.wikipedia.org/wiki/Range_query_(database)).
 	 * @return
 	 */
-	public Future<AlarmCollection> getAlarms(final String createdFrom, final String createdTo, final int currentPage, final String dateFrom, final String dateTo, final String lastUpdatedFrom, final String lastUpdatedTo, final int pageSize, final boolean resolved, final String severity, final String source, final String status, final String[] type, final boolean withSourceAssets, final boolean withSourceDevices, final boolean withTotalElements, final boolean withTotalPages) {
+	public Future<AlarmCollection> getAlarms(final String createdFrom, final String createdTo, final int currentPage, final String dateFrom, final String dateTo, final String lastUpdatedFrom, final String lastUpdatedTo, final int pageSize, final boolean resolved, final String[] severity, final String source, final String[] status, final String[] type, final boolean withSourceAssets, final boolean withSourceDevices, final boolean withTotalElements, final boolean withTotalPages) {
 		return getRootTarget().path("alarm").path("alarms")
 			.queryParam("createdFrom", createdFrom)
 			.queryParam("createdTo", createdTo)
@@ -65,9 +65,9 @@ public class AlarmsApi extends AdaptableApi {
 			.queryParam("lastUpdatedTo", lastUpdatedTo)
 			.queryParam("pageSize", valueOf(pageSize))
 			.queryParam("resolved", valueOf(resolved))
-			.queryParam("severity", severity)
+			.queryParam("severity", valueOf(severity))
 			.queryParam("source", source)
-			.queryParam("status", status)
+			.queryParam("status", valueOf(status))
 			.queryParam("type", valueOf(type))
 			.queryParam("withSourceAssets", valueOf(withSourceAssets))
 			.queryParam("withSourceDevices", valueOf(withSourceDevices))
@@ -99,13 +99,13 @@ public class AlarmsApi extends AdaptableApi {
 	 * @param dateFrom Start date or date and time of the alarm occurrence.
 	 * @param dateTo End date or date and time of the alarm occurrence.
 	 * @param resolved When set to `true` only alarms with status CLEARED will be fetched, whereas `false` will fetch all alarms with status ACTIVE or ACKNOWLEDGED.
-	 * @param severity The severity of the alarm to search for.
+	 * @param severity The severity of the alarm to search for. >**&#9432; Info:** If you query for multiple alarm severities at once, comma-separate the values. 
 	 * @param source The managed object ID to which the alarm is associated.
-	 * @param status The status of the alarm to search for.
+	 * @param status The status of the alarm to search for. >**&#9432; Info:** If you query for multiple alarm statuses at once, comma-separate the values. 
 	 * @param withSourceAssets When set to `true` also alarms for related source assets will be included in the request. When this parameter is provided a `source` must be specified.
 	 * @param withSourceDevices When set to `true` also alarms for related source devices will be included in the request. When this parameter is provided a `source` must be specified.
 	 */
-	public Future<Response> updateAlarms(final Alarm body, final String xCumulocityProcessingMode, final String createdFrom, final String createdTo, final String dateFrom, final String dateTo, final boolean resolved, final String severity, final String source, final String status, final boolean withSourceAssets, final boolean withSourceDevices) {
+	public Future<Response> updateAlarms(final Alarm body, final String xCumulocityProcessingMode, final String createdFrom, final String createdTo, final String dateFrom, final String dateTo, final boolean resolved, final String[] severity, final String source, final String[] status, final boolean withSourceAssets, final boolean withSourceDevices) {
 		final JsonNode jsonNode = toJsonNode(body);
 		removeFromNode(jsonNode, "firstOccurrenceTime");
 		removeFromNode(jsonNode, "severity");
@@ -124,9 +124,9 @@ public class AlarmsApi extends AdaptableApi {
 			.queryParam("dateFrom", dateFrom)
 			.queryParam("dateTo", dateTo)
 			.queryParam("resolved", valueOf(resolved))
-			.queryParam("severity", severity)
+			.queryParam("severity", valueOf(severity))
 			.queryParam("source", source)
-			.queryParam("status", status)
+			.queryParam("status", valueOf(status))
 			.queryParam("withSourceAssets", valueOf(withSourceAssets))
 			.queryParam("withSourceDevices", valueOf(withSourceDevices))
 				.request()
@@ -188,23 +188,23 @@ public class AlarmsApi extends AdaptableApi {
 	 * @param dateFrom Start date or date and time of the alarm occurrence.
 	 * @param dateTo End date or date and time of the alarm occurrence.
 	 * @param resolved When set to `true` only alarms with status CLEARED will be fetched, whereas `false` will fetch all alarms with status ACTIVE or ACKNOWLEDGED.
-	 * @param severity The severity of the alarm to search for.
+	 * @param severity The severity of the alarm to search for. >**&#9432; Info:** If you query for multiple alarm severities at once, comma-separate the values. 
 	 * @param source The managed object ID to which the alarm is associated.
-	 * @param status The status of the alarm to search for.
-	 * @param type The types of alarm to search for (comma separated).
+	 * @param status The status of the alarm to search for. >**&#9432; Info:** If you query for multiple alarm statuses at once, comma-separate the values. 
+	 * @param type The types of alarm to search for. >**&#9432; Info:** If you query for multiple alarm types at once, comma-separate the values. Space characters in alarm types must be escaped. 
 	 * @param withSourceAssets When set to `true` also alarms for related source assets will be included in the request. When this parameter is provided a `source` must be specified.
 	 * @param withSourceDevices When set to `true` also alarms for related source devices will be included in the request. When this parameter is provided a `source` must be specified.
 	 */
-	public Future<Response> deleteAlarms(final String xCumulocityProcessingMode, final String createdFrom, final String createdTo, final String dateFrom, final String dateTo, final boolean resolved, final String severity, final String source, final String status, final String[] type, final boolean withSourceAssets, final boolean withSourceDevices) {
+	public Future<Response> deleteAlarms(final String xCumulocityProcessingMode, final String createdFrom, final String createdTo, final String dateFrom, final String dateTo, final boolean resolved, final String[] severity, final String source, final String[] status, final String[] type, final boolean withSourceAssets, final boolean withSourceDevices) {
 		return getRootTarget().path("alarm").path("alarms")
 			.queryParam("createdFrom", createdFrom)
 			.queryParam("createdTo", createdTo)
 			.queryParam("dateFrom", dateFrom)
 			.queryParam("dateTo", dateTo)
 			.queryParam("resolved", valueOf(resolved))
-			.queryParam("severity", severity)
+			.queryParam("severity", valueOf(severity))
 			.queryParam("source", source)
-			.queryParam("status", status)
+			.queryParam("status", valueOf(status))
 			.queryParam("type", valueOf(type))
 			.queryParam("withSourceAssets", valueOf(withSourceAssets))
 			.queryParam("withSourceDevices", valueOf(withSourceDevices))
@@ -289,22 +289,22 @@ public class AlarmsApi extends AdaptableApi {
 	 * @param dateFrom Start date or date and time of the alarm occurrence.
 	 * @param dateTo End date or date and time of the alarm occurrence.
 	 * @param resolved When set to `true` only alarms with status CLEARED will be fetched, whereas `false` will fetch all alarms with status ACTIVE or ACKNOWLEDGED.
-	 * @param severity The severity of the alarm to search for.
+	 * @param severity The severity of the alarm to search for. >**&#9432; Info:** If you query for multiple alarm severities at once, comma-separate the values. 
 	 * @param source The managed object ID to which the alarm is associated.
-	 * @param status The status of the alarm to search for.
-	 * @param type The types of alarm to search for (comma separated).
+	 * @param status The status of the alarm to search for. >**&#9432; Info:** If you query for multiple alarm statuses at once, comma-separate the values. 
+	 * @param type The types of alarm to search for. >**&#9432; Info:** If you query for multiple alarm types at once, comma-separate the values. Space characters in alarm types must be escaped. 
 	 * @param withSourceAssets When set to `true` also alarms for related source assets will be included in the request. When this parameter is provided a `source` must be specified.
 	 * @param withSourceDevices When set to `true` also alarms for related source devices will be included in the request. When this parameter is provided a `source` must be specified.
 	 * @return
 	 */
-	public Future<Integer> getNumberOfAlarms(final String dateFrom, final String dateTo, final boolean resolved, final String severity, final String source, final String status, final String[] type, final boolean withSourceAssets, final boolean withSourceDevices) {
+	public Future<Integer> getNumberOfAlarms(final String dateFrom, final String dateTo, final boolean resolved, final String[] severity, final String source, final String[] status, final String[] type, final boolean withSourceAssets, final boolean withSourceDevices) {
 		return getRootTarget().path("alarm").path("alarms").path("count")
 			.queryParam("dateFrom", dateFrom)
 			.queryParam("dateTo", dateTo)
 			.queryParam("resolved", valueOf(resolved))
-			.queryParam("severity", severity)
+			.queryParam("severity", valueOf(severity))
 			.queryParam("source", source)
-			.queryParam("status", status)
+			.queryParam("status", valueOf(status))
 			.queryParam("type", valueOf(type))
 			.queryParam("withSourceAssets", valueOf(withSourceAssets))
 			.queryParam("withSourceDevices", valueOf(withSourceDevices))

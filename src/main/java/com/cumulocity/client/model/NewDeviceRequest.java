@@ -56,7 +56,6 @@ public class NewDeviceRequest {
 	
 	/**
 	 * Status of this new device request.
-	 * [WAITING_FOR_CONNECTION, PENDING_ACCEPTANCE, ACCEPTED]
 	 */
 	public enum Status {
 		@JsonProperty("WAITING_FOR_CONNECTION")
@@ -81,7 +80,6 @@ public class NewDeviceRequest {
 	@Override
 	public String toString() {
 		try {
-			// TODO thats an extensive operation, which only helps debugging
 			return new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(this);
 		} catch (final JsonProcessingException e) {
 		}

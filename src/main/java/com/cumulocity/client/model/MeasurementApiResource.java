@@ -176,7 +176,6 @@ public class MeasurementApiResource {
 		@Override
 		public String toString() {
 			try {
-				// TODO thats an extensive operation, which only helps debugging
 				return new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(this);
 			} catch (final JsonProcessingException e) {
 			}
@@ -198,7 +197,6 @@ public class MeasurementApiResource {
 	@Override
 	public String toString() {
 		try {
-			// TODO thats an extensive operation, which only helps debugging
 			return new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(this);
 		} catch (final JsonProcessingException e) {
 		}

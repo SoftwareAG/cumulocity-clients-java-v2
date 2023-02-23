@@ -244,7 +244,6 @@ public class MicroserviceApplicationManifest {
 	 * In case of RESOURCES, the number of resources used is exposed for billing calculation per usage.
 	 * In case of SUBSCRIPTION, all resources usage is counted for the microservice owner and the subtenant is charged for subscription.
 	 * 
-	 * [RESOURCES, SUBSCRIPTION]
 	 */
 	public enum BillingMode {
 		@JsonProperty("RESOURCES")
@@ -270,7 +269,6 @@ public class MicroserviceApplicationManifest {
 	 * Otherwise, there is one single instance for all subscribed tenants.
 	 * This will affect billing.
 	 * 
-	 * [MULTI_TENANT, PER_TENANT]
 	 */
 	public enum Isolation {
 		@JsonProperty("MULTI_TENANT")
@@ -295,7 +293,6 @@ public class MicroserviceApplicationManifest {
 	 * If the microservice uses a lot of CPU resources, a second instance will be created automatically when this is set to `AUTO`.
 	 * The default is `NONE`, meaning auto scaling will not happen.
 	 * 
-	 * [NONE, AUTO]
 	 */
 	public enum Scale {
 		@JsonProperty("NONE")
@@ -348,7 +345,6 @@ public class MicroserviceApplicationManifest {
 		@Override
 		public String toString() {
 			try {
-				// TODO thats an extensive operation, which only helps debugging
 				return new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(this);
 			} catch (final JsonProcessingException e) {
 			}
@@ -394,7 +390,6 @@ public class MicroserviceApplicationManifest {
 		@Override
 		public String toString() {
 			try {
-				// TODO thats an extensive operation, which only helps debugging
 				return new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(this);
 			} catch (final JsonProcessingException e) {
 			}
@@ -449,7 +444,6 @@ public class MicroserviceApplicationManifest {
 		@Override
 		public String toString() {
 			try {
-				// TODO thats an extensive operation, which only helps debugging
 				return new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(this);
 			} catch (final JsonProcessingException e) {
 			}
@@ -504,7 +498,6 @@ public class MicroserviceApplicationManifest {
 		@Override
 		public String toString() {
 			try {
-				// TODO thats an extensive operation, which only helps debugging
 				return new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(this);
 			} catch (final JsonProcessingException e) {
 			}
@@ -527,7 +520,6 @@ public class MicroserviceApplicationManifest {
 	@Override
 	public String toString() {
 		try {
-			// TODO thats an extensive operation, which only helps debugging
 			return new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(this);
 		} catch (final JsonProcessingException e) {
 		}

@@ -34,7 +34,7 @@ public class NewDeviceRequestsApiTest {
     public void testGetNewDeviceRequests() {
     	Object response = null;
     	try {
-    		response = service.getNewDeviceRequests(1, 5, false, false).get();
+    		response = service.getNewDeviceRequests(1, 5, false, false).toCompletableFuture().get();
     	} catch (InterruptedException | ExecutionException e) {
     		e.printStackTrace();
     	}

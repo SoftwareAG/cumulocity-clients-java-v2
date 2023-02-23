@@ -125,7 +125,6 @@ public class BulkNewDeviceRequest {
 		
 		/**
 		 * The device credentials creation status.
-		 * [CREATED, FAILED, CREDENTIAL_UPDATED]
 		 */
 		public enum NewDeviceStatus {
 			@JsonProperty("CREATED")
@@ -150,7 +149,6 @@ public class BulkNewDeviceRequest {
 		@Override
 		public String toString() {
 			try {
-				// TODO thats an extensive operation, which only helps debugging
 				return new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(this);
 			} catch (final JsonProcessingException e) {
 			}
@@ -228,7 +226,6 @@ public class BulkNewDeviceRequest {
 		
 		/**
 		 * The device credentials creation status.
-		 * [CREATED, FAILED, CREDENTIAL_UPDATED]
 		 */
 		public enum NewDeviceStatus {
 			@JsonProperty("CREATED")
@@ -253,7 +250,6 @@ public class BulkNewDeviceRequest {
 		@Override
 		public String toString() {
 			try {
-				// TODO thats an extensive operation, which only helps debugging
 				return new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(this);
 			} catch (final JsonProcessingException e) {
 			}
@@ -275,7 +271,6 @@ public class BulkNewDeviceRequest {
 	@Override
 	public String toString() {
 		try {
-			// TODO thats an extensive operation, which only helps debugging
 			return new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(this);
 		} catch (final JsonProcessingException e) {
 		}

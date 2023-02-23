@@ -216,7 +216,6 @@ public class LoginOption {
 	
 	/**
 	 * The grant type of the OAuth configuration.
-	 * [PASSWORD, AUTHORIZATION_CODE]
 	 */
 	public enum GrantType {
 		@JsonProperty("PASSWORD")
@@ -239,7 +238,6 @@ public class LoginOption {
 	@Override
 	public String toString() {
 		try {
-			// TODO thats an extensive operation, which only helps debugging
 			return new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(this);
 		} catch (final JsonProcessingException e) {
 		}

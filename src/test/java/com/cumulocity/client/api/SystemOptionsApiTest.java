@@ -34,7 +34,7 @@ public class SystemOptionsApiTest {
     public void testGetSystemOptions() {
     	Object response = null;
     	try {
-    		response = service.getSystemOptions().get();
+    		response = service.getSystemOptions().toCompletableFuture().get();
     	} catch (InterruptedException | ExecutionException e) {
     		e.printStackTrace();
     	}

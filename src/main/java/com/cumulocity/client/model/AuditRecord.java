@@ -225,7 +225,6 @@ public class AuditRecord {
 	
 	/**
 	 * The severity of the audit action.
-	 * [CRITICAL, MAJOR, MINOR, WARNING, INFORMATION]
 	 */
 	public enum Severity {
 		@JsonProperty("CRITICAL")
@@ -253,7 +252,6 @@ public class AuditRecord {
 	
 	/**
 	 * Identifies the platform component of the audit.
-	 * [Alarm, Application, BulkOperation, CepModule, Connector, Event, Group, Inventory, InventoryRole, Operation, Option, Report, SingleSignOn, SmartRule, SYSTEM, Tenant, TenantAuthConfig, TrustedCertificates, User, UserAuthentication]
 	 */
 	public enum Type {
 		@JsonProperty("Alarm")
@@ -331,7 +329,6 @@ public class AuditRecord {
 		
 		/**
 		 * The action that was carried out.
-		 * [SUBSCRIBE, DEPLOY, SCALE, DELETE]
 		 */
 		public enum Action {
 			@JsonProperty("SUBSCRIBE")
@@ -358,7 +355,6 @@ public class AuditRecord {
 		@Override
 		public String toString() {
 			try {
-				// TODO thats an extensive operation, which only helps debugging
 				return new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(this);
 			} catch (final JsonProcessingException e) {
 			}
@@ -449,7 +445,6 @@ public class AuditRecord {
 		
 		/**
 		 * The type of change that was carried out.
-		 * [ADDED, REPLACED]
 		 */
 		public enum ChangeType {
 			@JsonProperty("ADDED")
@@ -472,7 +467,6 @@ public class AuditRecord {
 		@Override
 		public String toString() {
 			try {
-				// TODO thats an extensive operation, which only helps debugging
 				return new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(this);
 			} catch (final JsonProcessingException e) {
 			}
@@ -535,7 +529,6 @@ public class AuditRecord {
 		@Override
 		public String toString() {
 			try {
-				// TODO thats an extensive operation, which only helps debugging
 				return new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(this);
 			} catch (final JsonProcessingException e) {
 			}
@@ -601,7 +594,6 @@ public class AuditRecord {
 	@Override
 	public String toString() {
 		try {
-			// TODO thats an extensive operation, which only helps debugging
 			return new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(this);
 		} catch (final JsonProcessingException e) {
 		}

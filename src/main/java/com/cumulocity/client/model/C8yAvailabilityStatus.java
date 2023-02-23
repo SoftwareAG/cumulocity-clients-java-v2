@@ -7,7 +7,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * The current status, one of `AVAILABLE`, `CONNECTED`, `MAINTENANCE`, `DISCONNECTED`.
- * [AVAILABLE, CONNECTED, MAINTENANCE, DISCONNECTED]
  */
 public enum C8yAvailabilityStatus {
 	@JsonProperty("AVAILABLE")

@@ -14,6 +14,8 @@ final WebTarget webTarget = client.target("endpoint");
 final SystemOptionsApi service = new SystemOptionsApi(webTarget);
 ```
 
+The resource implementation returns an instance of `java.util.concurrent.CompletionStage<T>` to allow developers to process a response using reactive concepts. Convert the `CompletionStage` into a completeable `Future` using `#toCompletableFuture()` and invoke either `#get()` or `#join()` on the `Future`. Both methods will wait until a response is received.  
+
 ### Use your own domain model
 
 The CumulocityCoreLibrary allows custom data models. The following classes are designed to be extensible:
@@ -27,6 +29,30 @@ Alarm.Serialization.registerAdditionalProperty(String, Class<?>);
 ```
 
 Each of the extensible objects contains a dictionary object holding instances of custom fragments. Use the custom fragment's key to access it's value.
+
+### Working with errors
+
+HTTP error codes will be forwarded and can be accessed using a `jakarta.ws.rs.core.Response`. Error codes can be retrievied by calling `#getStatus()`, respectively `#getStatusInfo`. The response object also allows access to error objects by calling `#readEntity(Class<?>)`. See the JavaDoc comment on each resource method to know what error types are returned.
+
+The response object is only accessible when the underlying resource did not complete successfully. In this case, a `jakarta.ws.rs.WebApplicationException` is thrown. 
+
+The `java.util.concurrent` API enables different solutions to handle this exception. Common use cases are `CompletionStage#exceptionally(Function<Throwable, ? extends U>)` and `CompletionStage#handle(BiFunction<? super U, Throwable, ? extends Object>)` as shown in the following listing.
+
+```java
+final CompletionStage<T> stage = ...;
+stage.exceptionally(exception -> {
+    if (exception.getCause() instanceof WebApplicationException) {
+    	final Response response = ((WebApplicationException) exception.getCause()).getResponse();
+        response.readEntity(Error.class);
+    }
+    return null;
+});
+
+stage.handle((result, exception) -> {
+    // exception might be null if the resource completes successfully
+    return null;
+});
+```
 
 ### Basic Authentication
 

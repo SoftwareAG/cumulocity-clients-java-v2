@@ -302,7 +302,6 @@ public class Application {
 	
 	/**
 	 * Application access level for other tenants.
-	 * [MARKET, PRIVATE]
 	 */
 	public enum Availability {
 		@JsonProperty("MARKET")
@@ -324,7 +323,6 @@ public class Application {
 	
 	/**
 	 * The type of the application.
-	 * [EXTERNAL, HOSTED, MICROSERVICE]
 	 */
 	public enum Type {
 		@JsonProperty("EXTERNAL")
@@ -350,7 +348,6 @@ public class Application {
 	@Override
 	public String toString() {
 		try {
-			// TODO thats an extensive operation, which only helps debugging
 			return new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(this);
 		} catch (final JsonProcessingException e) {
 		}

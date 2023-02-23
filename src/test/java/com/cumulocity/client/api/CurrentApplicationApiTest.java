@@ -34,7 +34,7 @@ public class CurrentApplicationApiTest {
     public void testGetCurrentApplication() {
     	Object response = null;
     	try {
-    		response = service.getCurrentApplication().get();
+    		response = service.getCurrentApplication().toCompletableFuture().get();
     	} catch (InterruptedException | ExecutionException e) {
     		e.printStackTrace();
     	}
@@ -45,7 +45,7 @@ public class CurrentApplicationApiTest {
     public void testGetCurrentApplicationSettings() {
     	Object response = null;
     	try {
-    		response = service.getCurrentApplicationSettings().get();
+    		response = service.getCurrentApplicationSettings().toCompletableFuture().get();
     	} catch (InterruptedException | ExecutionException e) {
     		e.printStackTrace();
     	}
@@ -56,7 +56,7 @@ public class CurrentApplicationApiTest {
     public void testGetSubscribedUsers() {
     	Object response = null;
     	try {
-    		response = service.getSubscribedUsers().get();
+    		response = service.getSubscribedUsers().toCompletableFuture().get();
     	} catch (InterruptedException | ExecutionException e) {
     		e.printStackTrace();
     	}

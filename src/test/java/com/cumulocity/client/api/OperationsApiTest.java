@@ -34,7 +34,7 @@ public class OperationsApiTest {
     public void testGetOperations() {
     	Object response = null;
     	try {
-    		response = service.getOperations(null, null, 1, null, null, null, null, 5, false, null, false, false).get();
+    		response = service.getOperations(null, null, 1, null, null, null, null, 5, false, null, false, false).toCompletableFuture().get();
     	} catch (InterruptedException | ExecutionException e) {
     		e.printStackTrace();
     	}

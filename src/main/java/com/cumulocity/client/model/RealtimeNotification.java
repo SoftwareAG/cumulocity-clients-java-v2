@@ -194,7 +194,6 @@ public class RealtimeNotification {
 	
 	/**
 	 * The channel name as a URI.
-	 * [/meta/handshake, /meta/subscribe, /meta/unsubscribe, /meta/connect, /meta/disconnect]
 	 */
 	public enum Channel {
 		@JsonProperty("/meta/handshake")
@@ -255,7 +254,6 @@ public class RealtimeNotification {
 		@Override
 		public String toString() {
 			try {
-				// TODO thats an extensive operation, which only helps debugging
 				return new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(this);
 			} catch (final JsonProcessingException e) {
 			}
@@ -285,7 +283,6 @@ public class RealtimeNotification {
 		@Override
 		public String toString() {
 			try {
-				// TODO thats an extensive operation, which only helps debugging
 				return new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(this);
 			} catch (final JsonProcessingException e) {
 			}
@@ -328,7 +325,6 @@ public class RealtimeNotification {
 		
 		/**
 		 * The system of units to use.
-		 * [imperial, metric]
 		 */
 		public enum SystemOfUnits {
 			@JsonProperty("imperial")
@@ -393,7 +389,6 @@ public class RealtimeNotification {
 			@Override
 			public String toString() {
 				try {
-					// TODO thats an extensive operation, which only helps debugging
 					return new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(this);
 				} catch (final JsonProcessingException e) {
 				}
@@ -416,7 +411,6 @@ public class RealtimeNotification {
 		@Override
 		public String toString() {
 			try {
-				// TODO thats an extensive operation, which only helps debugging
 				return new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(this);
 			} catch (final JsonProcessingException e) {
 			}
@@ -438,7 +432,6 @@ public class RealtimeNotification {
 	@Override
 	public String toString() {
 		try {
-			// TODO thats an extensive operation, which only helps debugging
 			return new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(this);
 		} catch (final JsonProcessingException e) {
 		}

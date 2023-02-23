@@ -3,7 +3,7 @@
 
 package com.cumulocity.client.api;
 
-import java.util.concurrent.Future;
+import java.util.concurrent.CompletionStage;
 import com.fasterxml.jackson.databind.JsonNode;
 import jakarta.ws.rs.client.Entity;
 import jakarta.ws.rs.client.WebTarget;
@@ -45,7 +45,7 @@ import com.cumulocity.client.model.TenantTfaData;
  * > **&#9432; Info:** The Accept header should be provided in all POST/PUT requests, otherwise an empty response body will be returned.
  *  </br>
  * 
- */ 
+ */
 public class TenantsApi extends AdaptableApi {
 
 	public TenantsApi(final WebTarget rootTarget) {
@@ -53,22 +53,26 @@ public class TenantsApi extends AdaptableApi {
 	}
 
 	/**
-	 * Retrieve all subtenants </br>
-	 * Retrieve all subtenants of the current tenant.  <section><h5>Required roles</h5> ROLE_TENANT_MANAGEMENT_READ </section> 
+	 * Retrieve all subtenants
+	 * Retrieve all subtenants of the current tenant.
+	 * 
+	 * <section><h5>Required roles</h5>
+	 * ROLE_TENANT_MANAGEMENT_READ
+	 * </section>
+	 * 
 	 *
-	 * <br>The following table gives an overview of the possible response codes and their meanings:</br>
+	 * The following table gives an overview of the possible response codes and their meanings:
 	 * <ul>
-	 * <li>200 The request has succeeded and the subtenants are sent in the response.</li>
-	 * <li>401 Authentication information is missing or invalid.</li>
+	 *     <li>HTTP 200 - The request has succeeded and the subtenants are sent in the response.</li>
+	 *     <li>HTTP 401 - Authentication information is missing or invalid., @{link com.cumulocity.client.model.Error}</li>
 	 * </ul>
-	 * <p>
 	 * @param currentPage The current page of the paginated results.
 	 * @param pageSize Indicates how many entries of the collection shall be returned. The upper limit for one page is 2,000 objects.
 	 * @param withTotalElements When set to `true`, the returned result will contain in the statistics object the total number of elements. Only applicable on [range queries](https://en.wikipedia.org/wiki/Range_query_(database)).
 	 * @param withTotalPages When set to `true`, the returned result will contain in the statistics object the total number of pages. Only applicable on [range queries](https://en.wikipedia.org/wiki/Range_query_(database)).
 	 * @return
 	 */
-	public Future<TenantCollection> getTenants(final int currentPage, final int pageSize, final boolean withTotalElements, final boolean withTotalPages) {
+	public CompletionStage<TenantCollection> getTenants(final int currentPage, final int pageSize, final boolean withTotalElements, final boolean withTotalPages) {
 		return adapt().path("tenant").path("tenants")
 			.queryParam("currentPage", currentPage)
 			.queryParam("pageSize", pageSize)
@@ -76,27 +80,31 @@ public class TenantsApi extends AdaptableApi {
 			.queryParam("withTotalPages", withTotalPages)
 			.request()
 			.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.tenantcollection+json")
-			.build("GET")
-			.submit(TenantCollection.class);
+			.rx()
+			.method("GET", TenantCollection.class);
 	}
 	
 	/**
-	 * Create a tenant </br>
-	 * Create a subtenant for the current tenant.  <section><h5>Required roles</h5> (ROLE_TENANT_MANAGEMENT_ADMIN <b>OR</b> ROLE_TENANT_MANAGEMENT_CREATE) <b>AND</b> the current tenant is allowed to create subtenants </section> 
+	 * Create a tenant
+	 * Create a subtenant for the current tenant.
+	 * 
+	 * <section><h5>Required roles</h5>
+	 * (ROLE_TENANT_MANAGEMENT_ADMIN <b>OR</b> ROLE_TENANT_MANAGEMENT_CREATE) <b>AND</b> the current tenant is allowed to create subtenants
+	 * </section>
+	 * 
 	 *
-	 * <br>The following table gives an overview of the possible response codes and their meanings:</br>
+	 * The following table gives an overview of the possible response codes and their meanings:
 	 * <ul>
-	 * <li>201 A tenant was created.</li>
-	 * <li>401 Authentication information is missing or invalid.</li>
-	 * <li>403 Not authorized to perform this operation.</li>
-	 * <li>409 Conflict – The tenant domain/ID already exists.</li>
-	 * <li>422 Unprocessable Entity – invalid payload.</li>
+	 *     <li>HTTP 201 - A tenant was created.</li>
+	 *     <li>HTTP 401 - Authentication information is missing or invalid., @{link com.cumulocity.client.model.Error}</li>
+	 *     <li>HTTP 403 - Not authorized to perform this operation.</li>
+	 *     <li>HTTP 409 - Conflict – The tenant domain/ID already exists.</li>
+	 *     <li>HTTP 422 - Unprocessable Entity – invalid payload.</li>
 	 * </ul>
-	 * <p>
 	 * @param body 
 	 * @return
 	 */
-	public Future<Tenant> createTenant(final Tenant body) {
+	public CompletionStage<Tenant> createTenant(final Tenant body) {
 		final JsonNode jsonNode = toJsonNode(body);
 		removeFromNode(jsonNode, "allowCreateTenants");
 		removeFromNode(jsonNode, "parent");
@@ -110,73 +118,85 @@ public class TenantsApi extends AdaptableApi {
 			.request()
 			.header("Content-Type", "application/vnd.com.nsn.cumulocity.tenant+json")
 			.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.tenant+json")
-			.build("POST", Entity.json(jsonNode))
-			.submit(Tenant.class);
+			.rx()
+			.method("POST", Entity.json(jsonNode), Tenant.class);
 	}
 	
 	/**
-	 * Retrieve the current tenant </br>
-	 * Retrieve information about the current tenant.  <section><h5>Required roles</h5> ROLE_USER_MANAGEMENT_OWN_READ <b>OR</b> ROLE_SYSTEM </section> 
+	 * Retrieve the current tenant
+	 * Retrieve information about the current tenant.
+	 * 
+	 * <section><h5>Required roles</h5>
+	 * ROLE_USER_MANAGEMENT_OWN_READ <b>OR</b> ROLE_SYSTEM
+	 * </section>
+	 * 
 	 *
-	 * <br>The following table gives an overview of the possible response codes and their meanings:</br>
+	 * The following table gives an overview of the possible response codes and their meanings:
 	 * <ul>
-	 * <li>200 The request has succeeded and the information is sent in the response.</li>
-	 * <li>401 Authentication information is missing or invalid.</li>
+	 *     <li>HTTP 200 - The request has succeeded and the information is sent in the response.</li>
+	 *     <li>HTTP 401 - Authentication information is missing or invalid., @{link com.cumulocity.client.model.Error}</li>
 	 * </ul>
-	 * <p>
 	 * @param withParent When set to `true`, the returned result will contain the parent of the current tenant.
 	 * @return
 	 */
-	public Future<CurrentTenant> getCurrentTenant(final boolean withParent) {
+	public CompletionStage<CurrentTenant> getCurrentTenant(final boolean withParent) {
 		return adapt().path("tenant").path("currentTenant")
 			.queryParam("withParent", withParent)
 			.request()
 			.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.currenttenant+json")
-			.build("GET")
-			.submit(CurrentTenant.class);
+			.rx()
+			.method("GET", CurrentTenant.class);
 	}
 	
 	/**
-	 * Retrieve a specific tenant </br>
-	 * Retrieve a specific tenant by a given ID.  <section><h5>Required roles</h5> ROLE_TENANT_MANAGEMENT_READ <b>AND</b> the current tenant is its parent <b>OR</b> is the management tenant </section> 
+	 * Retrieve a specific tenant
+	 * Retrieve a specific tenant by a given ID.
+	 * 
+	 * <section><h5>Required roles</h5>
+	 * ROLE_TENANT_MANAGEMENT_READ <b>AND</b> the current tenant is its parent <b>OR</b> is the management tenant
+	 * </section>
+	 * 
 	 *
-	 * <br>The following table gives an overview of the possible response codes and their meanings:</br>
+	 * The following table gives an overview of the possible response codes and their meanings:
 	 * <ul>
-	 * <li>200 The request has succeeded and the tenant is sent in the response.</li>
-	 * <li>401 Authentication information is missing or invalid.</li>
-	 * <li>403 Not authorized to perform this operation.</li>
-	 * <li>404 Tenant not found.</li>
+	 *     <li>HTTP 200 - The request has succeeded and the tenant is sent in the response.</li>
+	 *     <li>HTTP 401 - Authentication information is missing or invalid., @{link com.cumulocity.client.model.Error}</li>
+	 *     <li>HTTP 403 - Not authorized to perform this operation.</li>
+	 *     <li>HTTP 404 - Tenant not found., @{link com.cumulocity.client.model.Error}</li>
 	 * </ul>
-	 * <p>
 	 * @param tenantId Unique identifier of a Cumulocity IoT tenant.
 	 * @return
 	 */
-	public Future<Tenant> getTenant(final String tenantId) {
+	public CompletionStage<Tenant> getTenant(final String tenantId) {
 		return adapt().path("tenant").path("tenants").path(valueOf(tenantId))
 			.request()
 			.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.tenant+json")
-			.build("GET")
-			.submit(Tenant.class);
+			.rx()
+			.method("GET", Tenant.class);
 	}
 	
 	/**
-	 * Update a specific tenant </br>
-	 * Update a specific tenant by a given ID.  <section><h5>Required roles</h5> (ROLE_TENANT_MANAGEMENT_ADMIN <b>OR</b> ROLE_TENANT_MANAGEMENT_UPDATE) <b>AND</b> (the current tenant is its parent <b>AND</b> the current tenant is allowed to create subtenants) <b>OR</b> is the management tenant </section> 
+	 * Update a specific tenant
+	 * Update a specific tenant by a given ID.
+	 * 
+	 * <section><h5>Required roles</h5>
+	 * (ROLE_TENANT_MANAGEMENT_ADMIN <b>OR</b> ROLE_TENANT_MANAGEMENT_UPDATE) <b>AND</b> (the current tenant is its parent <b>AND</b> the current tenant is allowed to create subtenants) <b>OR</b> is the management tenant
+	 * </section>
+	 * 
 	 *
-	 * <br>The following table gives an overview of the possible response codes and their meanings:</br>
+	 * The following table gives an overview of the possible response codes and their meanings:
 	 * <ul>
-	 * <li>200 A tenant was updated.</li>
-	 * <li>401 Authentication information is missing or invalid.</li>
-	 * <li>403 Not authorized to perform this operation.</li>
-	 * <li>404 Tenant not found.</li>
-	 * <li>422 Unprocessable Entity – invalid payload.</li>
+	 *     <li>HTTP 200 - A tenant was updated.</li>
+	 *     <li>HTTP 401 - Authentication information is missing or invalid., @{link com.cumulocity.client.model.Error}</li>
+	 *     <li>HTTP 403 - Not authorized to perform this operation.</li>
+	 *     <li>HTTP 404 - Tenant not found., @{link com.cumulocity.client.model.Error}</li>
+	 *     <li>HTTP 422 - Unprocessable Entity – invalid payload.</li>
 	 * </ul>
-	 * <p>
 	 * @param body 
 	 * @param tenantId Unique identifier of a Cumulocity IoT tenant.
 	 * @return
 	 */
-	public Future<Tenant> updateTenant(final Tenant body, final String tenantId) {
+	public CompletionStage<Tenant> updateTenant(final Tenant body, final String tenantId) {
 		final JsonNode jsonNode = toJsonNode(body);
 		removeFromNode(jsonNode, "adminName");
 		removeFromNode(jsonNode, "allowCreateTenants");
@@ -191,51 +211,63 @@ public class TenantsApi extends AdaptableApi {
 			.request()
 			.header("Content-Type", "application/vnd.com.nsn.cumulocity.tenant+json")
 			.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.tenant+json")
-			.build("PUT", Entity.json(jsonNode))
-			.submit(Tenant.class);
+			.rx()
+			.method("PUT", Entity.json(jsonNode), Tenant.class);
 	}
 	
 	/**
-	 * Remove a specific tenant </br>
-	 * Remove a specific tenant by a given ID.  > **⚠️ Important:** Deleting a subtenant cannot be reverted. For security reasons, it is therefore only available in the management tenant. You cannot delete tenants from any tenant but the management tenant. > > Administrators in Enterprise Tenants are only allowed to suspend active subtenants, but not to delete them.  <section><h5>Required roles</h5> ROLE_TENANT_MANAGEMENT_ADMIN <b>AND</b> is the management tenant </section> 
+	 * Remove a specific tenant
+	 * Remove a specific tenant by a given ID.
+	 * 
+	 * > **⚠️ Important:** Deleting a subtenant cannot be reverted. For security reasons, it is therefore only available in the management tenant. You cannot delete tenants from any tenant but the management tenant.
+	 * >
+	 * > Administrators in Enterprise Tenants are only allowed to suspend active subtenants, but not to delete them.
+	 * 
+	 * <section><h5>Required roles</h5>
+	 * ROLE_TENANT_MANAGEMENT_ADMIN <b>AND</b> is the management tenant
+	 * </section>
+	 * 
 	 *
-	 * <br>The following table gives an overview of the possible response codes and their meanings:</br>
+	 * The following table gives an overview of the possible response codes and their meanings:
 	 * <ul>
-	 * <li>204 A tenant was removed.</li>
-	 * <li>401 Authentication information is missing or invalid.</li>
-	 * <li>403 Not authorized to perform this operation.</li>
-	 * <li>404 Tenant not found.</li>
+	 *     <li>HTTP 204 - A tenant was removed.</li>
+	 *     <li>HTTP 401 - Authentication information is missing or invalid., @{link com.cumulocity.client.model.Error}</li>
+	 *     <li>HTTP 403 - Not authorized to perform this operation.</li>
+	 *     <li>HTTP 404 - Tenant not found., @{link com.cumulocity.client.model.Error}</li>
 	 * </ul>
-	 * <p>
 	 * @param tenantId Unique identifier of a Cumulocity IoT tenant.
 	 */
-	public Future<Response> deleteTenant(final String tenantId) {
+	public CompletionStage<Response> deleteTenant(final String tenantId) {
 		return adapt().path("tenant").path("tenants").path(valueOf(tenantId))
 			.request()
 			.header("Accept", "application/json")
-			.build("DELETE")
-			.submit();
+			.rx()
+			.method("DELETE");
 	}
 	
 	/**
-	 * Retrieve TFA settings of a specific tenant </br>
-	 * Retrieve the two-factor authentication settings of a specific tenant by a given tenant ID.  <section><h5>Required roles</h5> ((ROLE_TENANT_MANAGEMENT_READ <b>OR</b> ROLE_USER_MANAGEMENT_READ) <b>AND</b> (the current tenant is its parent <b>OR</b> is the management tenant <b>OR</b> the current user belongs to the tenant)) <b>OR</b> (the user belongs to the tenant <b>AND</b> ROLE_USER_MANAGEMENT_OWN_READ) </section> 
+	 * Retrieve TFA settings of a specific tenant
+	 * Retrieve the two-factor authentication settings of a specific tenant by a given tenant ID.
+	 * 
+	 * <section><h5>Required roles</h5>
+	 * ((ROLE_TENANT_MANAGEMENT_READ <b>OR</b> ROLE_USER_MANAGEMENT_READ) <b>AND</b> (the current tenant is its parent <b>OR</b> is the management tenant <b>OR</b> the current user belongs to the tenant)) <b>OR</b> (the user belongs to the tenant <b>AND</b> ROLE_USER_MANAGEMENT_OWN_READ)
+	 * </section>
+	 * 
 	 *
-	 * <br>The following table gives an overview of the possible response codes and their meanings:</br>
+	 * The following table gives an overview of the possible response codes and their meanings:
 	 * <ul>
-	 * <li>200 The request has succeeded and the TFA settings are sent in the response.</li>
-	 * <li>401 Authentication information is missing or invalid.</li>
-	 * <li>404 Tenant not found.</li>
+	 *     <li>HTTP 200 - The request has succeeded and the TFA settings are sent in the response.</li>
+	 *     <li>HTTP 401 - Authentication information is missing or invalid., @{link com.cumulocity.client.model.Error}</li>
+	 *     <li>HTTP 404 - Tenant not found., @{link com.cumulocity.client.model.Error}</li>
 	 * </ul>
-	 * <p>
 	 * @param tenantId Unique identifier of a Cumulocity IoT tenant.
 	 * @return
 	 */
-	public Future<TenantTfaData> getTenantTfaSettings(final String tenantId) {
+	public CompletionStage<TenantTfaData> getTenantTfaSettings(final String tenantId) {
 		return adapt().path("tenant").path("tenants").path(valueOf(tenantId)).path("tfa")
 			.request()
 			.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/json")
-			.build("GET")
-			.submit(TenantTfaData.class);
+			.rx()
+			.method("GET", TenantTfaData.class);
 	}
 }

@@ -34,7 +34,7 @@ public class ManagedObjectsApiTest {
     public void testGetManagedObjects() {
     	Object response = null;
     	try {
-    		response = service.getManagedObjects(null, null, null, 1, null, null, false, null, 5, null, null, false, null, null, true, false, false, false, false, false).get();
+    		response = service.getManagedObjects(null, null, null, 1, null, null, false, null, 5, null, null, false, null, null, true, false, false, false, false, false).toCompletableFuture().get();
     	} catch (InterruptedException | ExecutionException e) {
     		e.printStackTrace();
     	}
@@ -45,7 +45,7 @@ public class ManagedObjectsApiTest {
     public void testGetNumberOfManagedObjects() {
     	Object response = null;
     	try {
-    		response = service.getNumberOfManagedObjects(null, null, null, null, null, null, null, null).get();
+    		response = service.getNumberOfManagedObjects(null, null, null, null, null, null, null, null).toCompletableFuture().get();
     	} catch (InterruptedException | ExecutionException e) {
     		e.printStackTrace();
     	}

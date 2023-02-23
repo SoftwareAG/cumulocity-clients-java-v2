@@ -72,7 +72,6 @@ public class InventoryRolePermission {
 	
 	/**
 	 * The permission level.
-	 * [ADMIN, READ, *]
 	 */
 	public enum Permission {
 		@JsonProperty("ADMIN")
@@ -96,7 +95,6 @@ public class InventoryRolePermission {
 	
 	/**
 	 * The scope of this permission.
-	 * [ALARM, AUDIT, EVENT, MANAGED_OBJECT, MEASUREMENT, OPERATION, *]
 	 */
 	public enum Scope {
 		@JsonProperty("ALARM")
@@ -130,7 +128,6 @@ public class InventoryRolePermission {
 	@Override
 	public String toString() {
 		try {
-			// TODO thats an extensive operation, which only helps debugging
 			return new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(this);
 		} catch (final JsonProcessingException e) {
 		}

@@ -202,7 +202,6 @@ public class Alarm {
 	
 	/**
 	 * The severity of the alarm.
-	 * [CRITICAL, MAJOR, MINOR, WARNING]
 	 */
 	public enum Severity {
 		@JsonProperty("CRITICAL")
@@ -228,7 +227,6 @@ public class Alarm {
 	
 	/**
 	 * The status of the alarm. If not specified, a new alarm will be created as ACTIVE.
-	 * [ACTIVE, ACKNOWLEDGED, CLEARED]
 	 */
 	public enum Status {
 		@JsonProperty("ACTIVE")
@@ -299,7 +297,6 @@ public class Alarm {
 		@Override
 		public String toString() {
 			try {
-				// TODO thats an extensive operation, which only helps debugging
 				return new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(this);
 			} catch (final JsonProcessingException e) {
 			}
@@ -365,7 +362,6 @@ public class Alarm {
 	@Override
 	public String toString() {
 		try {
-			// TODO thats an extensive operation, which only helps debugging
 			return new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(this);
 		} catch (final JsonProcessingException e) {
 		}

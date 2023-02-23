@@ -134,7 +134,6 @@ public class C8yNetwork {
 		@Override
 		public String toString() {
 			try {
-				// TODO thats an extensive operation, which only helps debugging
 				return new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(this);
 			} catch (final JsonProcessingException e) {
 			}
@@ -228,7 +227,6 @@ public class C8yNetwork {
 		@Override
 		public String toString() {
 			try {
-				// TODO thats an extensive operation, which only helps debugging
 				return new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(this);
 			} catch (final JsonProcessingException e) {
 			}
@@ -355,7 +353,6 @@ public class C8yNetwork {
 			@Override
 			public String toString() {
 				try {
-					// TODO thats an extensive operation, which only helps debugging
 					return new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(this);
 				} catch (final JsonProcessingException e) {
 				}
@@ -377,7 +374,6 @@ public class C8yNetwork {
 		@Override
 		public String toString() {
 			try {
-				// TODO thats an extensive operation, which only helps debugging
 				return new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(this);
 			} catch (final JsonProcessingException e) {
 			}
@@ -399,7 +395,6 @@ public class C8yNetwork {
 	@Override
 	public String toString() {
 		try {
-			// TODO thats an extensive operation, which only helps debugging
 			return new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(this);
 		} catch (final JsonProcessingException e) {
 		}

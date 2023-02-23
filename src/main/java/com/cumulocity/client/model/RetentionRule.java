@@ -121,7 +121,6 @@ public class RetentionRule {
 	
 	/**
 	 * The data type(s) to which the rule is applied.
-	 * [ALARM, AUDIT, BULK_OPERATION, EVENT, MEASUREMENT, OPERATION, *]
 	 */
 	public enum DataType {
 		@JsonProperty("ALARM")
@@ -154,7 +153,6 @@ public class RetentionRule {
 	@Override
 	public String toString() {
 		try {
-			// TODO thats an extensive operation, which only helps debugging
 			return new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(this);
 		} catch (final JsonProcessingException e) {
 		}

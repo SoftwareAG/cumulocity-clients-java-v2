@@ -3,6 +3,7 @@
 
 package com.cumulocity.client.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
@@ -11,46 +12,42 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(Include.NON_NULL)
-public class ApplicationVersion {
+public class NotificationSubscriptionResult {
 
 	/**
-	 * Unique identifier of the version.
+	 * The status of the notification subscription deletion.
 	 */
-	private String version;
+	private Result result;
 
+	public Result getResult() {
+		return result;
+	}
+	
+	public void setResult(final Result result) {
+		this.result = result;
+	}
+
+	
 	/**
-	 * Unique identifier of the binary file assigned to the version.
+	 * The status of the notification subscription deletion.
 	 */
-	private String binaryId;
-
-	/**
-	 * Tag assigned to the version. Version tags must be unique across all versions and version fields of application versions.
-	 */
-	private String[] tag;
-
-	public String getVersion() {
-		return version;
-	}
+	public enum Result {
+		@JsonProperty("DONE")
+		DONE("DONE"),
+		@JsonProperty("SCHEDULED")
+		SCHEDULED("SCHEDULED");
 	
-	public void setVersion(final String version) {
-		this.version = version;
+		private String value;
+	
+		Result(final String value) {
+			this.value = value;
+		}
+	
+		public String getValue() {
+			return value;
+		}
 	}
 
-	public String getBinaryId() {
-		return binaryId;
-	}
-	
-	public void setBinaryId(final String binaryId) {
-		this.binaryId = binaryId;
-	}
-
-	public String[] getTag() {
-		return tag;
-	}
-	
-	public void setTag(final String[] tag) {
-		this.tag = tag;
-	}
 
 	@Override
 	public String toString() {
@@ -63,9 +60,9 @@ public class ApplicationVersion {
 
 	@Override
 	public boolean equals(final Object r) {
-		if (r != null && r instanceof ApplicationVersion) {
-			ApplicationVersion comparer = (ApplicationVersion) r;
-			if (String.valueOf(comparer.getVersion()).equals(String.valueOf(this.getVersion())) && String.valueOf(comparer.getBinaryId()).equals(String.valueOf(this.getBinaryId())) && comparer.getTag().equals(this.getTag())) {
+		if (r != null && r instanceof NotificationSubscriptionResult) {
+			NotificationSubscriptionResult comparer = (NotificationSubscriptionResult) r;
+			if (comparer.getResult().equals(this.getResult())) {
 				return true;
 			}
 		}

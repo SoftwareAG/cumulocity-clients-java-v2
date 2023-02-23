@@ -3,7 +3,7 @@
 
 package com.cumulocity.client.api;
 
-import java.util.concurrent.Future;
+import java.util.concurrent.CompletionStage;
 import com.fasterxml.jackson.databind.JsonNode;
 import jakarta.ws.rs.client.Entity;
 import jakarta.ws.rs.client.WebTarget;
@@ -216,7 +216,7 @@ import com.cumulocity.client.model.RealtimeNotification;
  * ```
  *  </br>
  * 
- */ 
+ */
 public class RealtimeNotificationApi extends AdaptableApi {
 
 	public RealtimeNotificationApi(final WebTarget rootTarget) {
@@ -224,21 +224,20 @@ public class RealtimeNotificationApi extends AdaptableApi {
 	}
 
 	/**
-	 * Responsive communication </br>
+	 * Responsive communication
 	 * The Real-time notification API enables responsive communication from Cumulocity IoT over restricted networks towards clients such as web browser and mobile devices. All clients subscribe to so-called channels to receive messages. These channels are filled by Cumulocity IoT with the output of [Operations](#tag/Operations). In addition, particular system channels are used for the initial handshake with clients, subscription to channels, removal from channels and connection. The [Bayeux protocol](https://docs.cometd.org/current/reference/#_concepts_bayeux_protocol) over HTTPS or WSS is used as communication mechanism.
 	 *
-	 * <br>The following table gives an overview of the possible response codes and their meanings:</br>
+	 * The following table gives an overview of the possible response codes and their meanings:
 	 * <ul>
-	 * <li>200 The operation was completed and the result is sent in the response.</li>
-	 * <li>400 Unprocessable Entity – invalid payload.</li>
-	 * <li>401 Authentication information is missing or invalid.</li>
+	 *     <li>HTTP 200 - The operation was completed and the result is sent in the response.</li>
+	 *     <li>HTTP 400 - Unprocessable Entity – invalid payload.</li>
+	 *     <li>HTTP 401 - Authentication information is missing or invalid., @{link com.cumulocity.client.model.Error}</li>
 	 * </ul>
-	 * <p>
 	 * @param body 
 	 * @param xCumulocityProcessingMode Used to explicitly control the processing mode of the request. See [Processing mode](#processing-mode) for more details.
 	 * @return
 	 */
-	public Future<RealtimeNotification> createRealtimeNotification(final RealtimeNotification body, final String xCumulocityProcessingMode) {
+	public CompletionStage<RealtimeNotification> createRealtimeNotification(final RealtimeNotification body, final String xCumulocityProcessingMode) {
 		final JsonNode jsonNode = toJsonNode(body);
 		removeFromNode(jsonNode, "clientId");
 		removeFromNode(jsonNode, "data");
@@ -249,7 +248,7 @@ public class RealtimeNotificationApi extends AdaptableApi {
 			.header("X-Cumulocity-Processing-Mode", xCumulocityProcessingMode)
 			.header("Content-Type", "application/json")
 			.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/json")
-			.build("POST", Entity.json(jsonNode))
-			.submit(RealtimeNotification.class);
+			.rx()
+			.method("POST", Entity.json(jsonNode), RealtimeNotification.class);
 	}
 }

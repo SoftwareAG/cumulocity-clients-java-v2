@@ -72,7 +72,6 @@ public class JSONPredicateRepresentation {
 	
 	/**
 	 * Operator executed on the parameter from the JWT access token claim pointed by `parameterPath` and the provided parameter `value`.
-	 * [EQ, NEQ, GT, LT, GTE, LTE, IN, AND, OR]
 	 */
 	public enum Operator {
 		@JsonProperty("EQ")
@@ -109,7 +108,6 @@ public class JSONPredicateRepresentation {
 	@Override
 	public String toString() {
 		try {
-			// TODO thats an extensive operation, which only helps debugging
 			return new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(this);
 		} catch (final JsonProcessingException e) {
 		}

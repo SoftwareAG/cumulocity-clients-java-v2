@@ -34,7 +34,7 @@ public class IdentityApiTest {
     public void testGetIdentityApiResource() {
     	Object response = null;
     	try {
-    		response = service.getIdentityApiResource().get();
+    		response = service.getIdentityApiResource().toCompletableFuture().get();
     	} catch (InterruptedException | ExecutionException e) {
     		e.printStackTrace();
     	}

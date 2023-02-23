@@ -34,7 +34,7 @@ public class OptionsApiTest {
     public void testGetOptions() {
     	Object response = null;
     	try {
-    		response = service.getOptions(1, 5, false).get();
+    		response = service.getOptions(1, 5, false).toCompletableFuture().get();
     	} catch (InterruptedException | ExecutionException e) {
     		e.printStackTrace();
     	}

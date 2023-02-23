@@ -95,7 +95,6 @@ public class TenantTfaData {
 	
 	/**
 	 * Two-factor authentication strategy.
-	 * [SMS, TOTP]
 	 */
 	public enum Strategy {
 		@JsonProperty("SMS")
@@ -118,7 +117,6 @@ public class TenantTfaData {
 	@Override
 	public String toString() {
 		try {
-			// TODO thats an extensive operation, which only helps debugging
 			return new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(this);
 		} catch (final JsonProcessingException e) {
 		}

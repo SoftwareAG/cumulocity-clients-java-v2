@@ -328,7 +328,6 @@ public class AuthConfig {
 	
 	/**
 	 * The authentication configuration grant type identifier.
-	 * [AUTHORIZATION_CODE, PASSWORD]
 	 */
 	public enum GrantType {
 		@JsonProperty("AUTHORIZATION_CODE")
@@ -350,7 +349,6 @@ public class AuthConfig {
 	
 	/**
 	 * The authentication configuration type. Note that the value is case insensitive.
-	 * [BASIC, OAUTH2, OAUTH2_INTERNAL]
 	 */
 	public enum Type {
 		@JsonProperty("BASIC")
@@ -374,7 +372,6 @@ public class AuthConfig {
 	
 	/**
 	 * Indicates whether user data are managed internally by the Cumulocity IoT platform or by an external server. Note that the value is case insensitive.
-	 * [INTERNAL, REMOTE]
 	 */
 	public enum UserManagementSource {
 		@JsonProperty("INTERNAL")
@@ -455,7 +452,6 @@ public class AuthConfig {
 		@Override
 		public String toString() {
 			try {
-				// TODO thats an extensive operation, which only helps debugging
 				return new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(this);
 			} catch (final JsonProcessingException e) {
 			}
@@ -551,7 +547,6 @@ public class AuthConfig {
 				@Override
 				public String toString() {
 					try {
-						// TODO thats an extensive operation, which only helps debugging
 						return new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(this);
 					} catch (final JsonProcessingException e) {
 					}
@@ -619,7 +614,6 @@ public class AuthConfig {
 				@Override
 				public String toString() {
 					try {
-						// TODO thats an extensive operation, which only helps debugging
 						return new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(this);
 					} catch (final JsonProcessingException e) {
 					}
@@ -641,7 +635,6 @@ public class AuthConfig {
 			@Override
 			public String toString() {
 				try {
-					// TODO thats an extensive operation, which only helps debugging
 					return new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(this);
 				} catch (final JsonProcessingException e) {
 				}
@@ -663,7 +656,6 @@ public class AuthConfig {
 		@Override
 		public String toString() {
 			try {
-				// TODO thats an extensive operation, which only helps debugging
 				return new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(this);
 			} catch (final JsonProcessingException e) {
 			}
@@ -764,7 +756,6 @@ public class AuthConfig {
 			@Override
 			public String toString() {
 				try {
-					// TODO thats an extensive operation, which only helps debugging
 					return new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(this);
 				} catch (final JsonProcessingException e) {
 				}
@@ -806,7 +797,6 @@ public class AuthConfig {
 			@Override
 			public String toString() {
 				try {
-					// TODO thats an extensive operation, which only helps debugging
 					return new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(this);
 				} catch (final JsonProcessingException e) {
 				}
@@ -848,7 +838,6 @@ public class AuthConfig {
 			@Override
 			public String toString() {
 				try {
-					// TODO thats an extensive operation, which only helps debugging
 					return new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(this);
 				} catch (final JsonProcessingException e) {
 				}
@@ -975,7 +964,6 @@ public class AuthConfig {
 				
 				/**
 				 * The signing algorithm of the JWT access token.
-				 * [RSA, PCKS]
 				 */
 				public enum Alg {
 					@JsonProperty("RSA")
@@ -998,7 +986,6 @@ public class AuthConfig {
 				@Override
 				public String toString() {
 					try {
-						// TODO thats an extensive operation, which only helps debugging
 						return new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(this);
 					} catch (final JsonProcessingException e) {
 					}
@@ -1020,7 +1007,6 @@ public class AuthConfig {
 			@Override
 			public String toString() {
 				try {
-					// TODO thats an extensive operation, which only helps debugging
 					return new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(this);
 				} catch (final JsonProcessingException e) {
 				}
@@ -1042,7 +1028,6 @@ public class AuthConfig {
 		@Override
 		public String toString() {
 			try {
-				// TODO thats an extensive operation, which only helps debugging
 				return new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(this);
 			} catch (final JsonProcessingException e) {
 			}
@@ -1111,7 +1096,6 @@ public class AuthConfig {
 		@Override
 		public String toString() {
 			try {
-				// TODO thats an extensive operation, which only helps debugging
 				return new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(this);
 			} catch (final JsonProcessingException e) {
 			}
@@ -1134,7 +1118,6 @@ public class AuthConfig {
 	@Override
 	public String toString() {
 		try {
-			// TODO thats an extensive operation, which only helps debugging
 			return new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(this);
 		} catch (final JsonProcessingException e) {
 		}

@@ -3,7 +3,7 @@
 
 package com.cumulocity.client.api;
 
-import java.util.concurrent.Future;
+import java.util.concurrent.CompletionStage;
 import com.fasterxml.jackson.databind.JsonNode;
 import jakarta.ws.rs.client.Entity;
 import jakarta.ws.rs.client.WebTarget;
@@ -18,7 +18,7 @@ import com.cumulocity.client.model.EventCollection;
  * > **&#9432; Info:** The Accept header should be provided in all POST/PUT requests, otherwise an empty response body will be returned.
  *  </br>
  * 
- */ 
+ */
 public class EventsApi extends AdaptableApi {
 
 	public EventsApi(final WebTarget rootTarget) {
@@ -26,15 +26,21 @@ public class EventsApi extends AdaptableApi {
 	}
 
 	/**
-	 * Retrieve all events </br>
-	 * Retrieve all events on your tenant.  In case of executing [range queries](https://en.wikipedia.org/wiki/Range_query_(database)) between an upper and lower boundary, for example, querying using `dateFrom`–`dateTo` or `createdFrom`–`createdTo`, the newest registered events are returned first. It is possible to change the order using the query parameter `revert=true`.  <section><h5>Required roles</h5> ROLE_EVENT_READ </section> 
+	 * Retrieve all events
+	 * Retrieve all events on your tenant.
+	 * 
+	 * In case of executing [range queries](https://en.wikipedia.org/wiki/Range_query_(database)) between an upper and lower boundary, for example, querying using `dateFrom`–`dateTo` or `createdFrom`–`createdTo`, the newest registered events are returned first. It is possible to change the order using the query parameter `revert=true`.
+	 * 
+	 * <section><h5>Required roles</h5>
+	 * ROLE_EVENT_READ
+	 * </section>
+	 * 
 	 *
-	 * <br>The following table gives an overview of the possible response codes and their meanings:</br>
+	 * The following table gives an overview of the possible response codes and their meanings:
 	 * <ul>
-	 * <li>200 The request has succeeded and all events are sent in the response.</li>
-	 * <li>401 Authentication information is missing or invalid.</li>
+	 *     <li>HTTP 200 - The request has succeeded and all events are sent in the response.</li>
+	 *     <li>HTTP 401 - Authentication information is missing or invalid., @{link com.cumulocity.client.model.Error}</li>
 	 * </ul>
-	 * <p>
 	 * @param createdFrom Start date or date and time of the event's creation (set by the platform during creation).
 	 * @param createdTo End date or date and time of the event's creation (set by the platform during creation).
 	 * @param currentPage The current page of the paginated results.
@@ -54,7 +60,7 @@ public class EventsApi extends AdaptableApi {
 	 * @param withTotalPages When set to `true`, the returned result will contain in the statistics object the total number of pages. Only applicable on [range queries](https://en.wikipedia.org/wiki/Range_query_(database)).
 	 * @return
 	 */
-	public Future<EventCollection> getEvents(final String createdFrom, final String createdTo, final int currentPage, final String dateFrom, final String dateTo, final String fragmentType, final String fragmentValue, final String lastUpdatedFrom, final String lastUpdatedTo, final int pageSize, final boolean revert, final String source, final String type, final boolean withSourceAssets, final boolean withSourceDevices, final boolean withTotalElements, final boolean withTotalPages) {
+	public CompletionStage<EventCollection> getEvents(final String createdFrom, final String createdTo, final int currentPage, final String dateFrom, final String dateTo, final String fragmentType, final String fragmentValue, final String lastUpdatedFrom, final String lastUpdatedTo, final int pageSize, final boolean revert, final String source, final String type, final boolean withSourceAssets, final boolean withSourceDevices, final boolean withTotalElements, final boolean withTotalPages) {
 		return adapt().path("event").path("events")
 			.queryParam("createdFrom", createdFrom)
 			.queryParam("createdTo", createdTo)
@@ -75,27 +81,37 @@ public class EventsApi extends AdaptableApi {
 			.queryParam("withTotalPages", withTotalPages)
 			.request()
 			.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.eventcollection+json")
-			.build("GET")
-			.submit(EventCollection.class);
+			.rx()
+			.method("GET", EventCollection.class);
 	}
 	
 	/**
-	 * Create an event </br>
-	 * An event must be associated with a source (managed object) identified by an ID.<br> In general, each event consists of:  *  A type to identify the nature of the event. *  A time stamp to indicate when the event was last updated. *  A description of the event. *  The managed object which originated the event.  <section><h5>Required roles</h5> ROLE_EVENT_ADMIN <b>OR</b> owner of the source <b>OR</b> EVENT_ADMIN permission on the source </section> 
+	 * Create an event
+	 * An event must be associated with a source (managed object) identified by an ID.<br>
+	 * In general, each event consists of:
+	 * 
+	 * *  A type to identify the nature of the event.
+	 * *  A time stamp to indicate when the event was last updated.
+	 * *  A description of the event.
+	 * *  The managed object which originated the event.
+	 * 
+	 * <section><h5>Required roles</h5>
+	 * ROLE_EVENT_ADMIN <b>OR</b> owner of the source <b>OR</b> EVENT_ADMIN permission on the source
+	 * </section>
+	 * 
 	 *
-	 * <br>The following table gives an overview of the possible response codes and their meanings:</br>
+	 * The following table gives an overview of the possible response codes and their meanings:
 	 * <ul>
-	 * <li>201 An event was created.</li>
-	 * <li>401 Authentication information is missing or invalid.</li>
-	 * <li>403 Not authorized to perform this operation.</li>
-	 * <li>422 Unprocessable Entity – invalid payload.</li>
+	 *     <li>HTTP 201 - An event was created.</li>
+	 *     <li>HTTP 401 - Authentication information is missing or invalid., @{link com.cumulocity.client.model.Error}</li>
+	 *     <li>HTTP 403 - Not authorized to perform this operation.</li>
+	 *     <li>HTTP 422 - Unprocessable Entity – invalid payload.</li>
 	 * </ul>
-	 * <p>
 	 * @param body 
 	 * @param xCumulocityProcessingMode Used to explicitly control the processing mode of the request. See [Processing mode](#processing-mode) for more details.
 	 * @return
 	 */
-	public Future<Event> createEvent(final Event body, final String xCumulocityProcessingMode) {
+	public CompletionStage<Event> createEvent(final Event body, final String xCumulocityProcessingMode) {
 		final JsonNode jsonNode = toJsonNode(body);
 		removeFromNode(jsonNode, "lastUpdated");
 		removeFromNode(jsonNode, "creationTime");
@@ -107,21 +123,29 @@ public class EventsApi extends AdaptableApi {
 			.header("X-Cumulocity-Processing-Mode", xCumulocityProcessingMode)
 			.header("Content-Type", "application/vnd.com.nsn.cumulocity.event+json")
 			.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.event+json")
-			.build("POST", Entity.json(jsonNode))
-			.submit(Event.class);
+			.rx()
+			.method("POST", Entity.json(jsonNode), Event.class);
 	}
 	
 	/**
-	 * Remove event collections </br>
-	 * Remove event collections specified by query parameters.  DELETE requests are not synchronous. The response could be returned before the delete request has been completed. This may happen especially when the deleted event has a lot of associated data. After sending the request, the platform starts deleting the associated data in an asynchronous way. Finally, the requested event is deleted after all associated data has been deleted.  > **⚠️ Important:** Note that it is possible to call this endpoint without providing any parameter - it will result in deleting all events and it is not recommended.  <section><h5>Required roles</h5> ROLE_EVENT_ADMIN </section> 
+	 * Remove event collections
+	 * Remove event collections specified by query parameters.
+	 * 
+	 * DELETE requests are not synchronous. The response could be returned before the delete request has been completed. This may happen especially when the deleted event has a lot of associated data. After sending the request, the platform starts deleting the associated data in an asynchronous way. Finally, the requested event is deleted after all associated data has been deleted.
+	 * 
+	 * > **⚠️ Important:** Note that it is possible to call this endpoint without providing any parameter - it will result in deleting all events and it is not recommended.
+	 * 
+	 * <section><h5>Required roles</h5>
+	 * ROLE_EVENT_ADMIN
+	 * </section>
+	 * 
 	 *
-	 * <br>The following table gives an overview of the possible response codes and their meanings:</br>
+	 * The following table gives an overview of the possible response codes and their meanings:
 	 * <ul>
-	 * <li>204 A collection of events was removed.</li>
-	 * <li>401 Authentication information is missing or invalid.</li>
-	 * <li>403 Not authorized to perform this operation.</li>
+	 *     <li>HTTP 204 - A collection of events was removed.</li>
+	 *     <li>HTTP 401 - Authentication information is missing or invalid., @{link com.cumulocity.client.model.Error}</li>
+	 *     <li>HTTP 403 - Not authorized to perform this operation.</li>
 	 * </ul>
-	 * <p>
 	 * @param xCumulocityProcessingMode Used to explicitly control the processing mode of the request. See [Processing mode](#processing-mode) for more details.
 	 * @param createdFrom Start date or date and time of the event's creation (set by the platform during creation).
 	 * @param createdTo End date or date and time of the event's creation (set by the platform during creation).
@@ -131,7 +155,7 @@ public class EventsApi extends AdaptableApi {
 	 * @param source The managed object ID to which the event is associated.
 	 * @param type The type of event to search for.
 	 */
-	public Future<Response> deleteEvents(final String xCumulocityProcessingMode, final String createdFrom, final String createdTo, final String dateFrom, final String dateTo, final String fragmentType, final String source, final String type) {
+	public CompletionStage<Response> deleteEvents(final String xCumulocityProcessingMode, final String createdFrom, final String createdTo, final String dateFrom, final String dateTo, final String fragmentType, final String source, final String type) {
 		return adapt().path("event").path("events")
 			.queryParam("createdFrom", createdFrom)
 			.queryParam("createdTo", createdTo)
@@ -143,50 +167,58 @@ public class EventsApi extends AdaptableApi {
 			.request()
 			.header("X-Cumulocity-Processing-Mode", xCumulocityProcessingMode)
 			.header("Accept", "application/json")
-			.build("DELETE")
-			.submit();
+			.rx()
+			.method("DELETE");
 	}
 	
 	/**
-	 * Retrieve a specific event </br>
-	 * Retrieve a specific event by a given ID.  <section><h5>Required roles</h5> ROLE_EVENT_READ <b>OR</b> owner of the source <b>OR</b> EVENT_READ permission on the source </section> 
+	 * Retrieve a specific event
+	 * Retrieve a specific event by a given ID.
+	 * 
+	 * <section><h5>Required roles</h5>
+	 * ROLE_EVENT_READ <b>OR</b> owner of the source <b>OR</b> EVENT_READ permission on the source
+	 * </section>
+	 * 
 	 *
-	 * <br>The following table gives an overview of the possible response codes and their meanings:</br>
+	 * The following table gives an overview of the possible response codes and their meanings:
 	 * <ul>
-	 * <li>200 The request has succeeded and the event is sent in the response.</li>
-	 * <li>401 Authentication information is missing or invalid.</li>
-	 * <li>404 Event not found.</li>
+	 *     <li>HTTP 200 - The request has succeeded and the event is sent in the response.</li>
+	 *     <li>HTTP 401 - Authentication information is missing or invalid., @{link com.cumulocity.client.model.Error}</li>
+	 *     <li>HTTP 404 - Event not found., @{link com.cumulocity.client.model.Error}</li>
 	 * </ul>
-	 * <p>
 	 * @param id Unique identifier of the event.
 	 * @return
 	 */
-	public Future<Event> getEvent(final String id) {
+	public CompletionStage<Event> getEvent(final String id) {
 		return adapt().path("event").path("events").path(valueOf(id))
 			.request()
 			.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.event+json")
-			.build("GET")
-			.submit(Event.class);
+			.rx()
+			.method("GET", Event.class);
 	}
 	
 	/**
-	 * Update a specific event </br>
-	 * Update a specific event by a given ID. Only its text description and custom fragments can be updated.  <section><h5>Required roles</h5> ROLE_EVENT_ADMIN <b>OR</b> owner of the source <b>OR</b> EVENT_ADMIN permission on the source </section> 
+	 * Update a specific event
+	 * Update a specific event by a given ID. Only its text description and custom fragments can be updated.
+	 * 
+	 * <section><h5>Required roles</h5>
+	 * ROLE_EVENT_ADMIN <b>OR</b> owner of the source <b>OR</b> EVENT_ADMIN permission on the source
+	 * </section>
+	 * 
 	 *
-	 * <br>The following table gives an overview of the possible response codes and their meanings:</br>
+	 * The following table gives an overview of the possible response codes and their meanings:
 	 * <ul>
-	 * <li>200 An event was updated.</li>
-	 * <li>401 Authentication information is missing or invalid.</li>
-	 * <li>404 Event not found.</li>
-	 * <li>422 Unprocessable Entity – invalid payload.</li>
+	 *     <li>HTTP 200 - An event was updated.</li>
+	 *     <li>HTTP 401 - Authentication information is missing or invalid., @{link com.cumulocity.client.model.Error}</li>
+	 *     <li>HTTP 404 - Event not found., @{link com.cumulocity.client.model.Error}</li>
+	 *     <li>HTTP 422 - Unprocessable Entity – invalid payload.</li>
 	 * </ul>
-	 * <p>
 	 * @param body 
 	 * @param id Unique identifier of the event.
 	 * @param xCumulocityProcessingMode Used to explicitly control the processing mode of the request. See [Processing mode](#processing-mode) for more details.
 	 * @return
 	 */
-	public Future<Event> updateEvent(final Event body, final String id, final String xCumulocityProcessingMode) {
+	public CompletionStage<Event> updateEvent(final Event body, final String id, final String xCumulocityProcessingMode) {
 		final JsonNode jsonNode = toJsonNode(body);
 		removeFromNode(jsonNode, "lastUpdated");
 		removeFromNode(jsonNode, "creationTime");
@@ -200,31 +232,35 @@ public class EventsApi extends AdaptableApi {
 			.header("X-Cumulocity-Processing-Mode", xCumulocityProcessingMode)
 			.header("Content-Type", "application/vnd.com.nsn.cumulocity.event+json")
 			.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.event+json")
-			.build("PUT", Entity.json(jsonNode))
-			.submit(Event.class);
+			.rx()
+			.method("PUT", Entity.json(jsonNode), Event.class);
 	}
 	
 	/**
-	 * Remove a specific event </br>
-	 * Remove a specific event by a given ID.  <section><h5>Required roles</h5> ROLE_EVENT_ADMIN <b>OR</b> owner of the source <b>OR</b> EVENT_ADMIN permission on the source </section> 
+	 * Remove a specific event
+	 * Remove a specific event by a given ID.
+	 * 
+	 * <section><h5>Required roles</h5>
+	 * ROLE_EVENT_ADMIN <b>OR</b> owner of the source <b>OR</b> EVENT_ADMIN permission on the source
+	 * </section>
+	 * 
 	 *
-	 * <br>The following table gives an overview of the possible response codes and their meanings:</br>
+	 * The following table gives an overview of the possible response codes and their meanings:
 	 * <ul>
-	 * <li>204 An event was removed.</li>
-	 * <li>401 Authentication information is missing or invalid.</li>
-	 * <li>403 Not authorized to perform this operation.</li>
-	 * <li>404 Event not found.</li>
+	 *     <li>HTTP 204 - An event was removed.</li>
+	 *     <li>HTTP 401 - Authentication information is missing or invalid., @{link com.cumulocity.client.model.Error}</li>
+	 *     <li>HTTP 403 - Not authorized to perform this operation.</li>
+	 *     <li>HTTP 404 - Event not found., @{link com.cumulocity.client.model.Error}</li>
 	 * </ul>
-	 * <p>
 	 * @param id Unique identifier of the event.
 	 * @param xCumulocityProcessingMode Used to explicitly control the processing mode of the request. See [Processing mode](#processing-mode) for more details.
 	 */
-	public Future<Response> deleteEvent(final String id, final String xCumulocityProcessingMode) {
+	public CompletionStage<Response> deleteEvent(final String id, final String xCumulocityProcessingMode) {
 		return adapt().path("event").path("events").path(valueOf(id))
 			.request()
 			.header("X-Cumulocity-Processing-Mode", xCumulocityProcessingMode)
 			.header("Accept", "application/json")
-			.build("DELETE")
-			.submit();
+			.rx()
+			.method("DELETE");
 	}
 }

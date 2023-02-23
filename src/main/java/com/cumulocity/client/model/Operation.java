@@ -147,7 +147,6 @@ public class Operation {
 	
 	/**
 	 * The status of the operation.
-	 * [SUCCESSFUL, FAILED, EXECUTING, PENDING]
 	 */
 	public enum Status {
 		@JsonProperty("SUCCESSFUL")
@@ -217,7 +216,6 @@ public class Operation {
 	@Override
 	public String toString() {
 		try {
-			// TODO thats an extensive operation, which only helps debugging
 			return new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(this);
 		} catch (final JsonProcessingException e) {
 		}

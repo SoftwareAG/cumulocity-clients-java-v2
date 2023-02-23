@@ -34,7 +34,7 @@ public class SubscriptionsApiTest {
     public void testGetSubscriptions() {
     	Object response = null;
     	try {
-    		response = service.getSubscriptions(null, 1, 5, null, false).get();
+    		response = service.getSubscriptions(null, 1, 5, null, false).toCompletableFuture().get();
     	} catch (InterruptedException | ExecutionException e) {
     		e.printStackTrace();
     	}

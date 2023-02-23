@@ -34,7 +34,7 @@ public class UsageStatisticsApiTest {
     public void testGetTenantUsageStatisticsCollectionResource() {
     	Object response = null;
     	try {
-    		response = service.getTenantUsageStatisticsCollectionResource(1, null, null, 5, false, false).get();
+    		response = service.getTenantUsageStatisticsCollectionResource(1, null, null, 5, false, false).toCompletableFuture().get();
     	} catch (InterruptedException | ExecutionException e) {
     		e.printStackTrace();
     	}
@@ -45,7 +45,7 @@ public class UsageStatisticsApiTest {
     public void testGetTenantUsageStatistics() {
     	Object response = null;
     	try {
-    		response = service.getTenantUsageStatistics(null, null, null).get();
+    		response = service.getTenantUsageStatistics(null, null, null).toCompletableFuture().get();
     	} catch (InterruptedException | ExecutionException e) {
     		e.printStackTrace();
     	}
@@ -56,7 +56,7 @@ public class UsageStatisticsApiTest {
     public void testGetTenantsUsageStatistics() {
     	Object response = null;
     	try {
-    		response = service.getTenantsUsageStatistics(null, null).get();
+    		response = service.getTenantsUsageStatistics(null, null).toCompletableFuture().get();
     	} catch (InterruptedException | ExecutionException e) {
     		e.printStackTrace();
     	}
@@ -67,7 +67,7 @@ public class UsageStatisticsApiTest {
     public void testGetMetadata() {
     	Object response = null;
     	try {
-    		response = service.getMetadata(1, null, null, 5, false).get();
+    		response = service.getMetadata(1, null, null, 5, false).toCompletableFuture().get();
     	} catch (InterruptedException | ExecutionException e) {
     		e.printStackTrace();
     	}

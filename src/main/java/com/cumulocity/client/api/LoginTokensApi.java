@@ -3,14 +3,14 @@
 
 package com.cumulocity.client.api;
 
-import java.util.concurrent.Future;
+import java.util.concurrent.CompletionStage;
 import jakarta.ws.rs.client.WebTarget;
 import com.cumulocity.client.supplementary.AdaptableApi;
 
 /**
  * API methods to obtain access tokens to the Cumulocity IoT platform in case of OAI-Secure or SSO authentication. </br>
  * 
- */ 
+ */
 public class LoginTokensApi extends AdaptableApi {
 
 	public LoginTokensApi(final WebTarget rootTarget) {

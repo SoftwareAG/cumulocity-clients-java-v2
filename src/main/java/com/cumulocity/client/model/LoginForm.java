@@ -84,7 +84,6 @@ public class LoginForm {
 	
 	/**
 	 * Dependent on the authentication type. PASSWORD is used for OAI-Secure.
-	 * [PASSWORD, AUTHORIZATION_CODE, REFRESH_TOKEN]
 	 */
 	public enum GrantType {
 		@JsonProperty("PASSWORD")
@@ -109,7 +108,6 @@ public class LoginForm {
 	@Override
 	public String toString() {
 		try {
-			// TODO thats an extensive operation, which only helps debugging
 			return new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(this);
 		} catch (final JsonProcessingException e) {
 		}

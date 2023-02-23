@@ -34,7 +34,7 @@ public class BulkOperationsApiTest {
     public void testGetBulkOperations() {
     	Object response = null;
     	try {
-    		response = service.getBulkOperations(1, 5, false).get();
+    		response = service.getBulkOperations(1, 5, false).toCompletableFuture().get();
     	} catch (InterruptedException | ExecutionException e) {
     		e.printStackTrace();
     	}

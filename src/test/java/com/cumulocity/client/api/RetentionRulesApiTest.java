@@ -34,7 +34,7 @@ public class RetentionRulesApiTest {
     public void testGetRetentionRules() {
     	Object response = null;
     	try {
-    		response = service.getRetentionRules(1, 5, false, false).get();
+    		response = service.getRetentionRules(1, 5, false, false).toCompletableFuture().get();
     	} catch (InterruptedException | ExecutionException e) {
     		e.printStackTrace();
     	}

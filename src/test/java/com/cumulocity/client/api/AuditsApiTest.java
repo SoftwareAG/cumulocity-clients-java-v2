@@ -34,7 +34,7 @@ public class AuditsApiTest {
     public void testGetAuditRecords() {
     	Object response = null;
     	try {
-    		response = service.getAuditRecords(null, 1, null, null, 5, null, null, null, false, false).get();
+    		response = service.getAuditRecords(null, 1, null, null, 5, null, null, null, false, false).toCompletableFuture().get();
     	} catch (InterruptedException | ExecutionException e) {
     		e.printStackTrace();
     	}

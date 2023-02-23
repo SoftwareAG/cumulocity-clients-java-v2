@@ -3,7 +3,7 @@
 
 package com.cumulocity.client.api;
 
-import java.util.concurrent.Future;
+import java.util.concurrent.CompletionStage;
 import jakarta.ws.rs.client.WebTarget;
 import com.cumulocity.client.supplementary.AdaptableApi;
 import com.cumulocity.client.model.DeviceStatisticsCollection;
@@ -45,7 +45,7 @@ import com.cumulocity.client.model.DeviceStatisticsCollection;
  * Separately for each child.
  *  </br>
  * 
- */ 
+ */
 public class DeviceStatisticsApi extends AdaptableApi {
 
 	public DeviceStatisticsApi(final WebTarget rootTarget) {
@@ -53,16 +53,20 @@ public class DeviceStatisticsApi extends AdaptableApi {
 	}
 
 	/**
-	 * Retrieve monthly device statistics </br>
-	 * Retrieve monthly device statistics from a specific tenant (by a given ID).  <section><h5>Required roles</h5> ROLE_TENANT_STATISTICS_READ </section> 
+	 * Retrieve monthly device statistics
+	 * Retrieve monthly device statistics from a specific tenant (by a given ID).
+	 * 
+	 * <section><h5>Required roles</h5>
+	 * ROLE_TENANT_STATISTICS_READ
+	 * </section>
+	 * 
 	 *
-	 * <br>The following table gives an overview of the possible response codes and their meanings:</br>
+	 * The following table gives an overview of the possible response codes and their meanings:
 	 * <ul>
-	 * <li>200 The request has succeeded and the devices statistics are sent in the response.</li>
-	 * <li>401 Authentication information is missing or invalid.</li>
-	 * <li>403 Not authorized to perform this operation.</li>
+	 *     <li>HTTP 200 - The request has succeeded and the devices statistics are sent in the response.</li>
+	 *     <li>HTTP 401 - Authentication information is missing or invalid., @{link com.cumulocity.client.model.Error}</li>
+	 *     <li>HTTP 403 - Not authorized to perform this operation.</li>
 	 * </ul>
-	 * <p>
 	 * @param tenantId Unique identifier of a Cumulocity IoT tenant.
 	 * @param date Date (format YYYY-MM-dd) of the queried month (the day value is ignored).
 	 * @param currentPage The current page of the paginated results.
@@ -71,7 +75,7 @@ public class DeviceStatisticsApi extends AdaptableApi {
 	 * @param withTotalPages When set to `true`, the returned result will contain in the statistics object the total number of pages. Only applicable on [range queries](https://en.wikipedia.org/wiki/Range_query_(database)).
 	 * @return
 	 */
-	public Future<DeviceStatisticsCollection> getMonthlyDeviceStatistics(final String tenantId, final String date, final int currentPage, final String deviceId, final int pageSize, final boolean withTotalPages) {
+	public CompletionStage<DeviceStatisticsCollection> getMonthlyDeviceStatistics(final String tenantId, final String date, final int currentPage, final String deviceId, final int pageSize, final boolean withTotalPages) {
 		return adapt().path("tenant").path("statistics").path("device").path(valueOf(tenantId)).path("monthly").path(valueOf(date))
 			.queryParam("currentPage", currentPage)
 			.queryParam("deviceId", deviceId)
@@ -79,21 +83,25 @@ public class DeviceStatisticsApi extends AdaptableApi {
 			.queryParam("withTotalPages", withTotalPages)
 			.request()
 			.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/json")
-			.build("GET")
-			.submit(DeviceStatisticsCollection.class);
+			.rx()
+			.method("GET", DeviceStatisticsCollection.class);
 	}
 	
 	/**
-	 * Retrieve daily device statistics </br>
-	 * Retrieve daily device statistics from a specific tenant (by a given ID).  <section><h5>Required roles</h5> ROLE_TENANT_STATISTICS_READ </section> 
+	 * Retrieve daily device statistics
+	 * Retrieve daily device statistics from a specific tenant (by a given ID).
+	 * 
+	 * <section><h5>Required roles</h5>
+	 * ROLE_TENANT_STATISTICS_READ
+	 * </section>
+	 * 
 	 *
-	 * <br>The following table gives an overview of the possible response codes and their meanings:</br>
+	 * The following table gives an overview of the possible response codes and their meanings:
 	 * <ul>
-	 * <li>200 The request has succeeded and the devices statistics are sent in the response.</li>
-	 * <li>401 Authentication information is missing or invalid.</li>
-	 * <li>403 Not authorized to perform this operation.</li>
+	 *     <li>HTTP 200 - The request has succeeded and the devices statistics are sent in the response.</li>
+	 *     <li>HTTP 401 - Authentication information is missing or invalid., @{link com.cumulocity.client.model.Error}</li>
+	 *     <li>HTTP 403 - Not authorized to perform this operation.</li>
 	 * </ul>
-	 * <p>
 	 * @param tenantId Unique identifier of a Cumulocity IoT tenant.
 	 * @param date Date (format YYYY-MM-dd) of the queried day.
 	 * @param currentPage The current page of the paginated results.
@@ -102,7 +110,7 @@ public class DeviceStatisticsApi extends AdaptableApi {
 	 * @param withTotalPages When set to `true`, the returned result will contain in the statistics object the total number of pages. Only applicable on [range queries](https://en.wikipedia.org/wiki/Range_query_(database)).
 	 * @return
 	 */
-	public Future<DeviceStatisticsCollection> getDailyDeviceStatistics(final String tenantId, final String date, final int currentPage, final String deviceId, final int pageSize, final boolean withTotalPages) {
+	public CompletionStage<DeviceStatisticsCollection> getDailyDeviceStatistics(final String tenantId, final String date, final int currentPage, final String deviceId, final int pageSize, final boolean withTotalPages) {
 		return adapt().path("tenant").path("statistics").path("device").path(valueOf(tenantId)).path("daily").path(valueOf(date))
 			.queryParam("currentPage", currentPage)
 			.queryParam("deviceId", deviceId)
@@ -110,7 +118,7 @@ public class DeviceStatisticsApi extends AdaptableApi {
 			.queryParam("withTotalPages", withTotalPages)
 			.request()
 			.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/json")
-			.build("GET")
-			.submit(DeviceStatisticsCollection.class);
+			.rx()
+			.method("GET", DeviceStatisticsCollection.class);
 	}
 }

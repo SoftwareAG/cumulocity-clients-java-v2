@@ -34,7 +34,7 @@ public class InventoryRolesApiTest {
     public void testGetInventoryRoles() {
     	Object response = null;
     	try {
-    		response = service.getInventoryRoles(1, 5, false).get();
+    		response = service.getInventoryRoles(1, 5, false).toCompletableFuture().get();
     	} catch (InterruptedException | ExecutionException e) {
     		e.printStackTrace();
     	}

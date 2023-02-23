@@ -120,7 +120,6 @@ public class NotificationSubscription {
 	 * The context within which the subscription is to be processed.
 	 * > **&#9432; Info:** If the value is `mo`, then `source` must also be provided in the request body.
 	 * 
-	 * [mo, tenant]
 	 */
 	public enum Context {
 		@JsonProperty("mo")
@@ -189,7 +188,6 @@ public class NotificationSubscription {
 		@Override
 		public String toString() {
 			try {
-				// TODO thats an extensive operation, which only helps debugging
 				return new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(this);
 			} catch (final JsonProcessingException e) {
 			}
@@ -247,7 +245,6 @@ public class NotificationSubscription {
 		@Override
 		public String toString() {
 			try {
-				// TODO thats an extensive operation, which only helps debugging
 				return new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(this);
 			} catch (final JsonProcessingException e) {
 			}
@@ -269,7 +266,6 @@ public class NotificationSubscription {
 	@Override
 	public String toString() {
 		try {
-			// TODO thats an extensive operation, which only helps debugging
 			return new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(this);
 		} catch (final JsonProcessingException e) {
 		}

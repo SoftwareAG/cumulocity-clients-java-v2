@@ -96,7 +96,6 @@ public class RequestRepresentation {
 	
 	/**
 	 * HTTP request method.
-	 * [GET, POST]
 	 */
 	public enum Method {
 		@JsonProperty("GET")
@@ -118,7 +117,6 @@ public class RequestRepresentation {
 	
 	/**
 	 * Requested operation.
-	 * [EXECUTE, REDIRECT]
 	 */
 	public enum Operation {
 		@JsonProperty("EXECUTE")
@@ -161,7 +159,6 @@ public class RequestRepresentation {
 		@Override
 		public String toString() {
 			try {
-				// TODO thats an extensive operation, which only helps debugging
 				return new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(this);
 			} catch (final JsonProcessingException e) {
 			}
@@ -206,7 +203,6 @@ public class RequestRepresentation {
 		@Override
 		public String toString() {
 			try {
-				// TODO thats an extensive operation, which only helps debugging
 				return new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(this);
 			} catch (final JsonProcessingException e) {
 			}
@@ -228,7 +224,6 @@ public class RequestRepresentation {
 	@Override
 	public String toString() {
 		try {
-			// TODO thats an extensive operation, which only helps debugging
 			return new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(this);
 		} catch (final JsonProcessingException e) {
 		}

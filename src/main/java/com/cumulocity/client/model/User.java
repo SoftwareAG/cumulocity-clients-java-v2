@@ -310,7 +310,6 @@ public class User {
 	
 	/**
 	 * Indicates the password strength. The value can be GREEN, YELLOW or RED for decreasing password strengths.
-	 * [GREEN, YELLOW, RED]
 	 */
 	public enum PasswordStrength {
 		@JsonProperty("GREEN")
@@ -380,7 +379,6 @@ public class User {
 		@Override
 		public String toString() {
 			try {
-				// TODO thats an extensive operation, which only helps debugging
 				return new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(this);
 			} catch (final JsonProcessingException e) {
 			}
@@ -449,7 +447,6 @@ public class User {
 		@Override
 		public String toString() {
 			try {
-				// TODO thats an extensive operation, which only helps debugging
 				return new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(this);
 			} catch (final JsonProcessingException e) {
 			}
@@ -471,7 +468,6 @@ public class User {
 	@Override
 	public String toString() {
 		try {
-			// TODO thats an extensive operation, which only helps debugging
 			return new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(this);
 		} catch (final JsonProcessingException e) {
 		}

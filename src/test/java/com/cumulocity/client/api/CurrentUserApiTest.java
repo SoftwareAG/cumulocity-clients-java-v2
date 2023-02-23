@@ -34,7 +34,7 @@ public class CurrentUserApiTest {
     public void testGetCurrentUser() {
     	Object response = null;
     	try {
-    		response = service.getCurrentUser().get();
+    		response = service.getCurrentUser().toCompletableFuture().get();
     	} catch (InterruptedException | ExecutionException e) {
     		e.printStackTrace();
     	}
@@ -45,7 +45,7 @@ public class CurrentUserApiTest {
     public void testGetTfaState() {
     	Object response = null;
     	try {
-    		response = service.getTfaState().get();
+    		response = service.getTfaState().toCompletableFuture().get();
     	} catch (InterruptedException | ExecutionException e) {
     		e.printStackTrace();
     	}

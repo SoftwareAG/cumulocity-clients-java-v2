@@ -34,7 +34,7 @@ public class LoginOptionsApiTest {
     public void testGetLoginOptions() {
     	Object response = null;
     	try {
-    		response = service.getLoginOptions(false, null).get();
+    		response = service.getLoginOptions(false, null).toCompletableFuture().get();
     	} catch (InterruptedException | ExecutionException e) {
     		e.printStackTrace();
     	}

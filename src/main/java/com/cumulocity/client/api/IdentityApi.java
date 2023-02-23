@@ -3,7 +3,7 @@
 
 package com.cumulocity.client.api;
 
-import java.util.concurrent.Future;
+import java.util.concurrent.CompletionStage;
 import jakarta.ws.rs.client.WebTarget;
 import com.cumulocity.client.supplementary.AdaptableApi;
 import com.cumulocity.client.model.IdentityApiResource;
@@ -16,7 +16,7 @@ import com.cumulocity.client.model.IdentityApiResource;
  * The identity API resource returns URIs and URI templates for associating external identifiers with unique identifiers.
  *  </br>
  * 
- */ 
+ */
 public class IdentityApi extends AdaptableApi {
 
 	public IdentityApi(final WebTarget rootTarget) {
@@ -24,21 +24,26 @@ public class IdentityApi extends AdaptableApi {
 	}
 
 	/**
-	 * Retrieve URIs to collections of external IDs </br>
-	 * Retrieve URIs and URI templates for associating external identifiers with unique identifiers.  <section><h5>Required roles</h5> ROLE_IDENTITY_READ </section> 
+	 * Retrieve URIs to collections of external IDs
+	 * Retrieve URIs and URI templates for associating external identifiers with unique identifiers.
+	 * 
+	 * <section><h5>Required roles</h5>
+	 * ROLE_IDENTITY_READ
+	 * </section>
+	 * 
 	 *
-	 * <br>The following table gives an overview of the possible response codes and their meanings:</br>
+	 * The following table gives an overview of the possible response codes and their meanings:
 	 * <ul>
-	 * <li>200 The request has succeeded and the URIs are sent in the response.</li>
-	 * <li>401 Authentication information is missing or invalid.</li>
+	 *     <li>HTTP 200 - The request has succeeded and the URIs are sent in the response.</li>
+	 *     <li>HTTP 401 - Authentication information is missing or invalid., @{link com.cumulocity.client.model.Error}</li>
 	 * </ul>
 	 * @return
 	 */
-	public Future<IdentityApiResource> getIdentityApiResource() {
+	public CompletionStage<IdentityApiResource> getIdentityApiResource() {
 		return adapt().path("identity")
 			.request()
 			.header("Accept", "application/vnd.com.nsn.cumulocity.identityapi+json, application/vnd.com.nsn.cumulocity.error+json")
-			.build("GET")
-			.submit(IdentityApiResource.class);
+			.rx()
+			.method("GET", IdentityApiResource.class);
 	}
 }

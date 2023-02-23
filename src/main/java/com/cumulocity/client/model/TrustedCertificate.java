@@ -186,7 +186,6 @@ public class TrustedCertificate {
 	
 	/**
 	 * Indicates if the certificate is active and can be used by the device to establish a connection to the Cumulocity IoT platform.
-	 * [ENABLED, DISABLED]
 	 */
 	public enum Status {
 		@JsonProperty("ENABLED")
@@ -209,7 +208,6 @@ public class TrustedCertificate {
 	@Override
 	public String toString() {
 		try {
-			// TODO thats an extensive operation, which only helps debugging
 			return new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(this);
 		} catch (final JsonProcessingException e) {
 		}

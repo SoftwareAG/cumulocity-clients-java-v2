@@ -34,7 +34,7 @@ public class MeasurementsApiTest {
     public void testGetMeasurements() {
     	Object response = null;
     	try {
-    		response = service.getMeasurements(1, null, null, 5, false, null, null, null, null, false, false).get();
+    		response = service.getMeasurements(1, null, null, 5, false, null, null, null, null, false, false).toCompletableFuture().get();
     	} catch (InterruptedException | ExecutionException e) {
     		e.printStackTrace();
     	}

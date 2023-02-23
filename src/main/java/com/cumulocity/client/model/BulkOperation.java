@@ -151,7 +151,6 @@ public class BulkOperation {
 	
 	/**
 	 * The status of this bulk operation, in context of the execution of all its single operations.
-	 * [ACTIVE, IN_PROGRESS, COMPLETED, DELETED]
 	 */
 	public enum Status {
 		@JsonProperty("ACTIVE")
@@ -177,7 +176,6 @@ public class BulkOperation {
 	
 	/**
 	 * The general status of this bulk operation. The general status is visible for end users and they can filter and evaluate bulk operations by this status.
-	 * [SCHEDULED, EXECUTING, EXECUTING_WITH_ERRORS, SUCCESSFUL, FAILED, CANCELED]
 	 */
 	public enum GeneralStatus {
 		@JsonProperty("SCHEDULED")
@@ -214,7 +212,6 @@ public class BulkOperation {
 		@Override
 		public String toString() {
 			try {
-				// TODO thats an extensive operation, which only helps debugging
 				return new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(this);
 			} catch (final JsonProcessingException e) {
 			}
@@ -300,7 +297,6 @@ public class BulkOperation {
 		@Override
 		public String toString() {
 			try {
-				// TODO thats an extensive operation, which only helps debugging
 				return new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(this);
 			} catch (final JsonProcessingException e) {
 			}
@@ -322,7 +318,6 @@ public class BulkOperation {
 	@Override
 	public String toString() {
 		try {
-			// TODO thats an extensive operation, which only helps debugging
 			return new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(this);
 		} catch (final JsonProcessingException e) {
 		}

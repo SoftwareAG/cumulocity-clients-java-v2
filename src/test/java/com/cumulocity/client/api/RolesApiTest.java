@@ -34,7 +34,7 @@ public class RolesApiTest {
     public void testGetUserRoles() {
     	Object response = null;
     	try {
-    		response = service.getUserRoles(1, 5, false, false).get();
+    		response = service.getUserRoles(1, 5, false, false).toCompletableFuture().get();
     	} catch (InterruptedException | ExecutionException e) {
     		e.printStackTrace();
     	}

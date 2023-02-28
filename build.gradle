@@ -6,7 +6,7 @@ plugins {
 
 jar {
     archiveBaseName = 'cumulocitycorelibrary'
-    archiveVersion =  '10.15.0-199'
+    archiveVersion =  '10.15.0-200'
 }
 
 compileJava {

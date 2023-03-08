@@ -16,11 +16,10 @@ import com.cumulocity.client.model.CurrentUserTotpCode;
 import com.cumulocity.client.model.CurrentUserTotpSecret;
 
 /**
- * The current user is the user that is currently authenticated with Cumulocity IoT for the API calls.
- * 
- * > **&#9432; Info:** The Accept header should be provided in all PUT requests, otherwise an empty response body will be returned.
- *  </br>
- * 
+ * <p>The current user is the user that is currently authenticated with Cumulocity IoT for the API calls.</p>
+ * <blockquote>
+ * <p><strong>ⓘ Info:</strong> The Accept header should be provided in all PUT requests, otherwise an empty response body will be returned.</p>
+ * </blockquote>
  */
 public class CurrentUserApi extends AdaptableApi {
 
@@ -29,20 +28,19 @@ public class CurrentUserApi extends AdaptableApi {
 	}
 
 	/**
-	 * Retrieve the current user
-	 * Retrieve the user reference of the current user.
-	 * 
+	 * <p>Retrieve the current user</p>
+	 * <p>Retrieve the user reference of the current user.</p>
 	 * <section><h5>Required roles</h5>
 	 * ROLE_USER_MANAGEMENT_OWN_READ <b>OR</b> ROLE_SYSTEM
 	 * </section>
-	 * 
-	 *
-	 * The following table gives an overview of the possible response codes and their meanings:
+	 * <h5>Response Codes</h5>
+	 * <p>The following table gives an overview of the possible response codes and their meanings:</p>
 	 * <ul>
-	 *     <li>HTTP 200 - The request has succeeded and the current user is sent in the response.</li>
-	 *     <li>HTTP 401 - Authentication information is missing or invalid., @{link com.cumulocity.client.model.Error}</li>
+	 * 	<li><p>HTTP 200 <p>The request has succeeded and the current user is sent in the response.</p></p>
+	 * 	</li>
+	 * 	<li><p>HTTP 401 <p>Authentication information is missing or invalid.</p></p>
+	 * 	</li>
 	 * </ul>
-	 * @return
 	 */
 	public CompletionStage<CurrentUser> getCurrentUser() {
 		return adapt().path("user").path("currentUser")
@@ -53,22 +51,23 @@ public class CurrentUserApi extends AdaptableApi {
 	}
 	
 	/**
-	 * Update the current user
-	 * Update the current user.
-	 * 
+	 * <p>Update the current user</p>
+	 * <p>Update the current user.</p>
 	 * <section><h5>Required roles</h5>
 	 * ROLE_USER_MANAGEMENT_OWN_ADMIN
 	 * </section>
-	 * 
-	 *
-	 * The following table gives an overview of the possible response codes and their meanings:
+	 * <h5>Response Codes</h5>
+	 * <p>The following table gives an overview of the possible response codes and their meanings:</p>
 	 * <ul>
-	 *     <li>HTTP 200 - The current user was updated.</li>
-	 *     <li>HTTP 401 - Authentication information is missing or invalid., @{link com.cumulocity.client.model.Error}</li>
-	 *     <li>HTTP 422 - Unprocessable Entity – invalid payload.</li>
+	 * 	<li><p>HTTP 200 <p>The current user was updated.</p></p>
+	 * 	</li>
+	 * 	<li><p>HTTP 401 <p>Authentication information is missing or invalid.</p></p>
+	 * 	</li>
+	 * 	<li><p>HTTP 422 <p>Unprocessable Entity – invalid payload.</p></p>
+	 * 	</li>
 	 * </ul>
-	 * @param body 
-	 * @return
+	 * 
+	 * @param body
 	 */
 	public CompletionStage<CurrentUser> updateCurrentUser(final CurrentUser body) {
 		final JsonNode jsonNode = toJsonNode(body);
@@ -88,23 +87,26 @@ public class CurrentUserApi extends AdaptableApi {
 	}
 	
 	/**
-	 * Update the current user's password
-	 * Update the current user's  password.
-	 * 
-	 * > **⚠️ Important:** If the tenant uses OAI-Secure authentication, the current user will not be logged out. Instead, a new cookie will be set with a new token, and the previous token will expire within a minute.
-	 * 
+	 * <p>Update the current user's password</p>
+	 * <p>Update the current user's  password.</p>
+	 * <blockquote>
+	 * <p><strong>⚠️ Important:</strong> If the tenant uses OAI-Secure authentication, the current user will not be logged out. Instead, a new cookie will be set with a new token, and the previous token will expire within a minute.</p>
+	 * </blockquote>
 	 * <section><h5>Required roles</h5>
 	 * ROLE_USER_MANAGEMENT_OWN_ADMIN
 	 * </section>
-	 * 
-	 *
-	 * The following table gives an overview of the possible response codes and their meanings:
+	 * <h5>Response Codes</h5>
+	 * <p>The following table gives an overview of the possible response codes and their meanings:</p>
 	 * <ul>
-	 *     <li>HTTP 200 - The current user password was updated.</li>
-	 *     <li>HTTP 401 - Authentication information is missing or invalid., @{link com.cumulocity.client.model.Error}</li>
-	 *     <li>HTTP 422 - Unprocessable Entity – invalid payload.</li>
+	 * 	<li><p>HTTP 200 <p>The current user password was updated.</p></p>
+	 * 	</li>
+	 * 	<li><p>HTTP 401 <p>Authentication information is missing or invalid.</p></p>
+	 * 	</li>
+	 * 	<li><p>HTTP 422 <p>Unprocessable Entity – invalid payload.</p></p>
+	 * 	</li>
 	 * </ul>
-	 * @param body 
+	 * 
+	 * @param body
 	 */
 	public CompletionStage<Response> updateCurrentUserPassword(final PasswordChange body) {
 		final JsonNode jsonNode = toJsonNode(body);
@@ -117,22 +119,20 @@ public class CurrentUserApi extends AdaptableApi {
 	}
 	
 	/**
-	 * Generate secret to set up TFA
-	 * Generate a secret code to create a QR code to set up the two-factor authentication functionality using a TFA app/service.
-	 * 
-	 * For more information about the feature, see [User Guide > Administration > Two-factor authentication](https://cumulocity.com/guides/users-guide/administration/#tfa) in the *Cumulocity IoT documentation*.
-	 * 
+	 * <p>Generate secret to set up TFA</p>
+	 * <p>Generate a secret code to create a QR code to set up the two-factor authentication functionality using a TFA app/service.</p>
+	 * <p>For more information about the feature, see <a href="https://cumulocity.com/guides/users-guide/administration/#tfa">User Guide > Administration > Two-factor authentication</a> in the <em>Cumulocity IoT documentation</em>.</p>
 	 * <section><h5>Required roles</h5>
 	 * ROLE_USER_MANAGEMENT_OWN_READ <b>OR</b> ROLE_SYSTEM
 	 * </section>
-	 * 
-	 *
-	 * The following table gives an overview of the possible response codes and their meanings:
+	 * <h5>Response Codes</h5>
+	 * <p>The following table gives an overview of the possible response codes and their meanings:</p>
 	 * <ul>
-	 *     <li>HTTP 200 - The request has succeeded and the secret is sent in the response.</li>
-	 *     <li>HTTP 401 - Authentication information is missing or invalid., @{link com.cumulocity.client.model.Error}</li>
+	 * 	<li><p>HTTP 200 <p>The request has succeeded and the secret is sent in the response.</p></p>
+	 * 	</li>
+	 * 	<li><p>HTTP 401 <p>Authentication information is missing or invalid.</p></p>
+	 * 	</li>
 	 * </ul>
-	 * @return
 	 */
 	public CompletionStage<CurrentUserTotpSecret> generateTfaSecret() {
 		return adapt().path("user").path("currentUser").path("totpSecret")
@@ -143,21 +143,21 @@ public class CurrentUserApi extends AdaptableApi {
 	}
 	
 	/**
-	 * Returns the activation state of the two-factor authentication feature.
-	 * Returns the activation state of the two-factor authentication feature for the current user.
-	 * 
+	 * <p>Returns the activation state of the two-factor authentication feature.</p>
+	 * <p>Returns the activation state of the two-factor authentication feature for the current user.</p>
 	 * <section><h5>Required roles</h5>
 	 * ROLE_USER_MANAGEMENT_OWN_READ <b>OR</b> ROLE_SYSTEM
 	 * </section>
-	 * 
-	 *
-	 * The following table gives an overview of the possible response codes and their meanings:
+	 * <h5>Response Codes</h5>
+	 * <p>The following table gives an overview of the possible response codes and their meanings:</p>
 	 * <ul>
-	 *     <li>HTTP 200 - Returns the activation state.</li>
-	 *     <li>HTTP 401 - Authentication information is missing or invalid., @{link com.cumulocity.client.model.Error}</li>
-	 *     <li>HTTP 404 - User not found., @{link com.cumulocity.client.model.Error}</li>
+	 * 	<li><p>HTTP 200 <p>Returns the activation state.</p></p>
+	 * 	</li>
+	 * 	<li><p>HTTP 401 <p>Authentication information is missing or invalid.</p></p>
+	 * 	</li>
+	 * 	<li><p>HTTP 404 <p>User not found.</p></p>
+	 * 	</li>
 	 * </ul>
-	 * @return
 	 */
 	public CompletionStage<CurrentUserTotpSecretActivity> getTfaState() {
 		return adapt().path("user").path("currentUser").path("totpSecret").path("activity")
@@ -168,24 +168,26 @@ public class CurrentUserApi extends AdaptableApi {
 	}
 	
 	/**
-	 * Activates or deactivates the two-factor authentication feature
-	 * Activates or deactivates the two-factor authentication feature for the current user.
-	 * 
-	 * For more information about the feature, see [User Guide > Administration > Two-factor authentication](https://cumulocity.com/guides/users-guide/administration/#tfa) in the *Cumulocity IoT documentation*.
-	 * 
+	 * <p>Activates or deactivates the two-factor authentication feature</p>
+	 * <p>Activates or deactivates the two-factor authentication feature for the current user.</p>
+	 * <p>For more information about the feature, see <a href="https://cumulocity.com/guides/users-guide/administration/#tfa">User Guide > Administration > Two-factor authentication</a> in the <em>Cumulocity IoT documentation</em>.</p>
 	 * <section><h5>Required roles</h5>
 	 * ROLE_USER_MANAGEMENT_OWN_READ <b>OR</b> ROLE_SYSTEM
 	 * </section>
-	 * 
-	 *
-	 * The following table gives an overview of the possible response codes and their meanings:
+	 * <h5>Response Codes</h5>
+	 * <p>The following table gives an overview of the possible response codes and their meanings:</p>
 	 * <ul>
-	 *     <li>HTTP 204 - The two-factor authentication was activated or deactivated.</li>
-	 *     <li>HTTP 401 - Authentication information is missing or invalid., @{link com.cumulocity.client.model.Error}</li>
-	 *     <li>HTTP 403 - Cannot deactivate TOTP setup.</li>
-	 *     <li>HTTP 404 - User not found., @{link com.cumulocity.client.model.Error}</li>
+	 * 	<li><p>HTTP 204 <p>The two-factor authentication was activated or deactivated.</p></p>
+	 * 	</li>
+	 * 	<li><p>HTTP 401 <p>Authentication information is missing or invalid.</p></p>
+	 * 	</li>
+	 * 	<li><p>HTTP 403 <p>Cannot deactivate TOTP setup.</p></p>
+	 * 	</li>
+	 * 	<li><p>HTTP 404 <p>User not found.</p></p>
+	 * 	</li>
 	 * </ul>
-	 * @param body 
+	 * 
+	 * @param body
 	 */
 	public CompletionStage<Response> setTfaState(final CurrentUserTotpSecretActivity body) {
 		final JsonNode jsonNode = toJsonNode(body);
@@ -198,23 +200,27 @@ public class CurrentUserApi extends AdaptableApi {
 	}
 	
 	/**
-	 * Verify TFA code
-	 * Verifies the authentication code that the current user received from a TFA app/service and uploaded to the platform to gain access or enable the two-factor authentication feature.
-	 * 
+	 * <p>Verify TFA code</p>
+	 * <p>Verifies the authentication code that the current user received from a TFA app/service and uploaded to the platform to gain access or enable the two-factor authentication feature.</p>
 	 * <section><h5>Required roles</h5>
 	 * ROLE_USER_MANAGEMENT_OWN_READ <b>OR</b> ROLE_SYSTEM
 	 * </section>
-	 * 
-	 *
-	 * The following table gives an overview of the possible response codes and their meanings:
+	 * <h5>Response Codes</h5>
+	 * <p>The following table gives an overview of the possible response codes and their meanings:</p>
 	 * <ul>
-	 *     <li>HTTP 204 - The sent code was correct and the access can be granted.</li>
-	 *     <li>HTTP 401 - Authentication information is missing or invalid., @{link com.cumulocity.client.model.Error}</li>
-	 *     <li>HTTP 403 - Invalid verification code.</li>
-	 *     <li>HTTP 404 - Cannot validate TFA TOTP code - user's TFA TOTP secret does not exist.</li>
-	 *     <li>HTTP 422 - Unprocessable Entity – invalid payload.</li>
+	 * 	<li><p>HTTP 204 <p>The sent code was correct and the access can be granted.</p></p>
+	 * 	</li>
+	 * 	<li><p>HTTP 401 <p>Authentication information is missing or invalid.</p></p>
+	 * 	</li>
+	 * 	<li><p>HTTP 403 <p>Invalid verification code.</p></p>
+	 * 	</li>
+	 * 	<li><p>HTTP 404 <p>Cannot validate TFA TOTP code - user's TFA TOTP secret does not exist.</p></p>
+	 * 	</li>
+	 * 	<li><p>HTTP 422 <p>Unprocessable Entity – invalid payload.</p></p>
+	 * 	</li>
 	 * </ul>
-	 * @param body 
+	 * 
+	 * @param body
 	 */
 	public CompletionStage<Response> verifyTfaCode(final CurrentUserTotpCode body) {
 		final JsonNode jsonNode = toJsonNode(body);

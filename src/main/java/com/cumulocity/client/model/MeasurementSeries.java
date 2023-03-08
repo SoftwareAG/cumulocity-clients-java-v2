@@ -14,17 +14,17 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class MeasurementSeries {
 
 	/**
-	 * Each property contained here is a date taken from the measurement and it contains an array of objects specifying `min` and `max` pair of values. Each pair corresponds to a single series object in the `series` array. If there is no aggregation used, `min` is equal to `max` in every pair.
+	 * <p>Each property contained here is a date taken from the measurement and it contains an array of objects specifying <code>min</code> and <code>max</code> pair of values. Each pair corresponds to a single series object in the <code>series</code> array. If there is no aggregation used, <code>min</code> is equal to <code>max</code> in every pair.</p>
 	 */
 	private Values values;
 
 	/**
-	 * An array containing the type of series and units.
+	 * <p>An array containing the type of series and units.</p>
 	 */
 	private MeasurementFragmentSeries[] series;
 
 	/**
-	 * If there were more than 5000 values, the final result was truncated.
+	 * <p>If there were more than 5000 values, the final result was truncated.</p>
 	 */
 	private boolean truncated;
 
@@ -53,7 +53,7 @@ public class MeasurementSeries {
 	}
 
 	/**
-	 * Each property contained here is a date taken from the measurement and it contains an array of objects specifying `min` and `max` pair of values. Each pair corresponds to a single series object in the `series` array. If there is no aggregation used, `min` is equal to `max` in every pair.
+	 * <p>Each property contained here is a date taken from the measurement and it contains an array of objects specifying <code>min</code> and <code>max</code> pair of values. Each pair corresponds to a single series object in the <code>series</code> array. If there is no aggregation used, <code>min</code> is equal to <code>max</code> in every pair.</p>
 	 */
 	@JsonIgnoreProperties(ignoreUnknown = true)
 	@JsonInclude(Include.NON_NULL)

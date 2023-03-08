@@ -10,24 +10,24 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
- * For basic authentication case only.
+ * <p>For basic authentication case only.</p>
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(Include.NON_NULL)
 public class BasicAuthenticationRestrictions {
 
 	/**
-	 * List of types of clients which are not allowed to use basic authentication. Currently the only supported option is WEB_BROWSERS.
+	 * <p>List of types of clients which are not allowed to use basic authentication. Currently the only supported option is WEB_BROWSERS.</p>
 	 */
 	private String[] forbiddenClients;
 
 	/**
-	 * List of user agents, passed in `User-Agent` HTTP header, which are blocked if basic authentication is used.
+	 * <p>List of user agents, passed in <code>User-Agent</code> HTTP header, which are blocked if basic authentication is used.</p>
 	 */
 	private String[] forbiddenUserAgents;
 
 	/**
-	 * List of user agents, passed in `User-Agent` HTTP header, which are allowed to use basic authentication.
+	 * <p>List of user agents, passed in <code>User-Agent</code> HTTP header, which are allowed to use basic authentication.</p>
 	 */
 	private String[] trustedUserAgents;
 

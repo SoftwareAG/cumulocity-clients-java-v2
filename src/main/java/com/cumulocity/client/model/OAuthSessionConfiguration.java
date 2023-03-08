@@ -10,29 +10,29 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
- * The session configuration properties are only available for OAuth internal. See [Changing settings > OAuth internal](https://cumulocity.com/guides/users-guide/administration/#oauth-internal) for more details.
+ * <p>The session configuration properties are only available for OAuth internal. See <a href="https://cumulocity.com/guides/users-guide/administration/#oauth-internal">Changing settings > OAuth internal</a> for more details.</p>
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(Include.NON_NULL)
 public class OAuthSessionConfiguration {
 
 	/**
-	 * Maximum session duration (in milliseconds) during which a user does not have to login again.
+	 * <p>Maximum session duration (in milliseconds) during which a user does not have to login again.</p>
 	 */
 	private int absoluteTimeoutMillis;
 
 	/**
-	 * Maximum number of parallel sessions for one user.
+	 * <p>Maximum number of parallel sessions for one user.</p>
 	 */
 	private int maximumNumberOfParallelSessions;
 
 	/**
-	 * Amount of time before a token expires (in milliseconds) during which the token may be renewed.
+	 * <p>Amount of time before a token expires (in milliseconds) during which the token may be renewed.</p>
 	 */
 	private int renewalTimeoutMillis;
 
 	/**
-	 * Switch to turn additional user agent verification on or off during the session.
+	 * <p>Switch to turn additional user agent verification on or off during the session.</p>
 	 */
 	private boolean userAgentValidationRequired;
 

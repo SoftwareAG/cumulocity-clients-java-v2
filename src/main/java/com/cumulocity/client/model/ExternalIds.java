@@ -14,12 +14,12 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class ExternalIds {
 
 	/**
-	 * An array containing the details of all external IDs (if any).
+	 * <p>An array containing the details of all external IDs (if any).</p>
 	 */
 	private ExternalId[] externalIds;
 
 	/**
-	 * A URL linking to this resource.
+	 * <p>A URL linking to this resource.</p>
 	 */
 	private String self;
 

@@ -16,7 +16,7 @@ public class GroupReference {
 	private Group group;
 
 	/**
-	 * A URL linking to this resource.
+	 * <p>A URL linking to this resource.</p>
 	 */
 	private String self;
 

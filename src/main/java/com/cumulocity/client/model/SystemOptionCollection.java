@@ -10,14 +10,14 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
- * All available system options of the tenant.
+ * <p>All available system options of the tenant.</p>
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(Include.NON_NULL)
 public class SystemOptionCollection {
 
 	/**
-	 * An array containing the predefined system options.
+	 * <p>An array containing the predefined system options.</p>
 	 */
 	private SystemOption[] options;
 

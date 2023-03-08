@@ -10,14 +10,14 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
- * An inventory role reference.
+ * <p>An inventory role reference.</p>
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(Include.NON_NULL)
 public class InventoryAssignmentReference {
 
 	/**
-	 * An array of roles that are assigned to the managed object for the user.
+	 * <p>An array of roles that are assigned to the managed object for the user.</p>
 	 */
 	private Roles[] roles;
 
@@ -34,7 +34,7 @@ public class InventoryAssignmentReference {
 	public static class Roles {
 	
 		/**
-		 * A unique identifier for this inventory role.
+		 * <p>A unique identifier for this inventory role.</p>
 		 */
 		private int id;
 	

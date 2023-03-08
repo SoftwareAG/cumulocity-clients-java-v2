@@ -15,8 +15,7 @@ import com.cumulocity.client.model.BinaryInfo;
 import com.cumulocity.client.model.EventBinary;
 
 /**
- * It is possible to store, retrieve and delete binaries for events. Each event can have one binary attached. </br>
- * 
+ * <p>It is possible to store, retrieve and delete binaries for events. Each event can have one binary attached.</p>
  */
 public class AttachmentsApi extends AdaptableApi {
 
@@ -25,21 +24,24 @@ public class AttachmentsApi extends AdaptableApi {
 	}
 
 	/**
-	 * Retrieve the attached file of a specific event
-	 * Retrieve the attached file (binary) of a specific event by a given ID.
-	 * 
+	 * <p>Retrieve the attached file of a specific event</p>
+	 * <p>Retrieve the attached file (binary) of a specific event by a given ID.</p>
 	 * <section><h5>Required roles</h5>
 	 * ROLE_EVENT_READ <b>OR</b> EVENT_READ permission on the source
 	 * </section>
-	 * 
-	 *
-	 * The following table gives an overview of the possible response codes and their meanings:
+	 * <h5>Response Codes</h5>
+	 * <p>The following table gives an overview of the possible response codes and their meanings:</p>
 	 * <ul>
-	 *     <li>HTTP 200 - The request has succeeded and the file is sent in the response.</li>
-	 *     <li>HTTP 401 - Authentication information is missing or invalid., @{link com.cumulocity.client.model.Error}</li>
-	 *     <li>HTTP 404 - Attachment not found., @{link com.cumulocity.client.model.Error}</li>
+	 * 	<li><p>HTTP 200 <p>The request has succeeded and the file is sent in the response.</p></p>
+	 * 	</li>
+	 * 	<li><p>HTTP 401 <p>Authentication information is missing or invalid.</p></p>
+	 * 	</li>
+	 * 	<li><p>HTTP 404 <p>Attachment not found.</p></p>
+	 * 	</li>
 	 * </ul>
-	 * @param id Unique identifier of the event.
+	 * 
+	 * @param id
+	 * <p>Unique identifier of the event.</p>
 	 */
 	public CompletionStage<Response> getEventAttachment(final String id) {
 		return adapt().path("event").path("events").path(valueOf(id)).path("binaries")
@@ -50,24 +52,25 @@ public class AttachmentsApi extends AdaptableApi {
 	}
 	
 	/**
-	 * Replace the attached file of a specific event
-	 * Upload and replace the attached file (binary) of a specific event by a given ID.<br>
-	 * The size of the attachment is configurable, and the default size is 50 MiB. The default chunk size is 5MiB.
-	 * 
+	 * <p>Replace the attached file of a specific event</p>
+	 * <p>Upload and replace the attached file (binary) of a specific event by a given ID.<br>The size of the attachment is configurable, and the default size is 50 MiB. The default chunk size is 5MiB.</p>
 	 * <section><h5>Required roles</h5>
 	 * ROLE_EVENT_ADMIN <b>OR</b> owner of the source <b>OR</b> EVENT_ADMIN permission on the source
 	 * </section>
-	 * 
-	 *
-	 * The following table gives an overview of the possible response codes and their meanings:
+	 * <h5>Response Codes</h5>
+	 * <p>The following table gives an overview of the possible response codes and their meanings:</p>
 	 * <ul>
-	 *     <li>HTTP 201 - A file was uploaded.</li>
-	 *     <li>HTTP 401 - Authentication information is missing or invalid., @{link com.cumulocity.client.model.Error}</li>
-	 *     <li>HTTP 404 - Event not found., @{link com.cumulocity.client.model.Error}</li>
+	 * 	<li><p>HTTP 201 <p>A file was uploaded.</p></p>
+	 * 	</li>
+	 * 	<li><p>HTTP 401 <p>Authentication information is missing or invalid.</p></p>
+	 * 	</li>
+	 * 	<li><p>HTTP 404 <p>Event not found.</p></p>
+	 * 	</li>
 	 * </ul>
-	 * @param body 
-	 * @param id Unique identifier of the event.
-	 * @return
+	 * 
+	 * @param body
+	 * @param id
+	 * <p>Unique identifier of the event.</p>
 	 */
 	public CompletionStage<EventBinary> replaceEventAttachment(final byte[] body, final String id) {
 		return adapt().path("event").path("events").path(valueOf(id)).path("binaries")
@@ -79,23 +82,18 @@ public class AttachmentsApi extends AdaptableApi {
 	}
 	
 	/**
-	 * Attach a file to a specific event
-	 * Upload a file (binary) as an attachment of a specific event by a given ID.<br>
-	 * The size of the attachment is configurable, and the default size is 50 MiB. The default chunk size is 5MiB.
-	 * 
-	 * After the file has been uploaded, the corresponding event will contain the fragment `c8y_IsBinary` similar to:
-	 * 
-	 * ```json
+	 * <p>Attach a file to a specific event</p>
+	 * <p>Upload a file (binary) as an attachment of a specific event by a given ID.<br>The size of the attachment is configurable, and the default size is 50 MiB. The default chunk size is 5MiB.</p>
+	 * <p>After the file has been uploaded, the corresponding event will contain the fragment <code>c8y_IsBinary</code> similar to:</p>
+	 * <pre>
 	 * "c8y_IsBinary": {
 	 *     "name": "hello.txt",
 	 *     "length": 365,
 	 *     "type": "text/plain"
 	 * }
-	 * ```
-	 * 
-	 * When using `multipart/form-data` each value is sent as a block of data (body part), with a user agent-defined delimiter (`boundary`) separating each part. The keys are given in the `Content-Disposition` header of each part.
-	 * 
-	 * ```http
+	 * </pre>
+	 * <p>When using <code>multipart/form-data</code> each value is sent as a block of data (body part), with a user agent-defined delimiter (<code>boundary</code>) separating each part. The keys are given in the <code>Content-Disposition</code> header of each part.</p>
+	 * <pre>
 	 * POST /event/events/{id}/binaries
 	 * Host: https://<TENANT_DOMAIN>
 	 * Authorization: <AUTHORIZATION>
@@ -112,23 +110,26 @@ public class AttachmentsApi extends AdaptableApi {
 	 * 
 	 * <FILE_CONTENTS>
 	 * --boundary--
-	 * ```
-	 * 
+	 * </pre>
 	 * <section><h5>Required roles</h5>
 	 * ROLE_EVENT_ADMIN <b>OR</b> owner of the source <b>OR</b> EVENT_ADMIN permission on the source
 	 * </section>
-	 * 
-	 *
-	 * The following table gives an overview of the possible response codes and their meanings:
+	 * <h5>Response Codes</h5>
+	 * <p>The following table gives an overview of the possible response codes and their meanings:</p>
 	 * <ul>
-	 *     <li>HTTP 201 - A file was uploaded.</li>
-	 *     <li>HTTP 401 - Authentication information is missing or invalid., @{link com.cumulocity.client.model.Error}</li>
-	 *     <li>HTTP 404 - Event not found., @{link com.cumulocity.client.model.Error}</li>
-	 *     <li>HTTP 409 - An attachment exists already., @{link com.cumulocity.client.model.Error}</li>
+	 * 	<li><p>HTTP 201 <p>A file was uploaded.</p></p>
+	 * 	</li>
+	 * 	<li><p>HTTP 401 <p>Authentication information is missing or invalid.</p></p>
+	 * 	</li>
+	 * 	<li><p>HTTP 404 <p>Event not found.</p></p>
+	 * 	</li>
+	 * 	<li><p>HTTP 409 <p>An attachment exists already.</p></p>
+	 * 	</li>
 	 * </ul>
-	 * @param body 
-	 * @param id Unique identifier of the event.
-	 * @return
+	 * 
+	 * @param body
+	 * @param id
+	 * <p>Unique identifier of the event.</p>
 	 */
 	public CompletionStage<EventBinary> uploadEventAttachment(final byte[] body, final String id) {
 		return adapt().path("event").path("events").path(valueOf(id)).path("binaries")
@@ -140,23 +141,18 @@ public class AttachmentsApi extends AdaptableApi {
 	}
 	
 	/**
-	 * Attach a file to a specific event
-	 * Upload a file (binary) as an attachment of a specific event by a given ID.<br>
-	 * The size of the attachment is configurable, and the default size is 50 MiB. The default chunk size is 5MiB.
-	 * 
-	 * After the file has been uploaded, the corresponding event will contain the fragment `c8y_IsBinary` similar to:
-	 * 
-	 * ```json
+	 * <p>Attach a file to a specific event</p>
+	 * <p>Upload a file (binary) as an attachment of a specific event by a given ID.<br>The size of the attachment is configurable, and the default size is 50 MiB. The default chunk size is 5MiB.</p>
+	 * <p>After the file has been uploaded, the corresponding event will contain the fragment <code>c8y_IsBinary</code> similar to:</p>
+	 * <pre>
 	 * "c8y_IsBinary": {
 	 *     "name": "hello.txt",
 	 *     "length": 365,
 	 *     "type": "text/plain"
 	 * }
-	 * ```
-	 * 
-	 * When using `multipart/form-data` each value is sent as a block of data (body part), with a user agent-defined delimiter (`boundary`) separating each part. The keys are given in the `Content-Disposition` header of each part.
-	 * 
-	 * ```http
+	 * </pre>
+	 * <p>When using <code>multipart/form-data</code> each value is sent as a block of data (body part), with a user agent-defined delimiter (<code>boundary</code>) separating each part. The keys are given in the <code>Content-Disposition</code> header of each part.</p>
+	 * <pre>
 	 * POST /event/events/{id}/binaries
 	 * Host: https://<TENANT_DOMAIN>
 	 * Authorization: <AUTHORIZATION>
@@ -173,24 +169,28 @@ public class AttachmentsApi extends AdaptableApi {
 	 * 
 	 * <FILE_CONTENTS>
 	 * --boundary--
-	 * ```
-	 * 
+	 * </pre>
 	 * <section><h5>Required roles</h5>
 	 * ROLE_EVENT_ADMIN <b>OR</b> owner of the source <b>OR</b> EVENT_ADMIN permission on the source
 	 * </section>
-	 * 
-	 *
-	 * The following table gives an overview of the possible response codes and their meanings:
+	 * <h5>Response Codes</h5>
+	 * <p>The following table gives an overview of the possible response codes and their meanings:</p>
 	 * <ul>
-	 *     <li>HTTP 201 - A file was uploaded.</li>
-	 *     <li>HTTP 401 - Authentication information is missing or invalid., @{link com.cumulocity.client.model.Error}</li>
-	 *     <li>HTTP 404 - Event not found., @{link com.cumulocity.client.model.Error}</li>
-	 *     <li>HTTP 409 - An attachment exists already., @{link com.cumulocity.client.model.Error}</li>
+	 * 	<li><p>HTTP 201 <p>A file was uploaded.</p></p>
+	 * 	</li>
+	 * 	<li><p>HTTP 401 <p>Authentication information is missing or invalid.</p></p>
+	 * 	</li>
+	 * 	<li><p>HTTP 404 <p>Event not found.</p></p>
+	 * 	</li>
+	 * 	<li><p>HTTP 409 <p>An attachment exists already.</p></p>
+	 * 	</li>
 	 * </ul>
-	 * @param pObject 
-	 * @param file Path of the file to be uploaded.
-	 * @param id Unique identifier of the event.
-	 * @return
+	 * 
+	 * @param pObject
+	 * @param file
+	 * <p>Path of the file to be uploaded.</p>
+	 * @param id
+	 * <p>Unique identifier of the event.</p>
 	 */
 	public CompletionStage<EventBinary> uploadEventAttachment(final BinaryInfo pObject, final byte[] file, final String id) {
 		final FormDataMultiPart multiPartEntity = new FormDataMultiPart();
@@ -205,21 +205,24 @@ public class AttachmentsApi extends AdaptableApi {
 	}
 	
 	/**
-	 * Remove the attached file from a specific event
-	 * Remove the attached file (binary) from a specific event by a given ID.
-	 * 
+	 * <p>Remove the attached file from a specific event</p>
+	 * <p>Remove the attached file (binary) from a specific event by a given ID.</p>
 	 * <section><h5>Required roles</h5>
 	 * ROLE_EVENT_ADMIN <b>OR</b> owner of the source <b>OR</b> EVENT_ADMIN permission on the source
 	 * </section>
-	 * 
-	 *
-	 * The following table gives an overview of the possible response codes and their meanings:
+	 * <h5>Response Codes</h5>
+	 * <p>The following table gives an overview of the possible response codes and their meanings:</p>
 	 * <ul>
-	 *     <li>HTTP 204 - A file was removed.</li>
-	 *     <li>HTTP 401 - Authentication information is missing or invalid., @{link com.cumulocity.client.model.Error}</li>
-	 *     <li>HTTP 404 - Event not found., @{link com.cumulocity.client.model.Error}</li>
+	 * 	<li><p>HTTP 204 <p>A file was removed.</p></p>
+	 * 	</li>
+	 * 	<li><p>HTTP 401 <p>Authentication information is missing or invalid.</p></p>
+	 * 	</li>
+	 * 	<li><p>HTTP 404 <p>Event not found.</p></p>
+	 * 	</li>
 	 * </ul>
-	 * @param id Unique identifier of the event.
+	 * 
+	 * @param id
+	 * <p>Unique identifier of the event.</p>
 	 */
 	public CompletionStage<Response> deleteEventAttachment(final String id) {
 		return adapt().path("event").path("events").path(valueOf(id)).path("binaries")

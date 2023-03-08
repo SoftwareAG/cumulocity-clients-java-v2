@@ -10,39 +10,39 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
- * Request a device to send a log file and view it in Cumulocity IoT's log viewer.
+ * <p>Request a device to send a log file and view it in Cumulocity IoT's log viewer.</p>
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(Include.NON_NULL)
 public class C8yLogfileRequest {
 
 	/**
-	 * Indicates the log file to select.
+	 * <p>Indicates the log file to select.</p>
 	 */
 	private String logFile;
 
 	/**
-	 * Start date and time of log entries in the log file to be sent.
+	 * <p>Start date and time of log entries in the log file to be sent.</p>
 	 */
 	private String dateFrom;
 
 	/**
-	 * End date and time of log entries in the log file to be sent.
+	 * <p>End date and time of log entries in the log file to be sent.</p>
 	 */
 	private String dateTo;
 
 	/**
-	 * Provide a text that needs to be present in the log entry.
+	 * <p>Provide a text that needs to be present in the log entry.</p>
 	 */
 	private String searchText;
 
 	/**
-	 * Upper limit of the number of lines that should be sent to Cumulocity IoT after filtering.
+	 * <p>Upper limit of the number of lines that should be sent to Cumulocity IoT after filtering.</p>
 	 */
 	private int maximumLines;
 
 	/**
-	 * A link to the log file request.
+	 * <p>A link to the log file request.</p>
 	 */
 	private String file;
 

@@ -13,8 +13,7 @@ import com.cumulocity.client.model.NotificationSubscription;
 import com.cumulocity.client.model.NotificationSubscriptionCollection;
 
 /**
- * Methods to create, retrieve and delete notification subscriptions. </br>
- * 
+ * <p>Methods to create, retrieve and delete notification subscriptions.</p>
  */
 public class SubscriptionsApi extends AdaptableApi {
 
@@ -23,26 +22,32 @@ public class SubscriptionsApi extends AdaptableApi {
 	}
 
 	/**
-	 * Retrieve all subscriptions
-	 * Retrieve all subscriptions on your tenant, or a specific subset based on queries.
-	 * 
+	 * <p>Retrieve all subscriptions</p>
+	 * <p>Retrieve all subscriptions on your tenant, or a specific subset based on queries.</p>
 	 * <section><h5>Required roles</h5>
 	 * ROLE_NOTIFICATION_2_ADMIN
 	 * </section>
-	 * 
-	 *
-	 * The following table gives an overview of the possible response codes and their meanings:
+	 * <h5>Response Codes</h5>
+	 * <p>The following table gives an overview of the possible response codes and their meanings:</p>
 	 * <ul>
-	 *     <li>HTTP 200 - The request has succeeded and all subscriptions are sent in the response.</li>
-	 *     <li>HTTP 401 - Authentication information is missing or invalid., @{link com.cumulocity.client.model.Error}</li>
-	 *     <li>HTTP 403 - Not enough permissions/roles to perform this operation., @{link com.cumulocity.client.model.Error}</li>
+	 * 	<li><p>HTTP 200 <p>The request has succeeded and all subscriptions are sent in the response.</p></p>
+	 * 	</li>
+	 * 	<li><p>HTTP 401 <p>Authentication information is missing or invalid.</p></p>
+	 * 	</li>
+	 * 	<li><p>HTTP 403 <p>Not enough permissions/roles to perform this operation.</p></p>
+	 * 	</li>
 	 * </ul>
-	 * @param context The context to which the subscription is associated.
-	 * @param currentPage The current page of the paginated results.
-	 * @param pageSize Indicates how many entries of the collection shall be returned. The upper limit for one page is 2,000 objects.
-	 * @param source The managed object ID to which the subscription is associated.
-	 * @param withTotalPages When set to `true`, the returned result will contain in the statistics object the total number of pages. Only applicable on [range queries](https://en.wikipedia.org/wiki/Range_query_(database)).
-	 * @return
+	 * 
+	 * @param context
+	 * <p>The context to which the subscription is associated.</p>
+	 * @param currentPage
+	 * <p>The current page of the paginated results.</p>
+	 * @param pageSize
+	 * <p>Indicates how many entries of the collection shall be returned. The upper limit for one page is 2,000 objects.</p>
+	 * @param source
+	 * <p>The managed object ID to which the subscription is associated.</p>
+	 * @param withTotalPages
+	 * <p>When set to <code>true</code>, the returned result will contain in the statistics object the total number of pages. Only applicable on <a href="https://en.wikipedia.org/wiki/Range_query_(database)">range queries</a>.</p>
 	 */
 	public CompletionStage<NotificationSubscriptionCollection> getSubscriptions(final String context, final int currentPage, final int pageSize, final String source, final boolean withTotalPages) {
 		return adapt().path("notification2").path("subscriptions")
@@ -58,34 +63,44 @@ public class SubscriptionsApi extends AdaptableApi {
 	}
 	
 	/**
-	 * Create a subscription
-	 * Create a new subscription, for example, a subscription that forwards measurements and events of a specific type for a given device.
-	 * 
-	 * In general, each subscription may consist of:
-	 * 
-	 * *  The managed object to which the subscription is associated.
-	 * *  The context under which the subscription is to be processed.
-	 * *  The name of the subscription.
-	 * *  The applicable filter criteria.
-	 * *  The option to only include specific custom fragments in the forwarded data.
-	 * 
+	 * <p>Create a subscription</p>
+	 * <p>Create a new subscription, for example, a subscription that forwards measurements and events of a specific type for a given device.</p>
+	 * <p>In general, each subscription may consist of:</p>
+	 * <ul>
+	 * 	<li><p>The managed object to which the subscription is associated.</p>
+	 * 	</li>
+	 * 	<li><p>The context under which the subscription is to be processed.</p>
+	 * 	</li>
+	 * 	<li><p>The name of the subscription.</p>
+	 * 	</li>
+	 * 	<li><p>The applicable filter criteria.</p>
+	 * 	</li>
+	 * 	<li><p>The option to only include specific custom fragments in the forwarded data.</p>
+	 * 	</li>
+	 * </ul>
 	 * <section><h5>Required roles</h5>
 	 * ROLE_NOTIFICATION_2_ADMIN
 	 * </section>
-	 * 
-	 *
-	 * The following table gives an overview of the possible response codes and their meanings:
+	 * <h5>Response Codes</h5>
+	 * <p>The following table gives an overview of the possible response codes and their meanings:</p>
 	 * <ul>
-	 *     <li>HTTP 201 - A notification subscription was created.</li>
-	 *     <li>HTTP 401 - Authentication information is missing or invalid., @{link com.cumulocity.client.model.Error}</li>
-	 *     <li>HTTP 403 - Not enough permissions/roles to perform this operation., @{link com.cumulocity.client.model.Error}</li>
-	 *     <li>HTTP 404 - Managed object not found., @{link com.cumulocity.client.model.Error}</li>
-	 *     <li>HTTP 409 - Duplicated subscription., @{link com.cumulocity.client.model.Error}</li>
-	 *     <li>HTTP 422 - Unprocessable Entity – invalid payload.</li>
+	 * 	<li><p>HTTP 201 <p>A notification subscription was created.</p></p>
+	 * 	</li>
+	 * 	<li><p>HTTP 401 <p>Authentication information is missing or invalid.</p></p>
+	 * 	</li>
+	 * 	<li><p>HTTP 403 <p>Not enough permissions/roles to perform this operation.</p></p>
+	 * 	</li>
+	 * 	<li><p>HTTP 404 <p>Managed object not found.</p></p>
+	 * 	</li>
+	 * 	<li><p>HTTP 409 <p>Duplicated subscription.</p></p>
+	 * 	</li>
+	 * 	<li><p>HTTP 422 <p>Unprocessable Entity – invalid payload.</p></p>
+	 * 	</li>
 	 * </ul>
-	 * @param body 
-	 * @param xCumulocityProcessingMode Used to explicitly control the processing mode of the request. See [Processing mode](#processing-mode) for more details.
-	 * @return
+	 * 
+	 * @param body
+	 * @param xCumulocityProcessingMode
+	 * <p>Used to explicitly control the processing mode of the request. See <a href="#processing-mode">Processing mode</a> for more details.</p>
 	 */
 	public CompletionStage<NotificationSubscription> createSubscription(final NotificationSubscription body, final String xCumulocityProcessingMode) {
 		final JsonNode jsonNode = toJsonNode(body);
@@ -102,26 +117,34 @@ public class SubscriptionsApi extends AdaptableApi {
 	}
 	
 	/**
-	 * Remove subscriptions by source
-	 * Remove subscriptions by source and context.
-	 * 
-	 * >**&#9432; Info:** The request will result in an error if there are no query parameters. The `source` parameter is optional only if the `context` parameter equals `tenant`.
-	 * 
+	 * <p>Remove subscriptions by source</p>
+	 * <p>Remove subscriptions by source and context.</p>
+	 * <blockquote>
+	 * <p><strong>ⓘ Info:</strong> The request will result in an error if there are no query parameters. The <code>source</code> parameter is optional only if the <code>context</code> parameter equals <code>tenant</code>.</p>
+	 * </blockquote>
 	 * <section><h5>Required roles</h5>
 	 * ROLE_NOTIFICATION_2_ADMIN
 	 * </section>
-	 * 
-	 *
-	 * The following table gives an overview of the possible response codes and their meanings:
+	 * <h5>Response Codes</h5>
+	 * <p>The following table gives an overview of the possible response codes and their meanings:</p>
 	 * <ul>
-	 *     <li>HTTP 204 - A collection of subscriptions was removed.</li>
-	 *     <li>HTTP 401 - Authentication information is missing or invalid., @{link com.cumulocity.client.model.Error}</li>
-	 *     <li>HTTP 403 - Not enough permissions/roles to perform this operation., @{link com.cumulocity.client.model.Error}</li>
-	 *     <li>HTTP 422 - Unprocessable Entity – error in query parameters</li>
+	 * 	<li><p>HTTP 204 <p>A collection of subscriptions was removed.</p></p>
+	 * 	</li>
+	 * 	<li><p>HTTP 401 <p>Authentication information is missing or invalid.</p></p>
+	 * 	</li>
+	 * 	<li><p>HTTP 403 <p>Not enough permissions/roles to perform this operation.</p></p>
+	 * 	</li>
+	 * 	<li><p>HTTP 422 <p>Unprocessable Entity – error in query parameters</p></p>
+	 * 	</li>
 	 * </ul>
-	 * @param xCumulocityProcessingMode Used to explicitly control the processing mode of the request. See [Processing mode](#processing-mode) for more details.
-	 * @param context The context to which the subscription is associated. > **&#9432; Info:** If the value is `mo`, then `source` must also be provided in the query. 
-	 * @param source The managed object ID to which the subscription is associated.
+	 * 
+	 * @param xCumulocityProcessingMode
+	 * <p>Used to explicitly control the processing mode of the request. See <a href="#processing-mode">Processing mode</a> for more details.</p>
+	 * @param context
+	 * <p>The context to which the subscription is associated.</p>
+	 * <p><strong>ⓘ Info:</strong> If the value is <code>mo</code>, then <code>source</code> must also be provided in the query.</p>
+	 * @param source
+	 * <p>The managed object ID to which the subscription is associated.</p>
 	 */
 	public CompletionStage<Response> deleteSubscriptions(final String xCumulocityProcessingMode, final String context, final String source) {
 		return adapt().path("notification2").path("subscriptions")
@@ -135,23 +158,26 @@ public class SubscriptionsApi extends AdaptableApi {
 	}
 	
 	/**
-	 * Retrieve a specific subscription
-	 * Retrieve a specific subscription by a given ID.
-	 * 
+	 * <p>Retrieve a specific subscription</p>
+	 * <p>Retrieve a specific subscription by a given ID.</p>
 	 * <section><h5>Required roles</h5>
 	 * ROLE_NOTIFICATION_2_ADMIN
 	 * </section>
-	 * 
-	 *
-	 * The following table gives an overview of the possible response codes and their meanings:
+	 * <h5>Response Codes</h5>
+	 * <p>The following table gives an overview of the possible response codes and their meanings:</p>
 	 * <ul>
-	 *     <li>HTTP 200 - The request has succeeded and the subscription is sent in the response.</li>
-	 *     <li>HTTP 401 - Authentication information is missing or invalid., @{link com.cumulocity.client.model.Error}</li>
-	 *     <li>HTTP 403 - Not enough permissions/roles to perform this operation., @{link com.cumulocity.client.model.Error}</li>
-	 *     <li>HTTP 404 - Subscription not found., @{link com.cumulocity.client.model.Error}</li>
+	 * 	<li><p>HTTP 200 <p>The request has succeeded and the subscription is sent in the response.</p></p>
+	 * 	</li>
+	 * 	<li><p>HTTP 401 <p>Authentication information is missing or invalid.</p></p>
+	 * 	</li>
+	 * 	<li><p>HTTP 403 <p>Not enough permissions/roles to perform this operation.</p></p>
+	 * 	</li>
+	 * 	<li><p>HTTP 404 <p>Subscription not found.</p></p>
+	 * 	</li>
 	 * </ul>
-	 * @param id Unique identifier of the notification subscription.
-	 * @return
+	 * 
+	 * @param id
+	 * <p>Unique identifier of the notification subscription.</p>
 	 */
 	public CompletionStage<NotificationSubscription> getSubscription(final String id) {
 		return adapt().path("notification2").path("subscriptions").path(valueOf(id))
@@ -162,23 +188,28 @@ public class SubscriptionsApi extends AdaptableApi {
 	}
 	
 	/**
-	 * Remove a specific subscription
-	 * Remove a specific subscription by a given ID.
-	 * 
+	 * <p>Remove a specific subscription</p>
+	 * <p>Remove a specific subscription by a given ID.</p>
 	 * <section><h5>Required roles</h5>
 	 * ROLE_NOTIFICATION_2_ADMIN
 	 * </section>
-	 * 
-	 *
-	 * The following table gives an overview of the possible response codes and their meanings:
+	 * <h5>Response Codes</h5>
+	 * <p>The following table gives an overview of the possible response codes and their meanings:</p>
 	 * <ul>
-	 *     <li>HTTP 204 - A subscription was removed.</li>
-	 *     <li>HTTP 401 - Authentication information is missing or invalid., @{link com.cumulocity.client.model.Error}</li>
-	 *     <li>HTTP 403 - Not enough permissions/roles to perform this operation., @{link com.cumulocity.client.model.Error}</li>
-	 *     <li>HTTP 404 - Subscription not found., @{link com.cumulocity.client.model.Error}</li>
+	 * 	<li><p>HTTP 204 <p>A subscription was removed.</p></p>
+	 * 	</li>
+	 * 	<li><p>HTTP 401 <p>Authentication information is missing or invalid.</p></p>
+	 * 	</li>
+	 * 	<li><p>HTTP 403 <p>Not enough permissions/roles to perform this operation.</p></p>
+	 * 	</li>
+	 * 	<li><p>HTTP 404 <p>Subscription not found.</p></p>
+	 * 	</li>
 	 * </ul>
-	 * @param id Unique identifier of the notification subscription.
-	 * @param xCumulocityProcessingMode Used to explicitly control the processing mode of the request. See [Processing mode](#processing-mode) for more details.
+	 * 
+	 * @param id
+	 * <p>Unique identifier of the notification subscription.</p>
+	 * @param xCumulocityProcessingMode
+	 * <p>Used to explicitly control the processing mode of the request. See <a href="#processing-mode">Processing mode</a> for more details.</p>
 	 */
 	public CompletionStage<Response> deleteSubscription(final String id, final String xCumulocityProcessingMode) {
 		return adapt().path("notification2").path("subscriptions").path(valueOf(id))

@@ -15,7 +15,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class SupportedSeries {
 
 	/**
-	 * An array containing all supported measurement series of the specified device.
+	 * <p>An array containing all supported measurement series of the specified device.</p>
 	 */
 	@JsonProperty(value = "c8y_SupportedSeries")
 	private String[] c8ySupportedSeries;

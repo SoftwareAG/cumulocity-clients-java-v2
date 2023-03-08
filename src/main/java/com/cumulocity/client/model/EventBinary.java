@@ -14,22 +14,22 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class EventBinary {
 
 	/**
-	 * Name of the attachment. If it is not provided in the request, it will be set as the event ID.
+	 * <p>Name of the attachment. If it is not provided in the request, it will be set as the event ID.</p>
 	 */
 	private String name;
 
 	/**
-	 * A URL linking to this resource.
+	 * <p>A URL linking to this resource.</p>
 	 */
 	private String self;
 
 	/**
-	 * Unique identifier of the event.
+	 * <p>Unique identifier of the event.</p>
 	 */
 	private String source;
 
 	/**
-	 * Media type of the attachment.
+	 * <p>Media type of the attachment.</p>
 	 */
 	private String type;
 

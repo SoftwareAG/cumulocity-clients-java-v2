@@ -10,29 +10,29 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
- * Statistics of a specific device (identified by an ID).
+ * <p>Statistics of a specific device (identified by an ID).</p>
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(Include.NON_NULL)
 public class DeviceStatistics {
 
 	/**
-	 * Sum of measurements, events and alarms created and updated for the specified device.
+	 * <p>Sum of measurements, events and alarms created and updated for the specified device.</p>
 	 */
 	private int count;
 
 	/**
-	 * Unique identifier of the device.
+	 * <p>Unique identifier of the device.</p>
 	 */
 	private String deviceId;
 
 	/**
-	 * List of unique identifiers of parents for the corresponding device. Available only with monthly data.
+	 * <p>List of unique identifiers of parents for the corresponding device. Available only with monthly data.</p>
 	 */
 	private String[] deviceParents;
 
 	/**
-	 * Value of the `type` field from the corresponding device. Available only with monthly data.
+	 * <p>Value of the <code>type</code> field from the corresponding device. Available only with monthly data.</p>
 	 */
 	private String deviceType;
 

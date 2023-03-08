@@ -15,29 +15,29 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class LoginForm {
 
 	/**
-	 * Used in case of SSO login. A code received from the external authentication server is exchanged to an internal access token.
+	 * <p>Used in case of SSO login. A code received from the external authentication server is exchanged to an internal access token.</p>
 	 */
 	private String code;
 
 	/**
-	 * Dependent on the authentication type. PASSWORD is used for OAI-Secure.
+	 * <p>Dependent on the authentication type. PASSWORD is used for OAI-Secure.</p>
 	 */
 	@JsonProperty(value = "grant_type")
 	private GrantType grantType;
 
 	/**
-	 * Used in cases of basic or OAI-Secure authentication.
+	 * <p>Used in cases of basic or OAI-Secure authentication.</p>
 	 */
 	private String password;
 
 	/**
-	 * Current TFA code, sent by the user, if a TFA code is required to log in.
+	 * <p>Current TFA code, sent by the user, if a TFA code is required to log in.</p>
 	 */
 	@JsonProperty(value = "tfa_code")
 	private String tfaCode;
 
 	/**
-	 * Used in cases of basic or OAI-Secure authentication.
+	 * <p>Used in cases of basic or OAI-Secure authentication.</p>
 	 */
 	private String username;
 
@@ -83,7 +83,7 @@ public class LoginForm {
 
 	
 	/**
-	 * Dependent on the authentication type. PASSWORD is used for OAI-Secure.
+	 * <p>Dependent on the authentication type. PASSWORD is used for OAI-Secure.</p>
 	 */
 	public enum GrantType {
 		@JsonProperty("PASSWORD")

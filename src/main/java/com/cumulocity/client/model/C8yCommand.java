@@ -10,19 +10,19 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
- * To carry out interactive sessions with a device, use the `c8y_Command` fragment. If this fragment is in the list of supported operations for a device, a tab `Shell` will be shown. Using the `Shell` tab, the user can send commands in an arbitrary, device-specific syntax to the device. The command is sent to the device in a property `text`.
+ * <p>To carry out interactive sessions with a device, use the <code>c8y_Command</code> fragment. If this fragment is in the list of supported operations for a device, a tab <code>Shell</code> will be shown. Using the <code>Shell</code> tab, the user can send commands in an arbitrary, device-specific syntax to the device. The command is sent to the device in a property <code>text</code>.</p>
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(Include.NON_NULL)
 public class C8yCommand {
 
 	/**
-	 * The command sent to the device.
+	 * <p>The command sent to the device.</p>
 	 */
 	private String type;
 
 	/**
-	 * To communicate the results of a particular command, the device adds a property `result`.
+	 * <p>To communicate the results of a particular command, the device adds a property <code>result</code>.</p>
 	 */
 	private String result;
 

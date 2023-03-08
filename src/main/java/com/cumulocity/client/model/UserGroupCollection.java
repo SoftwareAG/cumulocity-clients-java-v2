@@ -14,27 +14,27 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class UserGroupCollection {
 
 	/**
-	 * A URL linking to this resource.
+	 * <p>A URL linking to this resource.</p>
 	 */
 	private String self;
 
 	/**
-	 * An array of user groups.
+	 * <p>An array of user groups.</p>
 	 */
 	private Group[] groups;
 
 	/**
-	 * A URI reference [[RFC3986](https://tools.ietf.org/html/rfc3986)] to a potential previous page of managed objects.
+	 * <p>A URI reference [<a href="https://tools.ietf.org/html/rfc3986">RFC3986</a>] to a potential previous page of managed objects.</p>
 	 */
 	private String prev;
 
 	/**
-	 * A URI reference [[RFC3986](https://tools.ietf.org/html/rfc3986)] to a potential next page of managed objects.
+	 * <p>A URI reference [<a href="https://tools.ietf.org/html/rfc3986">RFC3986</a>] to a potential next page of managed objects.</p>
 	 */
 	private String next;
 
 	/**
-	 * Information about paging statistics.
+	 * <p>Information about paging statistics.</p>
 	 */
 	private PageStatistics statistics;
 

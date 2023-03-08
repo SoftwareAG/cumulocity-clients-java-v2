@@ -15,32 +15,32 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class TenantTfaData {
 
 	/**
-	 * Indicates whether two-factor authentication is enabled on system level or not.
+	 * <p>Indicates whether two-factor authentication is enabled on system level or not.</p>
 	 */
 	private boolean enabledOnSystemLevel;
 
 	/**
-	 * Indicates whether two-factor authentication is enabled on tenant level or not.
+	 * <p>Indicates whether two-factor authentication is enabled on tenant level or not.</p>
 	 */
 	private boolean enabledOnTenantLevel;
 
 	/**
-	 * Indicates whether two-factor authentication is enforced on system level or not.
+	 * <p>Indicates whether two-factor authentication is enforced on system level or not.</p>
 	 */
 	private boolean enforcedOnSystemLevel;
 
 	/**
-	 * Two-factor authentication is enforced for the specified group.
+	 * <p>Two-factor authentication is enforced for the specified group.</p>
 	 */
 	private String enforcedUsersGroup;
 
 	/**
-	 * Two-factor authentication strategy.
+	 * <p>Two-factor authentication strategy.</p>
 	 */
 	private Strategy strategy;
 
 	/**
-	 * Indicates whether two-factor authentication is enforced on tenant level or not.
+	 * <p>Indicates whether two-factor authentication is enforced on tenant level or not.</p>
 	 */
 	private boolean totpEnforcedOnTenantLevel;
 
@@ -94,7 +94,7 @@ public class TenantTfaData {
 
 	
 	/**
-	 * Two-factor authentication strategy.
+	 * <p>Two-factor authentication strategy.</p>
 	 */
 	public enum Strategy {
 		@JsonProperty("SMS")

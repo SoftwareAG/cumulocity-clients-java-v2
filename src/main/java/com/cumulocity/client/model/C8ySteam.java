@@ -11,7 +11,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
- * A type of measurement fragment.
+ * <p>A type of measurement fragment.</p>
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(Include.NON_NULL)
@@ -33,12 +33,12 @@ public class C8ySteam {
 	public static class Temperature {
 	
 		/**
-		 * The unit of the measurement.
+		 * <p>The unit of the measurement.</p>
 		 */
 		private String unit;
 	
 		/**
-		 * The value of the individual measurement.
+		 * <p>The value of the individual measurement.</p>
 		 */
 		private Number value;
 	

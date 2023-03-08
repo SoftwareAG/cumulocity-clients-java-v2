@@ -13,24 +13,19 @@ import com.cumulocity.client.model.BulkOperation;
 import com.cumulocity.client.model.BulkOperationCollection;
 
 /**
- * The bulk operations API allows to schedule an operation on a group of devices to be executed at a specified time.
- * It is required to specify the delay between the creation of subsequent operations.
- * When the bulk operation is created, it has the status ACTIVE.
- * When all operations are created, the bulk operation has the status COMPLETED.
- * It is also possible to cancel an already created bulk operation by deleting it.
- * 
- * When you create a bulk operation, you can run it in two modes:
- * 
- * * If `groupId` is passed, it works the standard way, that means, it takes devices from a group and schedules operations on them.
- * * If `failedParentId` is passed, it takes the already processed bulk operation by that ID, and schedules operations on devices for which the previous operations failed.
- * 
- * Note that passing both `groupId` and `failedParentId` will not work, and a bulk operation works with groups of type `static` and `dynamic`.
- * 
- * > **&#9432; Info:** The bulk operations API requires different roles than the rest of the device control API: `BULK_OPERATION_READ` and `BULK_OPERATION_ADMIN`.
- * >
- * > The Accept header should be provided in all POST/PUT requests, otherwise an empty response body will be returned.
- *  </br>
- * 
+ * <p>The bulk operations API allows to schedule an operation on a group of devices to be executed at a specified time.It is required to specify the delay between the creation of subsequent operations.When the bulk operation is created, it has the status ACTIVE.When all operations are created, the bulk operation has the status COMPLETED.It is also possible to cancel an already created bulk operation by deleting it.</p>
+ * <p>When you create a bulk operation, you can run it in two modes:</p>
+ * <ul>
+ * 	<li><p>If <code>groupId</code> is passed, it works the standard way, that means, it takes devices from a group and schedules operations on them.</p>
+ * 	</li>
+ * 	<li><p>If <code>failedParentId</code> is passed, it takes the already processed bulk operation by that ID, and schedules operations on devices for which the previous operations failed.</p>
+ * 	</li>
+ * </ul>
+ * <p>Note that passing both <code>groupId</code> and <code>failedParentId</code> will not work, and a bulk operation works with groups of type <code>static</code> and <code>dynamic</code>.</p>
+ * <blockquote>
+ * <p><strong>ⓘ Info:</strong> The bulk operations API requires different roles than the rest of the device control API: <code>BULK_OPERATION_READ</code> and <code>BULK_OPERATION_ADMIN</code>.</p>
+ * <p>The Accept header should be provided in all POST/PUT requests, otherwise an empty response body will be returned.</p>
+ * </blockquote>
  */
 public class BulkOperationsApi extends AdaptableApi {
 
@@ -39,23 +34,26 @@ public class BulkOperationsApi extends AdaptableApi {
 	}
 
 	/**
-	 * Retrieve a list of bulk operations
-	 * Retrieve a list of bulk operations.
-	 * 
+	 * <p>Retrieve a list of bulk operations</p>
+	 * <p>Retrieve a list of bulk operations.</p>
 	 * <section><h5>Required roles</h5>
 	 * ROLE_BULK_OPERATION_READ
 	 * </section>
-	 * 
-	 *
-	 * The following table gives an overview of the possible response codes and their meanings:
+	 * <h5>Response Codes</h5>
+	 * <p>The following table gives an overview of the possible response codes and their meanings:</p>
 	 * <ul>
-	 *     <li>HTTP 200 - The request has succeeded and the list of bulk operations sent in the response.</li>
-	 *     <li>HTTP 401 - Authentication information is missing or invalid., @{link com.cumulocity.client.model.Error}</li>
+	 * 	<li><p>HTTP 200 <p>The request has succeeded and the list of bulk operations sent in the response.</p></p>
+	 * 	</li>
+	 * 	<li><p>HTTP 401 <p>Authentication information is missing or invalid.</p></p>
+	 * 	</li>
 	 * </ul>
-	 * @param currentPage The current page of the paginated results.
-	 * @param pageSize Indicates how many entries of the collection shall be returned. The upper limit for one page is 2,000 objects.
-	 * @param withTotalElements When set to `true`, the returned result will contain in the statistics object the total number of elements. Only applicable on [range queries](https://en.wikipedia.org/wiki/Range_query_(database)).
-	 * @return
+	 * 
+	 * @param currentPage
+	 * <p>The current page of the paginated results.</p>
+	 * @param pageSize
+	 * <p>Indicates how many entries of the collection shall be returned. The upper limit for one page is 2,000 objects.</p>
+	 * @param withTotalElements
+	 * <p>When set to <code>true</code>, the returned result will contain in the statistics object the total number of elements. Only applicable on <a href="https://en.wikipedia.org/wiki/Range_query_(database)">range queries</a>.</p>
 	 */
 	public CompletionStage<BulkOperationCollection> getBulkOperations(final int currentPage, final int pageSize, final boolean withTotalElements) {
 		return adapt().path("devicecontrol").path("bulkoperations")
@@ -69,22 +67,23 @@ public class BulkOperationsApi extends AdaptableApi {
 	}
 	
 	/**
-	 * Create a bulk operation
-	 * Create a bulk operation.
-	 * 
+	 * <p>Create a bulk operation</p>
+	 * <p>Create a bulk operation.</p>
 	 * <section><h5>Required roles</h5>
 	 * ROLE_BULK_OPERATION_ADMIN
 	 * </section>
-	 * 
-	 *
-	 * The following table gives an overview of the possible response codes and their meanings:
+	 * <h5>Response Codes</h5>
+	 * <p>The following table gives an overview of the possible response codes and their meanings:</p>
 	 * <ul>
-	 *     <li>HTTP 201 - A bulk operation was created.</li>
-	 *     <li>HTTP 401 - Authentication information is missing or invalid., @{link com.cumulocity.client.model.Error}</li>
+	 * 	<li><p>HTTP 201 <p>A bulk operation was created.</p></p>
+	 * 	</li>
+	 * 	<li><p>HTTP 401 <p>Authentication information is missing or invalid.</p></p>
+	 * 	</li>
 	 * </ul>
-	 * @param body 
-	 * @param xCumulocityProcessingMode Used to explicitly control the processing mode of the request. See [Processing mode](#processing-mode) for more details.
-	 * @return
+	 * 
+	 * @param body
+	 * @param xCumulocityProcessingMode
+	 * <p>Used to explicitly control the processing mode of the request. See <a href="#processing-mode">Processing mode</a> for more details.</p>
 	 */
 	public CompletionStage<BulkOperation> createBulkOperation(final BulkOperation body, final String xCumulocityProcessingMode) {
 		final JsonNode jsonNode = toJsonNode(body);
@@ -103,22 +102,24 @@ public class BulkOperationsApi extends AdaptableApi {
 	}
 	
 	/**
-	 * Retrieve a specific bulk operation
-	 * Retrieve a specific bulk operation (by a given ID).
-	 * 
+	 * <p>Retrieve a specific bulk operation</p>
+	 * <p>Retrieve a specific bulk operation (by a given ID).</p>
 	 * <section><h5>Required roles</h5>
 	 * ROLE_BULK_OPERATION_READ
 	 * </section>
-	 * 
-	 *
-	 * The following table gives an overview of the possible response codes and their meanings:
+	 * <h5>Response Codes</h5>
+	 * <p>The following table gives an overview of the possible response codes and their meanings:</p>
 	 * <ul>
-	 *     <li>HTTP 200 - The request has succeeded and the bulk operation is sent in the response.</li>
-	 *     <li>HTTP 401 - Authentication information is missing or invalid., @{link com.cumulocity.client.model.Error}</li>
-	 *     <li>HTTP 404 - Bulk operation not found., @{link com.cumulocity.client.model.Error}</li>
+	 * 	<li><p>HTTP 200 <p>The request has succeeded and the bulk operation is sent in the response.</p></p>
+	 * 	</li>
+	 * 	<li><p>HTTP 401 <p>Authentication information is missing or invalid.</p></p>
+	 * 	</li>
+	 * 	<li><p>HTTP 404 <p>Bulk operation not found.</p></p>
+	 * 	</li>
 	 * </ul>
-	 * @param id Unique identifier of the bulk operation.
-	 * @return
+	 * 
+	 * @param id
+	 * <p>Unique identifier of the bulk operation.</p>
 	 */
 	public CompletionStage<BulkOperation> getBulkOperation(final String id) {
 		return adapt().path("devicecontrol").path("bulkoperations").path(valueOf(id))
@@ -129,24 +130,27 @@ public class BulkOperationsApi extends AdaptableApi {
 	}
 	
 	/**
-	 * Update a specific bulk operation
-	 * Update a specific bulk operation (by a given ID).
-	 * 
+	 * <p>Update a specific bulk operation</p>
+	 * <p>Update a specific bulk operation (by a given ID).</p>
 	 * <section><h5>Required roles</h5>
 	 * ROLE_BULK_OPERATION_ADMIN
 	 * </section>
-	 * 
-	 *
-	 * The following table gives an overview of the possible response codes and their meanings:
+	 * <h5>Response Codes</h5>
+	 * <p>The following table gives an overview of the possible response codes and their meanings:</p>
 	 * <ul>
-	 *     <li>HTTP 200 - A bulk operation was updated.</li>
-	 *     <li>HTTP 401 - Authentication information is missing or invalid., @{link com.cumulocity.client.model.Error}</li>
-	 *     <li>HTTP 404 - Bulk operation not found., @{link com.cumulocity.client.model.Error}</li>
+	 * 	<li><p>HTTP 200 <p>A bulk operation was updated.</p></p>
+	 * 	</li>
+	 * 	<li><p>HTTP 401 <p>Authentication information is missing or invalid.</p></p>
+	 * 	</li>
+	 * 	<li><p>HTTP 404 <p>Bulk operation not found.</p></p>
+	 * 	</li>
 	 * </ul>
-	 * @param body 
-	 * @param id Unique identifier of the bulk operation.
-	 * @param xCumulocityProcessingMode Used to explicitly control the processing mode of the request. See [Processing mode](#processing-mode) for more details.
-	 * @return
+	 * 
+	 * @param body
+	 * @param id
+	 * <p>Unique identifier of the bulk operation.</p>
+	 * @param xCumulocityProcessingMode
+	 * <p>Used to explicitly control the processing mode of the request. See <a href="#processing-mode">Processing mode</a> for more details.</p>
 	 */
 	public CompletionStage<BulkOperation> updateBulkOperation(final BulkOperation body, final String id, final String xCumulocityProcessingMode) {
 		final JsonNode jsonNode = toJsonNode(body);
@@ -165,23 +169,28 @@ public class BulkOperationsApi extends AdaptableApi {
 	}
 	
 	/**
-	 * Delete a specific bulk operation
-	 * Delete a specific bulk operation (by a given ID).
-	 * 
+	 * <p>Delete a specific bulk operation</p>
+	 * <p>Delete a specific bulk operation (by a given ID).</p>
 	 * <section><h5>Required roles</h5>
 	 * ROLE_BULK_OPERATION_ADMIN
 	 * </section>
-	 * 
-	 *
-	 * The following table gives an overview of the possible response codes and their meanings:
+	 * <h5>Response Codes</h5>
+	 * <p>The following table gives an overview of the possible response codes and their meanings:</p>
 	 * <ul>
-	 *     <li>HTTP 204 - A bulk operation was removed.</li>
-	 *     <li>HTTP 401 - Authentication information is missing or invalid., @{link com.cumulocity.client.model.Error}</li>
-	 *     <li>HTTP 403 - Not authorized to perform this operation.</li>
-	 *     <li>HTTP 404 - Bulk operation not found., @{link com.cumulocity.client.model.Error}</li>
+	 * 	<li><p>HTTP 204 <p>A bulk operation was removed.</p></p>
+	 * 	</li>
+	 * 	<li><p>HTTP 401 <p>Authentication information is missing or invalid.</p></p>
+	 * 	</li>
+	 * 	<li><p>HTTP 403 <p>Not authorized to perform this operation.</p></p>
+	 * 	</li>
+	 * 	<li><p>HTTP 404 <p>Bulk operation not found.</p></p>
+	 * 	</li>
 	 * </ul>
-	 * @param id Unique identifier of the bulk operation.
-	 * @param xCumulocityProcessingMode Used to explicitly control the processing mode of the request. See [Processing mode](#processing-mode) for more details.
+	 * 
+	 * @param id
+	 * <p>Unique identifier of the bulk operation.</p>
+	 * @param xCumulocityProcessingMode
+	 * <p>Used to explicitly control the processing mode of the request. See <a href="#processing-mode">Processing mode</a> for more details.</p>
 	 */
 	public CompletionStage<Response> deleteBulkOperation(final String id, final String xCumulocityProcessingMode) {
 		return adapt().path("devicecontrol").path("bulkoperations").path(valueOf(id))

@@ -10,7 +10,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
- * A current sensor measures the current flowing through it. In a managed object, a current sensor is modeled as a simple empty fragment.
+ * <p>A current sensor measures the current flowing through it. In a managed object, a current sensor is modeled as a simple empty fragment.</p>
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(Include.NON_NULL)

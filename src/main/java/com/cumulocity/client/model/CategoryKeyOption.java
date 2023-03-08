@@ -14,7 +14,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class CategoryKeyOption {
 
 	/**
-	 * The value of this option.
+	 * <p>The value of this option.</p>
 	 */
 	private String value;
 

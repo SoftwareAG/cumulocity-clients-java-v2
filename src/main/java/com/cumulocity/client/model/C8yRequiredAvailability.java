@@ -10,10 +10,8 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
- * Devices can be monitored for availability by adding a `c8y_RequiredAvailability` fragment to the device.
- * 
- * Devices that have not sent any message in the response interval are considered disconnected. The response interval can have a value between `-32768` and `32767` and any values out of range will be shrunk to the range borders. Such devices are marked as unavailable and an unavailability alarm is raised.
- * 
+ * <p>Devices can be monitored for availability by adding a <code>c8y_RequiredAvailability</code> fragment to the device.</p>
+ * <p>Devices that have not sent any message in the response interval are considered disconnected. The response interval can have a value between <code>-32768</code> and <code>32767</code> and any values out of range will be shrunk to the range borders. Such devices are marked as unavailable and an unavailability alarm is raised.</p>
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(Include.NON_NULL)

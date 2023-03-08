@@ -14,7 +14,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class ChildOperationsAddMultiple {
 
 	/**
-	 * An array containing the IDs of the managed objects (children).
+	 * <p>An array containing the IDs of the managed objects (children).</p>
 	 */
 	private References[] references;
 
@@ -52,7 +52,7 @@ public class ChildOperationsAddMultiple {
 		public static class ManagedObject {
 		
 			/**
-			 * Unique identifier of the object.
+			 * <p>Unique identifier of the object.</p>
 			 */
 			private String id;
 		

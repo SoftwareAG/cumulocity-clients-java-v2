@@ -14,27 +14,27 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class InventoryApiResource {
 
 	/**
-	 * Read-only collection of all managed objects with a particular fragment type or capability (placeholder {fragmentType}).
+	 * <p>Read-only collection of all managed objects with a particular fragment type or capability (placeholder {fragmentType}).</p>
 	 */
 	private String managedObjectsForFragmentType;
 
 	/**
-	 * Read-only collection of all managed objects of a particular type (placeholder {type}).
+	 * <p>Read-only collection of all managed objects of a particular type (placeholder {type}).</p>
 	 */
 	private String managedObjectsForType;
 
 	/**
-	 * Read-only collection of managed objects fetched for a given list of ids, for example, “ids=41,43,68”.
+	 * <p>Read-only collection of managed objects fetched for a given list of ids, for example, “ids=41,43,68”.</p>
 	 */
 	private String managedObjectsForListOfIds;
 
 	/**
-	 * Collection of all managed objects
+	 * <p>Collection of all managed objects</p>
 	 */
 	private ManagedObjects managedObjects;
 
 	/**
-	 * A URL linking to this resource.
+	 * <p>A URL linking to this resource.</p>
 	 */
 	private String self;
 
@@ -79,19 +79,19 @@ public class InventoryApiResource {
 	}
 
 	/**
-	 * Collection of all managed objects
+	 * <p>Collection of all managed objects</p>
 	 */
 	@JsonIgnoreProperties(ignoreUnknown = true)
 	@JsonInclude(Include.NON_NULL)
 	public static class ManagedObjects {
 	
 		/**
-		 * An array containing the referenced managed objects.
+		 * <p>An array containing the referenced managed objects.</p>
 		 */
 		private ManagedObject[] references;
 	
 		/**
-		 * A URL linking to this resource.
+		 * <p>A URL linking to this resource.</p>
 		 */
 		private String self;
 	

@@ -10,34 +10,34 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
- * An inventory role.
+ * <p>An inventory role.</p>
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(Include.NON_NULL)
 public class InventoryRole {
 
 	/**
-	 * A description for this inventory role.
+	 * <p>A description for this inventory role.</p>
 	 */
 	private String description;
 
 	/**
-	 * A unique identifier for this inventory role.
+	 * <p>A unique identifier for this inventory role.</p>
 	 */
 	private int id;
 
 	/**
-	 * The name of this inventory role.
+	 * <p>The name of this inventory role.</p>
 	 */
 	private String name;
 
 	/**
-	 * A set of permissions for this inventory role.
+	 * <p>A set of permissions for this inventory role.</p>
 	 */
 	private InventoryRolePermission[] permissions;
 
 	/**
-	 * A URL linking to this resource.
+	 * <p>A URL linking to this resource.</p>
 	 */
 	private String self;
 

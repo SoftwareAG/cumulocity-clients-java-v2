@@ -14,17 +14,17 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class BootstrapUser {
 
 	/**
-	 * The bootstrap user tenant username.
+	 * <p>The bootstrap user tenant username.</p>
 	 */
 	private String name;
 
 	/**
-	 * The bootstrap user tenant password.
+	 * <p>The bootstrap user tenant password.</p>
 	 */
 	private String password;
 
 	/**
-	 * The bootstrap user tenant ID.
+	 * <p>The bootstrap user tenant ID.</p>
 	 */
 	private String tenant;
 

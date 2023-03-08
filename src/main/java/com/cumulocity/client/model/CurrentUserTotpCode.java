@@ -14,7 +14,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class CurrentUserTotpCode {
 
 	/**
-	 * Two-factor authentication code entered by the user to log in to the platform.
+	 * <p>Two-factor authentication code entered by the user to log in to the platform.</p>
 	 */
 	private String code;
 

@@ -11,14 +11,14 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
- * Measurement of the temperature.
+ * <p>Measurement of the temperature.</p>
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(Include.NON_NULL)
 public class C8yTemperatureMeasurement {
 
 	/**
-	 * A measurement is a value with a unit.
+	 * <p>A measurement is a value with a unit.</p>
 	 */
 	@JsonProperty(value = "T")
 	private C8yMeasurementValue t;

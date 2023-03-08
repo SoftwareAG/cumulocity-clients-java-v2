@@ -14,17 +14,17 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class NotificationTokenClaims {
 
 	/**
-	 * The token expiration duration.
+	 * <p>The token expiration duration.</p>
 	 */
 	private int expiresInMinutes;
 
 	/**
-	 * The subscriber name which the client wishes to be identified with.
+	 * <p>The subscriber name which the client wishes to be identified with.</p>
 	 */
 	private String subscriber;
 
 	/**
-	 * The subscription name. This value must match the same that was used when the subscription was created.
+	 * <p>The subscription name. This value must match the same that was used when the subscription was created.</p>
 	 */
 	private String subscription;
 

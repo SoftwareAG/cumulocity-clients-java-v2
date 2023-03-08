@@ -14,32 +14,32 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class ApplicationManifestProbe {
 
 	/**
-	 * The probe failure threshold.
+	 * <p>The probe failure threshold.</p>
 	 */
 	private int failureThreshold;
 
 	/**
-	 * The probe period in seconds.
+	 * <p>The probe period in seconds.</p>
 	 */
 	private int periodSeconds;
 
 	/**
-	 * The probe timeout in seconds.
+	 * <p>The probe timeout in seconds.</p>
 	 */
 	private int timeoutSeconds;
 
 	/**
-	 * The probe success threshold.
+	 * <p>The probe success threshold.</p>
 	 */
 	private int successThreshold;
 
 	/**
-	 * The probe's initial delay in seconds.
+	 * <p>The probe's initial delay in seconds.</p>
 	 */
 	private int initialDelaySeconds;
 
 	/**
-	 * The probe's HTTP GET method information.
+	 * <p>The probe's HTTP GET method information.</p>
 	 */
 	private HttpGet httpGet;
 
@@ -92,19 +92,19 @@ public class ApplicationManifestProbe {
 	}
 
 	/**
-	 * The probe's HTTP GET method information.
+	 * <p>The probe's HTTP GET method information.</p>
 	 */
 	@JsonIgnoreProperties(ignoreUnknown = true)
 	@JsonInclude(Include.NON_NULL)
 	public static class HttpGet {
 	
 		/**
-		 * The HTTP path.
+		 * <p>The HTTP path.</p>
 		 */
 		private String path;
 	
 		/**
-		 * The HTTP port.
+		 * <p>The HTTP port.</p>
 		 */
 		private int port;
 	

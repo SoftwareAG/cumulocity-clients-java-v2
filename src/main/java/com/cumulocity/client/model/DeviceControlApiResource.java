@@ -14,37 +14,37 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class DeviceControlApiResource {
 
 	/**
-	 * Collection of all operations.
+	 * <p>Collection of all operations.</p>
 	 */
 	private Operations operations;
 
 	/**
-	 * Read-only collection of all operations with a particular status.
+	 * <p>Read-only collection of all operations with a particular status.</p>
 	 */
 	private String operationsByStatus;
 
 	/**
-	 * Read-only collection of all operations targeting a particular agent.
+	 * <p>Read-only collection of all operations targeting a particular agent.</p>
 	 */
 	private String operationsByAgentId;
 
 	/**
-	 * Read-only collection of all operations targeting a particular agent and with a particular status.
+	 * <p>Read-only collection of all operations targeting a particular agent and with a particular status.</p>
 	 */
 	private String operationsByAgentIdAndStatus;
 
 	/**
-	 * Read-only collection of all operations to be executed on a particular device.
+	 * <p>Read-only collection of all operations to be executed on a particular device.</p>
 	 */
 	private String operationsByDeviceId;
 
 	/**
-	 * Read-only collection of all operations with a particular status, that should be executed on a particular device.
+	 * <p>Read-only collection of all operations with a particular status, that should be executed on a particular device.</p>
 	 */
 	private String operationsByDeviceIdAndStatus;
 
 	/**
-	 * A URL linking to this resource.
+	 * <p>A URL linking to this resource.</p>
 	 */
 	private String self;
 
@@ -105,19 +105,19 @@ public class DeviceControlApiResource {
 	}
 
 	/**
-	 * Collection of all operations.
+	 * <p>Collection of all operations.</p>
 	 */
 	@JsonIgnoreProperties(ignoreUnknown = true)
 	@JsonInclude(Include.NON_NULL)
 	public static class Operations {
 	
 		/**
-		 * A URL linking to this resource.
+		 * <p>A URL linking to this resource.</p>
 		 */
 		private String self;
 	
 		/**
-		 * An array containing the registered operations.
+		 * <p>An array containing the registered operations.</p>
 		 */
 		private OperationReference[] operations;
 	

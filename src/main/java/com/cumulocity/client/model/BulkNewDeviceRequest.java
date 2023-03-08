@@ -15,32 +15,32 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class BulkNewDeviceRequest {
 
 	/**
-	 * Number of lines processed from the CSV file, without the first line (column headers).
+	 * <p>Number of lines processed from the CSV file, without the first line (column headers).</p>
 	 */
 	private int numberOfAll;
 
 	/**
-	 * Number of created device credentials.
+	 * <p>Number of created device credentials.</p>
 	 */
 	private int numberOfCreated;
 
 	/**
-	 * Number of failed creations of device credentials.
+	 * <p>Number of failed creations of device credentials.</p>
 	 */
 	private int numberOfFailed;
 
 	/**
-	 * Number of successful creations of device credentials. This counts both create and update operations.
+	 * <p>Number of successful creations of device credentials. This counts both create and update operations.</p>
 	 */
 	private int numberOfSuccessful;
 
 	/**
-	 * An array with the updated device credentials.
+	 * <p>An array with the updated device credentials.</p>
 	 */
 	private CredentialUpdatedList[] credentialUpdatedList;
 
 	/**
-	 * An array with details of the failed device credentials.
+	 * <p>An array with details of the failed device credentials.</p>
 	 */
 	private FailedCreationList[] failedCreationList;
 
@@ -97,12 +97,12 @@ public class BulkNewDeviceRequest {
 	public static class CredentialUpdatedList {
 	
 		/**
-		 * The device credentials creation status.
+		 * <p>The device credentials creation status.</p>
 		 */
 		private NewDeviceStatus bulkNewDeviceStatus;
 	
 		/**
-		 * Unique identifier of the device.
+		 * <p>Unique identifier of the device.</p>
 		 */
 		private String deviceId;
 	
@@ -124,7 +124,7 @@ public class BulkNewDeviceRequest {
 	
 		
 		/**
-		 * The device credentials creation status.
+		 * <p>The device credentials creation status.</p>
 		 */
 		public enum NewDeviceStatus {
 			@JsonProperty("CREATED")
@@ -172,22 +172,22 @@ public class BulkNewDeviceRequest {
 	public static class FailedCreationList {
 	
 		/**
-		 * The device credentials creation status.
+		 * <p>The device credentials creation status.</p>
 		 */
 		private NewDeviceStatus bulkNewDeviceStatus;
 	
 		/**
-		 * Unique identifier of the device.
+		 * <p>Unique identifier of the device.</p>
 		 */
 		private String deviceId;
 	
 		/**
-		 * Reason for the failure.
+		 * <p>Reason for the failure.</p>
 		 */
 		private String failureReason;
 	
 		/**
-		 * Line where the failure occurred.
+		 * <p>Line where the failure occurred.</p>
 		 */
 		private String line;
 	
@@ -225,7 +225,7 @@ public class BulkNewDeviceRequest {
 	
 		
 		/**
-		 * The device credentials creation status.
+		 * <p>The device credentials creation status.</p>
 		 */
 		public enum NewDeviceStatus {
 			@JsonProperty("CREATED")

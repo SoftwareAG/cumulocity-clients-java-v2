@@ -10,32 +10,30 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
- * The manifest of the web application.
+ * <p>The manifest of the web application.</p>
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(Include.NON_NULL)
 public class WebApplicationManifest {
 
 	/**
-	 * A legacy flag that identified a certain type of web application that would control the behavior of plugin tab in the application details view.
-	 * It is no longer used.
-	 * 
+	 * <p>A legacy flag that identified a certain type of web application that would control the behavior of plugin tab in the application details view.It is no longer used.</p>
 	 */
 	@Deprecated
 	private boolean pWebpaas;
 
 	/**
-	 * The content security policy of the application.
+	 * <p>The content security policy of the application.</p>
 	 */
 	private String contentSecurityPolicy;
 
 	/**
-	 * A flag that decides if the application is shown in the app switcher on the UI.
+	 * <p>A flag that decides if the application is shown in the app switcher on the UI.</p>
 	 */
 	private boolean noAppSwitcher;
 
 	/**
-	 * A flag that decides if the application tabs are displayed horizontally or not.
+	 * <p>A flag that decides if the application tabs are displayed horizontally or not.</p>
 	 */
 	private boolean tabsHorizontal;
 

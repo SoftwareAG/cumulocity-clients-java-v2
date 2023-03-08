@@ -15,56 +15,58 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class BulkOperation {
 
 	/**
-	 * A URL linking to this resource.
+	 * <p>A URL linking to this resource.</p>
 	 */
 	private String self;
 
 	/**
-	 * Unique identifier of this bulk operation.
+	 * <p>Unique identifier of this bulk operation.</p>
 	 */
 	private String id;
 
 	/**
-	 * Identifies the target group on which this operation should be performed.
-	 * >**&#9432; Info:** `groupId` and `failedParentId` are mutually exclusive. Use only one of them in your request.
-	 * 
+	 * <p>Identifies the target group on which this operation should be performed.</p>
+	 * <blockquote>
+	 * <p><strong>ⓘ Info:</strong> <code>groupId</code> and <code>failedParentId</code> are mutually exclusive. Use only one of them in your request.</p>
+	 * </blockquote>
 	 */
 	private String groupId;
 
 	/**
-	 * Identifies the failed bulk operation from which the failed operations should be rescheduled.
-	 * >**&#9432; Info:** `groupId` and `failedParentId` are mutually exclusive. Use only one of them in your request. 
-	 * 
+	 * <p>Identifies the failed bulk operation from which the failed operations should be rescheduled.</p>
+	 * <blockquote>
+	 * <p><strong>ⓘ Info:</strong> <code>groupId</code> and <code>failedParentId</code> are mutually exclusive. Use only one of them in your request.</p>
+	 * </blockquote>
 	 */
 	private String failedParentId;
 
 	/**
-	 * Date and time when the operations of this bulk operation should be created.
+	 * <p>Date and time when the operations of this bulk operation should be created.</p>
 	 */
 	private String startDate;
 
 	/**
-	 * Delay between every operation creation in seconds.
+	 * <p>Delay between every operation creation in seconds.</p>
 	 */
 	private float creationRamp;
 
 	/**
-	 * Operation to be executed for every device in a group.
+	 * <p>Operation to be executed for every device in a group.</p>
 	 */
 	private OperationPrototype operationPrototype;
 
 	/**
-	 * The status of this bulk operation, in context of the execution of all its single operations.
+	 * <p>The status of this bulk operation, in context of the execution of all its single operations.</p>
 	 */
 	private Status status;
 
 	/**
-	 * The general status of this bulk operation. The general status is visible for end users and they can filter and evaluate bulk operations by this status.
+	 * <p>The general status of this bulk operation. The general status is visible for end users and they can filter and evaluate bulk operations by this status.</p>
 	 */
 	private GeneralStatus generalStatus;
 
 	/**
-	 * Contains information about the number of processed operations.
+	 * <p>Contains information about the number of processed operations.</p>
 	 */
 	private Progress progress;
 
@@ -150,7 +152,7 @@ public class BulkOperation {
 
 	
 	/**
-	 * The status of this bulk operation, in context of the execution of all its single operations.
+	 * <p>The status of this bulk operation, in context of the execution of all its single operations.</p>
 	 */
 	public enum Status {
 		@JsonProperty("ACTIVE")
@@ -175,7 +177,7 @@ public class BulkOperation {
 
 	
 	/**
-	 * The general status of this bulk operation. The general status is visible for end users and they can filter and evaluate bulk operations by this status.
+	 * <p>The general status of this bulk operation. The general status is visible for end users and they can filter and evaluate bulk operations by this status.</p>
 	 */
 	public enum GeneralStatus {
 		@JsonProperty("SCHEDULED")
@@ -203,7 +205,7 @@ public class BulkOperation {
 	}
 
 	/**
-	 * Operation to be executed for every device in a group.
+	 * <p>Operation to be executed for every device in a group.</p>
 	 */
 	@JsonIgnoreProperties(ignoreUnknown = true)
 	@JsonInclude(Include.NON_NULL)
@@ -223,34 +225,34 @@ public class BulkOperation {
 
 
 	/**
-	 * Contains information about the number of processed operations.
+	 * <p>Contains information about the number of processed operations.</p>
 	 */
 	@JsonIgnoreProperties(ignoreUnknown = true)
 	@JsonInclude(Include.NON_NULL)
 	public static class Progress {
 	
 		/**
-		 * Number of pending operations.
+		 * <p>Number of pending operations.</p>
 		 */
 		private int pending;
 	
 		/**
-		 * Number of failed operations.
+		 * <p>Number of failed operations.</p>
 		 */
 		private int failed;
 	
 		/**
-		 * Number of operations being executed.
+		 * <p>Number of operations being executed.</p>
 		 */
 		private int executing;
 	
 		/**
-		 * Number of operations successfully processed.
+		 * <p>Number of operations successfully processed.</p>
 		 */
 		private int successful;
 	
 		/**
-		 * Total number of processed operations.
+		 * <p>Total number of processed operations.</p>
 		 */
 		private int all;
 	

@@ -14,37 +14,37 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class ApplicationApiResource {
 
 	/**
-	 * Collection of all applications..
+	 * <p>Collection of all applications..</p>
 	 */
 	private String applications;
 
 	/**
-	 * A reference to a resource of type Application.
+	 * <p>A reference to a resource of type Application.</p>
 	 */
 	private String applicationById;
 
 	/**
-	 * Read-only collection of all applications with a particular name.
+	 * <p>Read-only collection of all applications with a particular name.</p>
 	 */
 	private String applicationsByName;
 
 	/**
-	 * Read-only collection of all applications subscribed by a particular tenant.
+	 * <p>Read-only collection of all applications subscribed by a particular tenant.</p>
 	 */
 	private String applicationsByTenant;
 
 	/**
-	 * Read-only collection of all applications owned by a particular tenant.
+	 * <p>Read-only collection of all applications owned by a particular tenant.</p>
 	 */
 	private String applicationsByOwner;
 
 	/**
-	 * Read-only collection of all applications owned by a particular user.
+	 * <p>Read-only collection of all applications owned by a particular user.</p>
 	 */
 	private String applicationsByUser;
 
 	/**
-	 * A URL linking to this resource.
+	 * <p>A URL linking to this resource.</p>
 	 */
 	private String self;
 

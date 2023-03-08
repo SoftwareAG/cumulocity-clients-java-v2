@@ -12,18 +12,21 @@ import com.cumulocity.client.model.AuditRecord;
 import com.cumulocity.client.model.AuditRecordCollection;
 
 /**
- * An audit log stores events that are security-relevant and should be stored for auditing. For example, an audit log should be generated when a user logs into a gateway.
- * 
- * An audit log extends an event through:
- * 
- * * A username of the user that carried out the activity.
- * * An application that was used to carry out the activity.
- * * The actual activity.
- * * A severity.
- * 
- * > **&#9432; Info:** The Accept header should be provided in all POST requests, otherwise an empty response body will be returned.
- *  </br>
- * 
+ * <p>An audit log stores events that are security-relevant and should be stored for auditing. For example, an audit log should be generated when a user logs into a gateway.</p>
+ * <p>An audit log extends an event through:</p>
+ * <ul>
+ * 	<li><p>A username of the user that carried out the activity.</p>
+ * 	</li>
+ * 	<li><p>An application that was used to carry out the activity.</p>
+ * 	</li>
+ * 	<li><p>The actual activity.</p>
+ * 	</li>
+ * 	<li><p>A severity.</p>
+ * 	</li>
+ * </ul>
+ * <blockquote>
+ * <p><strong>ⓘ Info:</strong> The Accept header should be provided in all POST requests, otherwise an empty response body will be returned.</p>
+ * </blockquote>
  */
 public class AuditsApi extends AdaptableApi {
 
@@ -32,26 +35,37 @@ public class AuditsApi extends AdaptableApi {
 	}
 
 	/**
-	 * Retrieve all audit records
-	 * Retrieve all audit records registered on your tenant, or a specific subset based on queries.
-	 * 
-	 *
-	 * The following table gives an overview of the possible response codes and their meanings:
+	 * <p>Retrieve all audit records</p>
+	 * <p>Retrieve all audit records registered on your tenant, or a specific subset based on queries.</p>
+	 * <h5>Response Codes</h5>
+	 * <p>The following table gives an overview of the possible response codes and their meanings:</p>
 	 * <ul>
-	 *     <li>HTTP 200 - The request has succeeded and all audit records are sent in the response.</li>
-	 *     <li>HTTP 401 - Authentication information is missing or invalid., @{link com.cumulocity.client.model.Error}</li>
+	 * 	<li><p>HTTP 200 <p>The request has succeeded and all audit records are sent in the response.</p></p>
+	 * 	</li>
+	 * 	<li><p>HTTP 401 <p>Authentication information is missing or invalid.</p></p>
+	 * 	</li>
 	 * </ul>
-	 * @param application Name of the application from which the audit was carried out.
-	 * @param currentPage The current page of the paginated results.
-	 * @param dateFrom Start date or date and time of the audit record.
-	 * @param dateTo End date or date and time of the audit record.
-	 * @param pageSize Indicates how many entries of the collection shall be returned. The upper limit for one page is 2,000 objects.
-	 * @param source The platform component ID to which the audit is associated.
-	 * @param type The type of audit record to search for.
-	 * @param user The username to search for.
-	 * @param withTotalElements When set to `true`, the returned result will contain in the statistics object the total number of elements. Only applicable on [range queries](https://en.wikipedia.org/wiki/Range_query_(database)).
-	 * @param withTotalPages When set to `true`, the returned result will contain in the statistics object the total number of pages. Only applicable on [range queries](https://en.wikipedia.org/wiki/Range_query_(database)).
-	 * @return
+	 * 
+	 * @param application
+	 * <p>Name of the application from which the audit was carried out.</p>
+	 * @param currentPage
+	 * <p>The current page of the paginated results.</p>
+	 * @param dateFrom
+	 * <p>Start date or date and time of the audit record.</p>
+	 * @param dateTo
+	 * <p>End date or date and time of the audit record.</p>
+	 * @param pageSize
+	 * <p>Indicates how many entries of the collection shall be returned. The upper limit for one page is 2,000 objects.</p>
+	 * @param source
+	 * <p>The platform component ID to which the audit is associated.</p>
+	 * @param type
+	 * <p>The type of audit record to search for.</p>
+	 * @param user
+	 * <p>The username to search for.</p>
+	 * @param withTotalElements
+	 * <p>When set to <code>true</code>, the returned result will contain in the statistics object the total number of elements. Only applicable on <a href="https://en.wikipedia.org/wiki/Range_query_(database)">range queries</a>.</p>
+	 * @param withTotalPages
+	 * <p>When set to <code>true</code>, the returned result will contain in the statistics object the total number of pages. Only applicable on <a href="https://en.wikipedia.org/wiki/Range_query_(database)">range queries</a>.</p>
 	 */
 	public CompletionStage<AuditRecordCollection> getAuditRecords(final String application, final int currentPage, final String dateFrom, final String dateTo, final int pageSize, final String source, final String type, final String user, final boolean withTotalElements, final boolean withTotalPages) {
 		return adapt().path("audit").path("auditRecords")
@@ -72,21 +86,21 @@ public class AuditsApi extends AdaptableApi {
 	}
 	
 	/**
-	 * Create an audit record
-	 * Create an audit record.
-	 * 
+	 * <p>Create an audit record</p>
+	 * <p>Create an audit record.</p>
 	 * <section><h5>Required roles</h5>
 	 * ROLE_AUDIT_ADMIN <b>OR</b> ROLE_SYSTEM <b>OR</b> AUDIT_ADMIN permission on the resource
 	 * </section>
-	 * 
-	 *
-	 * The following table gives an overview of the possible response codes and their meanings:
+	 * <h5>Response Codes</h5>
+	 * <p>The following table gives an overview of the possible response codes and their meanings:</p>
 	 * <ul>
-	 *     <li>HTTP 201 - An audit record was created.</li>
-	 *     <li>HTTP 401 - Authentication information is missing or invalid., @{link com.cumulocity.client.model.Error}</li>
+	 * 	<li><p>HTTP 201 <p>An audit record was created.</p></p>
+	 * 	</li>
+	 * 	<li><p>HTTP 401 <p>Authentication information is missing or invalid.</p></p>
+	 * 	</li>
 	 * </ul>
-	 * @param body 
-	 * @return
+	 * 
+	 * @param body
 	 */
 	public CompletionStage<AuditRecord> createAuditRecord(final AuditRecord body) {
 		final JsonNode jsonNode = toJsonNode(body);
@@ -107,21 +121,22 @@ public class AuditsApi extends AdaptableApi {
 	}
 	
 	/**
-	 * Retrieve a specific audit record
-	 * Retrieve a specific audit record by a given ID.
-	 * 
+	 * <p>Retrieve a specific audit record</p>
+	 * <p>Retrieve a specific audit record by a given ID.</p>
 	 * <section><h5>Required roles</h5>
 	 * ROLE_AUDIT_READ <b>OR</b> AUDIT_READ permission on the source
 	 * </section>
-	 * 
-	 *
-	 * The following table gives an overview of the possible response codes and their meanings:
+	 * <h5>Response Codes</h5>
+	 * <p>The following table gives an overview of the possible response codes and their meanings:</p>
 	 * <ul>
-	 *     <li>HTTP 200 - The request has succeeded and the audit record is sent in the response.</li>
-	 *     <li>HTTP 401 - Authentication information is missing or invalid., @{link com.cumulocity.client.model.Error}</li>
+	 * 	<li><p>HTTP 200 <p>The request has succeeded and the audit record is sent in the response.</p></p>
+	 * 	</li>
+	 * 	<li><p>HTTP 401 <p>Authentication information is missing or invalid.</p></p>
+	 * 	</li>
 	 * </ul>
-	 * @param id Unique identifier of the audit record.
-	 * @return
+	 * 
+	 * @param id
+	 * <p>Unique identifier of the audit record.</p>
 	 */
 	public CompletionStage<AuditRecord> getAuditRecord(final String id) {
 		return adapt().path("audit").path("auditRecords").path(valueOf(id))

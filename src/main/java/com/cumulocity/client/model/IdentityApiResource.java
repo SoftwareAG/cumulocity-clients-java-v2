@@ -14,17 +14,17 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class IdentityApiResource {
 
 	/**
-	 * Single external ID, represented by the type and the value of the external ID.
+	 * <p>Single external ID, represented by the type and the value of the external ID.</p>
 	 */
 	private String externalId;
 
 	/**
-	 * Represents a collection of external IDs for a specified global ID.
+	 * <p>Represents a collection of external IDs for a specified global ID.</p>
 	 */
 	private String externalIdsOfGlobalId;
 
 	/**
-	 * A URL linking to this resource.
+	 * <p>A URL linking to this resource.</p>
 	 */
 	private String self;
 

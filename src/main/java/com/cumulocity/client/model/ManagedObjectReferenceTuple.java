@@ -14,12 +14,12 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class ManagedObjectReferenceTuple {
 
 	/**
-	 * Details of the referenced managed object.
+	 * <p>Details of the referenced managed object.</p>
 	 */
 	private ManagedObject managedObject;
 
 	/**
-	 * A URL linking to this resource.
+	 * <p>A URL linking to this resource.</p>
 	 */
 	private String self;
 
@@ -40,24 +40,24 @@ public class ManagedObjectReferenceTuple {
 	}
 
 	/**
-	 * Details of the referenced managed object.
+	 * <p>Details of the referenced managed object.</p>
 	 */
 	@JsonIgnoreProperties(ignoreUnknown = true)
 	@JsonInclude(Include.NON_NULL)
 	public static class ManagedObject {
 	
 		/**
-		 * Unique identifier of the object.
+		 * <p>Unique identifier of the object.</p>
 		 */
 		private String id;
 	
 		/**
-		 * Human-readable name that is used for representing the object in user interfaces.
+		 * <p>Human-readable name that is used for representing the object in user interfaces.</p>
 		 */
 		private String name;
 	
 		/**
-		 * A URL linking to this resource.
+		 * <p>A URL linking to this resource.</p>
 		 */
 		private String self;
 	

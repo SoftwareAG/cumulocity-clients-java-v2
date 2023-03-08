@@ -14,7 +14,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class NotificationToken {
 
 	/**
-	 * JWT (JSON Web Token) access token.
+	 * <p>JWT (JSON Web Token) access token.</p>
 	 */
 	private String token;
 

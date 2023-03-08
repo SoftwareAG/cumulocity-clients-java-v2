@@ -13,18 +13,13 @@ import com.cumulocity.client.model.Application;
 import com.cumulocity.client.model.ApplicationCollection;
 
 /**
- * API methods to retrieve, create, update and delete applications.
- * 
- * ### Application names
- * 
- * For each tenant, Cumulocity IoT manages the subscribed applications and provides a number of applications of various types.
- * In case you want to subscribe a tenant to an application using an API, you must use the application name in the argument (as name).
- * 
- * Refer to the tables in [Administration > Managing applications](https://cumulocity.com/guides/10.7.0/users-guide/administration#managing-applications) in the User guide for the respective application name to be used.
- * 
- * > **&#9432; Info:** The Accept header should be provided in all POST/PUT requests, otherwise an empty response body will be returned.
- *  </br>
- * 
+ * <p>API methods to retrieve, create, update and delete applications.</p>
+ * <p>### Application names</p>
+ * <p>For each tenant, Cumulocity IoT manages the subscribed applications and provides a number of applications of various types.In case you want to subscribe a tenant to an application using an API, you must use the application name in the argument (as name).</p>
+ * <p>Refer to the tables in <a href="https://cumulocity.com/guides/10.7.0/users-guide/administration#managing-applications">Administration > Managing applications</a> in the User guide for the respective application name to be used.</p>
+ * <blockquote>
+ * <p><strong>ⓘ Info:</strong> The Accept header should be provided in all POST/PUT requests, otherwise an empty response body will be returned.</p>
+ * </blockquote>
  */
 public class ApplicationsApi extends AdaptableApi {
 
@@ -33,32 +28,44 @@ public class ApplicationsApi extends AdaptableApi {
 	}
 
 	/**
-	 * Retrieve all applications
-	 * Retrieve all applications on your tenant.
-	 * 
+	 * <p>Retrieve all applications</p>
+	 * <p>Retrieve all applications on your tenant.</p>
 	 * <section><h5>Required roles</h5>
 	 * ROLE_APPLICATION_MANAGEMENT_READ
 	 * </section>
-	 * 
-	 *
-	 * The following table gives an overview of the possible response codes and their meanings:
+	 * <h5>Response Codes</h5>
+	 * <p>The following table gives an overview of the possible response codes and their meanings:</p>
 	 * <ul>
-	 *     <li>HTTP 200 - The request has succeeded and the list of applications is sent in the response.</li>
-	 *     <li>HTTP 401 - Authentication information is missing or invalid., @{link com.cumulocity.client.model.Error}</li>
+	 * 	<li><p>HTTP 200 <p>The request has succeeded and the list of applications is sent in the response.</p></p>
+	 * 	</li>
+	 * 	<li><p>HTTP 401 <p>Authentication information is missing or invalid.</p></p>
+	 * 	</li>
 	 * </ul>
-	 * @param currentPage The current page of the paginated results.
-	 * @param name The name of the application.
-	 * @param owner The ID of the tenant that owns the applications.
-	 * @param pageSize Indicates how many entries of the collection shall be returned. The upper limit for one page is 2,000 objects.
-	 * @param providedFor The ID of a tenant that is subscribed to the applications but doesn't own them.
-	 * @param subscriber The ID of a tenant that is subscribed to the applications.
-	 * @param tenant The ID of a tenant that either owns the application or is subscribed to the applications.
-	 * @param type The type of the application. It is possible to use multiple values separated by a comma. For example, `EXTERNAL,HOSTED` will return only applications with type `EXTERNAL` or `HOSTED`.
-	 * @param user The ID of a user that has access to the applications.
-	 * @param withTotalElements When set to `true`, the returned result will contain in the statistics object the total number of elements. Only applicable on [range queries](https://en.wikipedia.org/wiki/Range_query_(database)).
-	 * @param withTotalPages When set to `true`, the returned result will contain in the statistics object the total number of pages. Only applicable on [range queries](https://en.wikipedia.org/wiki/Range_query_(database)).
-	 * @param hasVersions When set to `true`, the returned result contains applications with an `applicationVersions` field that is not empty. When set to `false`, the result will contain applications with an empty `applicationVersions` field.
-	 * @return
+	 * 
+	 * @param currentPage
+	 * <p>The current page of the paginated results.</p>
+	 * @param name
+	 * <p>The name of the application.</p>
+	 * @param owner
+	 * <p>The ID of the tenant that owns the applications.</p>
+	 * @param pageSize
+	 * <p>Indicates how many entries of the collection shall be returned. The upper limit for one page is 2,000 objects.</p>
+	 * @param providedFor
+	 * <p>The ID of a tenant that is subscribed to the applications but doesn't own them.</p>
+	 * @param subscriber
+	 * <p>The ID of a tenant that is subscribed to the applications.</p>
+	 * @param tenant
+	 * <p>The ID of a tenant that either owns the application or is subscribed to the applications.</p>
+	 * @param type
+	 * <p>The type of the application. It is possible to use multiple values separated by a comma. For example, <code>EXTERNAL,HOSTED</code> will return only applications with type <code>EXTERNAL</code> or <code>HOSTED</code>.</p>
+	 * @param user
+	 * <p>The ID of a user that has access to the applications.</p>
+	 * @param withTotalElements
+	 * <p>When set to <code>true</code>, the returned result will contain in the statistics object the total number of elements. Only applicable on <a href="https://en.wikipedia.org/wiki/Range_query_(database)">range queries</a>.</p>
+	 * @param withTotalPages
+	 * <p>When set to <code>true</code>, the returned result will contain in the statistics object the total number of pages. Only applicable on <a href="https://en.wikipedia.org/wiki/Range_query_(database)">range queries</a>.</p>
+	 * @param hasVersions
+	 * <p>When set to <code>true</code>, the returned result contains applications with an <code>applicationVersions</code> field that is not empty. When set to <code>false</code>, the result will contain applications with an empty <code>applicationVersions</code> field.</p>
 	 */
 	public CompletionStage<ApplicationCollection> getApplications(final int currentPage, final String name, final String owner, final int pageSize, final String providedFor, final String subscriber, final String tenant, final String type, final String user, final boolean withTotalElements, final boolean withTotalPages, final boolean hasVersions) {
 		return adapt().path("application").path("applications")
@@ -81,24 +88,27 @@ public class ApplicationsApi extends AdaptableApi {
 	}
 	
 	/**
-	 * Create an application
-	 * Create an application on your tenant.
-	 * 
+	 * <p>Create an application</p>
+	 * <p>Create an application on your tenant.</p>
 	 * <section><h5>Required roles</h5>
 	 * ROLE_APPLICATION_MANAGEMENT_ADMIN
 	 * </section>
-	 * 
-	 *
-	 * The following table gives an overview of the possible response codes and their meanings:
+	 * <h5>Response Codes</h5>
+	 * <p>The following table gives an overview of the possible response codes and their meanings:</p>
 	 * <ul>
-	 *     <li>HTTP 201 - An application was created.</li>
-	 *     <li>HTTP 401 - Authentication information is missing or invalid., @{link com.cumulocity.client.model.Error}</li>
-	 *     <li>HTTP 409 - Duplicate key/name., @{link com.cumulocity.client.model.Error}</li>
-	 *     <li>HTTP 422 - Unprocessable Entity – invalid payload.</li>
+	 * 	<li><p>HTTP 201 <p>An application was created.</p></p>
+	 * 	</li>
+	 * 	<li><p>HTTP 401 <p>Authentication information is missing or invalid.</p></p>
+	 * 	</li>
+	 * 	<li><p>HTTP 409 <p>Duplicate key/name.</p></p>
+	 * 	</li>
+	 * 	<li><p>HTTP 422 <p>Unprocessable Entity – invalid payload.</p></p>
+	 * 	</li>
 	 * </ul>
-	 * @param body 
-	 * @param xCumulocityProcessingMode Used to explicitly control the processing mode of the request. See [Processing mode](#processing-mode) for more details.
-	 * @return
+	 * 
+	 * @param body
+	 * @param xCumulocityProcessingMode
+	 * <p>Used to explicitly control the processing mode of the request. See <a href="#processing-mode">Processing mode</a> for more details.</p>
 	 */
 	public CompletionStage<Application> createApplication(final Application body, final String xCumulocityProcessingMode) {
 		final JsonNode jsonNode = toJsonNode(body);
@@ -117,22 +127,24 @@ public class ApplicationsApi extends AdaptableApi {
 	}
 	
 	/**
-	 * Retrieve a specific application
-	 * Retrieve a specific application (by a given ID).
-	 * 
+	 * <p>Retrieve a specific application</p>
+	 * <p>Retrieve a specific application (by a given ID).</p>
 	 * <section><h5>Required roles</h5>
 	 * ROLE_APPLICATION_MANAGEMENT_READ <b>OR</b> current user has explicit access to the application
 	 * </section>
-	 * 
-	 *
-	 * The following table gives an overview of the possible response codes and their meanings:
+	 * <h5>Response Codes</h5>
+	 * <p>The following table gives an overview of the possible response codes and their meanings:</p>
 	 * <ul>
-	 *     <li>HTTP 200 - The request has succeeded and the application is sent in the response.</li>
-	 *     <li>HTTP 401 - Authentication information is missing or invalid., @{link com.cumulocity.client.model.Error}</li>
-	 *     <li>HTTP 404 - Application not found., @{link com.cumulocity.client.model.Error}</li>
+	 * 	<li><p>HTTP 200 <p>The request has succeeded and the application is sent in the response.</p></p>
+	 * 	</li>
+	 * 	<li><p>HTTP 401 <p>Authentication information is missing or invalid.</p></p>
+	 * 	</li>
+	 * 	<li><p>HTTP 404 <p>Application not found.</p></p>
+	 * 	</li>
 	 * </ul>
-	 * @param id Unique identifier of the application.
-	 * @return
+	 * 
+	 * @param id
+	 * <p>Unique identifier of the application.</p>
 	 */
 	public CompletionStage<Application> getApplication(final String id) {
 		return adapt().path("application").path("applications").path(valueOf(id))
@@ -143,24 +155,27 @@ public class ApplicationsApi extends AdaptableApi {
 	}
 	
 	/**
-	 * Update a specific application
-	 * Update a specific application (by a given ID).
-	 * 
+	 * <p>Update a specific application</p>
+	 * <p>Update a specific application (by a given ID).</p>
 	 * <section><h5>Required roles</h5>
 	 * ROLE_USER_MANAGEMENT_ADMIN
 	 * </section>
-	 * 
-	 *
-	 * The following table gives an overview of the possible response codes and their meanings:
+	 * <h5>Response Codes</h5>
+	 * <p>The following table gives an overview of the possible response codes and their meanings:</p>
 	 * <ul>
-	 *     <li>HTTP 200 - An application was updated.</li>
-	 *     <li>HTTP 401 - Authentication information is missing or invalid., @{link com.cumulocity.client.model.Error}</li>
-	 *     <li>HTTP 404 - Application not found., @{link com.cumulocity.client.model.Error}</li>
+	 * 	<li><p>HTTP 200 <p>An application was updated.</p></p>
+	 * 	</li>
+	 * 	<li><p>HTTP 401 <p>Authentication information is missing or invalid.</p></p>
+	 * 	</li>
+	 * 	<li><p>HTTP 404 <p>Application not found.</p></p>
+	 * 	</li>
 	 * </ul>
-	 * @param body 
-	 * @param id Unique identifier of the application.
-	 * @param xCumulocityProcessingMode Used to explicitly control the processing mode of the request. See [Processing mode](#processing-mode) for more details.
-	 * @return
+	 * 
+	 * @param body
+	 * @param id
+	 * <p>Unique identifier of the application.</p>
+	 * @param xCumulocityProcessingMode
+	 * <p>Used to explicitly control the processing mode of the request. See <a href="#processing-mode">Processing mode</a> for more details.</p>
 	 */
 	public CompletionStage<Application> updateApplication(final Application body, final String id, final String xCumulocityProcessingMode) {
 		final JsonNode jsonNode = toJsonNode(body);
@@ -180,27 +195,33 @@ public class ApplicationsApi extends AdaptableApi {
 	}
 	
 	/**
-	 * Delete an application
-	 * Delete an application (by a given ID).
-	 * This method is not supported by microservice applications.
-	 * 
-	 * > **&#9432; Info:** With regards to a hosted application, there is a caching mechanism in place that keeps the information about the placement of application files (html, javascript, css, fonts, etc.). Removing a hosted application, in normal circumstances, will cause the subsequent requests for application files to fail with an HTTP 404 error because the application is removed synchronously, its files are immediately removed on the node serving the request and at the same time the information is propagated to other nodes – but in rare cases there might be a delay with this propagation. In such situations, the files of the removed application can be served from those nodes up until the aforementioned cache expires. For the same reason, the cache can also cause HTTP 404 errors when the application is updated as it will keep the path to the files of the old version of the application. The cache is filled on demand, so there should not be issues if application files were not accessed prior to the delete request. The expiration delay of the cache can differ, but should not take more than one minute.
-	 * 
+	 * <p>Delete an application</p>
+	 * <p>Delete an application (by a given ID).This method is not supported by microservice applications.</p>
+	 * <blockquote>
+	 * <p><strong>ⓘ Info:</strong> With regards to a hosted application, there is a caching mechanism in place that keeps the information about the placement of application files (html, javascript, css, fonts, etc.). Removing a hosted application, in normal circumstances, will cause the subsequent requests for application files to fail with an HTTP 404 error because the application is removed synchronously, its files are immediately removed on the node serving the request and at the same time the information is propagated to other nodes – but in rare cases there might be a delay with this propagation. In such situations, the files of the removed application can be served from those nodes up until the aforementioned cache expires. For the same reason, the cache can also cause HTTP 404 errors when the application is updated as it will keep the path to the files of the old version of the application. The cache is filled on demand, so there should not be issues if application files were not accessed prior to the delete request. The expiration delay of the cache can differ, but should not take more than one minute.</p>
+	 * </blockquote>
 	 * <section><h5>Required roles</h5>
 	 * ROLE_APPLICATION_MANAGEMENT_ADMIN <b>AND</b> tenant is the owner of the application
 	 * </section>
-	 * 
-	 *
-	 * The following table gives an overview of the possible response codes and their meanings:
+	 * <h5>Response Codes</h5>
+	 * <p>The following table gives an overview of the possible response codes and their meanings:</p>
 	 * <ul>
-	 *     <li>HTTP 204 - An application was removed.</li>
-	 *     <li>HTTP 401 - Authentication information is missing or invalid., @{link com.cumulocity.client.model.Error}</li>
-	 *     <li>HTTP 403 - Not authorized to perform this operation.</li>
-	 *     <li>HTTP 404 - Application not found., @{link com.cumulocity.client.model.Error}</li>
+	 * 	<li><p>HTTP 204 <p>An application was removed.</p></p>
+	 * 	</li>
+	 * 	<li><p>HTTP 401 <p>Authentication information is missing or invalid.</p></p>
+	 * 	</li>
+	 * 	<li><p>HTTP 403 <p>Not authorized to perform this operation.</p></p>
+	 * 	</li>
+	 * 	<li><p>HTTP 404 <p>Application not found.</p></p>
+	 * 	</li>
 	 * </ul>
-	 * @param id Unique identifier of the application.
-	 * @param force Force deletion by unsubscribing all tenants from the application first and then deleting the application itself.
-	 * @param xCumulocityProcessingMode Used to explicitly control the processing mode of the request. See [Processing mode](#processing-mode) for more details.
+	 * 
+	 * @param id
+	 * <p>Unique identifier of the application.</p>
+	 * @param force
+	 * <p>Force deletion by unsubscribing all tenants from the application first and then deleting the application itself.</p>
+	 * @param xCumulocityProcessingMode
+	 * <p>Used to explicitly control the processing mode of the request. See <a href="#processing-mode">Processing mode</a> for more details.</p>
 	 */
 	public CompletionStage<Response> deleteApplication(final String id, final boolean force, final String xCumulocityProcessingMode) {
 		return adapt().path("application").path("applications").path(valueOf(id))
@@ -213,30 +234,30 @@ public class ApplicationsApi extends AdaptableApi {
 	}
 	
 	/**
-	 * Copy an application
-	 * Copy an application (by a given ID).
-	 * 
-	 * This method is not supported by microservice applications.
-	 * 
-	 * A request to the "clone" resource creates a new application based on an already existing one.
-	 * 
-	 * The properties are copied to the newly created application and the prefix "clone" is added to the properties `name`, `key` and `contextPath` in order to be unique.
-	 * 
-	 * If the target application is hosted and has an active version, the new application will have the active version with the same content.
+	 * <p>Copy an application</p>
+	 * <p>Copy an application (by a given ID).</p>
+	 * <p>This method is not supported by microservice applications.</p>
+	 * <p>A request to the "clone" resource creates a new application based on an already existing one.</p>
+	 * <p>The properties are copied to the newly created application and the prefix "clone" is added to the properties <code>name</code>, <code>key</code> and <code>contextPath</code> in order to be unique.</p>
+	 * <p>If the target application is hosted and has an active version, the new application will have the active version with the same content.</p>
 	 * <section><h5>Required roles</h5>
 	 * ROLE_APPLICATION_MANAGEMENT_ADMIN
 	 * </section>
-	 * 
-	 *
-	 * The following table gives an overview of the possible response codes and their meanings:
+	 * <h5>Response Codes</h5>
+	 * <p>The following table gives an overview of the possible response codes and their meanings:</p>
 	 * <ul>
-	 *     <li>HTTP 201 - An application was copied.</li>
-	 *     <li>HTTP 401 - Authentication information is missing or invalid., @{link com.cumulocity.client.model.Error}</li>
-	 *     <li>HTTP 422 - Unprocessable Entity – method not supported</li>
+	 * 	<li><p>HTTP 201 <p>An application was copied.</p></p>
+	 * 	</li>
+	 * 	<li><p>HTTP 401 <p>Authentication information is missing or invalid.</p></p>
+	 * 	</li>
+	 * 	<li><p>HTTP 422 <p>Unprocessable Entity – method not supported</p></p>
+	 * 	</li>
 	 * </ul>
-	 * @param id Unique identifier of the application.
-	 * @param xCumulocityProcessingMode Used to explicitly control the processing mode of the request. See [Processing mode](#processing-mode) for more details.
-	 * @return
+	 * 
+	 * @param id
+	 * <p>Unique identifier of the application.</p>
+	 * @param xCumulocityProcessingMode
+	 * <p>Used to explicitly control the processing mode of the request. See <a href="#processing-mode">Processing mode</a> for more details.</p>
 	 */
 	public CompletionStage<Application> copyApplication(final String id, final String xCumulocityProcessingMode) {
 		return adapt().path("application").path("applications").path(valueOf(id)).path("clone")
@@ -248,21 +269,22 @@ public class ApplicationsApi extends AdaptableApi {
 	}
 	
 	/**
-	 * Retrieve applications by name
-	 * Retrieve applications by name.
-	 * 
+	 * <p>Retrieve applications by name</p>
+	 * <p>Retrieve applications by name.</p>
 	 * <section><h5>Required roles</h5>
 	 * ROLE_APPLICATION_MANAGEMENT_READ
 	 * </section>
-	 * 
-	 *
-	 * The following table gives an overview of the possible response codes and their meanings:
+	 * <h5>Response Codes</h5>
+	 * <p>The following table gives an overview of the possible response codes and their meanings:</p>
 	 * <ul>
-	 *     <li>HTTP 200 - The request has succeeded and the applications are sent in the response.</li>
-	 *     <li>HTTP 401 - Authentication information is missing or invalid., @{link com.cumulocity.client.model.Error}</li>
+	 * 	<li><p>HTTP 200 <p>The request has succeeded and the applications are sent in the response.</p></p>
+	 * 	</li>
+	 * 	<li><p>HTTP 401 <p>Authentication information is missing or invalid.</p></p>
+	 * 	</li>
 	 * </ul>
-	 * @param name The name of the application.
-	 * @return
+	 * 
+	 * @param name
+	 * <p>The name of the application.</p>
 	 */
 	public CompletionStage<ApplicationCollection> getApplicationsByName(final String name) {
 		return adapt().path("application").path("applicationsByName").path(valueOf(name))
@@ -273,21 +295,22 @@ public class ApplicationsApi extends AdaptableApi {
 	}
 	
 	/**
-	 * Retrieve applications by tenant
-	 * Retrieve applications subscribed or owned by a particular tenant (by a given tenant ID).
-	 * 
+	 * <p>Retrieve applications by tenant</p>
+	 * <p>Retrieve applications subscribed or owned by a particular tenant (by a given tenant ID).</p>
 	 * <section><h5>Required roles</h5>
 	 * ROLE_APPLICATION_MANAGEMENT_READ
 	 * </section>
-	 * 
-	 *
-	 * The following table gives an overview of the possible response codes and their meanings:
+	 * <h5>Response Codes</h5>
+	 * <p>The following table gives an overview of the possible response codes and their meanings:</p>
 	 * <ul>
-	 *     <li>HTTP 200 - The request has succeeded and the applications are sent in the response.</li>
-	 *     <li>HTTP 401 - Authentication information is missing or invalid., @{link com.cumulocity.client.model.Error}</li>
+	 * 	<li><p>HTTP 200 <p>The request has succeeded and the applications are sent in the response.</p></p>
+	 * 	</li>
+	 * 	<li><p>HTTP 401 <p>Authentication information is missing or invalid.</p></p>
+	 * 	</li>
 	 * </ul>
-	 * @param tenantId Unique identifier of a Cumulocity IoT tenant.
-	 * @return
+	 * 
+	 * @param tenantId
+	 * <p>Unique identifier of a Cumulocity IoT tenant.</p>
 	 */
 	public CompletionStage<ApplicationCollection> getApplicationsByTenant(final String tenantId) {
 		return adapt().path("application").path("applicationsByTenant").path(valueOf(tenantId))
@@ -298,25 +321,30 @@ public class ApplicationsApi extends AdaptableApi {
 	}
 	
 	/**
-	 * Retrieve applications by owner
-	 * Retrieve all applications owned by a particular tenant (by a given tenant ID).
-	 * 
+	 * <p>Retrieve applications by owner</p>
+	 * <p>Retrieve all applications owned by a particular tenant (by a given tenant ID).</p>
 	 * <section><h5>Required roles</h5>
 	 * ROLE_APPLICATION_MANAGEMENT_READ
 	 * </section>
-	 * 
-	 *
-	 * The following table gives an overview of the possible response codes and their meanings:
+	 * <h5>Response Codes</h5>
+	 * <p>The following table gives an overview of the possible response codes and their meanings:</p>
 	 * <ul>
-	 *     <li>HTTP 200 - The request has succeeded and the applications are sent in the response.</li>
-	 *     <li>HTTP 401 - Authentication information is missing or invalid., @{link com.cumulocity.client.model.Error}</li>
+	 * 	<li><p>HTTP 200 <p>The request has succeeded and the applications are sent in the response.</p></p>
+	 * 	</li>
+	 * 	<li><p>HTTP 401 <p>Authentication information is missing or invalid.</p></p>
+	 * 	</li>
 	 * </ul>
-	 * @param tenantId Unique identifier of a Cumulocity IoT tenant.
-	 * @param currentPage The current page of the paginated results.
-	 * @param pageSize Indicates how many entries of the collection shall be returned. The upper limit for one page is 2,000 objects.
-	 * @param withTotalElements When set to `true`, the returned result will contain in the statistics object the total number of elements. Only applicable on [range queries](https://en.wikipedia.org/wiki/Range_query_(database)).
-	 * @param withTotalPages When set to `true`, the returned result will contain in the statistics object the total number of pages. Only applicable on [range queries](https://en.wikipedia.org/wiki/Range_query_(database)).
-	 * @return
+	 * 
+	 * @param tenantId
+	 * <p>Unique identifier of a Cumulocity IoT tenant.</p>
+	 * @param currentPage
+	 * <p>The current page of the paginated results.</p>
+	 * @param pageSize
+	 * <p>Indicates how many entries of the collection shall be returned. The upper limit for one page is 2,000 objects.</p>
+	 * @param withTotalElements
+	 * <p>When set to <code>true</code>, the returned result will contain in the statistics object the total number of elements. Only applicable on <a href="https://en.wikipedia.org/wiki/Range_query_(database)">range queries</a>.</p>
+	 * @param withTotalPages
+	 * <p>When set to <code>true</code>, the returned result will contain in the statistics object the total number of pages. Only applicable on <a href="https://en.wikipedia.org/wiki/Range_query_(database)">range queries</a>.</p>
 	 */
 	public CompletionStage<ApplicationCollection> getApplicationsByOwner(final String tenantId, final int currentPage, final int pageSize, final boolean withTotalElements, final boolean withTotalPages) {
 		return adapt().path("application").path("applicationsByOwner").path(valueOf(tenantId))
@@ -331,25 +359,30 @@ public class ApplicationsApi extends AdaptableApi {
 	}
 	
 	/**
-	 * Retrieve applications by user
-	 * Retrieve all applications for a particular user (by a given username).
-	 * 
+	 * <p>Retrieve applications by user</p>
+	 * <p>Retrieve all applications for a particular user (by a given username).</p>
 	 * <section><h5>Required roles</h5>
 	 * (ROLE_USER_MANAGEMENT_OWN_READ <b>AND</b> is the current user) <b>OR</b> (ROLE_USER_MANAGEMENT_READ <b>AND</b> ROLE_APPLICATION_MANAGEMENT_READ)
 	 * </section>
-	 * 
-	 *
-	 * The following table gives an overview of the possible response codes and their meanings:
+	 * <h5>Response Codes</h5>
+	 * <p>The following table gives an overview of the possible response codes and their meanings:</p>
 	 * <ul>
-	 *     <li>HTTP 200 - The request has succeeded and the applications are sent in the response.</li>
-	 *     <li>HTTP 401 - Authentication information is missing or invalid., @{link com.cumulocity.client.model.Error}</li>
+	 * 	<li><p>HTTP 200 <p>The request has succeeded and the applications are sent in the response.</p></p>
+	 * 	</li>
+	 * 	<li><p>HTTP 401 <p>Authentication information is missing or invalid.</p></p>
+	 * 	</li>
 	 * </ul>
-	 * @param username The username of the a user.
-	 * @param currentPage The current page of the paginated results.
-	 * @param pageSize Indicates how many entries of the collection shall be returned. The upper limit for one page is 2,000 objects.
-	 * @param withTotalElements When set to `true`, the returned result will contain in the statistics object the total number of elements. Only applicable on [range queries](https://en.wikipedia.org/wiki/Range_query_(database)).
-	 * @param withTotalPages When set to `true`, the returned result will contain in the statistics object the total number of pages. Only applicable on [range queries](https://en.wikipedia.org/wiki/Range_query_(database)).
-	 * @return
+	 * 
+	 * @param username
+	 * <p>The username of the a user.</p>
+	 * @param currentPage
+	 * <p>The current page of the paginated results.</p>
+	 * @param pageSize
+	 * <p>Indicates how many entries of the collection shall be returned. The upper limit for one page is 2,000 objects.</p>
+	 * @param withTotalElements
+	 * <p>When set to <code>true</code>, the returned result will contain in the statistics object the total number of elements. Only applicable on <a href="https://en.wikipedia.org/wiki/Range_query_(database)">range queries</a>.</p>
+	 * @param withTotalPages
+	 * <p>When set to <code>true</code>, the returned result will contain in the statistics object the total number of pages. Only applicable on <a href="https://en.wikipedia.org/wiki/Range_query_(database)">range queries</a>.</p>
 	 */
 	public CompletionStage<ApplicationCollection> getApplicationsByUser(final String username, final int currentPage, final int pageSize, final boolean withTotalElements, final boolean withTotalPages) {
 		return adapt().path("application").path("applicationsByUser").path(valueOf(username))

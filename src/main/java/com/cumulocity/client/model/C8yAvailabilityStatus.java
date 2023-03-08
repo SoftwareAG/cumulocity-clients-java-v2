@@ -6,7 +6,7 @@ package com.cumulocity.client.model;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
- * The current status, one of `AVAILABLE`, `CONNECTED`, `MAINTENANCE`, `DISCONNECTED`.
+ * <p>The current status, one of <code>AVAILABLE</code>, <code>CONNECTED</code>, <code>MAINTENANCE</code>, <code>DISCONNECTED</code>.</p>
  */
 public enum C8yAvailabilityStatus {
 	@JsonProperty("AVAILABLE")

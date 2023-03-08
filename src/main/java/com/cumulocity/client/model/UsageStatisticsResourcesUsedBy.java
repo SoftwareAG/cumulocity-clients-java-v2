@@ -14,22 +14,22 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class UsageStatisticsResourcesUsedBy {
 
 	/**
-	 * Reason for calculating statistics of the specified microservice.
+	 * <p>Reason for calculating statistics of the specified microservice.</p>
 	 */
 	private String cause;
 
 	/**
-	 * Number of CPU usage for a single microservice.
+	 * <p>Number of CPU usage for a single microservice.</p>
 	 */
 	private int cpu;
 
 	/**
-	 * Number of memory usage for a single microservice.
+	 * <p>Number of memory usage for a single microservice.</p>
 	 */
 	private int memory;
 
 	/**
-	 * Name of the microservice.
+	 * <p>Name of the microservice.</p>
 	 */
 	private String name;
 

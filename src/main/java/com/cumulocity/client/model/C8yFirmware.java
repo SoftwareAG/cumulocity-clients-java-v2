@@ -10,24 +10,24 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
- * Contains information on a device's firmware. In the inventory, `c8y_Firmware` represents the currently installed firmware on the device. As part of an operation, `c8y_Firmware` requests the device to install the indicated firmware. To enable firmware installation through the user interface, add `c8y_Firmware` to the list of supported operations.
+ * <p>Contains information on a device's firmware. In the inventory, <code>c8y_Firmware</code> represents the currently installed firmware on the device. As part of an operation, <code>c8y_Firmware</code> requests the device to install the indicated firmware. To enable firmware installation through the user interface, add <code>c8y_Firmware</code> to the list of supported operations.</p>
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(Include.NON_NULL)
 public class C8yFirmware {
 
 	/**
-	 * Name of the firmware.
+	 * <p>Name of the firmware.</p>
 	 */
 	private String name;
 
 	/**
-	 * A version identifier of the firmware.
+	 * <p>A version identifier of the firmware.</p>
 	 */
 	private String version;
 
 	/**
-	 * A URI linking to the location to download the firmware from.
+	 * <p>A URI linking to the location to download the firmware from.</p>
 	 */
 	private String url;
 

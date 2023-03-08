@@ -10,7 +10,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
- * A temperature sensor reports the temperature in degrees Celsius (C). In a managed object, a temperature sensor is modeled as a simple empty fragment.
+ * <p>A temperature sensor reports the temperature in degrees Celsius (C). In a managed object, a temperature sensor is modeled as a simple empty fragment.</p>
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(Include.NON_NULL)

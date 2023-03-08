@@ -14,7 +14,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class AuthConfigAccess {
 
 	/**
-	 * Indicates whether the configuration is only accessible to the management tenant.
+	 * <p>Indicates whether the configuration is only accessible to the management tenant.</p>
 	 */
 	private boolean onlyManagementTenantAccess;
 

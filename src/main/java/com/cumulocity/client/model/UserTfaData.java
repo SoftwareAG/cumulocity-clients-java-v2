@@ -15,22 +15,22 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class UserTfaData {
 
 	/**
-	 * Latest date and time when the user has used two-factor authentication to log in.
+	 * <p>Latest date and time when the user has used two-factor authentication to log in.</p>
 	 */
 	private String lastTfaRequestTime;
 
 	/**
-	 * Two-factor authentication strategy.
+	 * <p>Two-factor authentication strategy.</p>
 	 */
 	private Strategy strategy;
 
 	/**
-	 * Indicates whether the user has enabled two-factor authentication or not.
+	 * <p>Indicates whether the user has enabled two-factor authentication or not.</p>
 	 */
 	private boolean tfaEnabled;
 
 	/**
-	 * Indicates whether two-factor authentication is enforced by the tenant admin or not.
+	 * <p>Indicates whether two-factor authentication is enforced by the tenant admin or not.</p>
 	 */
 	private boolean tfaEnforced;
 
@@ -68,7 +68,7 @@ public class UserTfaData {
 
 	
 	/**
-	 * Two-factor authentication strategy.
+	 * <p>Two-factor authentication strategy.</p>
 	 */
 	public enum Strategy {
 		@JsonProperty("SMS")

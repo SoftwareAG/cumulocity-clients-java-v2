@@ -27,41 +27,39 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class Measurement {
 
 	/**
-	 * Unique identifier of the measurement.
+	 * <p>Unique identifier of the measurement.</p>
 	 */
 	private String id;
 
 	/**
-	 * A URL linking to this resource.
+	 * <p>A URL linking to this resource.</p>
 	 */
 	private String self;
 
 	/**
-	 * The managed object to which the measurement is associated.
+	 * <p>The managed object to which the measurement is associated.</p>
 	 */
 	private Source source;
 
 	/**
-	 * The date and time when the measurement is created.
+	 * <p>The date and time when the measurement is created.</p>
 	 */
 	private String time;
 
 	/**
-	 * Identifies the type of this measurement.
+	 * <p>Identifies the type of this measurement.</p>
 	 */
 	private String type;
 
 	/**
-	 * A type of measurement fragment.
+	 * <p>A type of measurement fragment.</p>
 	 */
 	@JsonProperty(value = "c8y_Steam")
 	private C8ySteam c8ySteam;
 
 	/**
-	 * It is possible to add an arbitrary number of additional properties as a list of key-value pairs, for example, `"property1": {}`, `"property2": "value"`. These properties are known as custom fragments and can be of any type, for example, object or string. Each custom fragment is identified by a unique name.
-	 * 
-	 * Review the [Naming conventions of fragments](https://cumulocity.com/guides/concepts/domain-model/#naming-conventions-of-fragments) as there are characters that can not be used when naming custom fragments.
-	 * 
+	 * <p>It is possible to add an arbitrary number of additional properties as a list of key-value pairs, for example, <code>"property1": {}</code>, <code>"property2": "value"</code>. These properties are known as custom fragments and can be of any type, for example, object or string. Each custom fragment is identified by a unique name.</p>
+	 * <p>Review the <a href="https://cumulocity.com/guides/concepts/domain-model/#naming-conventions-of-fragments">Naming conventions of fragments</a> as there are characters that can not be used when naming custom fragments.</p>
 	 */
 	private Map<String, Object> customFragments;
 
@@ -132,19 +130,19 @@ public class Measurement {
 	}
 
 	/**
-	 * The managed object to which the measurement is associated.
+	 * <p>The managed object to which the measurement is associated.</p>
 	 */
 	@JsonIgnoreProperties(ignoreUnknown = true)
 	@JsonInclude(Include.NON_NULL)
 	public static class Source {
 	
 		/**
-		 * Unique identifier of the object.
+		 * <p>Unique identifier of the object.</p>
 		 */
 		private String id;
 	
 		/**
-		 * A URL linking to this resource.
+		 * <p>A URL linking to this resource.</p>
 		 */
 		private String self;
 	

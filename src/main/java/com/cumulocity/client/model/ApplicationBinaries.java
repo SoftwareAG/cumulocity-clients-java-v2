@@ -14,7 +14,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class ApplicationBinaries {
 
 	/**
-	 * An array of attachments.
+	 * <p>An array of attachments.</p>
 	 */
 	private Attachments[] attachments;
 
@@ -31,37 +31,37 @@ public class ApplicationBinaries {
 	public static class Attachments {
 	
 		/**
-		 * The application context path.
+		 * <p>The application context path.</p>
 		 */
 		private String contextPath;
 	
 		/**
-		 * The date and time when the attachment was created.
+		 * <p>The date and time when the attachment was created.</p>
 		 */
 		private String created;
 	
 		/**
-		 * A description for the attachment.
+		 * <p>A description for the attachment.</p>
 		 */
 		private String description;
 	
 		/**
-		 * A download URL for the attachment.
+		 * <p>A download URL for the attachment.</p>
 		 */
 		private String downloadUrl;
 	
 		/**
-		 * The ID of the attachment.
+		 * <p>The ID of the attachment.</p>
 		 */
 		private String id;
 	
 		/**
-		 * The length of the attachment, in bytes.
+		 * <p>The length of the attachment, in bytes.</p>
 		 */
 		private int length;
 	
 		/**
-		 * The name of the attachment.
+		 * <p>The name of the attachment.</p>
 		 */
 		private String name;
 	

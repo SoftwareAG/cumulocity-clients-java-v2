@@ -10,14 +10,14 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
- * The signed verification code to prove the user's possession of the certificate.
+ * <p>The signed verification code to prove the user's possession of the certificate.</p>
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(Include.NON_NULL)
 public class UploadedTrustedCertSignedVerificationCode {
 
 	/**
-	 * A signed verification code that proves the right to use the certificate.
+	 * <p>A signed verification code that proves the right to use the certificate.</p>
 	 */
 	private String proofOfPossessionSignedVerificationCode;
 

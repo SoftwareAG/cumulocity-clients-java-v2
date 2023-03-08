@@ -10,7 +10,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
- * A moisture sensor measures the water content of a substance. In a managed object, a moisture sensor is modeled as a simple empty fragment.
+ * <p>A moisture sensor measures the water content of a substance. In a managed object, a moisture sensor is modeled as a simple empty fragment.</p>
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(Include.NON_NULL)

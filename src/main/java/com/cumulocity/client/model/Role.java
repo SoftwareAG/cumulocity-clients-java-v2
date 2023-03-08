@@ -10,24 +10,24 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
- * A user role.
+ * <p>A user role.</p>
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(Include.NON_NULL)
 public class Role {
 
 	/**
-	 * A unique identifier for this user role.
+	 * <p>A unique identifier for this user role.</p>
 	 */
 	private String id;
 
 	/**
-	 * The name of this user role.
+	 * <p>The name of this user role.</p>
 	 */
 	private String name;
 
 	/**
-	 * A URL linking to this resource.
+	 * <p>A URL linking to this resource.</p>
 	 */
 	private String self;
 

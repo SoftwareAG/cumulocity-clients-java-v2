@@ -10,7 +10,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
- * A distance sensor measures the distance between itself and the closest object in a certain direction. In a managed object, a distance sensor is modeled as a simple empty fragment.
+ * <p>A distance sensor measures the distance between itself and the closest object in a certain direction. In a managed object, a distance sensor is modeled as a simple empty fragment.</p>
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(Include.NON_NULL)

@@ -14,7 +14,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class CurrentUserTotpSecretActivity {
 
 	/**
-	 * Indicates whether the two-factor authentication secret is active.
+	 * <p>Indicates whether the two-factor authentication secret is active.</p>
 	 */
 	private boolean isActive;
 

@@ -15,17 +15,17 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class NewDeviceRequest {
 
 	/**
-	 * External ID of the device.
+	 * <p>External ID of the device.</p>
 	 */
 	private String id;
 
 	/**
-	 * A URL linking to this resource.
+	 * <p>A URL linking to this resource.</p>
 	 */
 	private String self;
 
 	/**
-	 * Status of this new device request.
+	 * <p>Status of this new device request.</p>
 	 */
 	private Status status;
 
@@ -55,7 +55,7 @@ public class NewDeviceRequest {
 
 	
 	/**
-	 * Status of this new device request.
+	 * <p>Status of this new device request.</p>
 	 */
 	public enum Status {
 		@JsonProperty("WAITING_FOR_CONNECTION")

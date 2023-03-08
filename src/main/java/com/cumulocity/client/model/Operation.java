@@ -27,47 +27,45 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class Operation {
 
 	/**
-	 * Reference to a bulk operation ID if this operation was scheduled from a bulk operation.
+	 * <p>Reference to a bulk operation ID if this operation was scheduled from a bulk operation.</p>
 	 */
 	private String bulkOperationId;
 
 	/**
-	 * Date and time when the operation was created in the database.
+	 * <p>Date and time when the operation was created in the database.</p>
 	 */
 	private String creationTime;
 
 	/**
-	 * Identifier of the target device where the operation should be performed.
+	 * <p>Identifier of the target device where the operation should be performed.</p>
 	 */
 	private String deviceId;
 
 	private ExternalIds deviceExternalIDs;
 
 	/**
-	 * Reason for the failure.
+	 * <p>Reason for the failure.</p>
 	 */
 	private String failureReason;
 
 	/**
-	 * Unique identifier of this operation.
+	 * <p>Unique identifier of this operation.</p>
 	 */
 	private String id;
 
 	/**
-	 * A URL linking to this resource.
+	 * <p>A URL linking to this resource.</p>
 	 */
 	private String self;
 
 	/**
-	 * The status of the operation.
+	 * <p>The status of the operation.</p>
 	 */
 	private Status status;
 
 	/**
-	 * It is possible to add an arbitrary number of additional properties as a list of key-value pairs, for example, `"property1": {}`, `"property2": "value"`. These properties are known as custom fragments and can be of any type, for example, object or string. Each custom fragment is identified by a unique name.
-	 * 
-	 * Review the [Naming conventions of fragments](https://cumulocity.com/guides/concepts/domain-model/#naming-conventions-of-fragments) as there are characters that can not be used when naming custom fragments.
-	 * 
+	 * <p>It is possible to add an arbitrary number of additional properties as a list of key-value pairs, for example, <code>"property1": {}</code>, <code>"property2": "value"</code>. These properties are known as custom fragments and can be of any type, for example, object or string. Each custom fragment is identified by a unique name.</p>
+	 * <p>Review the <a href="https://cumulocity.com/guides/concepts/domain-model/#naming-conventions-of-fragments">Naming conventions of fragments</a> as there are characters that can not be used when naming custom fragments.</p>
 	 */
 	private Map<String, Object> customFragments;
 
@@ -146,7 +144,7 @@ public class Operation {
 
 	
 	/**
-	 * The status of the operation.
+	 * <p>The status of the operation.</p>
 	 */
 	public enum Status {
 		@JsonProperty("SUCCESSFUL")

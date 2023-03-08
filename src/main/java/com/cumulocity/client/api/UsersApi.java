@@ -18,11 +18,10 @@ import com.cumulocity.client.model.UserReferenceCollection;
 import com.cumulocity.client.model.UserReference;
 
 /**
- * API methods to create, retrieve, update and delete users in Cumulocity IoT.
- * 
- * > **&#9432; Info:** The Accept header should be provided in all POST/PUT requests, otherwise an empty response body will be returned.
- *  </br>
- * 
+ * <p>API methods to create, retrieve, update and delete users in Cumulocity IoT.</p>
+ * <blockquote>
+ * <p><strong>ⓘ Info:</strong> The Accept header should be provided in all POST/PUT requests, otherwise an empty response body will be returned.</p>
+ * </blockquote>
  */
 public class UsersApi extends AdaptableApi {
 
@@ -31,31 +30,43 @@ public class UsersApi extends AdaptableApi {
 	}
 
 	/**
-	 * Retrieve all users for a specific tenant
-	 * Retrieve all users for a specific tenant (by a given tenant ID).
-	 * 
+	 * <p>Retrieve all users for a specific tenant</p>
+	 * <p>Retrieve all users for a specific tenant (by a given tenant ID).</p>
 	 * <section><h5>Required roles</h5>
 	 * ROLE_USER_MANAGEMENT_READ <b>OR</b> ROLE_USER_MANAGEMENT_CREATE
 	 * </section>
-	 * 
-	 *
-	 * The following table gives an overview of the possible response codes and their meanings:
+	 * <h5>Response Codes</h5>
+	 * <p>The following table gives an overview of the possible response codes and their meanings:</p>
 	 * <ul>
-	 *     <li>HTTP 200 - The request has succeeded and all users are sent in the response.</li>
-	 *     <li>HTTP 401 - Authentication information is missing or invalid., @{link com.cumulocity.client.model.Error}</li>
-	 *     <li>HTTP 403 - Not enough permissions/roles to perform this operation., @{link com.cumulocity.client.model.Error}</li>
+	 * 	<li><p>HTTP 200 <p>The request has succeeded and all users are sent in the response.</p></p>
+	 * 	</li>
+	 * 	<li><p>HTTP 401 <p>Authentication information is missing or invalid.</p></p>
+	 * 	</li>
+	 * 	<li><p>HTTP 403 <p>Not enough permissions/roles to perform this operation.</p></p>
+	 * 	</li>
 	 * </ul>
-	 * @param tenantId Unique identifier of a Cumulocity IoT tenant.
-	 * @param currentPage The current page of the paginated results.
-	 * @param groups Numeric group identifiers. The response will contain only users which belong to at least one of the specified groups. >**&#9432; Info:** If you query for multiple user groups at once, comma-separate the values. 
-	 * @param onlyDevices If set to `true`, the response will only contain users created during bootstrap process (starting with “device_”). If the flag is absent or `false` the result will not contain “device_” users. 
-	 * @param owner Exact username of the owner of the user
-	 * @param pageSize Indicates how many entries of the collection shall be returned. The upper limit for one page is 2,000 objects.
-	 * @param username Prefix or full username
-	 * @param withSubusersCount If set to `true`, then each of returned user will contain an additional field “subusersCount”. It is the number of direct subusers (users with corresponding “owner”). 
-	 * @param withTotalElements When set to `true`, the returned result will contain in the statistics object the total number of elements. Only applicable on [range queries](https://en.wikipedia.org/wiki/Range_query_(database)).
-	 * @param withTotalPages When set to `true`, the returned result will contain in the statistics object the total number of pages. Only applicable on [range queries](https://en.wikipedia.org/wiki/Range_query_(database)).
-	 * @return
+	 * 
+	 * @param tenantId
+	 * <p>Unique identifier of a Cumulocity IoT tenant.</p>
+	 * @param currentPage
+	 * <p>The current page of the paginated results.</p>
+	 * @param groups
+	 * <p>Numeric group identifiers. The response will contain only users which belong to at least one of the specified groups.</p>
+	 * <p><strong>ⓘ Info:</strong> If you query for multiple user groups at once, comma-separate the values.</p>
+	 * @param onlyDevices
+	 * <p>If set to <code>true</code>, the response will only contain users created during bootstrap process (starting with “device_”).If the flag is absent or <code>false</code> the result will not contain “device_” users.</p>
+	 * @param owner
+	 * <p>Exact username of the owner of the user</p>
+	 * @param pageSize
+	 * <p>Indicates how many entries of the collection shall be returned. The upper limit for one page is 2,000 objects.</p>
+	 * @param username
+	 * <p>Prefix or full username</p>
+	 * @param withSubusersCount
+	 * <p>If set to <code>true</code>, then each of returned user will contain an additional field “subusersCount”.It is the number of direct subusers (users with corresponding “owner”).</p>
+	 * @param withTotalElements
+	 * <p>When set to <code>true</code>, the returned result will contain in the statistics object the total number of elements. Only applicable on <a href="https://en.wikipedia.org/wiki/Range_query_(database)">range queries</a>.</p>
+	 * @param withTotalPages
+	 * <p>When set to <code>true</code>, the returned result will contain in the statistics object the total number of pages. Only applicable on <a href="https://en.wikipedia.org/wiki/Range_query_(database)">range queries</a>.</p>
 	 */
 	public CompletionStage<UserCollection> getUsers(final String tenantId, final int currentPage, final String[] groups, final boolean onlyDevices, final String owner, final int pageSize, final String username, final boolean withSubusersCount, final boolean withTotalElements, final boolean withTotalPages) {
 		return adapt().path("user").path(valueOf(tenantId)).path("users")
@@ -75,25 +86,29 @@ public class UsersApi extends AdaptableApi {
 	}
 	
 	/**
-	 * Create a user for a specific tenant
-	 * Create a user for a specific tenant (by a given tenant ID).
-	 * 
+	 * <p>Create a user for a specific tenant</p>
+	 * <p>Create a user for a specific tenant (by a given tenant ID).</p>
 	 * <section><h5>Required roles</h5>
 	 * ROLE_USER_MANAGEMENT_ADMIN <b>OR</b> ROLE_USER_MANAGEMENT_CREATE <b>AND</b> has access to roles, groups, device permissions and applications
 	 * </section>
-	 * 
-	 *
-	 * The following table gives an overview of the possible response codes and their meanings:
+	 * <h5>Response Codes</h5>
+	 * <p>The following table gives an overview of the possible response codes and their meanings:</p>
 	 * <ul>
-	 *     <li>HTTP 201 - A user was created.</li>
-	 *     <li>HTTP 401 - Authentication information is missing or invalid., @{link com.cumulocity.client.model.Error}</li>
-	 *     <li>HTTP 403 - Not enough permissions/roles to perform this operation., @{link com.cumulocity.client.model.Error}</li>
-	 *     <li>HTTP 409 - Duplicate – The userName or alias already exists.</li>
-	 *     <li>HTTP 422 - Unprocessable Entity – invalid payload.</li>
+	 * 	<li><p>HTTP 201 <p>A user was created.</p></p>
+	 * 	</li>
+	 * 	<li><p>HTTP 401 <p>Authentication information is missing or invalid.</p></p>
+	 * 	</li>
+	 * 	<li><p>HTTP 403 <p>Not enough permissions/roles to perform this operation.</p></p>
+	 * 	</li>
+	 * 	<li><p>HTTP 409 <p>Duplicate – The userName or alias already exists.</p></p>
+	 * 	</li>
+	 * 	<li><p>HTTP 422 <p>Unprocessable Entity – invalid payload.</p></p>
+	 * 	</li>
 	 * </ul>
-	 * @param body 
-	 * @param tenantId Unique identifier of a Cumulocity IoT tenant.
-	 * @return
+	 * 
+	 * @param body
+	 * @param tenantId
+	 * <p>Unique identifier of a Cumulocity IoT tenant.</p>
 	 */
 	public CompletionStage<User> createUser(final User body, final String tenantId) {
 		final JsonNode jsonNode = toJsonNode(body);
@@ -117,28 +132,29 @@ public class UsersApi extends AdaptableApi {
 	}
 	
 	/**
-	 * Retrieve a specific user for a specific tenant
-	 * Retrieve a specific user (by a given user ID) for a specific tenant (by a given tenant ID).
-	 * 
-	 * Users in the response are sorted by username in ascending order.
-	 * Only objects which the user is allowed to see are returned to the user.
-	 * The user password is never returned in a GET response. Authentication mechanism is provided by another interface.
-	 * 
+	 * <p>Retrieve a specific user for a specific tenant</p>
+	 * <p>Retrieve a specific user (by a given user ID) for a specific tenant (by a given tenant ID).</p>
+	 * <p>Users in the response are sorted by username in ascending order.Only objects which the user is allowed to see are returned to the user.The user password is never returned in a GET response. Authentication mechanism is provided by another interface.</p>
 	 * <section><h5>Required roles</h5>
 	 * ROLE_USER_MANAGEMENT_READ <b>OR</b> ROLE_USER_MANAGEMENT_CREATE <b>AND</b> is parent of the user
 	 * </section>
-	 * 
-	 *
-	 * The following table gives an overview of the possible response codes and their meanings:
+	 * <h5>Response Codes</h5>
+	 * <p>The following table gives an overview of the possible response codes and their meanings:</p>
 	 * <ul>
-	 *     <li>HTTP 200 - The request has succeeded and the user is sent in the response.</li>
-	 *     <li>HTTP 401 - Authentication information is missing or invalid., @{link com.cumulocity.client.model.Error}</li>
-	 *     <li>HTTP 403 - Not enough permissions/roles to perform this operation., @{link com.cumulocity.client.model.Error}</li>
-	 *     <li>HTTP 404 - User not found., @{link com.cumulocity.client.model.Error}</li>
+	 * 	<li><p>HTTP 200 <p>The request has succeeded and the user is sent in the response.</p></p>
+	 * 	</li>
+	 * 	<li><p>HTTP 401 <p>Authentication information is missing or invalid.</p></p>
+	 * 	</li>
+	 * 	<li><p>HTTP 403 <p>Not enough permissions/roles to perform this operation.</p></p>
+	 * 	</li>
+	 * 	<li><p>HTTP 404 <p>User not found.</p></p>
+	 * 	</li>
 	 * </ul>
-	 * @param tenantId Unique identifier of a Cumulocity IoT tenant.
-	 * @param userId Unique identifier of the a user.
-	 * @return
+	 * 
+	 * @param tenantId
+	 * <p>Unique identifier of a Cumulocity IoT tenant.</p>
+	 * @param userId
+	 * <p>Unique identifier of the a user.</p>
 	 */
 	public CompletionStage<User> getUser(final String tenantId, final String userId) {
 		return adapt().path("user").path(valueOf(tenantId)).path("users").path(valueOf(userId))
@@ -149,32 +165,35 @@ public class UsersApi extends AdaptableApi {
 	}
 	
 	/**
-	 * Update a specific user for a specific tenant
-	 * Update a specific user (by a given user ID) for a specific tenant (by a given tenant ID).
-	 * 
-	 * Any change in user's roles, device permissions and groups creates corresponding audit records with type "User" and activity "User updated" with information which properties have been changed.
-	 * 
-	 * When the user is updated with changed permissions or groups, a corresponding audit record is created with type "User" and activity "User updated".
-	 * 
+	 * <p>Update a specific user for a specific tenant</p>
+	 * <p>Update a specific user (by a given user ID) for a specific tenant (by a given tenant ID).</p>
+	 * <p>Any change in user's roles, device permissions and groups creates corresponding audit records with type "User" and activity "User updated" with information which properties have been changed.</p>
+	 * <p>When the user is updated with changed permissions or groups, a corresponding audit record is created with type "User" and activity "User updated".</p>
 	 * <section><h5>Required roles</h5>
 	 * ROLE_USER_MANAGEMENT_ADMIN to update root users in a user hierarchy <b>OR</b> users that are not in any hierarchy<br/>
 	 * ROLE_USER_MANAGEMENT_ADMIN to update non-root users in a user hierarchy <b>AND</b> whose parents have access to roles, groups, device permissions and applications being assigned<br/>
 	 * ROLE_USER_MANAGEMENT_CREATE to update descendants of the current user in a user hierarchy <b>AND</b> whose parents have access to roles, groups, device permissions and applications being assigned
 	 * </section>
-	 * 
-	 *
-	 * The following table gives an overview of the possible response codes and their meanings:
+	 * <h5>Response Codes</h5>
+	 * <p>The following table gives an overview of the possible response codes and their meanings:</p>
 	 * <ul>
-	 *     <li>HTTP 200 - A user was updated.</li>
-	 *     <li>HTTP 401 - Authentication information is missing or invalid., @{link com.cumulocity.client.model.Error}</li>
-	 *     <li>HTTP 403 - Not enough permissions/roles to perform this operation., @{link com.cumulocity.client.model.Error}</li>
-	 *     <li>HTTP 404 - User not found., @{link com.cumulocity.client.model.Error}</li>
-	 *     <li>HTTP 422 - Unprocessable Entity – invalid payload.</li>
+	 * 	<li><p>HTTP 200 <p>A user was updated.</p></p>
+	 * 	</li>
+	 * 	<li><p>HTTP 401 <p>Authentication information is missing or invalid.</p></p>
+	 * 	</li>
+	 * 	<li><p>HTTP 403 <p>Not enough permissions/roles to perform this operation.</p></p>
+	 * 	</li>
+	 * 	<li><p>HTTP 404 <p>User not found.</p></p>
+	 * 	</li>
+	 * 	<li><p>HTTP 422 <p>Unprocessable Entity – invalid payload.</p></p>
+	 * 	</li>
 	 * </ul>
-	 * @param body 
-	 * @param tenantId Unique identifier of a Cumulocity IoT tenant.
-	 * @param userId Unique identifier of the a user.
-	 * @return
+	 * 
+	 * @param body
+	 * @param tenantId
+	 * <p>Unique identifier of a Cumulocity IoT tenant.</p>
+	 * @param userId
+	 * <p>Unique identifier of the a user.</p>
 	 */
 	public CompletionStage<User> updateUser(final User body, final String tenantId, final String userId) {
 		final JsonNode jsonNode = toJsonNode(body);
@@ -199,23 +218,28 @@ public class UsersApi extends AdaptableApi {
 	}
 	
 	/**
-	 * Delete a specific user for a specific tenant
-	 * Delete a specific user (by a given user ID) for a specific tenant (by a given tenant ID).
-	 * 
+	 * <p>Delete a specific user for a specific tenant</p>
+	 * <p>Delete a specific user (by a given user ID) for a specific tenant (by a given tenant ID).</p>
 	 * <section><h5>Required roles</h5>
 	 * ROLE_USER_MANAGEMENT_ADMIN <b>OR</b> ROLE_USER_MANAGEMENT_CREATE <b>AND</b> is parent of the user <b>AND</b> not the current user
 	 * </section>
-	 * 
-	 *
-	 * The following table gives an overview of the possible response codes and their meanings:
+	 * <h5>Response Codes</h5>
+	 * <p>The following table gives an overview of the possible response codes and their meanings:</p>
 	 * <ul>
-	 *     <li>HTTP 204 - A user was removed.</li>
-	 *     <li>HTTP 401 - Authentication information is missing or invalid., @{link com.cumulocity.client.model.Error}</li>
-	 *     <li>HTTP 403 - Not authorized to perform this operation.</li>
-	 *     <li>HTTP 404 - User not found., @{link com.cumulocity.client.model.Error}</li>
+	 * 	<li><p>HTTP 204 <p>A user was removed.</p></p>
+	 * 	</li>
+	 * 	<li><p>HTTP 401 <p>Authentication information is missing or invalid.</p></p>
+	 * 	</li>
+	 * 	<li><p>HTTP 403 <p>Not authorized to perform this operation.</p></p>
+	 * 	</li>
+	 * 	<li><p>HTTP 404 <p>User not found.</p></p>
+	 * 	</li>
 	 * </ul>
-	 * @param tenantId Unique identifier of a Cumulocity IoT tenant.
-	 * @param userId Unique identifier of the a user.
+	 * 
+	 * @param tenantId
+	 * <p>Unique identifier of a Cumulocity IoT tenant.</p>
+	 * @param userId
+	 * <p>Unique identifier of the a user.</p>
 	 */
 	public CompletionStage<Response> deleteUser(final String tenantId, final String userId) {
 		return adapt().path("user").path(valueOf(tenantId)).path("users").path(valueOf(userId))
@@ -226,30 +250,35 @@ public class UsersApi extends AdaptableApi {
 	}
 	
 	/**
-	 * Update a specific user's password of a specific tenant
-	 * Update a specific user's password (by a given user ID) of a specific tenant (by a given tenant ID).
-	 * 
-	 * Changing the user's password creates a corresponding audit record of type "User" and activity "User updated", and specifying that the password has been changed.
-	 * 
-	 * > **⚠️ Important:** If the tenant uses OAI-Secure authentication, the target user will be logged out.
-	 * 
+	 * <p>Update a specific user's password of a specific tenant</p>
+	 * <p>Update a specific user's password (by a given user ID) of a specific tenant (by a given tenant ID).</p>
+	 * <p>Changing the user's password creates a corresponding audit record of type "User" and activity "User updated", and specifying that the password has been changed.</p>
+	 * <blockquote>
+	 * <p><strong>⚠️ Important:</strong> If the tenant uses OAI-Secure authentication, the target user will be logged out.</p>
+	 * </blockquote>
 	 * <section><h5>Required roles</h5>
 	 * ROLE_USER_MANAGEMENT_ADMIN to update root users in a user hierarchy <b>OR</b> users that are not in any hierarchy<br/>
 	 * ROLE_USER_MANAGEMENT_ADMIN to update non-root users in a user hierarchy <b>AND</b> whose parents have access to assigned roles, groups, device permissions and applications<br/>
 	 * ROLE_USER_MANAGEMENT_CREATE to update descendants of the current user in a user hierarchy <b>AND</b> whose parents have access to assigned roles, groups, device permissions and applications
 	 * </section>
-	 * 
-	 *
-	 * The following table gives an overview of the possible response codes and their meanings:
+	 * <h5>Response Codes</h5>
+	 * <p>The following table gives an overview of the possible response codes and their meanings:</p>
 	 * <ul>
-	 *     <li>HTTP 200 - A user was updated.</li>
-	 *     <li>HTTP 401 - Authentication information is missing or invalid., @{link com.cumulocity.client.model.Error}</li>
-	 *     <li>HTTP 403 - Not enough permissions/roles to perform this operation., @{link com.cumulocity.client.model.Error}</li>
-	 *     <li>HTTP 422 - Unprocessable Entity – invalid payload.</li>
+	 * 	<li><p>HTTP 200 <p>A user was updated.</p></p>
+	 * 	</li>
+	 * 	<li><p>HTTP 401 <p>Authentication information is missing or invalid.</p></p>
+	 * 	</li>
+	 * 	<li><p>HTTP 403 <p>Not enough permissions/roles to perform this operation.</p></p>
+	 * 	</li>
+	 * 	<li><p>HTTP 422 <p>Unprocessable Entity – invalid payload.</p></p>
+	 * 	</li>
 	 * </ul>
-	 * @param body 
-	 * @param tenantId Unique identifier of a Cumulocity IoT tenant.
-	 * @param userId Unique identifier of the a user.
+	 * 
+	 * @param body
+	 * @param tenantId
+	 * <p>Unique identifier of a Cumulocity IoT tenant.</p>
+	 * @param userId
+	 * <p>Unique identifier of the a user.</p>
 	 */
 	public CompletionStage<Response> updateUserPassword(final PasswordChange body, final String tenantId, final String userId) {
 		final JsonNode jsonNode = toJsonNode(body);
@@ -262,24 +291,28 @@ public class UsersApi extends AdaptableApi {
 	}
 	
 	/**
-	 * Retrieve the TFA settings of a specific user
-	 * Retrieve the two-factor authentication settings for the specified user.
-	 * 
+	 * <p>Retrieve the TFA settings of a specific user</p>
+	 * <p>Retrieve the two-factor authentication settings for the specified user.</p>
 	 * <section><h5>Required roles</h5>
 	 * ROLE_USER_MANAGEMENT_READ <b>OR</b> (ROLE_USER_MANAGEMENT_CREATE <b>AND</b> is parent of the user) <b>OR</b> is the current user
 	 * </section>
-	 * 
-	 *
-	 * The following table gives an overview of the possible response codes and their meanings:
+	 * <h5>Response Codes</h5>
+	 * <p>The following table gives an overview of the possible response codes and their meanings:</p>
 	 * <ul>
-	 *     <li>HTTP 200 - The request has succeeded and the TFA settings are sent in the response.</li>
-	 *     <li>HTTP 401 - Authentication information is missing or invalid., @{link com.cumulocity.client.model.Error}</li>
-	 *     <li>HTTP 403 - Not enough permissions/roles to perform this operation., @{link com.cumulocity.client.model.Error}</li>
-	 *     <li>HTTP 404 - User not found., @{link com.cumulocity.client.model.Error}</li>
+	 * 	<li><p>HTTP 200 <p>The request has succeeded and the TFA settings are sent in the response.</p></p>
+	 * 	</li>
+	 * 	<li><p>HTTP 401 <p>Authentication information is missing or invalid.</p></p>
+	 * 	</li>
+	 * 	<li><p>HTTP 403 <p>Not enough permissions/roles to perform this operation.</p></p>
+	 * 	</li>
+	 * 	<li><p>HTTP 404 <p>User not found.</p></p>
+	 * 	</li>
 	 * </ul>
-	 * @param tenantId Unique identifier of a Cumulocity IoT tenant.
-	 * @param userId Unique identifier of the a user.
-	 * @return
+	 * 
+	 * @param tenantId
+	 * <p>Unique identifier of a Cumulocity IoT tenant.</p>
+	 * @param userId
+	 * <p>Unique identifier of the a user.</p>
 	 */
 	public CompletionStage<UserTfaData> getUserTfaSettings(final String tenantId, final String userId) {
 		return adapt().path("user").path(valueOf(tenantId)).path("users").path(valueOf(userId)).path("tfa")
@@ -290,24 +323,28 @@ public class UsersApi extends AdaptableApi {
 	}
 	
 	/**
-	 * Retrieve a user by username in a specific tenant
-	 * Retrieve a user by username in a specific tenant (by a given tenant ID).
-	 * 
+	 * <p>Retrieve a user by username in a specific tenant</p>
+	 * <p>Retrieve a user by username in a specific tenant (by a given tenant ID).</p>
 	 * <section><h5>Required roles</h5>
 	 * ROLE_USER_MANAGEMENT_ADMIN <b>OR</b> ROLE_USER_MANAGEMENT_CREATE <b>AND</b> is parent of the user
 	 * </section>
-	 * 
-	 *
-	 * The following table gives an overview of the possible response codes and their meanings:
+	 * <h5>Response Codes</h5>
+	 * <p>The following table gives an overview of the possible response codes and their meanings:</p>
 	 * <ul>
-	 *     <li>HTTP 200 - The request has succeeded and the user is sent in the response.</li>
-	 *     <li>HTTP 401 - Authentication information is missing or invalid., @{link com.cumulocity.client.model.Error}</li>
-	 *     <li>HTTP 403 - Not enough permissions/roles to perform this operation., @{link com.cumulocity.client.model.Error}</li>
-	 *     <li>HTTP 404 - User not found., @{link com.cumulocity.client.model.Error}</li>
+	 * 	<li><p>HTTP 200 <p>The request has succeeded and the user is sent in the response.</p></p>
+	 * 	</li>
+	 * 	<li><p>HTTP 401 <p>Authentication information is missing or invalid.</p></p>
+	 * 	</li>
+	 * 	<li><p>HTTP 403 <p>Not enough permissions/roles to perform this operation.</p></p>
+	 * 	</li>
+	 * 	<li><p>HTTP 404 <p>User not found.</p></p>
+	 * 	</li>
 	 * </ul>
-	 * @param tenantId Unique identifier of a Cumulocity IoT tenant.
-	 * @param username The username of the a user.
-	 * @return
+	 * 
+	 * @param tenantId
+	 * <p>Unique identifier of a Cumulocity IoT tenant.</p>
+	 * @param username
+	 * <p>The username of the a user.</p>
 	 */
 	public CompletionStage<User> getUserByUsername(final String tenantId, final String username) {
 		return adapt().path("user").path(valueOf(tenantId)).path("userByName").path(valueOf(username))
@@ -318,27 +355,34 @@ public class UsersApi extends AdaptableApi {
 	}
 	
 	/**
-	 * Retrieve the users of a specific user group of a specific tenant
-	 * Retrieve the users of a specific user group (by a given user group ID) of a specific tenant (by a given tenant ID).
-	 * 
+	 * <p>Retrieve the users of a specific user group of a specific tenant</p>
+	 * <p>Retrieve the users of a specific user group (by a given user group ID) of a specific tenant (by a given tenant ID).</p>
 	 * <section><h5>Required roles</h5>
 	 * ROLE_USER_MANAGEMENT_READ <b>OR</b> (ROLE_USER_MANAGEMENT_CREATE <b>AND</b> has access to the user group)
 	 * </section>
-	 * 
-	 *
-	 * The following table gives an overview of the possible response codes and their meanings:
+	 * <h5>Response Codes</h5>
+	 * <p>The following table gives an overview of the possible response codes and their meanings:</p>
 	 * <ul>
-	 *     <li>HTTP 200 - The request has succeeded and the users are sent in the response.</li>
-	 *     <li>HTTP 401 - Authentication information is missing or invalid., @{link com.cumulocity.client.model.Error}</li>
-	 *     <li>HTTP 403 - Not enough permissions/roles to perform this operation., @{link com.cumulocity.client.model.Error}</li>
-	 *     <li>HTTP 404 - Group not found., @{link com.cumulocity.client.model.Error}</li>
+	 * 	<li><p>HTTP 200 <p>The request has succeeded and the users are sent in the response.</p></p>
+	 * 	</li>
+	 * 	<li><p>HTTP 401 <p>Authentication information is missing or invalid.</p></p>
+	 * 	</li>
+	 * 	<li><p>HTTP 403 <p>Not enough permissions/roles to perform this operation.</p></p>
+	 * 	</li>
+	 * 	<li><p>HTTP 404 <p>Group not found.</p></p>
+	 * 	</li>
 	 * </ul>
-	 * @param tenantId Unique identifier of a Cumulocity IoT tenant.
-	 * @param groupId Unique identifier of the user group.
-	 * @param currentPage The current page of the paginated results.
-	 * @param pageSize Indicates how many entries of the collection shall be returned. The upper limit for one page is 2,000 objects.
-	 * @param withTotalElements When set to `true`, the returned result will contain in the statistics object the total number of elements. Only applicable on [range queries](https://en.wikipedia.org/wiki/Range_query_(database)).
-	 * @return
+	 * 
+	 * @param tenantId
+	 * <p>Unique identifier of a Cumulocity IoT tenant.</p>
+	 * @param groupId
+	 * <p>Unique identifier of the user group.</p>
+	 * @param currentPage
+	 * <p>The current page of the paginated results.</p>
+	 * @param pageSize
+	 * <p>Indicates how many entries of the collection shall be returned. The upper limit for one page is 2,000 objects.</p>
+	 * @param withTotalElements
+	 * <p>When set to <code>true</code>, the returned result will contain in the statistics object the total number of elements. Only applicable on <a href="https://en.wikipedia.org/wiki/Range_query_(database)">range queries</a>.</p>
 	 */
 	public CompletionStage<UserReferenceCollection> getUsersFromUserGroup(final String tenantId, final int groupId, final int currentPage, final int pageSize, final boolean withTotalElements) {
 		return adapt().path("user").path(valueOf(tenantId)).path("groups").path(valueOf(groupId)).path("users")
@@ -352,28 +396,33 @@ public class UsersApi extends AdaptableApi {
 	}
 	
 	/**
-	 * Add a user to a specific user group of a specific tenant
-	 * Add a user to a specific user group (by a given user group ID) of a specific tenant (by a given tenant ID).
-	 * 
+	 * <p>Add a user to a specific user group of a specific tenant</p>
+	 * <p>Add a user to a specific user group (by a given user group ID) of a specific tenant (by a given tenant ID).</p>
 	 * <section><h5>Required roles</h5>
 	 * ROLE_USER_MANAGEMENT_ADMIN to assign root users in a user hierarchy <b>OR</b> users that are not in any hierarchy to any group<br/>
 	 * ROLE_USER_MANAGEMENT_ADMIN to assign non-root users in a user hierarchy to groups accessible by the parent of assigned user<br/>
 	 * ROLE_USER_MANAGEMENT_CREATE to assign descendants of the current user in a user hierarchy to groups accessible by current user <b>AND</b> accessible by the parent of assigned user
 	 * </section>
-	 * 
-	 *
-	 * The following table gives an overview of the possible response codes and their meanings:
+	 * <h5>Response Codes</h5>
+	 * <p>The following table gives an overview of the possible response codes and their meanings:</p>
 	 * <ul>
-	 *     <li>HTTP 201 - The user was added to the group.</li>
-	 *     <li>HTTP 401 - Authentication information is missing or invalid., @{link com.cumulocity.client.model.Error}</li>
-	 *     <li>HTTP 403 - Not enough permissions/roles to perform this operation., @{link com.cumulocity.client.model.Error}</li>
-	 *     <li>HTTP 404 - Group not found., @{link com.cumulocity.client.model.Error}</li>
-	 *     <li>HTTP 422 - Unprocessable Entity – invalid payload.</li>
+	 * 	<li><p>HTTP 201 <p>The user was added to the group.</p></p>
+	 * 	</li>
+	 * 	<li><p>HTTP 401 <p>Authentication information is missing or invalid.</p></p>
+	 * 	</li>
+	 * 	<li><p>HTTP 403 <p>Not enough permissions/roles to perform this operation.</p></p>
+	 * 	</li>
+	 * 	<li><p>HTTP 404 <p>Group not found.</p></p>
+	 * 	</li>
+	 * 	<li><p>HTTP 422 <p>Unprocessable Entity – invalid payload.</p></p>
+	 * 	</li>
 	 * </ul>
-	 * @param body 
-	 * @param tenantId Unique identifier of a Cumulocity IoT tenant.
-	 * @param groupId Unique identifier of the user group.
-	 * @return
+	 * 
+	 * @param body
+	 * @param tenantId
+	 * <p>Unique identifier of a Cumulocity IoT tenant.</p>
+	 * @param groupId
+	 * <p>Unique identifier of the user group.</p>
 	 */
 	public CompletionStage<UserReference> assignUserToUserGroup(final SubscribedUser body, final String tenantId, final int groupId) {
 		final JsonNode jsonNode = toJsonNode(body);
@@ -386,24 +435,30 @@ public class UsersApi extends AdaptableApi {
 	}
 	
 	/**
-	 * Remove a specific user from a specific user group of a specific tenant
-	 * Remove a specific user (by a given user ID) from a specific user group (by a given user group ID) of a specific tenant (by a given tenant ID).
-	 * 
+	 * <p>Remove a specific user from a specific user group of a specific tenant</p>
+	 * <p>Remove a specific user (by a given user ID) from a specific user group (by a given user group ID) of a specific tenant (by a given tenant ID).</p>
 	 * <section><h5>Required roles</h5>
 	 * ROLE_USER_MANAGEMENT_ADMIN <b>OR</b> ROLE_USER_MANAGEMENT_CREATE <b>AND</b> is parent of the user <b>AND</b> is not the current user
 	 * </section>
-	 * 
-	 *
-	 * The following table gives an overview of the possible response codes and their meanings:
+	 * <h5>Response Codes</h5>
+	 * <p>The following table gives an overview of the possible response codes and their meanings:</p>
 	 * <ul>
-	 *     <li>HTTP 204 - A user was removed from a group.</li>
-	 *     <li>HTTP 401 - Authentication information is missing or invalid., @{link com.cumulocity.client.model.Error}</li>
-	 *     <li>HTTP 403 - Not authorized to perform this operation.</li>
-	 *     <li>HTTP 404 - User not found., @{link com.cumulocity.client.model.Error}</li>
+	 * 	<li><p>HTTP 204 <p>A user was removed from a group.</p></p>
+	 * 	</li>
+	 * 	<li><p>HTTP 401 <p>Authentication information is missing or invalid.</p></p>
+	 * 	</li>
+	 * 	<li><p>HTTP 403 <p>Not authorized to perform this operation.</p></p>
+	 * 	</li>
+	 * 	<li><p>HTTP 404 <p>User not found.</p></p>
+	 * 	</li>
 	 * </ul>
-	 * @param tenantId Unique identifier of a Cumulocity IoT tenant.
-	 * @param groupId Unique identifier of the user group.
-	 * @param userId Unique identifier of the a user.
+	 * 
+	 * @param tenantId
+	 * <p>Unique identifier of a Cumulocity IoT tenant.</p>
+	 * @param groupId
+	 * <p>Unique identifier of the user group.</p>
+	 * @param userId
+	 * <p>Unique identifier of the a user.</p>
 	 */
 	public CompletionStage<Response> removeUserFromUserGroup(final String tenantId, final int groupId, final String userId) {
 		return adapt().path("user").path(valueOf(tenantId)).path("groups").path(valueOf(groupId)).path("users").path(valueOf(userId))
@@ -414,19 +469,22 @@ public class UsersApi extends AdaptableApi {
 	}
 	
 	/**
-	 * Terminate a user's session
-	 * After logging out, a user has to enter valid credentials again to get access to the platform.
-	 * 
-	 * The request is responsible for removing cookies from the browser and invalidating internal platform access tokens.
-	 * 
-	 *
-	 * The following table gives an overview of the possible response codes and their meanings:
+	 * <p>Terminate a user's session</p>
+	 * <p>After logging out, a user has to enter valid credentials again to get access to the platform.</p>
+	 * <p>The request is responsible for removing cookies from the browser and invalidating internal platform access tokens.</p>
+	 * <h5>Response Codes</h5>
+	 * <p>The following table gives an overview of the possible response codes and their meanings:</p>
 	 * <ul>
-	 *     <li>HTTP 200 - The request has succeeded and the user is logged out.</li>
-	 *     <li>HTTP 401 - Authentication information is missing or invalid., @{link com.cumulocity.client.model.Error}</li>
+	 * 	<li><p>HTTP 200 <p>The request has succeeded and the user is logged out.</p></p>
+	 * 	</li>
+	 * 	<li><p>HTTP 401 <p>Authentication information is missing or invalid.</p></p>
+	 * 	</li>
 	 * </ul>
-	 * @param cookie The authorization cookie storing the access token of the user. This parameter is specific to OAI-Secure authentication.
-	 * @param xXSRFTOKEN Prevents XRSF attack of the authenticated user. This parameter is specific to OAI-Secure authentication.
+	 * 
+	 * @param cookie
+	 * <p>The authorization cookie storing the access token of the user. This parameter is specific to OAI-Secure authentication.</p>
+	 * @param xXSRFTOKEN
+	 * <p>Prevents XRSF attack of the authenticated user. This parameter is specific to OAI-Secure authentication.</p>
 	 */
 	public CompletionStage<Response> logout(final String cookie, final String xXSRFTOKEN) {
 		return adapt().path("user").path("logout")

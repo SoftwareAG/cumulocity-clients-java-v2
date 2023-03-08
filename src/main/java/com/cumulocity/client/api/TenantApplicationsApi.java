@@ -14,10 +14,10 @@ import com.cumulocity.client.model.ApplicationReferenceCollection;
 import com.cumulocity.client.model.ApplicationReference;
 
 /**
- * References to the tenant subscribed applications.
- * > **&#9432; Info:** The Accept header should be provided in all POST requests, otherwise an empty response body will be returned.
- *  </br>
- * 
+ * <p>References to the tenant subscribed applications.</p>
+ * <blockquote>
+ * <p><strong>ⓘ Info:</strong> The Accept header should be provided in all POST requests, otherwise an empty response body will be returned.</p>
+ * </blockquote>
  */
 public class TenantApplicationsApi extends AdaptableApi {
 
@@ -26,27 +26,34 @@ public class TenantApplicationsApi extends AdaptableApi {
 	}
 
 	/**
-	 * Retrieve subscribed applications
-	 * Retrieve the tenant subscribed applications by a given tenant ID.
-	 * 
+	 * <p>Retrieve subscribed applications</p>
+	 * <p>Retrieve the tenant subscribed applications by a given tenant ID.</p>
 	 * <section><h5>Required roles</h5>
 	 * (ROLE_TENANT_MANAGEMENT_READ <b>OR</b> ROLE_TENANT_ADMIN) <b>AND</b> (the current tenant is its parent <b>OR</b> is the management tenant)
 	 * </section>
-	 * 
-	 *
-	 * The following table gives an overview of the possible response codes and their meanings:
+	 * <h5>Response Codes</h5>
+	 * <p>The following table gives an overview of the possible response codes and their meanings:</p>
 	 * <ul>
-	 *     <li>HTTP 200 - The request has succeeded and the tenant applications are sent in the response.</li>
-	 *     <li>HTTP 401 - Authentication information is missing or invalid., @{link com.cumulocity.client.model.Error}</li>
-	 *     <li>HTTP 403 - Not authorized to perform this operation.</li>
-	 *     <li>HTTP 404 - Tenant not found., @{link com.cumulocity.client.model.Error}</li>
+	 * 	<li><p>HTTP 200 <p>The request has succeeded and the tenant applications are sent in the response.</p></p>
+	 * 	</li>
+	 * 	<li><p>HTTP 401 <p>Authentication information is missing or invalid.</p></p>
+	 * 	</li>
+	 * 	<li><p>HTTP 403 <p>Not authorized to perform this operation.</p></p>
+	 * 	</li>
+	 * 	<li><p>HTTP 404 <p>Tenant not found.</p></p>
+	 * 	</li>
 	 * </ul>
-	 * @param tenantId Unique identifier of a Cumulocity IoT tenant.
-	 * @param currentPage The current page of the paginated results.
-	 * @param pageSize Indicates how many entries of the collection shall be returned. The upper limit for one page is 2,000 objects.
-	 * @param withTotalElements When set to `true`, the returned result will contain in the statistics object the total number of elements. Only applicable on [range queries](https://en.wikipedia.org/wiki/Range_query_(database)).
-	 * @param withTotalPages When set to `true`, the returned result will contain in the statistics object the total number of pages. Only applicable on [range queries](https://en.wikipedia.org/wiki/Range_query_(database)).
-	 * @return
+	 * 
+	 * @param tenantId
+	 * <p>Unique identifier of a Cumulocity IoT tenant.</p>
+	 * @param currentPage
+	 * <p>The current page of the paginated results.</p>
+	 * @param pageSize
+	 * <p>Indicates how many entries of the collection shall be returned. The upper limit for one page is 2,000 objects.</p>
+	 * @param withTotalElements
+	 * <p>When set to <code>true</code>, the returned result will contain in the statistics object the total number of elements. Only applicable on <a href="https://en.wikipedia.org/wiki/Range_query_(database)">range queries</a>.</p>
+	 * @param withTotalPages
+	 * <p>When set to <code>true</code>, the returned result will contain in the statistics object the total number of pages. Only applicable on <a href="https://en.wikipedia.org/wiki/Range_query_(database)">range queries</a>.</p>
 	 */
 	public CompletionStage<ApplicationReferenceCollection> getSubscribedApplications(final String tenantId, final int currentPage, final int pageSize, final boolean withTotalElements, final boolean withTotalPages) {
 		return adapt().path("tenant").path("tenants").path(valueOf(tenantId)).path("applications")
@@ -61,9 +68,8 @@ public class TenantApplicationsApi extends AdaptableApi {
 	}
 	
 	/**
-	 * Subscribe to an application
-	 * Subscribe a tenant (by a given ID) to an application.
-	 * 
+	 * <p>Subscribe to an application</p>
+	 * <p>Subscribe a tenant (by a given ID) to an application.</p>
 	 * <section><h5>Required roles</h5>
 	 * 1. the current tenant is application owner and has the role ROLE_APPLICATION_MANAGEMENT_ADMIN <b>OR</b><br>
 	 * 2. for applications that are not microservices, the current tenant is the management tenant or the parent of the application owner tenant, and the user has one of the follwoing roles: ROLE_TENANT_MANAGEMENT_ADMIN, ROLE_TENANT_MANAGEMENT_UPDATE <b>OR</b><br>
@@ -72,19 +78,24 @@ public class TenantApplicationsApi extends AdaptableApi {
 	 * * the microservice version is supported<br>
 	 * * the current tenant is subscribed to 'feature-privileged-microservice-hosting'
 	 * </section>
-	 * 
-	 *
-	 * The following table gives an overview of the possible response codes and their meanings:
+	 * <h5>Response Codes</h5>
+	 * <p>The following table gives an overview of the possible response codes and their meanings:</p>
 	 * <ul>
-	 *     <li>HTTP 201 - A tenant was subscribed to an application.</li>
-	 *     <li>HTTP 401 - Authentication information is missing or invalid., @{link com.cumulocity.client.model.Error}</li>
-	 *     <li>HTTP 404 - Application not found., @{link com.cumulocity.client.model.Error}</li>
-	 *     <li>HTTP 409 - The application is already assigned to the tenant.</li>
-	 *     <li>HTTP 422 - Unprocessable Entity – invalid payload.</li>
+	 * 	<li><p>HTTP 201 <p>A tenant was subscribed to an application.</p></p>
+	 * 	</li>
+	 * 	<li><p>HTTP 401 <p>Authentication information is missing or invalid.</p></p>
+	 * 	</li>
+	 * 	<li><p>HTTP 404 <p>Application not found.</p></p>
+	 * 	</li>
+	 * 	<li><p>HTTP 409 <p>The application is already assigned to the tenant.</p></p>
+	 * 	</li>
+	 * 	<li><p>HTTP 422 <p>Unprocessable Entity – invalid payload.</p></p>
+	 * 	</li>
 	 * </ul>
-	 * @param body 
-	 * @param tenantId Unique identifier of a Cumulocity IoT tenant.
-	 * @return
+	 * 
+	 * @param body
+	 * @param tenantId
+	 * <p>Unique identifier of a Cumulocity IoT tenant.</p>
 	 */
 	public CompletionStage<ApplicationReference> subscribeApplication(final SubscribedApplicationReference body, final String tenantId) {
 		final JsonNode jsonNode = toJsonNode(body);
@@ -97,23 +108,27 @@ public class TenantApplicationsApi extends AdaptableApi {
 	}
 	
 	/**
-	 * Unsubscribe from an application
-	 * Unsubscribe a tenant (by a given tenant ID) from an application (by a given application ID).
-	 * 
+	 * <p>Unsubscribe from an application</p>
+	 * <p>Unsubscribe a tenant (by a given tenant ID) from an application (by a given application ID).</p>
 	 * <section><h5>Required roles</h5>
 	 * (ROLE_APPLICATION_MANAGEMENT_ADMIN <b>AND</b> is the application owner <b>AND</b> is the current tenant) <b>OR</b><br>
 	 * ((ROLE_TENANT_MANAGEMENT_ADMIN <b>OR</b> ROLE_TENANT_MANAGEMENT_UPDATE) <b>AND</b> (the current tenant is its parent <b>OR</b> is the management tenant))
 	 * </section>
-	 * 
-	 *
-	 * The following table gives an overview of the possible response codes and their meanings:
+	 * <h5>Response Codes</h5>
+	 * <p>The following table gives an overview of the possible response codes and their meanings:</p>
 	 * <ul>
-	 *     <li>HTTP 204 - A tenant was unsubscribed from an application.</li>
-	 *     <li>HTTP 401 - Authentication information is missing or invalid., @{link com.cumulocity.client.model.Error}</li>
-	 *     <li>HTTP 404 - Tenant not found., @{link com.cumulocity.client.model.Error}</li>
+	 * 	<li><p>HTTP 204 <p>A tenant was unsubscribed from an application.</p></p>
+	 * 	</li>
+	 * 	<li><p>HTTP 401 <p>Authentication information is missing or invalid.</p></p>
+	 * 	</li>
+	 * 	<li><p>HTTP 404 <p>Tenant not found.</p></p>
+	 * 	</li>
 	 * </ul>
-	 * @param tenantId Unique identifier of a Cumulocity IoT tenant.
-	 * @param applicationId Unique identifier of the application.
+	 * 
+	 * @param tenantId
+	 * <p>Unique identifier of a Cumulocity IoT tenant.</p>
+	 * @param applicationId
+	 * <p>Unique identifier of the application.</p>
 	 */
 	public CompletionStage<Response> unsubscribeApplication(final String tenantId, final String applicationId) {
 		return adapt().path("tenant").path("tenants").path(valueOf(tenantId)).path("applications").path(valueOf(applicationId))

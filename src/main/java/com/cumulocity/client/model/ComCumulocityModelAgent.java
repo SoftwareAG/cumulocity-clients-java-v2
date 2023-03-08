@@ -10,7 +10,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
- * An empty fragment stored in the device managed object using the inventory API endpoints. It declares that the device is able to receive operations extended capabilities. This fragment is optional. If not present, the extended capabilities will not be certified.
+ * <p>An empty fragment stored in the device managed object using the inventory API endpoints. It declares that the device is able to receive operations extended capabilities. This fragment is optional. If not present, the extended capabilities will not be certified.</p>
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(Include.NON_NULL)

@@ -10,24 +10,24 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
- * Resources usage for each subscribed microservice application.
+ * <p>Resources usage for each subscribed microservice application.</p>
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(Include.NON_NULL)
 public class UsageStatisticsResources {
 
 	/**
-	 * Total number of CPU usage for tenant microservices, specified in CPU milliseconds (1000m = 1 CPU).
+	 * <p>Total number of CPU usage for tenant microservices, specified in CPU milliseconds (1000m = 1 CPU).</p>
 	 */
 	private int cpu;
 
 	/**
-	 * Total number of memory usage for tenant microservices, specified in MB.
+	 * <p>Total number of memory usage for tenant microservices, specified in MB.</p>
 	 */
 	private int memory;
 
 	/**
-	 * Collection of resources usage for each microservice.
+	 * <p>Collection of resources usage for each microservice.</p>
 	 */
 	private UsageStatisticsResourcesUsedBy[] usedBy;
 

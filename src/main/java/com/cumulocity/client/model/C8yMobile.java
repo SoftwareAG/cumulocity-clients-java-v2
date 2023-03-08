@@ -11,30 +11,29 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
- * Holds basic connectivity-related information, such as the equipment identifier of the modem (IMEI) in the device. This identifier is globally unique and often used to identify a mobile device.
+ * <p>Holds basic connectivity-related information, such as the equipment identifier of the modem (IMEI) in the device. This identifier is globally unique and often used to identify a mobile device.</p>
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(Include.NON_NULL)
 public class C8yMobile {
 
 	/**
-	 * The equipment identifier (IMEI) of the modem in the device.
+	 * <p>The equipment identifier (IMEI) of the modem in the device.</p>
 	 */
 	private String imei;
 
 	/**
-	 * The identifier of the cell in the mobile network that the device is currently connected with.
+	 * <p>The identifier of the cell in the mobile network that the device is currently connected with.</p>
 	 */
 	private String cellId;
 
 	/**
-	 * The identifier of the SIM card that is currently in the device (often printed on the card).
+	 * <p>The identifier of the SIM card that is currently in the device (often printed on the card).</p>
 	 */
 	private String iccid;
 
 	/**
-	 * Other possible values are: `c8y_Mobile.imsi`, `c8y_Mobile.currentOperator`, `c8y_Mobile.currentBand`, `c8y_Mobile.connType`, `c8y_Mobile.rssi`, `c8y_Mobile.ecn0`, `c8y_Mobile.rcsp`, `c8y_Mobile.mnc`, `c8y_Mobile.lac` and `c8y_Mobile.msisdn`.
-	 * 
+	 * <p>Other possible values are: <code>c8y_Mobile.imsi</code>, <code>c8y_Mobile.currentOperator</code>, <code>c8y_Mobile.currentBand</code>, <code>c8y_Mobile.connType</code>, <code>c8y_Mobile.rssi</code>, <code>c8y_Mobile.ecn0</code>, <code>c8y_Mobile.rcsp</code>, <code>c8y_Mobile.mnc</code>, <code>c8y_Mobile.lac</code> and <code>c8y_Mobile.msisdn</code>.</p>
 	 */
 	private Map<String, String> customFragments;
 

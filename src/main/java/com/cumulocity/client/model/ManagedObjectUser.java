@@ -14,17 +14,17 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class ManagedObjectUser {
 
 	/**
-	 * Specifies if the device's owner is enabled or not.
+	 * <p>Specifies if the device's owner is enabled or not.</p>
 	 */
 	private boolean enabled;
 
 	/**
-	 * A URL linking to this resource.
+	 * <p>A URL linking to this resource.</p>
 	 */
 	private String self;
 
 	/**
-	 * The username of the device's owner.
+	 * <p>The username of the device's owner.</p>
 	 */
 	private String userName;
 

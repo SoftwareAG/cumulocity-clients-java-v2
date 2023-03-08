@@ -14,22 +14,22 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class ExternalId {
 
 	/**
-	 * The identifier used in the external system that Cumulocity IoT interfaces with.
+	 * <p>The identifier used in the external system that Cumulocity IoT interfaces with.</p>
 	 */
 	private String externalId;
 
 	/**
-	 * The managed object linked to the external ID.
+	 * <p>The managed object linked to the external ID.</p>
 	 */
 	private ManagedObject managedObject;
 
 	/**
-	 * A URL linking to this resource.
+	 * <p>A URL linking to this resource.</p>
 	 */
 	private String self;
 
 	/**
-	 * The type of the external identifier.
+	 * <p>The type of the external identifier.</p>
 	 */
 	private String type;
 
@@ -74,19 +74,19 @@ public class ExternalId {
 	}
 
 	/**
-	 * The managed object linked to the external ID.
+	 * <p>The managed object linked to the external ID.</p>
 	 */
 	@JsonIgnoreProperties(ignoreUnknown = true)
 	@JsonInclude(Include.NON_NULL)
 	public static class ManagedObject {
 	
 		/**
-		 * Unique identifier of the object.
+		 * <p>Unique identifier of the object.</p>
 		 */
 		private String id;
 	
 		/**
-		 * A URL linking to this resource.
+		 * <p>A URL linking to this resource.</p>
 		 */
 		private String self;
 	

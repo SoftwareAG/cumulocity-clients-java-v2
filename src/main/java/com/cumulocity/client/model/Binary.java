@@ -15,48 +15,48 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class Binary {
 
 	/**
-	 * Fragment to identify this managed object as a file.
+	 * <p>Fragment to identify this managed object as a file.</p>
 	 */
 	@JsonProperty(value = "c8y_IsBinary")
 	private C8yIsBinary c8yIsBinary;
 
 	/**
-	 * Media type of the file.
+	 * <p>Media type of the file.</p>
 	 */
 	private String contentType;
 
 	/**
-	 * Unique identifier of the object.
+	 * <p>Unique identifier of the object.</p>
 	 */
 	private String id;
 
 	/**
-	 * Date and time of the file's last update.
+	 * <p>Date and time of the file's last update.</p>
 	 */
 	private String lastUpdated;
 
 	/**
-	 * Size of the file in bytes.
+	 * <p>Size of the file in bytes.</p>
 	 */
 	private int length;
 
 	/**
-	 * Name of the managed object. It is set from the `object` contained in the payload.
+	 * <p>Name of the managed object. It is set from the <code>object</code> contained in the payload.</p>
 	 */
 	private String name;
 
 	/**
-	 * Username of the owner of the file.
+	 * <p>Username of the owner of the file.</p>
 	 */
 	private String owner;
 
 	/**
-	 * A URL linking to this resource.
+	 * <p>A URL linking to this resource.</p>
 	 */
 	private String self;
 
 	/**
-	 * Type of the managed object. It is set from the `object` contained in the payload.
+	 * <p>Type of the managed object. It is set from the <code>object</code> contained in the payload.</p>
 	 */
 	private String type;
 
@@ -133,7 +133,7 @@ public class Binary {
 	}
 
 	/**
-	 * Fragment to identify this managed object as a file.
+	 * <p>Fragment to identify this managed object as a file.</p>
 	 */
 	@JsonIgnoreProperties(ignoreUnknown = true)
 	@JsonInclude(Include.NON_NULL)

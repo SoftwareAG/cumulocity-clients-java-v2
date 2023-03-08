@@ -14,12 +14,12 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class CurrentUserTotpSecret {
 
 	/**
-	 * Secret used by two-factor authentication applications to generate the TFA codes.
+	 * <p>Secret used by two-factor authentication applications to generate the TFA codes.</p>
 	 */
 	private String rawSecret;
 
 	/**
-	 * URL used to set the two-factor authentication secret for the TFA application.
+	 * <p>URL used to set the two-factor authentication secret for the TFA application.</p>
 	 */
 	private String secretQrUrl;
 

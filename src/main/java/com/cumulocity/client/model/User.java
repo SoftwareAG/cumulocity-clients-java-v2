@@ -15,118 +15,114 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class User {
 
 	/**
-	 * A list of applications for this user.
+	 * <p>A list of applications for this user.</p>
 	 */
 	private Application[] applications;
 
 	/**
-	 * An object with a list of custom properties.
+	 * <p>An object with a list of custom properties.</p>
 	 */
 	private CustomProperties customProperties;
 
 	/**
-	 * The user's display name in Cumulocity IoT.
+	 * <p>The user's display name in Cumulocity IoT.</p>
 	 */
 	private String displayName;
 
 	/**
-	 * The user's email address.
+	 * <p>The user's email address.</p>
 	 */
 	private String email;
 
 	/**
-	 * Indicates whether the user is enabled or not. Disabled users cannot log in or perform API requests.
+	 * <p>Indicates whether the user is enabled or not. Disabled users cannot log in or perform API requests.</p>
 	 */
 	private boolean enabled;
 
 	/**
-	 * The user's first name.
+	 * <p>The user's first name.</p>
 	 */
 	private String firstName;
 
 	/**
-	 * An object with a list of user groups.
+	 * <p>An object with a list of user groups.</p>
 	 */
 	private Groups groups;
 
 	/**
-	 * A unique identifier for this user.
+	 * <p>A unique identifier for this user.</p>
 	 */
 	private String id;
 
 	/**
-	 * The user's last name.
+	 * <p>The user's last name.</p>
 	 */
 	private String lastName;
 
 	/**
-	 * The date and time when the user's password was last changed, in [ISO 8601 datetime format](https://www.w3.org/TR/NOTE-datetime).
+	 * <p>The date and time when the user's password was last changed, in <a href="https://www.w3.org/TR/NOTE-datetime">ISO 8601 datetime format</a>.</p>
 	 */
 	private String lastPasswordChange;
 
 	/**
-	 * Indicates whether the user is subscribed to the newsletter or not.
+	 * <p>Indicates whether the user is subscribed to the newsletter or not.</p>
 	 */
 	private boolean newsletter;
 
 	/**
-	 * Identifier of the parent user. If present, indicates that a user belongs to a user hierarchy by pointing to its direct ancestor. Can only be set by users with role USER_MANAGEMENT_ADMIN during user creation. Otherwise it's assigned automatically.
+	 * <p>Identifier of the parent user. If present, indicates that a user belongs to a user hierarchy by pointing to its direct ancestor. Can only be set by users with role USER_MANAGEMENT_ADMIN during user creation. Otherwise it's assigned automatically.</p>
 	 */
 	private String owner;
 
 	/**
-	 * The user's password. Only Latin1 characters are allowed.
-	 * 
-	 * If you do not specify a password when creating a new user with a POST request, it must contain the property `sendPasswordResetEmail` with a value of `true`.
-	 * 
+	 * <p>The user's password. Only Latin1 characters are allowed.</p>
+	 * <p>If you do not specify a password when creating a new user with a POST request, it must contain the property <code>sendPasswordResetEmail</code> with a value of <code>true</code>.</p>
 	 */
 	private String password;
 
 	/**
-	 * Indicates the password strength. The value can be GREEN, YELLOW or RED for decreasing password strengths.
+	 * <p>Indicates the password strength. The value can be GREEN, YELLOW or RED for decreasing password strengths.</p>
 	 */
 	private PasswordStrength passwordStrength;
 
 	/**
-	 * The user's phone number.
+	 * <p>The user's phone number.</p>
 	 */
 	private String phone;
 
 	/**
-	 * An object with a list of user roles.
+	 * <p>An object with a list of user roles.</p>
 	 */
 	private Roles roles;
 
 	/**
-	 * A URL linking to this resource.
+	 * <p>A URL linking to this resource.</p>
 	 */
 	private String self;
 
 	/**
-	 * When set to `true`, this field will cause Cumulocity IoT to send a password reset email to the email address specified.
-	 * 
-	 * If there is no password specified when creating a new user with a POST request, this must be specified and it must be set to `true`.
-	 * 
+	 * <p>When set to <code>true</code>, this field will cause Cumulocity IoT to send a password reset email to the email address specified.</p>
+	 * <p>If there is no password specified when creating a new user with a POST request, this must be specified and it must be set to <code>true</code>.</p>
 	 */
 	private boolean sendPasswordResetEmail;
 
 	/**
-	 * Indicates if the user should reset the password on the next login.
+	 * <p>Indicates if the user should reset the password on the next login.</p>
 	 */
 	private boolean shouldResetPassword;
 
 	/**
-	 * Indicates if the user has to use two-factor authentication to log in.
+	 * <p>Indicates if the user has to use two-factor authentication to log in.</p>
 	 */
 	private boolean twoFactorAuthenticationEnabled;
 
 	/**
-	 * The user's username. It can have a maximum of 1000 characters.
+	 * <p>The user's username. It can have a maximum of 1000 characters.</p>
 	 */
 	private String userName;
 
 	/**
-	 * An object with a list of the user's device permissions.
+	 * <p>An object with a list of the user's device permissions.</p>
 	 */
 	@Deprecated
 	private DevicePermissions devicePermissions;
@@ -309,7 +305,7 @@ public class User {
 
 	
 	/**
-	 * Indicates the password strength. The value can be GREEN, YELLOW or RED for decreasing password strengths.
+	 * <p>Indicates the password strength. The value can be GREEN, YELLOW or RED for decreasing password strengths.</p>
 	 */
 	public enum PasswordStrength {
 		@JsonProperty("GREEN")
@@ -331,24 +327,24 @@ public class User {
 	}
 
 	/**
-	 * An object with a list of user groups.
+	 * <p>An object with a list of user groups.</p>
 	 */
 	@JsonIgnoreProperties(ignoreUnknown = true)
 	@JsonInclude(Include.NON_NULL)
 	public static class Groups {
 	
 		/**
-		 * A URL linking to this resource.
+		 * <p>A URL linking to this resource.</p>
 		 */
 		private String self;
 	
 		/**
-		 * A list of user group references.
+		 * <p>A list of user group references.</p>
 		 */
 		private GroupReference[] references;
 	
 		/**
-		 * Information about paging statistics.
+		 * <p>Information about paging statistics.</p>
 		 */
 		private PageStatistics statistics;
 	
@@ -399,24 +395,24 @@ public class User {
 
 
 	/**
-	 * An object with a list of user roles.
+	 * <p>An object with a list of user roles.</p>
 	 */
 	@JsonIgnoreProperties(ignoreUnknown = true)
 	@JsonInclude(Include.NON_NULL)
 	public static class Roles {
 	
 		/**
-		 * A URL linking to this resource.
+		 * <p>A URL linking to this resource.</p>
 		 */
 		private String self;
 	
 		/**
-		 * A list of user role references.
+		 * <p>A list of user role references.</p>
 		 */
 		private RoleReference[] references;
 	
 		/**
-		 * Information about paging statistics.
+		 * <p>Information about paging statistics.</p>
 		 */
 		private PageStatistics statistics;
 	

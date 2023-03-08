@@ -10,19 +10,19 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
- * Measurement of the motion sensor.
+ * <p>Measurement of the motion sensor.</p>
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(Include.NON_NULL)
 public class C8yMotionMeasurement {
 
 	/**
-	 * Boolean value indicating if motion has been detected (non-zero value) or not (zero value).
+	 * <p>Boolean value indicating if motion has been detected (non-zero value) or not (zero value).</p>
 	 */
 	private MotionDetected motionDetected;
 
 	/**
-	 * A measurement is a value with a unit.
+	 * <p>A measurement is a value with a unit.</p>
 	 */
 	private C8yMeasurementValue speed;
 
@@ -43,7 +43,7 @@ public class C8yMotionMeasurement {
 	}
 
 	/**
-	 * Boolean value indicating if motion has been detected (non-zero value) or not (zero value).
+	 * <p>Boolean value indicating if motion has been detected (non-zero value) or not (zero value).</p>
 	 */
 	@JsonIgnoreProperties(ignoreUnknown = true)
 	@JsonInclude(Include.NON_NULL)

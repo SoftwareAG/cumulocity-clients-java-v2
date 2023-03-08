@@ -10,29 +10,29 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
- * An inventory assignment.
+ * <p>An inventory assignment.</p>
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(Include.NON_NULL)
 public class InventoryAssignment {
 
 	/**
-	 * A unique identifier for this inventory assignment.
+	 * <p>A unique identifier for this inventory assignment.</p>
 	 */
 	private int id;
 
 	/**
-	 * A unique identifier for the managed object for which the roles are assigned.
+	 * <p>A unique identifier for the managed object for which the roles are assigned.</p>
 	 */
 	private String managedObject;
 
 	/**
-	 * An array of roles that are assigned to the managed object for the user.
+	 * <p>An array of roles that are assigned to the managed object for the user.</p>
 	 */
 	private InventoryRole[] roles;
 
 	/**
-	 * A URL linking to this resource.
+	 * <p>A URL linking to this resource.</p>
 	 */
 	private String self;
 

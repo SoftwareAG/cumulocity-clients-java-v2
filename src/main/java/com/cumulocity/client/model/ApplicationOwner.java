@@ -10,14 +10,14 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
- * Reference to the tenant owning this application. The default value is a reference to the current tenant.
+ * <p>Reference to the tenant owning this application. The default value is a reference to the current tenant.</p>
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(Include.NON_NULL)
 public class ApplicationOwner {
 
 	/**
-	 * A URL linking to this resource.
+	 * <p>A URL linking to this resource.</p>
 	 */
 	private String self;
 
@@ -44,7 +44,7 @@ public class ApplicationOwner {
 	public static class Tenant {
 	
 		/**
-		 * The tenant ID.
+		 * <p>The tenant ID.</p>
 		 */
 		private String id;
 	

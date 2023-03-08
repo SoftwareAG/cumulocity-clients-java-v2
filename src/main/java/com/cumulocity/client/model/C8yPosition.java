@@ -10,17 +10,15 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
- * Reports the geographical location of an asset in terms of latitude, longitude and altitude.
- * 
- * Altitude is given in meters. To report the current location of an asset or a device, `c8y_Position` is added to the managed object representing the asset or device. To trace the position of an asset or a device, `c8y_Position` is sent as part of an event of type `c8y_LocationUpdate`.
- * 
+ * <p>Reports the geographical location of an asset in terms of latitude, longitude and altitude.</p>
+ * <p>Altitude is given in meters. To report the current location of an asset or a device, <code>c8y_Position</code> is added to the managed object representing the asset or device. To trace the position of an asset or a device, <code>c8y_Position</code> is sent as part of an event of type <code>c8y_LocationUpdate</code>.</p>
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(Include.NON_NULL)
 public class C8yPosition {
 
 	/**
-	 * In meters.
+	 * <p>In meters.</p>
 	 */
 	private Number alt;
 
@@ -29,12 +27,12 @@ public class C8yPosition {
 	private Number lat;
 
 	/**
-	 * Describes in which protocol the tracking context of a positioning report was sent.
+	 * <p>Describes in which protocol the tracking context of a positioning report was sent.</p>
 	 */
 	private String trackingProtocol;
 
 	/**
-	 * Describes why the tracking context of a positioning report was sent.
+	 * <p>Describes why the tracking context of a positioning report was sent.</p>
 	 */
 	private String reportReason;
 

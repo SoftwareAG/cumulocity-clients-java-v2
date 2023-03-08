@@ -15,84 +15,85 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class Tenant {
 
 	/**
-	 * Email address of the tenant's administrator.
+	 * <p>Email address of the tenant's administrator.</p>
 	 */
 	private String adminEmail;
 
 	/**
-	 * Username of the tenant's administrator.
-	 * > **&#9432; Info:** When it is provided in the request body, also `adminEmail` and `adminPass` must be provided.
-	 * 
+	 * <p>Username of the tenant's administrator.</p>
+	 * <blockquote>
+	 * <p><strong>ⓘ Info:</strong> When it is provided in the request body, also <code>adminEmail</code> and <code>adminPass</code> must be provided.</p>
+	 * </blockquote>
 	 */
 	private String adminName;
 
 	/**
-	 * Password of the tenant's administrator.
+	 * <p>Password of the tenant's administrator.</p>
 	 */
 	private String adminPass;
 
 	/**
-	 * Indicates if this tenant can create subtenants.
+	 * <p>Indicates if this tenant can create subtenants.</p>
 	 */
 	private boolean allowCreateTenants;
 
 	/**
-	 * Collection of the subscribed applications.
+	 * <p>Collection of the subscribed applications.</p>
 	 */
 	private Applications applications;
 
 	/**
-	 * Tenant's company name.
+	 * <p>Tenant's company name.</p>
 	 */
 	private String company;
 
 	/**
-	 * Name of the contact person.
+	 * <p>Name of the contact person.</p>
 	 */
 	private String contactName;
 
 	/**
-	 * Phone number of the contact person, provided in the international format, for example, +48 123 456 7890.
+	 * <p>Phone number of the contact person, provided in the international format, for example, +48 123 456 7890.</p>
 	 */
 	private String contactPhone;
 
 	/**
-	 * The date and time when the tenant was created.
+	 * <p>The date and time when the tenant was created.</p>
 	 */
 	private String creationTime;
 
 	/**
-	 * An object with a list of custom properties.
+	 * <p>An object with a list of custom properties.</p>
 	 */
 	private CustomProperties customProperties;
 
 	/**
-	 * URL of the tenant's domain. The domain name permits only the use of alphanumeric characters separated by dots `.` and hyphens `-`.
+	 * <p>URL of the tenant's domain. The domain name permits only the use of alphanumeric characters separated by dots <code>.</code> and hyphens <code>-</code>.</p>
 	 */
 	private String domain;
 
 	/**
-	 * Unique identifier of a Cumulocity IoT tenant.
+	 * <p>Unique identifier of a Cumulocity IoT tenant.</p>
 	 */
 	private String id;
 
 	/**
-	 * Collection of the owned applications.
+	 * <p>Collection of the owned applications.</p>
 	 */
 	private OwnedApplications ownedApplications;
 
 	/**
-	 * ID of the parent tenant.
+	 * <p>ID of the parent tenant.</p>
 	 */
 	private String parent;
 
 	/**
-	 * A URL linking to this resource.
+	 * <p>A URL linking to this resource.</p>
 	 */
 	private String self;
 
 	/**
-	 * Current status of the tenant.
+	 * <p>Current status of the tenant.</p>
 	 */
 	private Status status;
 
@@ -226,7 +227,7 @@ public class Tenant {
 
 	
 	/**
-	 * Current status of the tenant.
+	 * <p>Current status of the tenant.</p>
 	 */
 	public enum Status {
 		@JsonProperty("ACTIVE")
@@ -246,19 +247,19 @@ public class Tenant {
 	}
 
 	/**
-	 * Collection of the subscribed applications.
+	 * <p>Collection of the subscribed applications.</p>
 	 */
 	@JsonIgnoreProperties(ignoreUnknown = true)
 	@JsonInclude(Include.NON_NULL)
 	public static class Applications {
 	
 		/**
-		 * An array containing all subscribed applications.
+		 * <p>An array containing all subscribed applications.</p>
 		 */
 		private Application[] references;
 	
 		/**
-		 * A URL linking to this resource.
+		 * <p>A URL linking to this resource.</p>
 		 */
 		private String self;
 	
@@ -300,19 +301,19 @@ public class Tenant {
 	}
 
 	/**
-	 * Collection of the owned applications.
+	 * <p>Collection of the owned applications.</p>
 	 */
 	@JsonIgnoreProperties(ignoreUnknown = true)
 	@JsonInclude(Include.NON_NULL)
 	public static class OwnedApplications {
 	
 		/**
-		 * An array containing all owned applications (only applications with availability MARKET).
+		 * <p>An array containing all owned applications (only applications with availability MARKET).</p>
 		 */
 		private Application[] references;
 	
 		/**
-		 * A URL linking to this resource.
+		 * <p>A URL linking to this resource.</p>
 		 */
 		private String self;
 	

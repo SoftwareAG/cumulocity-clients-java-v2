@@ -11,117 +11,117 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
- * Parameters determining the authentication process.
+ * <p>Parameters determining the authentication process.</p>
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(Include.NON_NULL)
 public class AuthConfig {
 
 	/**
-	 * SSO specific. Describes the fields in the access token from the external server containing user information.
+	 * <p>SSO specific. Describes the fields in the access token from the external server containing user information.</p>
 	 */
 	private AccessTokenToUserDataMapping accessTokenToUserDataMapping;
 
 	/**
-	 * SSO specific. Token audience.
+	 * <p>SSO specific. Token audience.</p>
 	 */
 	private String audience;
 
 	private RequestRepresentation authorizationRequest;
 
 	/**
-	 * For basic authentication case only.
+	 * <p>For basic authentication case only.</p>
 	 */
 	private BasicAuthenticationRestrictions authenticationRestrictions;
 
 	/**
-	 * SSO specific. Information for the UI about the name displayed on the external server login button.
+	 * <p>SSO specific. Information for the UI about the name displayed on the external server login button.</p>
 	 */
 	private String buttonName;
 
 	/**
-	 * SSO specific. The identifier of the Cumulocity IoT tenant on the external authorization server.
+	 * <p>SSO specific. The identifier of the Cumulocity IoT tenant on the external authorization server.</p>
 	 */
 	private String clientId;
 
 	/**
-	 * The authentication configuration grant type identifier.
+	 * <p>The authentication configuration grant type identifier.</p>
 	 */
 	private GrantType grantType;
 
 	/**
-	 * Unique identifier of this login option.
+	 * <p>Unique identifier of this login option.</p>
 	 */
 	private String id;
 
 	/**
-	 * SSO specific. External token issuer.
+	 * <p>SSO specific. External token issuer.</p>
 	 */
 	private String issuer;
 
 	private RequestRepresentation logoutRequest;
 
 	/**
-	 * Indicates whether the configuration is only accessible to the management tenant.
+	 * <p>Indicates whether the configuration is only accessible to the management tenant.</p>
 	 */
 	private boolean onlyManagementTenantAccess;
 
 	/**
-	 * SSO specific. Describes the process of internal user creation during login with the external authorization server.
+	 * <p>SSO specific. Describes the process of internal user creation during login with the external authorization server.</p>
 	 */
 	private OnNewUser onNewUser;
 
 	/**
-	 * The name of the authentication provider.
+	 * <p>The name of the authentication provider.</p>
 	 */
 	private String providerName;
 
 	/**
-	 * SSO specific. URL used for redirecting to the Cumulocity IoT platform.
+	 * <p>SSO specific. URL used for redirecting to the Cumulocity IoT platform.</p>
 	 */
 	private String redirectToPlatform;
 
 	private RequestRepresentation refreshRequest;
 
 	/**
-	 * A URL linking to this resource.
+	 * <p>A URL linking to this resource.</p>
 	 */
 	private String self;
 
 	/**
-	 * The session configuration properties are only available for OAuth internal. See [Changing settings > OAuth internal](https://cumulocity.com/guides/users-guide/administration/#oauth-internal) for more details.
+	 * <p>The session configuration properties are only available for OAuth internal. See <a href="https://cumulocity.com/guides/users-guide/administration/#oauth-internal">Changing settings > OAuth internal</a> for more details.</p>
 	 */
 	private OAuthSessionConfiguration sessionConfiguration;
 
 	/**
-	 * SSO specific and authorization server dependent. Describes the method of access token signature verification on the Cumulocity IoT platform.
+	 * <p>SSO specific and authorization server dependent. Describes the method of access token signature verification on the Cumulocity IoT platform.</p>
 	 */
 	private SignatureVerificationConfig signatureVerificationConfig;
 
 	/**
-	 * SSO specific. Template name used by the UI.
+	 * <p>SSO specific. Template name used by the UI.</p>
 	 */
 	private String template;
 
 	private RequestRepresentation tokenRequest;
 
 	/**
-	 * The authentication configuration type. Note that the value is case insensitive.
+	 * <p>The authentication configuration type. Note that the value is case insensitive.</p>
 	 */
 	private Type type;
 
 	/**
-	 * SSO specific. Points to the field in the obtained JWT access token that should be used as the username in the Cumulocity IoT platform.
+	 * <p>SSO specific. Points to the field in the obtained JWT access token that should be used as the username in the Cumulocity IoT platform.</p>
 	 */
 	private UserIdConfig userIdConfig;
 
 	/**
-	 * Indicates whether user data are managed internally by the Cumulocity IoT platform or by an external server. Note that the value is case insensitive.
+	 * <p>Indicates whether user data are managed internally by the Cumulocity IoT platform or by an external server. Note that the value is case insensitive.</p>
 	 */
 	private UserManagementSource userManagementSource;
 
 	/**
-	 * Information for the UI if the respective authentication form should be visible for the user.
+	 * <p>Information for the UI if the respective authentication form should be visible for the user.</p>
 	 */
 	private boolean visibleOnLoginPage;
 
@@ -327,7 +327,7 @@ public class AuthConfig {
 
 	
 	/**
-	 * The authentication configuration grant type identifier.
+	 * <p>The authentication configuration grant type identifier.</p>
 	 */
 	public enum GrantType {
 		@JsonProperty("AUTHORIZATION_CODE")
@@ -348,7 +348,7 @@ public class AuthConfig {
 
 	
 	/**
-	 * The authentication configuration type. Note that the value is case insensitive.
+	 * <p>The authentication configuration type. Note that the value is case insensitive.</p>
 	 */
 	public enum Type {
 		@JsonProperty("BASIC")
@@ -371,7 +371,7 @@ public class AuthConfig {
 
 	
 	/**
-	 * Indicates whether user data are managed internally by the Cumulocity IoT platform or by an external server. Note that the value is case insensitive.
+	 * <p>Indicates whether user data are managed internally by the Cumulocity IoT platform or by an external server. Note that the value is case insensitive.</p>
 	 */
 	public enum UserManagementSource {
 		@JsonProperty("INTERNAL")
@@ -391,29 +391,29 @@ public class AuthConfig {
 	}
 
 	/**
-	 * SSO specific. Describes the fields in the access token from the external server containing user information.
+	 * <p>SSO specific. Describes the fields in the access token from the external server containing user information.</p>
 	 */
 	@JsonIgnoreProperties(ignoreUnknown = true)
 	@JsonInclude(Include.NON_NULL)
 	public static class AccessTokenToUserDataMapping {
 	
 		/**
-		 * The name of the field containing the user's email.
+		 * <p>The name of the field containing the user's email.</p>
 		 */
 		private String emailClaimName;
 	
 		/**
-		 * The name of the field containing the user's first name.
+		 * <p>The name of the field containing the user's first name.</p>
 		 */
 		private String firstNameClaimName;
 	
 		/**
-		 * The name of the field containing the user's last name.
+		 * <p>The name of the field containing the user's last name.</p>
 		 */
 		private String lastNameClaimName;
 	
 		/**
-		 * The name of the field containing the user's phone number.
+		 * <p>The name of the field containing the user's phone number.</p>
 		 */
 		private String phoneNumberClaimName;
 	
@@ -472,14 +472,14 @@ public class AuthConfig {
 
 
 	/**
-	 * SSO specific. Describes the process of internal user creation during login with the external authorization server.
+	 * <p>SSO specific. Describes the process of internal user creation during login with the external authorization server.</p>
 	 */
 	@JsonIgnoreProperties(ignoreUnknown = true)
 	@JsonInclude(Include.NON_NULL)
 	public static class OnNewUser {
 	
 		/**
-		 * Modern version of configuration of default groups and applications. This ensures backward compatibility.
+		 * <p>Modern version of configuration of default groups and applications. This ensures backward compatibility.</p>
 		 */
 		private DynamicMapping dynamicMapping;
 	
@@ -492,19 +492,19 @@ public class AuthConfig {
 		}
 	
 		/**
-		 * Modern version of configuration of default groups and applications. This ensures backward compatibility.
+		 * <p>Modern version of configuration of default groups and applications. This ensures backward compatibility.</p>
 		 */
 		@JsonIgnoreProperties(ignoreUnknown = true)
 		@JsonInclude(Include.NON_NULL)
 		public static class DynamicMapping {
 		
 			/**
-			 * Configuration of the mapping.
+			 * <p>Configuration of the mapping.</p>
 			 */
 			private Configuration configuration;
 		
 			/**
-			 * Represents rules used to assign groups and applications.
+			 * <p>Represents rules used to assign groups and applications.</p>
 			 */
 			private Mappings[] mappings;
 		
@@ -525,14 +525,14 @@ public class AuthConfig {
 			}
 		
 			/**
-			 * Configuration of the mapping.
+			 * <p>Configuration of the mapping.</p>
 			 */
 			@JsonIgnoreProperties(ignoreUnknown = true)
 			@JsonInclude(Include.NON_NULL)
 			public static class Configuration {
 			
 				/**
-				 * Indicates whether the mapping should be evaluated always or only during the first external login when the internal user is created.
+				 * <p>Indicates whether the mapping should be evaluated always or only during the first external login when the internal user is created.</p>
 				 */
 				private boolean mapRolesOnlyForNewUser;
 			
@@ -566,24 +566,24 @@ public class AuthConfig {
 			}
 		
 			/**
-			 * Represents information of mapping access to groups and applications.
+			 * <p>Represents information of mapping access to groups and applications.</p>
 			 */
 			@JsonIgnoreProperties(ignoreUnknown = true)
 			@JsonInclude(Include.NON_NULL)
 			public static class Mappings {
 			
 				/**
-				 * Represents a predicate for verification. It acts as a condition which is necessary to assign a user to the given groups and permit access to the specified applications.
+				 * <p>Represents a predicate for verification. It acts as a condition which is necessary to assign a user to the given groups and permit access to the specified applications.</p>
 				 */
 				private JSONPredicateRepresentation when;
 			
 				/**
-				 * List of the applications' identifiers.
+				 * <p>List of the applications' identifiers.</p>
 				 */
 				private int[] thenApplications;
 			
 				/**
-				 * List of the groups' identifiers.
+				 * <p>List of the groups' identifiers.</p>
 				 */
 				private int[] thenGroups;
 			
@@ -675,29 +675,29 @@ public class AuthConfig {
 	}
 
 	/**
-	 * SSO specific and authorization server dependent. Describes the method of access token signature verification on the Cumulocity IoT platform.
+	 * <p>SSO specific and authorization server dependent. Describes the method of access token signature verification on the Cumulocity IoT platform.</p>
 	 */
 	@JsonIgnoreProperties(ignoreUnknown = true)
 	@JsonInclude(Include.NON_NULL)
 	public static class SignatureVerificationConfig {
 	
 		/**
-		 * AAD signature verification configuration.
+		 * <p>AAD signature verification configuration.</p>
 		 */
 		private Aad aad;
 	
 		/**
-		 * ADFS manifest signature verification configuration.
+		 * <p>ADFS manifest signature verification configuration.</p>
 		 */
 		private AdfsManifest adfsManifest;
 	
 		/**
-		 * The address of the endpoint which is used to retrieve the public key used to verify the JWT access token signature.
+		 * <p>The address of the endpoint which is used to retrieve the public key used to verify the JWT access token signature.</p>
 		 */
 		private Jwks jwks;
 	
 		/**
-		 * Describes the process of verification of JWT access token with the public keys embedded in the provided X.509 certificates.
+		 * <p>Describes the process of verification of JWT access token with the public keys embedded in the provided X.509 certificates.</p>
 		 */
 		private Manual manual;
 	
@@ -734,14 +734,14 @@ public class AuthConfig {
 		}
 	
 		/**
-		 * AAD signature verification configuration.
+		 * <p>AAD signature verification configuration.</p>
 		 */
 		@JsonIgnoreProperties(ignoreUnknown = true)
 		@JsonInclude(Include.NON_NULL)
 		public static class Aad {
 		
 			/**
-			 * URL used to retrieve the public key used for signature verification.
+			 * <p>URL used to retrieve the public key used for signature verification.</p>
 			 */
 			private String publicKeyDiscoveryUrl;
 		
@@ -775,14 +775,14 @@ public class AuthConfig {
 		}
 	
 		/**
-		 * ADFS manifest signature verification configuration.
+		 * <p>ADFS manifest signature verification configuration.</p>
 		 */
 		@JsonIgnoreProperties(ignoreUnknown = true)
 		@JsonInclude(Include.NON_NULL)
 		public static class AdfsManifest {
 		
 			/**
-			 * The URI to the manifest resource.
+			 * <p>The URI to the manifest resource.</p>
 			 */
 			private String manifestUrl;
 		
@@ -816,14 +816,14 @@ public class AuthConfig {
 		}
 	
 		/**
-		 * The address of the endpoint which is used to retrieve the public key used to verify the JWT access token signature.
+		 * <p>The address of the endpoint which is used to retrieve the public key used to verify the JWT access token signature.</p>
 		 */
 		@JsonIgnoreProperties(ignoreUnknown = true)
 		@JsonInclude(Include.NON_NULL)
 		public static class Jwks {
 		
 			/**
-			 * The URI to the public key resource.
+			 * <p>The URI to the public key resource.</p>
 			 */
 			private String jwksUrl;
 		
@@ -857,24 +857,24 @@ public class AuthConfig {
 		}
 	
 		/**
-		 * Describes the process of verification of JWT access token with the public keys embedded in the provided X.509 certificates.
+		 * <p>Describes the process of verification of JWT access token with the public keys embedded in the provided X.509 certificates.</p>
 		 */
 		@JsonIgnoreProperties(ignoreUnknown = true)
 		@JsonInclude(Include.NON_NULL)
 		public static class Manual {
 		
 			/**
-			 * The name of the field in the JWT access token containing the certificate identifier.
+			 * <p>The name of the field in the JWT access token containing the certificate identifier.</p>
 			 */
 			private String certIdField;
 		
 			/**
-			 * Indicates whether the certificate identifier should be read from the JWT access token.
+			 * <p>Indicates whether the certificate identifier should be read from the JWT access token.</p>
 			 */
 			private boolean certIdFromField;
 		
 			/**
-			 * Details of the certificates.
+			 * <p>Details of the certificates.</p>
 			 */
 			private Certificates certificates;
 		
@@ -903,29 +903,29 @@ public class AuthConfig {
 			}
 		
 			/**
-			 * Details of the certificates.
+			 * <p>Details of the certificates.</p>
 			 */
 			@JsonIgnoreProperties(ignoreUnknown = true)
 			@JsonInclude(Include.NON_NULL)
 			public static class Certificates {
 			
 				/**
-				 * The signing algorithm of the JWT access token.
+				 * <p>The signing algorithm of the JWT access token.</p>
 				 */
 				private Alg alg;
 			
 				/**
-				 * The public key certificate.
+				 * <p>The public key certificate.</p>
 				 */
 				private String publicKey;
 			
 				/**
-				 * The validity start date of the certificate.
+				 * <p>The validity start date of the certificate.</p>
 				 */
 				private String validFrom;
 			
 				/**
-				 * The expiry date of the certificate.
+				 * <p>The expiry date of the certificate.</p>
 				 */
 				private String validTill;
 			
@@ -963,7 +963,7 @@ public class AuthConfig {
 			
 				
 				/**
-				 * The signing algorithm of the JWT access token.
+				 * <p>The signing algorithm of the JWT access token.</p>
 				 */
 				public enum Alg {
 					@JsonProperty("RSA")
@@ -1048,24 +1048,24 @@ public class AuthConfig {
 
 
 	/**
-	 * SSO specific. Points to the field in the obtained JWT access token that should be used as the username in the Cumulocity IoT platform.
+	 * <p>SSO specific. Points to the field in the obtained JWT access token that should be used as the username in the Cumulocity IoT platform.</p>
 	 */
 	@JsonIgnoreProperties(ignoreUnknown = true)
 	@JsonInclude(Include.NON_NULL)
 	public static class UserIdConfig {
 	
 		/**
-		 * Used only when `useConstantValue` is set to `true`.
+		 * <p>Used only when <code>useConstantValue</code> is set to <code>true</code>.</p>
 		 */
 		private String constantValue;
 	
 		/**
-		 * The name of the field containing the JWT.
+		 * <p>The name of the field containing the JWT.</p>
 		 */
 		private String jwtField;
 	
 		/**
-		 * Not recommended. If set to `true`, all SSO users will share one account in the Cumulocity IoT platform.
+		 * <p>Not recommended. If set to <code>true</code>, all SSO users will share one account in the Cumulocity IoT platform.</p>
 		 */
 		private boolean useConstantValue;
 	

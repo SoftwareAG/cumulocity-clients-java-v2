@@ -14,12 +14,12 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class RangeStatisticsFile {
 
 	/**
-	 * Statistics generation start date.
+	 * <p>Statistics generation start date.</p>
 	 */
 	private String dateFrom;
 
 	/**
-	 * Statistics generation end date.
+	 * <p>Statistics generation end date.</p>
 	 */
 	private String dateTo;
 

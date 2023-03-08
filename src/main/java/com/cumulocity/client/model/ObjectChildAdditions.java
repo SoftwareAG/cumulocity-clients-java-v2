@@ -10,24 +10,24 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
- * A collection of references to child additions.
+ * <p>A collection of references to child additions.</p>
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(Include.NON_NULL)
 public class ObjectChildAdditions {
 
 	/**
-	 * The total number of child additions. Only present if the value is greater than 0.
+	 * <p>The total number of child additions. Only present if the value is greater than 0.</p>
 	 */
 	private int count;
 
 	/**
-	 * An array with the references to child devices.
+	 * <p>An array with the references to child devices.</p>
 	 */
 	private ManagedObjectReferenceTuple[] references;
 
 	/**
-	 * Link to this resource's child additions.
+	 * <p>Link to this resource's child additions.</p>
 	 */
 	private String self;
 

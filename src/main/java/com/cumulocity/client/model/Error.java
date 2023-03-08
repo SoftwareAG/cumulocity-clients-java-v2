@@ -14,17 +14,17 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class Error {
 
 	/**
-	 * The type of error returned.
+	 * <p>The type of error returned.</p>
 	 */
 	private String error;
 
 	/**
-	 * A human-readable message providing more details about the error.
+	 * <p>A human-readable message providing more details about the error.</p>
 	 */
 	private String message;
 
 	/**
-	 * A URI reference [[RFC3986](https://tools.ietf.org/html/rfc3986)] that identifies the error code reported.
+	 * <p>A URI reference [<a href="https://tools.ietf.org/html/rfc3986">RFC3986</a>] that identifies the error code reported.</p>
 	 */
 	private String info;
 

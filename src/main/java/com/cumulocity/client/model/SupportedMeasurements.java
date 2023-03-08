@@ -15,7 +15,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class SupportedMeasurements {
 
 	/**
-	 * An array containing all supported measurements of the specified managed object.
+	 * <p>An array containing all supported measurements of the specified managed object.</p>
 	 */
 	@JsonProperty(value = "c8y_SupportedMeasurements")
 	private String[] c8ySupportedMeasurements;

@@ -15,7 +15,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class NotificationSubscriptionResult {
 
 	/**
-	 * The status of the notification subscription deletion.
+	 * <p>The status of the notification subscription deletion.</p>
 	 */
 	private Result result;
 
@@ -29,7 +29,7 @@ public class NotificationSubscriptionResult {
 
 	
 	/**
-	 * The status of the notification subscription deletion.
+	 * <p>The status of the notification subscription deletion.</p>
 	 */
 	public enum Result {
 		@JsonProperty("DONE")

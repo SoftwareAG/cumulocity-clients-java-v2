@@ -14,52 +14,52 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class TenantApiResource {
 
 	/**
-	 * Collection of tenant options
+	 * <p>Collection of tenant options</p>
 	 */
 	private Options options;
 
 	/**
-	 * A URL linking to this resource.
+	 * <p>A URL linking to this resource.</p>
 	 */
 	private String self;
 
 	/**
-	 * Collection of subtenants
+	 * <p>Collection of subtenants</p>
 	 */
 	private Tenants tenants;
 
 	/**
-	 * Retrieves subscribed applications.
+	 * <p>Retrieves subscribed applications.</p>
 	 */
 	private String tenantApplications;
 
 	/**
-	 * Represents an individual application reference that can be viewed.
+	 * <p>Represents an individual application reference that can be viewed.</p>
 	 */
 	private String tenantApplicationForId;
 
 	/**
-	 * Represents an individual tenant that can be viewed.
+	 * <p>Represents an individual tenant that can be viewed.</p>
 	 */
 	private String tenantForId;
 
 	/**
-	 * Represents a category of tenant options.
+	 * <p>Represents a category of tenant options.</p>
 	 */
 	private String tenantOptionsForCategory;
 
 	/**
-	 * Retrieves a key of the category of tenant options.
+	 * <p>Retrieves a key of the category of tenant options.</p>
 	 */
 	private String tenantOptionForCategoryAndKey;
 
 	/**
-	 * Retrieves the tenant system options.
+	 * <p>Retrieves the tenant system options.</p>
 	 */
 	private String tenantSystemOptions;
 
 	/**
-	 * Retrieves the tenant system options based on category and key.
+	 * <p>Retrieves the tenant system options based on category and key.</p>
 	 */
 	private String tenantSystemOptionsForCategoryAndKey;
 
@@ -144,14 +144,14 @@ public class TenantApiResource {
 	}
 
 	/**
-	 * Collection of tenant options
+	 * <p>Collection of tenant options</p>
 	 */
 	@JsonIgnoreProperties(ignoreUnknown = true)
 	@JsonInclude(Include.NON_NULL)
 	public static class Options {
 	
 		/**
-		 * A URL linking to this resource.
+		 * <p>A URL linking to this resource.</p>
 		 */
 		private String self;
 	
@@ -195,14 +195,14 @@ public class TenantApiResource {
 	}
 
 	/**
-	 * Collection of subtenants
+	 * <p>Collection of subtenants</p>
 	 */
 	@JsonIgnoreProperties(ignoreUnknown = true)
 	@JsonInclude(Include.NON_NULL)
 	public static class Tenants {
 	
 		/**
-		 * A URL linking to this resource.
+		 * <p>A URL linking to this resource.</p>
 		 */
 		private String self;
 	

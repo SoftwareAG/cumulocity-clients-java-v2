@@ -14,7 +14,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class SubscribedApplicationReference {
 
 	/**
-	 * The application to be subscribed to.
+	 * <p>The application to be subscribed to.</p>
 	 */
 	private Application application;
 
@@ -34,14 +34,14 @@ public class SubscribedApplicationReference {
 	}
 
 	/**
-	 * The application to be subscribed to.
+	 * <p>The application to be subscribed to.</p>
 	 */
 	@JsonIgnoreProperties(ignoreUnknown = true)
 	@JsonInclude(Include.NON_NULL)
 	public static class Application {
 	
 		/**
-		 * A URL linking to this resource.
+		 * <p>A URL linking to this resource.</p>
 		 */
 		private String self;
 	

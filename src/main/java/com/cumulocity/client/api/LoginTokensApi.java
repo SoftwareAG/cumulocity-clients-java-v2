@@ -8,8 +8,7 @@ import jakarta.ws.rs.client.WebTarget;
 import com.cumulocity.client.supplementary.AdaptableApi;
 
 /**
- * API methods to obtain access tokens to the Cumulocity IoT platform in case of OAI-Secure or SSO authentication. </br>
- * 
+ * <p>API methods to obtain access tokens to the Cumulocity IoT platform in case of OAI-Secure or SSO authentication.</p>
  */
 public class LoginTokensApi extends AdaptableApi {
 

@@ -14,17 +14,17 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class MeasurementFragmentSeries {
 
 	/**
-	 * The unit of the measurement.
+	 * <p>The unit of the measurement.</p>
 	 */
 	private String unit;
 
 	/**
-	 * The name of the measurement.
+	 * <p>The name of the measurement.</p>
 	 */
 	private String name;
 
 	/**
-	 * The type of measurement.
+	 * <p>The type of measurement.</p>
 	 */
 	private String type;
 

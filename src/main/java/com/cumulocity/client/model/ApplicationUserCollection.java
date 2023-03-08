@@ -14,7 +14,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class ApplicationUserCollection {
 
 	/**
-	 * A list of users who are subscribed to the current application.
+	 * <p>A list of users who are subscribed to the current application.</p>
 	 */
 	private Users[] users;
 
@@ -27,24 +27,24 @@ public class ApplicationUserCollection {
 	}
 
 	/**
-	 * A user who is subscribed to the current application.
+	 * <p>A user who is subscribed to the current application.</p>
 	 */
 	@JsonIgnoreProperties(ignoreUnknown = true)
 	@JsonInclude(Include.NON_NULL)
 	public static class Users {
 	
 		/**
-		 * The username.
+		 * <p>The username.</p>
 		 */
 		private String name;
 	
 		/**
-		 * The user password.
+		 * <p>The user password.</p>
 		 */
 		private String password;
 	
 		/**
-		 * The user tenant.
+		 * <p>The user tenant.</p>
 		 */
 		private String tenant;
 	

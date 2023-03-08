@@ -9,13 +9,8 @@ import com.cumulocity.client.supplementary.AdaptableApi;
 import com.cumulocity.client.model.IdentityApiResource;
 
 /**
- * Cumulocity IoT can associate devices and assets with multiple external identities.
- * For instance, devices can often be identified by the IMEI of their modem, by a micro-controller serial number or by an asset tag.
- * This is useful, for example, when you have non-functional hardware and must replace the hardware without losing the data that was recorded.
- * 
- * The identity API resource returns URIs and URI templates for associating external identifiers with unique identifiers.
- *  </br>
- * 
+ * <p>Cumulocity IoT can associate devices and assets with multiple external identities.For instance, devices can often be identified by the IMEI of their modem, by a micro-controller serial number or by an asset tag.This is useful, for example, when you have non-functional hardware and must replace the hardware without losing the data that was recorded.</p>
+ * <p>The identity API resource returns URIs and URI templates for associating external identifiers with unique identifiers.</p>
  */
 public class IdentityApi extends AdaptableApi {
 
@@ -24,20 +19,19 @@ public class IdentityApi extends AdaptableApi {
 	}
 
 	/**
-	 * Retrieve URIs to collections of external IDs
-	 * Retrieve URIs and URI templates for associating external identifiers with unique identifiers.
-	 * 
+	 * <p>Retrieve URIs to collections of external IDs</p>
+	 * <p>Retrieve URIs and URI templates for associating external identifiers with unique identifiers.</p>
 	 * <section><h5>Required roles</h5>
 	 * ROLE_IDENTITY_READ
 	 * </section>
-	 * 
-	 *
-	 * The following table gives an overview of the possible response codes and their meanings:
+	 * <h5>Response Codes</h5>
+	 * <p>The following table gives an overview of the possible response codes and their meanings:</p>
 	 * <ul>
-	 *     <li>HTTP 200 - The request has succeeded and the URIs are sent in the response.</li>
-	 *     <li>HTTP 401 - Authentication information is missing or invalid., @{link com.cumulocity.client.model.Error}</li>
+	 * 	<li><p>HTTP 200 <p>The request has succeeded and the URIs are sent in the response.</p></p>
+	 * 	</li>
+	 * 	<li><p>HTTP 401 <p>Authentication information is missing or invalid.</p></p>
+	 * 	</li>
 	 * </ul>
-	 * @return
 	 */
 	public CompletionStage<IdentityApiResource> getIdentityApiResource() {
 		return adapt().path("identity")

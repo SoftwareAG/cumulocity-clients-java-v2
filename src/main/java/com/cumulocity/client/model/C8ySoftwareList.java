@@ -10,24 +10,24 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
- * Details of the installed software.
+ * <p>Details of the installed software.</p>
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(Include.NON_NULL)
 public class C8ySoftwareList {
 
 	/**
-	 * The name of the software.
+	 * <p>The name of the software.</p>
 	 */
 	private String name;
 
 	/**
-	 * The version of the software.
+	 * <p>The version of the software.</p>
 	 */
 	private String version;
 
 	/**
-	 * The URL of the software, for example, its code repository.
+	 * <p>The URL of the software, for example, its code repository.</p>
 	 */
 	private String url;
 

@@ -14,17 +14,17 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class ApplicationVersion {
 
 	/**
-	 * Unique identifier of the version.
+	 * <p>Unique identifier of the version.</p>
 	 */
 	private String version;
 
 	/**
-	 * Unique identifier of the binary file assigned to the version.
+	 * <p>Unique identifier of the binary file assigned to the version.</p>
 	 */
 	private String binaryId;
 
 	/**
-	 * Tag assigned to the version. Version tags must be unique across all versions and version fields of application versions.
+	 * <p>Tag assigned to the version. Version tags must be unique across all versions and version fields of application versions.</p>
 	 */
 	private String[] tag;
 

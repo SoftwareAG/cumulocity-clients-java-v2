@@ -35,7 +35,7 @@ public class ChildOperationsAddOne {
 	public static class ManagedObject {
 	
 		/**
-		 * Unique identifier of the object.
+		 * <p>Unique identifier of the object.</p>
 		 */
 		private String id;
 	

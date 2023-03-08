@@ -14,7 +14,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class ApplicationVersionCollection {
 
 	/**
-	 * An array of application versions.
+	 * <p>An array of application versions.</p>
 	 */
 	private ApplicationVersion[] versions;
 

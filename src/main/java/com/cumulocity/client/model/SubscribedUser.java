@@ -14,7 +14,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class SubscribedUser {
 
 	/**
-	 * An object with a user reference URL.
+	 * <p>An object with a user reference URL.</p>
 	 */
 	private User user;
 
@@ -27,14 +27,14 @@ public class SubscribedUser {
 	}
 
 	/**
-	 * An object with a user reference URL.
+	 * <p>An object with a user reference URL.</p>
 	 */
 	@JsonIgnoreProperties(ignoreUnknown = true)
 	@JsonInclude(Include.NON_NULL)
 	public static class User {
 	
 		/**
-		 * A URL linking to this resource.
+		 * <p>A URL linking to this resource.</p>
 		 */
 		private String self;
 	

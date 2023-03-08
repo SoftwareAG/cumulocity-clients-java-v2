@@ -14,7 +14,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class SubscribedRole {
 
 	/**
-	 * An object with a role reference URL.
+	 * <p>An object with a role reference URL.</p>
 	 */
 	private Role role;
 
@@ -27,14 +27,14 @@ public class SubscribedRole {
 	}
 
 	/**
-	 * An object with a role reference URL.
+	 * <p>An object with a role reference URL.</p>
 	 */
 	@JsonIgnoreProperties(ignoreUnknown = true)
 	@JsonInclude(Include.NON_NULL)
 	public static class Role {
 	
 		/**
-		 * A URL linking to this resource.
+		 * <p>A URL linking to this resource.</p>
 		 */
 		private String self;
 	

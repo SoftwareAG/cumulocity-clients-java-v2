@@ -10,34 +10,34 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
- * All available options of the tenant.
+ * <p>All available options of the tenant.</p>
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(Include.NON_NULL)
 public class OptionCollection {
 
 	/**
-	 * A URI reference [[RFC3986](https://tools.ietf.org/html/rfc3986)] to a potential next page of managed objects.
+	 * <p>A URI reference [<a href="https://tools.ietf.org/html/rfc3986">RFC3986</a>] to a potential next page of managed objects.</p>
 	 */
 	private String next;
 
 	/**
-	 * A URI reference [[RFC3986](https://tools.ietf.org/html/rfc3986)] to a potential previous page of managed objects.
+	 * <p>A URI reference [<a href="https://tools.ietf.org/html/rfc3986">RFC3986</a>] to a potential previous page of managed objects.</p>
 	 */
 	private String prev;
 
 	/**
-	 * A URL linking to this resource.
+	 * <p>A URL linking to this resource.</p>
 	 */
 	private String self;
 
 	/**
-	 * Information about paging statistics.
+	 * <p>Information about paging statistics.</p>
 	 */
 	private PageStatistics statistics;
 
 	/**
-	 * An array containing the available options.
+	 * <p>An array containing the available options.</p>
 	 */
 	private Option[] options;
 

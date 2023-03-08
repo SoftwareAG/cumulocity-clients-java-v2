@@ -21,7 +21,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
- * An object with a list of custom properties.
+ * <p>An object with a list of custom properties.</p>
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(Include.NON_NULL)
@@ -29,13 +29,12 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class CustomProperties {
 
 	/**
-	 * The preferred language to be used in the platform.
+	 * <p>The preferred language to be used in the platform.</p>
 	 */
 	private String language;
 
 	/**
-	 * It is possible to add an arbitrary number of custom properties as a list of key-value pairs, for example, `"property": "value"`.
-	 * 
+	 * <p>It is possible to add an arbitrary number of custom properties as a list of key-value pairs, for example, <code>"property": "value"</code>.</p>
 	 */
 	private Map<String, Object> customProperties;
 

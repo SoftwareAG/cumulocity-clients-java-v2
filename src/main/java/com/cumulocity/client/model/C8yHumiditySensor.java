@@ -10,7 +10,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
- * A humidity sensor measures the amount of water vapour in the air. In a managed object, a humidity sensor is modeled as a simple empty fragment.
+ * <p>A humidity sensor measures the amount of water vapour in the air. In a managed object, a humidity sensor is modeled as a simple empty fragment.</p>
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(Include.NON_NULL)

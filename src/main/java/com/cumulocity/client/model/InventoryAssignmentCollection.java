@@ -14,12 +14,12 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class InventoryAssignmentCollection {
 
 	/**
-	 * A URL linking to this resource.
+	 * <p>A URL linking to this resource.</p>
 	 */
 	private String self;
 
 	/**
-	 * An array of inventory assignments.
+	 * <p>An array of inventory assignments.</p>
 	 */
 	private InventoryAssignment[] inventoryAssignments;
 

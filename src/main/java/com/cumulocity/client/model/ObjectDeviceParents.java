@@ -10,19 +10,19 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
- * A collection of references to device parent objects.
+ * <p>A collection of references to device parent objects.</p>
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(Include.NON_NULL)
 public class ObjectDeviceParents {
 
 	/**
-	 * An array with the references to parent objects.
+	 * <p>An array with the references to parent objects.</p>
 	 */
 	private ManagedObjectReferenceTuple[] references;
 
 	/**
-	 * Link to this resource's parent objects.
+	 * <p>Link to this resource's parent objects.</p>
 	 */
 	private String self;
 

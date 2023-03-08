@@ -10,24 +10,24 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
- * Device capability to manage device profiles. Device profiles represent a combination of a firmware version, one or multiple software packages and one or multiple configuration files which can be deployed on a device.
+ * <p>Device capability to manage device profiles. Device profiles represent a combination of a firmware version, one or multiple software packages and one or multiple configuration files which can be deployed on a device.</p>
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(Include.NON_NULL)
 public class C8yProfile {
 
 	/**
-	 * The name of the profile.
+	 * <p>The name of the profile.</p>
 	 */
 	private String profileName;
 
 	/**
-	 * The ID of the profile.
+	 * <p>The ID of the profile.</p>
 	 */
 	private String profileId;
 
 	/**
-	 * Indicates whether the profile has been executed.
+	 * <p>Indicates whether the profile has been executed.</p>
 	 */
 	private boolean profileExecuted;
 

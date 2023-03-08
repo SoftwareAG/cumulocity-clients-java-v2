@@ -9,8 +9,7 @@ import com.cumulocity.client.supplementary.AdaptableApi;
 import com.cumulocity.client.model.BootstrapUser;
 
 /**
- * API methods to retrieve the bootstrap user of an application. </br>
- * 
+ * <p>API methods to retrieve the bootstrap user of an application.</p>
  */
 public class BootstrapUserApi extends AdaptableApi {
 
@@ -19,24 +18,25 @@ public class BootstrapUserApi extends AdaptableApi {
 	}
 
 	/**
-	 * Retrieve the bootstrap user for a specific application
-	 * Retrieve the bootstrap user for a specific application (by a given ID).
-	 * 
-	 * This only works for microservice applications.
-	 * 
+	 * <p>Retrieve the bootstrap user for a specific application</p>
+	 * <p>Retrieve the bootstrap user for a specific application (by a given ID).</p>
+	 * <p>This only works for microservice applications.</p>
 	 * <section><h5>Required roles</h5>
 	 * ROLE_APPLICATION_MANAGEMENT_ADMIN
 	 * </section>
-	 * 
-	 *
-	 * The following table gives an overview of the possible response codes and their meanings:
+	 * <h5>Response Codes</h5>
+	 * <p>The following table gives an overview of the possible response codes and their meanings:</p>
 	 * <ul>
-	 *     <li>HTTP 200 - The request has succeeded and the bootstrap user of the application is sent in the response.</li>
-	 *     <li>HTTP 400 - Bad request., @{link com.cumulocity.client.model.Error}</li>
-	 *     <li>HTTP 401 - Authentication information is missing or invalid., @{link com.cumulocity.client.model.Error}</li>
+	 * 	<li><p>HTTP 200 <p>The request has succeeded and the bootstrap user of the application is sent in the response.</p></p>
+	 * 	</li>
+	 * 	<li><p>HTTP 400 <p>Bad request.</p></p>
+	 * 	</li>
+	 * 	<li><p>HTTP 401 <p>Authentication information is missing or invalid.</p></p>
+	 * 	</li>
 	 * </ul>
-	 * @param id Unique identifier of the application.
-	 * @return
+	 * 
+	 * @param id
+	 * <p>Unique identifier of the application.</p>
 	 */
 	public CompletionStage<BootstrapUser> getBootstrapUser(final String id) {
 		return adapt().path("application").path("applications").path(valueOf(id)).path("bootstrapUser")

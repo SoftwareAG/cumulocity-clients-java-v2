@@ -14,37 +14,37 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class UserApiResource {
 
 	/**
-	 * A URL linking to this resource.
+	 * <p>A URL linking to this resource.</p>
 	 */
 	private String self;
 
 	/**
-	 * Collection of all users belonging to a given tenant.
+	 * <p>Collection of all users belonging to a given tenant.</p>
 	 */
 	private String users;
 
 	/**
-	 * Reference to a resource of type user.
+	 * <p>Reference to a resource of type user.</p>
 	 */
 	private String userByName;
 
 	/**
-	 * Reference to the resource of the logged in user.
+	 * <p>Reference to the resource of the logged in user.</p>
 	 */
 	private String currentUser;
 
 	/**
-	 * Collection of all users belonging to a given tenant.
+	 * <p>Collection of all users belonging to a given tenant.</p>
 	 */
 	private String groups;
 
 	/**
-	 * Reference to a resource of type group.
+	 * <p>Reference to a resource of type group.</p>
 	 */
 	private String groupByName;
 
 	/**
-	 * Collection of all roles.
+	 * <p>Collection of all roles.</p>
 	 */
 	private String roles;
 

@@ -11,101 +11,84 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
- * The manifest of the microservice application.
+ * <p>The manifest of the microservice application.</p>
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(Include.NON_NULL)
 public class MicroserviceApplicationManifest {
 
 	/**
-	 * Document type format discriminator, for future changes in format.
+	 * <p>Document type format discriminator, for future changes in format.</p>
 	 */
 	private String apiVersion;
 
 	/**
-	 * The billing mode of the application.
-	 * 
-	 * In case of RESOURCES, the number of resources used is exposed for billing calculation per usage.
-	 * In case of SUBSCRIPTION, all resources usage is counted for the microservice owner and the subtenant is charged for subscription.
-	 * 
+	 * <p>The billing mode of the application.</p>
+	 * <p>In case of RESOURCES, the number of resources used is exposed for billing calculation per usage.In case of SUBSCRIPTION, all resources usage is counted for the microservice owner and the subtenant is charged for subscription.</p>
 	 */
 	private BillingMode billingMode;
 
 	/**
-	 * The context path in the URL makes the application accessible.
+	 * <p>The context path in the URL makes the application accessible.</p>
 	 */
 	private String contextPath;
 
 	/**
-	 * A list of URL extensions for this microservice application.
+	 * <p>A list of URL extensions for this microservice application.</p>
 	 */
 	private Extensions[] extensions;
 
 	/**
-	 * Deployment isolation.
-	 * In case of PER_TENANT, there is a separate instance for each tenant.
-	 * Otherwise, there is one single instance for all subscribed tenants.
-	 * This will affect billing.
-	 * 
+	 * <p>Deployment isolation.In case of PER_TENANT, there is a separate instance for each tenant.Otherwise, there is one single instance for all subscribed tenants.This will affect billing.</p>
 	 */
 	private Isolation isolation;
 
 	private ApplicationManifestProbe livenessProbe;
 
 	/**
-	 * Application provider information.
-	 * Simple name allowed for predefined providers, for example, c8y.
-	 * Detailed object for external provider.
-	 * 
+	 * <p>Application provider information.Simple name allowed for predefined providers, for example, c8y.Detailed object for external provider.</p>
 	 */
 	private Provider provider;
 
 	private ApplicationManifestProbe readinessProbe;
 
 	/**
-	 * The minimum required resources for the microservice application.
+	 * <p>The minimum required resources for the microservice application.</p>
 	 */
 	private RequestResources requestResources;
 
 	/**
-	 * The recommended resources for this microservice application.
+	 * <p>The recommended resources for this microservice application.</p>
 	 */
 	private Resources resources;
 
 	/**
-	 * Roles provided by the microservice.
+	 * <p>Roles provided by the microservice.</p>
 	 */
 	private String[] roles;
 
 	/**
-	 * List of permissions required by a microservice to work.
+	 * <p>List of permissions required by a microservice to work.</p>
 	 */
 	private String[] requiredRoles;
 
 	/**
-	 * Allows to configure a microservice auto scaling policy.
-	 * If the microservice uses a lot of CPU resources, a second instance will be created automatically when this is set to `AUTO`.
-	 * The default is `NONE`, meaning auto scaling will not happen.
-	 * 
+	 * <p>Allows to configure a microservice auto scaling policy.If the microservice uses a lot of CPU resources, a second instance will be created automatically when this is set to <code>AUTO</code>.The default is <code>NONE</code>, meaning auto scaling will not happen.</p>
 	 */
 	private Scale scale;
 
 	/**
-	 * A list of settings objects for this microservice application.
+	 * <p>A list of settings objects for this microservice application.</p>
 	 */
 	private ApplicationSettings[] settings;
 
 	/**
-	 * Allows to specify a custom category for microservice settings.
-	 * By default, `contextPath` is used.
-	 * 
+	 * <p>Allows to specify a custom category for microservice settings.By default, <code>contextPath</code> is used.</p>
 	 */
 	private String settingsCategory;
 
 	/**
-	 * Application version.
-	 * Must be a correct [SemVer](https://semver.org/) value but the "+" sign is disallowed.
-	 * 
+	 * <p>Application version.Must be a correct <a href="https://semver.org/">SemVer</a> value but the "+" sign is disallowed.</p>
 	 */
 	private String version;
 
@@ -239,11 +222,8 @@ public class MicroserviceApplicationManifest {
 
 	
 	/**
-	 * The billing mode of the application.
-	 * 
-	 * In case of RESOURCES, the number of resources used is exposed for billing calculation per usage.
-	 * In case of SUBSCRIPTION, all resources usage is counted for the microservice owner and the subtenant is charged for subscription.
-	 * 
+	 * <p>The billing mode of the application.</p>
+	 * <p>In case of RESOURCES, the number of resources used is exposed for billing calculation per usage.In case of SUBSCRIPTION, all resources usage is counted for the microservice owner and the subtenant is charged for subscription.</p>
 	 */
 	public enum BillingMode {
 		@JsonProperty("RESOURCES")
@@ -264,11 +244,7 @@ public class MicroserviceApplicationManifest {
 
 	
 	/**
-	 * Deployment isolation.
-	 * In case of PER_TENANT, there is a separate instance for each tenant.
-	 * Otherwise, there is one single instance for all subscribed tenants.
-	 * This will affect billing.
-	 * 
+	 * <p>Deployment isolation.In case of PER_TENANT, there is a separate instance for each tenant.Otherwise, there is one single instance for all subscribed tenants.This will affect billing.</p>
 	 */
 	public enum Isolation {
 		@JsonProperty("MULTI_TENANT")
@@ -289,10 +265,7 @@ public class MicroserviceApplicationManifest {
 
 	
 	/**
-	 * Allows to configure a microservice auto scaling policy.
-	 * If the microservice uses a lot of CPU resources, a second instance will be created automatically when this is set to `AUTO`.
-	 * The default is `NONE`, meaning auto scaling will not happen.
-	 * 
+	 * <p>Allows to configure a microservice auto scaling policy.If the microservice uses a lot of CPU resources, a second instance will be created automatically when this is set to <code>AUTO</code>.The default is <code>NONE</code>, meaning auto scaling will not happen.</p>
 	 */
 	public enum Scale {
 		@JsonProperty("NONE")
@@ -317,12 +290,12 @@ public class MicroserviceApplicationManifest {
 	public static class Extensions {
 	
 		/**
-		 * The relative path in Cumulocity IoT for this microservice application.
+		 * <p>The relative path in Cumulocity IoT for this microservice application.</p>
 		 */
 		private String path;
 	
 		/**
-		 * The type of this extension.
+		 * <p>The type of this extension.</p>
 		 */
 		private String type;
 	
@@ -365,17 +338,14 @@ public class MicroserviceApplicationManifest {
 
 
 	/**
-	 * Application provider information.
-	 * Simple name allowed for predefined providers, for example, c8y.
-	 * Detailed object for external provider.
-	 * 
+	 * <p>Application provider information.Simple name allowed for predefined providers, for example, c8y.Detailed object for external provider.</p>
 	 */
 	@JsonIgnoreProperties(ignoreUnknown = true)
 	@JsonInclude(Include.NON_NULL)
 	public static class Provider {
 	
 		/**
-		 * The name of the application provider.
+		 * <p>The name of the application provider.</p>
 		 */
 		private String name;
 	
@@ -409,19 +379,19 @@ public class MicroserviceApplicationManifest {
 	}
 
 	/**
-	 * The minimum required resources for the microservice application.
+	 * <p>The minimum required resources for the microservice application.</p>
 	 */
 	@JsonIgnoreProperties(ignoreUnknown = true)
 	@JsonInclude(Include.NON_NULL)
 	public static class RequestResources {
 	
 		/**
-		 * The required CPU resource for this microservice application.
+		 * <p>The required CPU resource for this microservice application.</p>
 		 */
 		private String cpu;
 	
 		/**
-		 * The required memory resource for this microservice application.
+		 * <p>The required memory resource for this microservice application.</p>
 		 */
 		private String memory;
 	
@@ -463,19 +433,19 @@ public class MicroserviceApplicationManifest {
 	}
 
 	/**
-	 * The recommended resources for this microservice application.
+	 * <p>The recommended resources for this microservice application.</p>
 	 */
 	@JsonIgnoreProperties(ignoreUnknown = true)
 	@JsonInclude(Include.NON_NULL)
 	public static class Resources {
 	
 		/**
-		 * The required CPU resource for this microservice application.
+		 * <p>The required CPU resource for this microservice application.</p>
 		 */
 		private String cpu;
 	
 		/**
-		 * The required memory resource for this microservice application.
+		 * <p>The required memory resource for this microservice application.</p>
 		 */
 		private String memory;
 	

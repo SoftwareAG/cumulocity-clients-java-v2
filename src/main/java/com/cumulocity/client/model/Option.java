@@ -10,29 +10,29 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
- * A tuple storing tenant configuration.
+ * <p>A tuple storing tenant configuration.</p>
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(Include.NON_NULL)
 public class Option {
 
 	/**
-	 * Name of the option category.
+	 * <p>Name of the option category.</p>
 	 */
 	private String category;
 
 	/**
-	 * A unique identifier for this option.
+	 * <p>A unique identifier for this option.</p>
 	 */
 	private String key;
 
 	/**
-	 * Value of this option.
+	 * <p>Value of this option.</p>
 	 */
 	private String value;
 
 	/**
-	 * A URL linking to this resource.
+	 * <p>A URL linking to this resource.</p>
 	 */
 	private String self;
 

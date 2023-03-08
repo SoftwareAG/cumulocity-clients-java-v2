@@ -14,24 +14,24 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class RoleReferenceCollection {
 
 	/**
-	 * A URI reference [[RFC3986](https://tools.ietf.org/html/rfc3986)] to a potential next page of managed objects.
+	 * <p>A URI reference [<a href="https://tools.ietf.org/html/rfc3986">RFC3986</a>] to a potential next page of managed objects.</p>
 	 */
 	private String next;
 
 	/**
-	 * A URI reference [[RFC3986](https://tools.ietf.org/html/rfc3986)] to a potential previous page of managed objects.
+	 * <p>A URI reference [<a href="https://tools.ietf.org/html/rfc3986">RFC3986</a>] to a potential previous page of managed objects.</p>
 	 */
 	private String prev;
 
 	private RoleReference references;
 
 	/**
-	 * A URL linking to this resource.
+	 * <p>A URL linking to this resource.</p>
 	 */
 	private String self;
 
 	/**
-	 * Information about paging statistics.
+	 * <p>Information about paging statistics.</p>
 	 */
 	private PageStatistics statistics;
 

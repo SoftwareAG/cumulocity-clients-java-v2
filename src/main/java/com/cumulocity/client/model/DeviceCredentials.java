@@ -14,27 +14,27 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class DeviceCredentials {
 
 	/**
-	 * The external ID of the device.
+	 * <p>The external ID of the device.</p>
 	 */
 	private String id;
 
 	/**
-	 * Password of these device credentials.
+	 * <p>Password of these device credentials.</p>
 	 */
 	private String password;
 
 	/**
-	 * A URL linking to this resource.
+	 * <p>A URL linking to this resource.</p>
 	 */
 	private String self;
 
 	/**
-	 * Tenant ID for these device credentials.
+	 * <p>Tenant ID for these device credentials.</p>
 	 */
 	private String tenantId;
 
 	/**
-	 * Username of these device credentials.
+	 * <p>Username of these device credentials.</p>
 	 */
 	private String username;
 

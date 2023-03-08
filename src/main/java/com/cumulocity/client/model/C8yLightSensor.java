@@ -10,7 +10,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
- * A light sensor measures the intensity of light. In a managed object, a light sensor is modeled as a simple empty fragment.
+ * <p>A light sensor measures the intensity of light. In a managed object, a light sensor is modeled as a simple empty fragment.</p>
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(Include.NON_NULL)

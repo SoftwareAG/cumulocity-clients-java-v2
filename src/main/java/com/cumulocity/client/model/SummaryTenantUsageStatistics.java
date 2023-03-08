@@ -10,108 +10,115 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
- * Summary of the usage statistics.
+ * <p>Summary of the usage statistics.</p>
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(Include.NON_NULL)
 public class SummaryTenantUsageStatistics {
 
 	/**
-	 * Number of created alarms.
+	 * <p>Number of created alarms.</p>
 	 */
 	private int alarmsCreatedCount;
 
 	/**
-	 * Number of updates made to the alarms.
+	 * <p>Number of updates made to the alarms.</p>
 	 */
 	private int alarmsUpdatedCount;
 
 	/**
-	 * Date of this usage statistics summary.
+	 * <p>Date of this usage statistics summary.</p>
 	 */
 	private String day;
 
 	/**
-	 * Number of devices in the tenant identified by the fragment `c8y_IsDevice`. Updated only three times a day starting at 8:57, 16:57 and 23:57.
+	 * <p>Number of devices in the tenant identified by the fragment <code>c8y_IsDevice</code>. Updated only three times a day starting at 8:57, 16:57 and 23:57.</p>
 	 */
 	private int deviceCount;
 
 	/**
-	 * Number of devices which do not have child devices. Updated only three times a day starting at 8:57, 16:57 and 23:57.
+	 * <p>Number of devices which do not have child devices. Updated only three times a day starting at 8:57, 16:57 and 23:57.</p>
 	 */
 	private int deviceEndpointCount;
 
 	/**
-	 * Number of requests that were issued only by devices against the tenant. Updated every 5 minutes. The following requests are not included:
-	 * 
-	 * * Requests made to <kbd>/user</kbd>, <kbd>/tenant</kbd> and <kbd>/application</kbd> APIs
-	 * * Application related requests (with `X-Cumulocity-Application-Key` header)
-	 * 
+	 * <p>Number of requests that were issued only by devices against the tenant. Updated every 5 minutes. The following requests are not included:</p>
+	 * <ul>
+	 * 	<li><p>Requests made to <kbd>/user</kbd>, <kbd>/tenant</kbd> and <kbd>/application</kbd> APIs</p>
+	 * 	</li>
+	 * 	<li><p>Application related requests (with <code>X-Cumulocity-Application-Key</code> header)</p>
+	 * 	</li>
+	 * </ul>
 	 */
 	private int deviceRequestCount;
 
 	/**
-	 * Number of devices with children. Updated only three times a day starting at 8:57, 16:57 and 23:57.
+	 * <p>Number of devices with children. Updated only three times a day starting at 8:57, 16:57 and 23:57.</p>
 	 */
 	private int deviceWithChildrenCount;
 
 	/**
-	 * Number of created events.
+	 * <p>Number of created events.</p>
 	 */
 	private int eventsCreatedCount;
 
 	/**
-	 * Number of updates made to the events.
+	 * <p>Number of updates made to the events.</p>
 	 */
 	private int eventsUpdatedCount;
 
 	/**
-	 * Number of created managed objects.
+	 * <p>Number of created managed objects.</p>
 	 */
 	private int inventoriesCreatedCount;
 
 	/**
-	 * Number of updates made to the managed objects.
+	 * <p>Number of updates made to the managed objects.</p>
 	 */
 	private int inventoriesUpdatedCount;
 
 	/**
-	 * Number of created measurements.
-	 * 
-	 * > **&#9432; Info:** Bulk creation of measurements is handled in a way that each measurement is counted individually.
-	 * 
+	 * <p>Number of created measurements.</p>
+	 * <blockquote>
+	 * <p><strong>ⓘ Info:</strong> Bulk creation of measurements is handled in a way that each measurement is counted individually.</p>
+	 * </blockquote>
 	 */
 	private int measurementsCreatedCount;
 
 	/**
-	 * Number of requests that were made against the tenant. Updated every 5 minutes. The following requests are not included:
-	 * 
-	 * *  Internal SmartREST requests used to resolve templates
-	 * *  Internal SLA monitoring requests
-	 * *  Calls to any <kbd>/health</kbd> endpoint
-	 * *  Device bootstrap process requests related to configuring and retrieving device credentials
-	 * *  Microservice SDK internal calls for applications and subscriptions
-	 * 
+	 * <p>Number of requests that were made against the tenant. Updated every 5 minutes. The following requests are not included:</p>
+	 * <ul>
+	 * 	<li><p>Internal SmartREST requests used to resolve templates</p>
+	 * 	</li>
+	 * 	<li><p>Internal SLA monitoring requests</p>
+	 * 	</li>
+	 * 	<li><p>Calls to any <kbd>/health</kbd> endpoint</p>
+	 * 	</li>
+	 * 	<li><p>Device bootstrap process requests related to configuring and retrieving device credentials</p>
+	 * 	</li>
+	 * 	<li><p>Microservice SDK internal calls for applications and subscriptions</p>
+	 * 	</li>
+	 * </ul>
 	 */
 	private int requestCount;
 
 	/**
-	 * Resources usage for each subscribed microservice application.
+	 * <p>Resources usage for each subscribed microservice application.</p>
 	 */
 	private UsageStatisticsResources resources;
 
 	/**
-	 * Database storage in use, specified in bytes. It is affected by your retention rules and by the regularly running database optimization functions in Cumulocity IoT. If the size decreases, it does not necessarily mean that data was deleted. Updated only three times a day starting at 8:57, 16:57 and 23:57.
+	 * <p>Database storage in use, specified in bytes. It is affected by your retention rules and by the regularly running database optimization functions in Cumulocity IoT. If the size decreases, it does not necessarily mean that data was deleted. Updated only three times a day starting at 8:57, 16:57 and 23:57.</p>
 	 */
 	private int storageSize;
 
 	/**
-	 * Names of the tenant subscribed applications. Updated only three times a day starting at 8:57, 16:57 and 23:57.
+	 * <p>Names of the tenant subscribed applications. Updated only three times a day starting at 8:57, 16:57 and 23:57.</p>
 	 */
 	private String[] subscribedApplications;
 
 	/**
-	 * Sum of all inbound transfers.
+	 * <p>Sum of all inbound transfers.</p>
 	 */
 	private int totalResourceCreateAndUpdateCount;
 

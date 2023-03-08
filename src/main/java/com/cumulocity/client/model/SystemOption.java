@@ -10,24 +10,24 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
- * A tuple storing tenant configuration.
+ * <p>A tuple storing tenant configuration.</p>
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(Include.NON_NULL)
 public class SystemOption {
 
 	/**
-	 * Name of the system option category.
+	 * <p>Name of the system option category.</p>
 	 */
 	private String category;
 
 	/**
-	 * A unique identifier for this system option.
+	 * <p>A unique identifier for this system option.</p>
 	 */
 	private String key;
 
 	/**
-	 * Value of this system option.
+	 * <p>Value of this system option.</p>
 	 */
 	private String value;
 

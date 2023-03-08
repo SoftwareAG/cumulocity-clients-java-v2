@@ -14,12 +14,12 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class RoleReference {
 
 	/**
-	 * A user role.
+	 * <p>A user role.</p>
 	 */
 	private Role role;
 
 	/**
-	 * A URL linking to this resource.
+	 * <p>A URL linking to this resource.</p>
 	 */
 	private String self;
 

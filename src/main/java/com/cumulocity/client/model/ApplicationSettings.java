@@ -14,27 +14,27 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class ApplicationSettings {
 
 	/**
-	 * The name of the setting.
+	 * <p>The name of the setting.</p>
 	 */
 	private String key;
 
 	/**
-	 * The value schema determines the values that the microservice can process.
+	 * <p>The value schema determines the values that the microservice can process.</p>
 	 */
 	private ValueSchema valueSchema;
 
 	/**
-	 * The default value.
+	 * <p>The default value.</p>
 	 */
 	private String defaultValue;
 
 	/**
-	 * Indicates if the value is editable.
+	 * <p>Indicates if the value is editable.</p>
 	 */
 	private boolean editable;
 
 	/**
-	 * Indicated wether this setting is inherited.
+	 * <p>Indicated wether this setting is inherited.</p>
 	 */
 	private boolean inheritFromOwner;
 
@@ -79,14 +79,14 @@ public class ApplicationSettings {
 	}
 
 	/**
-	 * The value schema determines the values that the microservice can process.
+	 * <p>The value schema determines the values that the microservice can process.</p>
 	 */
 	@JsonIgnoreProperties(ignoreUnknown = true)
 	@JsonInclude(Include.NON_NULL)
 	public static class ValueSchema {
 	
 		/**
-		 * The value schema type.
+		 * <p>The value schema type.</p>
 		 */
 		private String type;
 	

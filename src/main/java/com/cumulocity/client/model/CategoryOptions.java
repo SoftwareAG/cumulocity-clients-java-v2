@@ -26,7 +26,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class CategoryOptions {
 
 	/**
-	 * It is possible to specify an arbitrary number of existing options as a list of key-value pairs, for example, `"key1": "value1"`, `"key2": "value2"`.
+	 * <p>It is possible to specify an arbitrary number of existing options as a list of key-value pairs, for example, <code>"key1": "value1"</code>, <code>"key2": "value2"</code>.</p>
 	 */
 	private Map<String, Object> keyValuePairs;
 

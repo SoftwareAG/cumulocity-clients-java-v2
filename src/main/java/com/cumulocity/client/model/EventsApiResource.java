@@ -14,42 +14,42 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class EventsApiResource {
 
 	/**
-	 * Collection of all events
+	 * <p>Collection of all events</p>
 	 */
 	private Events events;
 
 	/**
-	 * Read-only collection of all events for a specific source object. The placeholder {source} must be a unique ID of an object in the inventory.
+	 * <p>Read-only collection of all events for a specific source object. The placeholder {source} must be a unique ID of an object in the inventory.</p>
 	 */
 	private String eventsForSource;
 
 	/**
-	 * Read-only collection of all events of a particular type and a specific source object.
+	 * <p>Read-only collection of all events of a particular type and a specific source object.</p>
 	 */
 	private String eventsForSourceAndType;
 
 	/**
-	 * Read-only collection of all events of a particular type.
+	 * <p>Read-only collection of all events of a particular type.</p>
 	 */
 	private String eventsForType;
 
 	/**
-	 * Read-only collection of all events containing a particular fragment type.
+	 * <p>Read-only collection of all events containing a particular fragment type.</p>
 	 */
 	private String eventsForFragmentType;
 
 	/**
-	 * Read-only collection of all events for a particular time range.
+	 * <p>Read-only collection of all events for a particular time range.</p>
 	 */
 	private String eventsForTime;
 
 	/**
-	 * Read-only collection of all events for a specific source object in a particular time range.
+	 * <p>Read-only collection of all events for a specific source object in a particular time range.</p>
 	 */
 	private String eventsForSourceAndTime;
 
 	/**
-	 * A URL linking to this resource.
+	 * <p>A URL linking to this resource.</p>
 	 */
 	private String self;
 
@@ -118,14 +118,14 @@ public class EventsApiResource {
 	}
 
 	/**
-	 * Collection of all events
+	 * <p>Collection of all events</p>
 	 */
 	@JsonIgnoreProperties(ignoreUnknown = true)
 	@JsonInclude(Include.NON_NULL)
 	public static class Events {
 	
 		/**
-		 * A URL linking to this resource.
+		 * <p>A URL linking to this resource.</p>
 		 */
 		private String self;
 	

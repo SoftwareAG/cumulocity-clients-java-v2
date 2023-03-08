@@ -15,39 +15,40 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class NotificationSubscription {
 
 	/**
-	 * The context within which the subscription is to be processed.
-	 * > **&#9432; Info:** If the value is `mo`, then `source` must also be provided in the request body.
-	 * 
+	 * <p>The context within which the subscription is to be processed.</p>
+	 * <blockquote>
+	 * <p><strong>ⓘ Info:</strong> If the value is <code>mo</code>, then <code>source</code> must also be provided in the request body.</p>
+	 * </blockquote>
 	 */
 	private Context context;
 
 	/**
-	 * Transforms the data to *only* include specified custom fragments. Each custom fragment is identified by a unique name. If nothing is specified here, the data is forwarded as-is.
+	 * <p>Transforms the data to <em>only</em> include specified custom fragments. Each custom fragment is identified by a unique name. If nothing is specified here, the data is forwarded as-is.</p>
 	 */
 	private String[] fragmentsToCopy;
 
 	/**
-	 * Unique identifier of the subscription.
+	 * <p>Unique identifier of the subscription.</p>
 	 */
 	private String id;
 
 	/**
-	 * A URL linking to this resource.
+	 * <p>A URL linking to this resource.</p>
 	 */
 	private String self;
 
 	/**
-	 * The managed object to which the subscription is associated.
+	 * <p>The managed object to which the subscription is associated.</p>
 	 */
 	private Source source;
 
 	/**
-	 * The subscription name. Each subscription is identified by a unique name within a specific context.
+	 * <p>The subscription name. Each subscription is identified by a unique name within a specific context.</p>
 	 */
 	private String subscription;
 
 	/**
-	 * Applicable filters to the subscription.
+	 * <p>Applicable filters to the subscription.</p>
 	 */
 	private SubscriptionFilter subscriptionFilter;
 
@@ -117,9 +118,10 @@ public class NotificationSubscription {
 
 	
 	/**
-	 * The context within which the subscription is to be processed.
-	 * > **&#9432; Info:** If the value is `mo`, then `source` must also be provided in the request body.
-	 * 
+	 * <p>The context within which the subscription is to be processed.</p>
+	 * <blockquote>
+	 * <p><strong>ⓘ Info:</strong> If the value is <code>mo</code>, then <code>source</code> must also be provided in the request body.</p>
+	 * </blockquote>
 	 */
 	public enum Context {
 		@JsonProperty("mo")
@@ -140,24 +142,24 @@ public class NotificationSubscription {
 
 
 	/**
-	 * The managed object to which the subscription is associated.
+	 * <p>The managed object to which the subscription is associated.</p>
 	 */
 	@JsonIgnoreProperties(ignoreUnknown = true)
 	@JsonInclude(Include.NON_NULL)
 	public static class Source {
 	
 		/**
-		 * Unique identifier of the object.
+		 * <p>Unique identifier of the object.</p>
 		 */
 		private String id;
 	
 		/**
-		 * Human-readable name that is used for representing the object in user interfaces.
+		 * <p>Human-readable name that is used for representing the object in user interfaces.</p>
 		 */
 		private String name;
 	
 		/**
-		 * A URL linking to this resource.
+		 * <p>A URL linking to this resource.</p>
 		 */
 		private String self;
 	
@@ -207,22 +209,22 @@ public class NotificationSubscription {
 	}
 
 	/**
-	 * Applicable filters to the subscription.
+	 * <p>Applicable filters to the subscription.</p>
 	 */
 	@JsonIgnoreProperties(ignoreUnknown = true)
 	@JsonInclude(Include.NON_NULL)
 	public static class SubscriptionFilter {
 	
 		/**
-		 * The Notifications are available for Alarms, Alarms with children, Device control, Events, Events with children, Inventory and Measurements for the `mo` context and for Alarms and Inventory for the `tenant` context. Alternatively, the wildcard `*` can be used to match all the permissible APIs within the bound context.
-		 * 
-		 * > **&#9432; Info:** the wildcard `*` cannot be used in conjunction with other values.
-		 * 
+		 * <p>The Notifications are available for Alarms, Alarms with children, Device control, Events, Events with children, Inventory and Measurements for the <code>mo</code> context and for Alarms and Inventory for the <code>tenant</code> context. Alternatively, the wildcard <code>*</code> can be used to match all the permissible APIs within the bound context.</p>
+		 * <blockquote>
+		 * <p><strong>ⓘ Info:</strong> the wildcard <code>*</code> cannot be used in conjunction with other values.</p>
+		 * </blockquote>
 		 */
 		private String[] apis;
 	
 		/**
-		 * The data needs to have the specified value in its `type` property to meet the filter criteria.
+		 * <p>The data needs to have the specified value in its <code>type</code> property to meet the filter criteria.</p>
 		 */
 		private String typeFilter;
 	

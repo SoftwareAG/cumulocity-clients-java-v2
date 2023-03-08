@@ -27,93 +27,91 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class ManagedObject {
 
 	/**
-	 * The date and time when the object was created.
+	 * <p>The date and time when the object was created.</p>
 	 */
 	private String creationTime;
 
 	/**
-	 * Unique identifier of the object.
+	 * <p>Unique identifier of the object.</p>
 	 */
 	private String id;
 
 	/**
-	 * The date and time when the object was updated for the last time.
+	 * <p>The date and time when the object was updated for the last time.</p>
 	 */
 	private String lastUpdated;
 
 	/**
-	 * Human-readable name that is used for representing the object in user interfaces.
+	 * <p>Human-readable name that is used for representing the object in user interfaces.</p>
 	 */
 	private String name;
 
 	/**
-	 * Username of the device's owner.
+	 * <p>Username of the device's owner.</p>
 	 */
 	private String owner;
 
 	/**
-	 * A URL linking to this resource.
+	 * <p>A URL linking to this resource.</p>
 	 */
 	private String self;
 
 	/**
-	 * The fragment type can be interpreted as _device class_, this means, devices with the same type can receive the same types of configuration, software, firmware and operations. The type value is indexed and is therefore used for queries.
+	 * <p>The fragment type can be interpreted as <em>device class</em>, this means, devices with the same type can receive the same types of configuration, software, firmware and operations. The type value is indexed and is therefore used for queries.</p>
 	 */
 	private String type;
 
 	/**
-	 * A collection of references to child additions.
+	 * <p>A collection of references to child additions.</p>
 	 */
 	private ObjectChildAdditions childAdditions;
 
 	/**
-	 * A collection of references to child assets.
+	 * <p>A collection of references to child assets.</p>
 	 */
 	private ObjectChildAssets childAssets;
 
 	/**
-	 * A collection of references to child devices.
+	 * <p>A collection of references to child devices.</p>
 	 */
 	private ObjectChildDevices childDevices;
 
 	/**
-	 * A collection of references to addition parent objects.
+	 * <p>A collection of references to addition parent objects.</p>
 	 */
 	private ObjectAdditionParents additionParents;
 
 	/**
-	 * A collection of references to asset parent objects.
+	 * <p>A collection of references to asset parent objects.</p>
 	 */
 	private ObjectAssetParents assetParents;
 
 	/**
-	 * A collection of references to device parent objects.
+	 * <p>A collection of references to device parent objects.</p>
 	 */
 	private ObjectDeviceParents deviceParents;
 
 	/**
-	 * A fragment which identifies this managed object as a device.
+	 * <p>A fragment which identifies this managed object as a device.</p>
 	 */
 	@JsonProperty(value = "c8y_IsDevice")
 	private C8yIsDevice c8yIsDevice;
 
 	/**
-	 * This fragment must be added in order to publish sample commands for a subset of devices sharing the same device type. If the fragment is present, the list of sample commands for a device type will be extended with the sample commands for the `c8y_DeviceTypes`. New sample commands created from the user interface will be created in the context of the `c8y_DeviceTypes`.
+	 * <p>This fragment must be added in order to publish sample commands for a subset of devices sharing the same device type. If the fragment is present, the list of sample commands for a device type will be extended with the sample commands for the <code>c8y_DeviceTypes</code>. New sample commands created from the user interface will be created in the context of the <code>c8y_DeviceTypes</code>.</p>
 	 */
 	@JsonProperty(value = "c8y_DeviceTypes")
 	private String[] c8yDeviceTypes;
 
 	/**
-	 * Lists the operations that are available for a particular device, so that applications can trigger the operations.
+	 * <p>Lists the operations that are available for a particular device, so that applications can trigger the operations.</p>
 	 */
 	@JsonProperty(value = "c8y_SupportedOperations")
 	private String[] c8ySupportedOperations;
 
 	/**
-	 * It is possible to add an arbitrary number of additional properties as a list of key-value pairs, for example, `"property1": {}`, `"property2": "value"`. These properties are known as custom fragments and can be of any type, for example, object or string. Each custom fragment is identified by a unique name.
-	 * 
-	 * Review the [Naming conventions of fragments](https://cumulocity.com/guides/concepts/domain-model/#naming-conventions-of-fragments) as there are characters that can not be used when naming custom fragments.
-	 * 
+	 * <p>It is possible to add an arbitrary number of additional properties as a list of key-value pairs, for example, <code>"property1": {}</code>, <code>"property2": "value"</code>. These properties are known as custom fragments and can be of any type, for example, object or string. Each custom fragment is identified by a unique name.</p>
+	 * <p>Review the <a href="https://cumulocity.com/guides/concepts/domain-model/#naming-conventions-of-fragments">Naming conventions of fragments</a> as there are characters that can not be used when naming custom fragments.</p>
 	 */
 	private Map<String, Object> customFragments;
 
@@ -255,7 +253,7 @@ public class ManagedObject {
 	}
 
 	/**
-	 * A fragment which identifies this managed object as a device.
+	 * <p>A fragment which identifies this managed object as a device.</p>
 	 */
 	@JsonIgnoreProperties(ignoreUnknown = true)
 	@JsonInclude(Include.NON_NULL)

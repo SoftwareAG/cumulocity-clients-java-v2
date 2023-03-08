@@ -14,47 +14,47 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class AuditApiResource {
 
 	/**
-	 * Collection of audit records
+	 * <p>Collection of audit records</p>
 	 */
 	private AuditRecords auditRecords;
 
 	/**
-	 * Read-only collection of audit records for a specific application. The placeholder {application} must be the name of a registered application.
+	 * <p>Read-only collection of audit records for a specific application. The placeholder {application} must be the name of a registered application.</p>
 	 */
 	private String auditRecordsForApplication;
 
 	/**
-	 * Read-only collection of audit records for a specific type.
+	 * <p>Read-only collection of audit records for a specific type.</p>
 	 */
 	private String auditRecordsForType;
 
 	/**
-	 * Read-only collection of audit records for a specific user. The placeholder {user} must be a username of a registered user.
+	 * <p>Read-only collection of audit records for a specific user. The placeholder {user} must be a username of a registered user.</p>
 	 */
 	private String auditRecordsForUser;
 
 	/**
-	 * Read-only collection of audit records for specific type and application.
+	 * <p>Read-only collection of audit records for specific type and application.</p>
 	 */
 	private String auditRecordsForTypeAndApplication;
 
 	/**
-	 * Read-only collection of audit records for specific type, user and application.
+	 * <p>Read-only collection of audit records for specific type, user and application.</p>
 	 */
 	private String auditRecordsForTypeAndUserAndApplication;
 
 	/**
-	 * Read-only collection of audit records for specific user and application.
+	 * <p>Read-only collection of audit records for specific user and application.</p>
 	 */
 	private String auditRecordsForUserAndApplication;
 
 	/**
-	 * Read-only collection of audit records for specific user and type.
+	 * <p>Read-only collection of audit records for specific user and type.</p>
 	 */
 	private String auditRecordsForUserAndType;
 
 	/**
-	 * A URL linking to this resource.
+	 * <p>A URL linking to this resource.</p>
 	 */
 	private String self;
 
@@ -131,14 +131,14 @@ public class AuditApiResource {
 	}
 
 	/**
-	 * Collection of audit records
+	 * <p>Collection of audit records</p>
 	 */
 	@JsonIgnoreProperties(ignoreUnknown = true)
 	@JsonInclude(Include.NON_NULL)
 	public static class AuditRecords {
 	
 		/**
-		 * A URL linking to this resource.
+		 * <p>A URL linking to this resource.</p>
 		 */
 		private String self;
 	

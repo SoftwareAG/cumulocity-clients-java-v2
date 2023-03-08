@@ -14,12 +14,12 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class OperationReference {
 
 	/**
-	 * The referenced operation.
+	 * <p>The referenced operation.</p>
 	 */
 	private Operation operation;
 
 	/**
-	 * A URL linking to this resource.
+	 * <p>A URL linking to this resource.</p>
 	 */
 	private String self;
 
@@ -40,19 +40,19 @@ public class OperationReference {
 	}
 
 	/**
-	 * The referenced operation.
+	 * <p>The referenced operation.</p>
 	 */
 	@JsonIgnoreProperties(ignoreUnknown = true)
 	@JsonInclude(Include.NON_NULL)
 	public static class Operation {
 	
 		/**
-		 * Unique identifier of this operation.
+		 * <p>Unique identifier of this operation.</p>
 		 */
 		private String id;
 	
 		/**
-		 * A URL linking to this resource.
+		 * <p>A URL linking to this resource.</p>
 		 */
 		private String self;
 	

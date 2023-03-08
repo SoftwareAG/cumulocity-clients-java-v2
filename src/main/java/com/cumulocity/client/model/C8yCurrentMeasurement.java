@@ -10,14 +10,14 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
- * Current measurement.
+ * <p>Current measurement.</p>
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(Include.NON_NULL)
 public class C8yCurrentMeasurement {
 
 	/**
-	 * A measurement is a value with a unit.
+	 * <p>A measurement is a value with a unit.</p>
 	 */
 	private C8yMeasurementValue current;
 

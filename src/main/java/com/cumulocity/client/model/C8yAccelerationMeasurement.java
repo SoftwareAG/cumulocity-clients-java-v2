@@ -10,14 +10,14 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
- * Measurement of the acceleration sensor.
+ * <p>Measurement of the acceleration sensor.</p>
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(Include.NON_NULL)
 public class C8yAccelerationMeasurement {
 
 	/**
-	 * A measurement is a value with a unit.
+	 * <p>A measurement is a value with a unit.</p>
 	 */
 	private C8yMeasurementValue acceleration;
 

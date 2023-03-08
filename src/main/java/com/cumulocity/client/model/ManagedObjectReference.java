@@ -16,7 +16,7 @@ public class ManagedObjectReference {
 	private ManagedObject managedObject;
 
 	/**
-	 * A URL linking to this resource.
+	 * <p>A URL linking to this resource.</p>
 	 */
 	private String self;
 

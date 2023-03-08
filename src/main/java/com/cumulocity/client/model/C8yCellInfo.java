@@ -10,19 +10,19 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
- * Provides detailed information about the closest mobile cell towers. When the functionality is activated, the location of the device is determined based on this fragment, in order to track the device whereabouts when GPS tracking is not available.
+ * <p>Provides detailed information about the closest mobile cell towers. When the functionality is activated, the location of the device is determined based on this fragment, in order to track the device whereabouts when GPS tracking is not available.</p>
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(Include.NON_NULL)
 public class C8yCellInfo {
 
 	/**
-	 * The radio type of this cell tower.
+	 * <p>The radio type of this cell tower.</p>
 	 */
 	private String radioType;
 
 	/**
-	 * Detailed information about the neighboring cell towers.
+	 * <p>Detailed information about the neighboring cell towers.</p>
 	 */
 	private C8yCellTower[] cellTowers;
 

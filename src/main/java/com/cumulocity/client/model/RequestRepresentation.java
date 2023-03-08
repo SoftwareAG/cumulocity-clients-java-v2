@@ -16,32 +16,32 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class RequestRepresentation {
 
 	/**
-	 * Body of the request.
+	 * <p>Body of the request.</p>
 	 */
 	private String body;
 
 	/**
-	 * Headers of the request.
+	 * <p>Headers of the request.</p>
 	 */
 	private Headers headers;
 
 	/**
-	 * HTTP request method.
+	 * <p>HTTP request method.</p>
 	 */
 	private Method method;
 
 	/**
-	 * Requested operation.
+	 * <p>Requested operation.</p>
 	 */
 	private Operation operation;
 
 	/**
-	 * Parameters of the request.
+	 * <p>Parameters of the request.</p>
 	 */
 	private RequestParams requestParams;
 
 	/**
-	 * Target of the request described as a URL.
+	 * <p>Target of the request described as a URL.</p>
 	 */
 	private String url;
 
@@ -95,7 +95,7 @@ public class RequestRepresentation {
 
 	
 	/**
-	 * HTTP request method.
+	 * <p>HTTP request method.</p>
 	 */
 	public enum Method {
 		@JsonProperty("GET")
@@ -116,7 +116,7 @@ public class RequestRepresentation {
 
 	
 	/**
-	 * Requested operation.
+	 * <p>Requested operation.</p>
 	 */
 	public enum Operation {
 		@JsonProperty("EXECUTE")
@@ -136,15 +136,14 @@ public class RequestRepresentation {
 	}
 
 	/**
-	 * Headers of the request.
+	 * <p>Headers of the request.</p>
 	 */
 	@JsonIgnoreProperties(ignoreUnknown = true)
 	@JsonInclude(Include.NON_NULL)
 	public static class Headers {
 	
 		/**
-		 * It is possible to add an arbitrary number of headers as a list of key-value string pairs, for example, `"header": "value"`.
-		 * 
+		 * <p>It is possible to add an arbitrary number of headers as a list of key-value string pairs, for example, <code>"header": "value"</code>.</p>
 		 */
 		private Map<String, String> requestHeaders;
 	
@@ -180,15 +179,14 @@ public class RequestRepresentation {
 
 
 	/**
-	 * Parameters of the request.
+	 * <p>Parameters of the request.</p>
 	 */
 	@JsonIgnoreProperties(ignoreUnknown = true)
 	@JsonInclude(Include.NON_NULL)
 	public static class RequestParams {
 	
 		/**
-		 * It is possible to add an arbitrary number of parameters as a list of key-value string pairs, for example, `"parameter": "value"`.
-		 * 
+		 * <p>It is possible to add an arbitrary number of parameters as a list of key-value string pairs, for example, <code>"parameter": "value"</code>.</p>
 		 */
 		private Map<String, String> requestParameters;
 	

@@ -10,17 +10,15 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
- * There are three main measurements of humidity; absolute, relative and specific.
- * 
- * Absolute humidity is the water content of air. Relative humidity, expressed as a percentage, measures the current absolute humidity relative to the maximum for that temperature. Specific humidity is a ratio of the water vapour content of the mixture to the total air content on a mass basis.
- * 
+ * <p>There are three main measurements of humidity; absolute, relative and specific.</p>
+ * <p>Absolute humidity is the water content of air. Relative humidity, expressed as a percentage, measures the current absolute humidity relative to the maximum for that temperature. Specific humidity is a ratio of the water vapour content of the mixture to the total air content on a mass basis.</p>
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(Include.NON_NULL)
 public class C8yHumidityMeasurement {
 
 	/**
-	 * A measurement is a value with a unit.
+	 * <p>A measurement is a value with a unit.</p>
 	 */
 	private C8yMeasurementValue h;
 

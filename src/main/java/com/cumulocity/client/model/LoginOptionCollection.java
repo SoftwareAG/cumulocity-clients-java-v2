@@ -10,19 +10,19 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
- * All available login options of the tenant.
+ * <p>All available login options of the tenant.</p>
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(Include.NON_NULL)
 public class LoginOptionCollection {
 
 	/**
-	 * An array containing the available login options.
+	 * <p>An array containing the available login options.</p>
 	 */
 	private LoginOption[] loginOptions;
 
 	/**
-	 * A URL linking to this resource.
+	 * <p>A URL linking to this resource.</p>
 	 */
 	private String self;
 

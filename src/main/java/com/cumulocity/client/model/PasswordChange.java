@@ -14,12 +14,12 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class PasswordChange {
 
 	/**
-	 * The current password of the user performing the request.
+	 * <p>The current password of the user performing the request.</p>
 	 */
 	private String currentUserPassword;
 
 	/**
-	 * The new password to be set for the user performing the request.
+	 * <p>The new password to be set for the user performing the request.</p>
 	 */
 	private String newPassword;
 

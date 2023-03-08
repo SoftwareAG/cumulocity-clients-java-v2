@@ -14,27 +14,27 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class ManagedObjectReferenceCollection {
 
 	/**
-	 * A URI reference [[RFC3986](https://tools.ietf.org/html/rfc3986)] to a potential previous page of managed objects.
+	 * <p>A URI reference [<a href="https://tools.ietf.org/html/rfc3986">RFC3986</a>] to a potential previous page of managed objects.</p>
 	 */
 	private String prev;
 
 	/**
-	 * A URL linking to this resource.
+	 * <p>A URL linking to this resource.</p>
 	 */
 	private String self;
 
 	/**
-	 * A URI reference [[RFC3986](https://tools.ietf.org/html/rfc3986)] to a potential next page of managed objects.
+	 * <p>A URI reference [<a href="https://tools.ietf.org/html/rfc3986">RFC3986</a>] to a potential next page of managed objects.</p>
 	 */
 	private String next;
 
 	/**
-	 * An array containing the details of all children (if any).
+	 * <p>An array containing the details of all children (if any).</p>
 	 */
 	private References[] references;
 
 	/**
-	 * Information about paging statistics.
+	 * <p>Information about paging statistics.</p>
 	 */
 	private PageStatistics statistics;
 

@@ -13,10 +13,7 @@ import com.cumulocity.client.model.ApplicationSettings;
 import com.cumulocity.client.model.ApplicationUserCollection;
 
 /**
- * API methods to retrieve and update the current application and to retrieve its subscribers.
- * It is the authenticated microservice user's application.
- *  </br>
- * 
+ * <p>API methods to retrieve and update the current application and to retrieve its subscribers.It is the authenticated microservice user's application.</p>
  */
 public class CurrentApplicationApi extends AdaptableApi {
 
@@ -25,22 +22,21 @@ public class CurrentApplicationApi extends AdaptableApi {
 	}
 
 	/**
-	 * Retrieve the current application
-	 * Retrieve the current application.
-	 * This only works inside an application, for example, a microservice.
-	 * 
+	 * <p>Retrieve the current application</p>
+	 * <p>Retrieve the current application.This only works inside an application, for example, a microservice.</p>
 	 * <section><h5>Required roles</h5>
 	 * Microservice bootstrap user required.
 	 * </section>
-	 * 
-	 *
-	 * The following table gives an overview of the possible response codes and their meanings:
+	 * <h5>Response Codes</h5>
+	 * <p>The following table gives an overview of the possible response codes and their meanings:</p>
 	 * <ul>
-	 *     <li>HTTP 200 - The request has succeeded and the current application sent in the response.</li>
-	 *     <li>HTTP 401 - Authentication information is missing or invalid., @{link com.cumulocity.client.model.Error}</li>
-	 *     <li>HTTP 403 - Not enough permissions/roles to perform this operation., @{link com.cumulocity.client.model.Error}</li>
+	 * 	<li><p>HTTP 200 <p>The request has succeeded and the current application sent in the response.</p></p>
+	 * 	</li>
+	 * 	<li><p>HTTP 401 <p>Authentication information is missing or invalid.</p></p>
+	 * 	</li>
+	 * 	<li><p>HTTP 403 <p>Not enough permissions/roles to perform this operation.</p></p>
+	 * 	</li>
 	 * </ul>
-	 * @return
 	 */
 	public CompletionStage<Application> getCurrentApplication() {
 		return adapt().path("application").path("currentApplication")
@@ -51,23 +47,23 @@ public class CurrentApplicationApi extends AdaptableApi {
 	}
 	
 	/**
-	 * Update the current application
-	 * Update the current application.
-	 * This only works inside an application, for example, a microservice. This method is deprecated as it is only used by legacy microservices that are not running on Kubernetes.
-	 * 
+	 * <p>Update the current application</p>
+	 * <p>Update the current application.This only works inside an application, for example, a microservice. This method is deprecated as it is only used by legacy microservices that are not running on Kubernetes.</p>
 	 * <section><h5>Required roles</h5>
 	 * Microservice bootstrap user required.
 	 * </section>
-	 * 
-	 *
-	 * The following table gives an overview of the possible response codes and their meanings:
+	 * <h5>Response Codes</h5>
+	 * <p>The following table gives an overview of the possible response codes and their meanings:</p>
 	 * <ul>
-	 *     <li>HTTP 200 - The current application was updated.</li>
-	 *     <li>HTTP 401 - Authentication information is missing or invalid., @{link com.cumulocity.client.model.Error}</li>
-	 *     <li>HTTP 403 - Not enough permissions/roles to perform this operation., @{link com.cumulocity.client.model.Error}</li>
+	 * 	<li><p>HTTP 200 <p>The current application was updated.</p></p>
+	 * 	</li>
+	 * 	<li><p>HTTP 401 <p>Authentication information is missing or invalid.</p></p>
+	 * 	</li>
+	 * 	<li><p>HTTP 403 <p>Not enough permissions/roles to perform this operation.</p></p>
+	 * 	</li>
 	 * </ul>
-	 * @param body 
-	 * @return
+	 * 
+	 * @param body
 	 */
 	@Deprecated
 	public CompletionStage<Application> updateCurrentApplication(final Application body) {
@@ -86,22 +82,21 @@ public class CurrentApplicationApi extends AdaptableApi {
 	}
 	
 	/**
-	 * Retrieve the current application settings
-	 * Retrieve the current application settings.
-	 * This only works inside an application, for example, a microservice.
-	 * 
+	 * <p>Retrieve the current application settings</p>
+	 * <p>Retrieve the current application settings.This only works inside an application, for example, a microservice.</p>
 	 * <section><h5>Required roles</h5>
 	 * Microservice bootstrap user <b>OR</b> microservice service user required.
 	 * </section>
-	 * 
-	 *
-	 * The following table gives an overview of the possible response codes and their meanings:
+	 * <h5>Response Codes</h5>
+	 * <p>The following table gives an overview of the possible response codes and their meanings:</p>
 	 * <ul>
-	 *     <li>HTTP 200 - The request has succeeded and the current application settings are sent in the response.</li>
-	 *     <li>HTTP 401 - Authentication information is missing or invalid., @{link com.cumulocity.client.model.Error}</li>
-	 *     <li>HTTP 403 - Not enough permissions/roles to perform this operation., @{link com.cumulocity.client.model.Error}</li>
+	 * 	<li><p>HTTP 200 <p>The request has succeeded and the current application settings are sent in the response.</p></p>
+	 * 	</li>
+	 * 	<li><p>HTTP 401 <p>Authentication information is missing or invalid.</p></p>
+	 * 	</li>
+	 * 	<li><p>HTTP 403 <p>Not enough permissions/roles to perform this operation.</p></p>
+	 * 	</li>
 	 * </ul>
-	 * @return
 	 */
 	public CompletionStage<ApplicationSettings[]> getCurrentApplicationSettings() {
 		return adapt().path("application").path("currentApplication").path("settings")
@@ -112,20 +107,19 @@ public class CurrentApplicationApi extends AdaptableApi {
 	}
 	
 	/**
-	 * Retrieve the subscribed users of the current application
-	 * Retrieve the subscribed users of the current application.
-	 * 
+	 * <p>Retrieve the subscribed users of the current application</p>
+	 * <p>Retrieve the subscribed users of the current application.</p>
 	 * <section><h5>Required roles</h5>
 	 * Microservice bootstrap user required.
 	 * </section>
-	 * 
-	 *
-	 * The following table gives an overview of the possible response codes and their meanings:
+	 * <h5>Response Codes</h5>
+	 * <p>The following table gives an overview of the possible response codes and their meanings:</p>
 	 * <ul>
-	 *     <li>HTTP 200 - The request has succeeded and the list of subscribed users for the current application is sent in the response.</li>
-	 *     <li>HTTP 401 - Authentication information is missing or invalid., @{link com.cumulocity.client.model.Error}</li>
+	 * 	<li><p>HTTP 200 <p>The request has succeeded and the list of subscribed users for the current application is sent in the response.</p></p>
+	 * 	</li>
+	 * 	<li><p>HTTP 401 <p>Authentication information is missing or invalid.</p></p>
+	 * 	</li>
 	 * </ul>
-	 * @return
 	 */
 	public CompletionStage<ApplicationUserCollection> getSubscribedUsers() {
 		return adapt().path("application").path("currentApplication").path("subscriptions")

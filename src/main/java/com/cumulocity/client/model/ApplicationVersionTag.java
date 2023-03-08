@@ -14,7 +14,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class ApplicationVersionTag {
 
 	/**
-	 * Tag assigned to the version. Version tags must be unique across all versions and version fields of application versions.
+	 * <p>Tag assigned to the version. Version tags must be unique across all versions and version fields of application versions.</p>
 	 */
 	private String[] tag;
 

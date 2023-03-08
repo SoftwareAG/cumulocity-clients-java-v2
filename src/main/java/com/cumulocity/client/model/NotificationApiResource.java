@@ -14,27 +14,27 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class NotificationApiResource {
 
 	/**
-	 * A URL linking to this resource.
+	 * <p>A URL linking to this resource.</p>
 	 */
 	private String self;
 
 	/**
-	 * Collection of all notification subscriptions.
+	 * <p>Collection of all notification subscriptions.</p>
 	 */
 	private NotificationSubscriptions notificationSubscriptions;
 
 	/**
-	 * Read-only collection of all notification subscriptions for a specific source object. The placeholder {source} must be a unique ID of an object in the inventory.
+	 * <p>Read-only collection of all notification subscriptions for a specific source object. The placeholder {source} must be a unique ID of an object in the inventory.</p>
 	 */
 	private String notificationSubscriptionsBySource;
 
 	/**
-	 * Read-only collection of all notification subscriptions of a particular context and a specific source object.
+	 * <p>Read-only collection of all notification subscriptions of a particular context and a specific source object.</p>
 	 */
 	private String notificationSubscriptionsBySourceAndContext;
 
 	/**
-	 * Read-only collection of all notification subscriptions of a particular context.
+	 * <p>Read-only collection of all notification subscriptions of a particular context.</p>
 	 */
 	private String notificationSubscriptionsByContext;
 
@@ -79,14 +79,14 @@ public class NotificationApiResource {
 	}
 
 	/**
-	 * Collection of all notification subscriptions.
+	 * <p>Collection of all notification subscriptions.</p>
 	 */
 	@JsonIgnoreProperties(ignoreUnknown = true)
 	@JsonInclude(Include.NON_NULL)
 	public static class NotificationSubscriptions {
 	
 		/**
-		 * A URL linking to this resource.
+		 * <p>A URL linking to this resource.</p>
 		 */
 		private String self;
 	

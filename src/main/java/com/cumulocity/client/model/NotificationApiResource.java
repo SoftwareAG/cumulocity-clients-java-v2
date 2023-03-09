@@ -1,4 +1,4 @@
-// Copyright (c) 2014-2022 Software AG, Darmstadt, Germany and/or Software AG USA Inc., Reston, VA, USA, and/or its subsidiaries and/or its affiliates and/or their licensors.
+// Copyright (c) 2014-2023 Software AG, Darmstadt, Germany and/or Software AG USA Inc., Reston, VA, USA, and/or its subsidiaries and/or its affiliates and/or their licensors.
 // Use, reproduction, transfer, publication or disclosure is prohibited except as specifically provided for in your License Agreement with Software AG.	
 
 package com.cumulocity.client.model;
@@ -14,27 +14,27 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class NotificationApiResource {
 
 	/**
-	 * A URL linking to this resource.
+	 * <p>A URL linking to this resource.</p>
 	 */
 	private String self;
 
 	/**
-	 * Collection of all notification subscriptions.
+	 * <p>Collection of all notification subscriptions.</p>
 	 */
 	private NotificationSubscriptions notificationSubscriptions;
 
 	/**
-	 * Read-only collection of all notification subscriptions for a specific source object. The placeholder {source} must be a unique ID of an object in the inventory.
+	 * <p>Read-only collection of all notification subscriptions for a specific source object. The placeholder {source} must be a unique ID of an object in the inventory.</p>
 	 */
 	private String notificationSubscriptionsBySource;
 
 	/**
-	 * Read-only collection of all notification subscriptions of a particular context and a specific source object.
+	 * <p>Read-only collection of all notification subscriptions of a particular context and a specific source object.</p>
 	 */
 	private String notificationSubscriptionsBySourceAndContext;
 
 	/**
-	 * Read-only collection of all notification subscriptions of a particular context.
+	 * <p>Read-only collection of all notification subscriptions of a particular context.</p>
 	 */
 	private String notificationSubscriptionsByContext;
 
@@ -79,14 +79,14 @@ public class NotificationApiResource {
 	}
 
 	/**
-	 * Collection of all notification subscriptions.
+	 * <p>Collection of all notification subscriptions.</p>
 	 */
 	@JsonIgnoreProperties(ignoreUnknown = true)
 	@JsonInclude(Include.NON_NULL)
 	public static class NotificationSubscriptions {
 	
 		/**
-		 * A URL linking to this resource.
+		 * <p>A URL linking to this resource.</p>
 		 */
 		private String self;
 	
@@ -111,7 +111,6 @@ public class NotificationApiResource {
 		@Override
 		public String toString() {
 			try {
-				// TODO thats an extensive operation, which only helps debugging
 				return new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(this);
 			} catch (final JsonProcessingException e) {
 			}
@@ -133,7 +132,6 @@ public class NotificationApiResource {
 	@Override
 	public String toString() {
 		try {
-			// TODO thats an extensive operation, which only helps debugging
 			return new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(this);
 		} catch (final JsonProcessingException e) {
 		}

@@ -1,4 +1,4 @@
-// Copyright (c) 2014-2022 Software AG, Darmstadt, Germany and/or Software AG USA Inc., Reston, VA, USA, and/or its subsidiaries and/or its affiliates and/or their licensors.
+// Copyright (c) 2014-2023 Software AG, Darmstadt, Germany and/or Software AG USA Inc., Reston, VA, USA, and/or its subsidiaries and/or its affiliates and/or their licensors.
 // Use, reproduction, transfer, publication or disclosure is prohibited except as specifically provided for in your License Agreement with Software AG.	
 
 package com.cumulocity.client.model;
@@ -10,24 +10,24 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
- * Resources usage for each subscribed microservice application.
+ * <p>Resources usage for each subscribed microservice application.</p>
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(Include.NON_NULL)
 public class UsageStatisticsResources {
 
 	/**
-	 * Total number of CPU usage for tenant microservices, specified in CPU milliseconds (1000m = 1 CPU).
+	 * <p>Total number of CPU usage for tenant microservices, specified in CPU milliseconds (1000m = 1 CPU).</p>
 	 */
 	private int cpu;
 
 	/**
-	 * Total number of memory usage for tenant microservices, specified in MB.
+	 * <p>Total number of memory usage for tenant microservices, specified in MB.</p>
 	 */
 	private int memory;
 
 	/**
-	 * Collection of resources usage for each microservice.
+	 * <p>Collection of resources usage for each microservice.</p>
 	 */
 	private UsageStatisticsResourcesUsedBy[] usedBy;
 
@@ -58,7 +58,6 @@ public class UsageStatisticsResources {
 	@Override
 	public String toString() {
 		try {
-			// TODO thats an extensive operation, which only helps debugging
 			return new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(this);
 		} catch (final JsonProcessingException e) {
 		}

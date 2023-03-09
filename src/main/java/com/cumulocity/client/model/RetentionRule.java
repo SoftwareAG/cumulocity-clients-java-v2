@@ -1,4 +1,4 @@
-// Copyright (c) 2014-2022 Software AG, Darmstadt, Germany and/or Software AG USA Inc., Reston, VA, USA, and/or its subsidiaries and/or its affiliates and/or their licensors.
+// Copyright (c) 2014-2023 Software AG, Darmstadt, Germany and/or Software AG USA Inc., Reston, VA, USA, and/or its subsidiaries and/or its affiliates and/or their licensors.
 // Use, reproduction, transfer, publication or disclosure is prohibited except as specifically provided for in your License Agreement with Software AG.	
 
 package com.cumulocity.client.model;
@@ -15,42 +15,42 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class RetentionRule {
 
 	/**
-	 * The data type(s) to which the rule is applied.
+	 * <p>The data type(s) to which the rule is applied.</p>
 	 */
 	private DataType dataType;
 
 	/**
-	 * Indicates whether the rule is editable or not. It can be updated only by the Management tenant.
+	 * <p>Indicates whether the rule is editable or not. It can be updated only by the Management tenant.</p>
 	 */
 	private boolean editable;
 
 	/**
-	 * The fragment type(s) to which the rule is applied. Used by the data types EVENT, MEASUREMENT, OPERATION and BULK_OPERATION.
+	 * <p>The fragment type(s) to which the rule is applied. Used by the data types EVENT, MEASUREMENT, OPERATION and BULK_OPERATION.</p>
 	 */
 	private String fragmentType;
 
 	/**
-	 * Unique identifier of the retention rule.
+	 * <p>Unique identifier of the retention rule.</p>
 	 */
 	private String id;
 
 	/**
-	 * Maximum age expressed in number of days.
+	 * <p>Maximum age expressed in number of days.</p>
 	 */
 	private int maximumAge;
 
 	/**
-	 * A URL linking to this resource.
+	 * <p>A URL linking to this resource.</p>
 	 */
 	private String self;
 
 	/**
-	 * The source(s) to which the rule is applied. Used by all data types.
+	 * <p>The source(s) to which the rule is applied. Used by all data types.</p>
 	 */
 	private String source;
 
 	/**
-	 * The type(s) to which the rule is applied. Used by the data types ALARM, AUDIT, EVENT and MEASUREMENT.
+	 * <p>The type(s) to which the rule is applied. Used by the data types ALARM, AUDIT, EVENT and MEASUREMENT.</p>
 	 */
 	private String type;
 
@@ -120,8 +120,7 @@ public class RetentionRule {
 
 	
 	/**
-	 * The data type(s) to which the rule is applied.
-	 * [ALARM, AUDIT, BULK_OPERATION, EVENT, MEASUREMENT, OPERATION, *]
+	 * <p>The data type(s) to which the rule is applied.</p>
 	 */
 	public enum DataType {
 		@JsonProperty("ALARM")
@@ -154,7 +153,6 @@ public class RetentionRule {
 	@Override
 	public String toString() {
 		try {
-			// TODO thats an extensive operation, which only helps debugging
 			return new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(this);
 		} catch (final JsonProcessingException e) {
 		}

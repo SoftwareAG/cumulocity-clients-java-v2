@@ -1,4 +1,4 @@
-// Copyright (c) 2014-2022 Software AG, Darmstadt, Germany and/or Software AG USA Inc., Reston, VA, USA, and/or its subsidiaries and/or its affiliates and/or their licensors.
+// Copyright (c) 2014-2023 Software AG, Darmstadt, Germany and/or Software AG USA Inc., Reston, VA, USA, and/or its subsidiaries and/or its affiliates and/or their licensors.
 // Use, reproduction, transfer, publication or disclosure is prohibited except as specifically provided for in your License Agreement with Software AG.	
 
 package com.cumulocity.client.model;
@@ -14,7 +14,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class ApplicationUserCollection {
 
 	/**
-	 * A list of users who are subscribed to the current application.
+	 * <p>A list of users who are subscribed to the current application.</p>
 	 */
 	private Users[] users;
 
@@ -27,24 +27,24 @@ public class ApplicationUserCollection {
 	}
 
 	/**
-	 * A user who is subscribed to the current application.
+	 * <p>A user who is subscribed to the current application.</p>
 	 */
 	@JsonIgnoreProperties(ignoreUnknown = true)
 	@JsonInclude(Include.NON_NULL)
 	public static class Users {
 	
 		/**
-		 * The username.
+		 * <p>The username.</p>
 		 */
 		private String name;
 	
 		/**
-		 * The user password.
+		 * <p>The user password.</p>
 		 */
 		private String password;
 	
 		/**
-		 * The user tenant.
+		 * <p>The user tenant.</p>
 		 */
 		private String tenant;
 	
@@ -75,7 +75,6 @@ public class ApplicationUserCollection {
 		@Override
 		public String toString() {
 			try {
-				// TODO thats an extensive operation, which only helps debugging
 				return new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(this);
 			} catch (final JsonProcessingException e) {
 			}
@@ -97,7 +96,6 @@ public class ApplicationUserCollection {
 	@Override
 	public String toString() {
 		try {
-			// TODO thats an extensive operation, which only helps debugging
 			return new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(this);
 		} catch (final JsonProcessingException e) {
 		}

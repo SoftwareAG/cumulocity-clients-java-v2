@@ -1,4 +1,4 @@
-// Copyright (c) 2014-2022 Software AG, Darmstadt, Germany and/or Software AG USA Inc., Reston, VA, USA, and/or its subsidiaries and/or its affiliates and/or their licensors.
+// Copyright (c) 2014-2023 Software AG, Darmstadt, Germany and/or Software AG USA Inc., Reston, VA, USA, and/or its subsidiaries and/or its affiliates and/or their licensors.
 // Use, reproduction, transfer, publication or disclosure is prohibited except as specifically provided for in your License Agreement with Software AG.	
 
 package com.cumulocity.client.model;
@@ -14,48 +14,48 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class Group {
 
 	/**
-	 * A list of applications.
+	 * <p>A list of applications.</p>
 	 */
 	private Application[] applications;
 
 	/**
-	 * An object with a list of custom properties.
+	 * <p>An object with a list of custom properties.</p>
 	 */
 	private CustomProperties customProperties;
 
 	/**
-	 * A description of the group.
+	 * <p>A description of the group.</p>
 	 */
 	private String description;
 
 	/**
-	 * An object with a list of the user's device permissions.
+	 * <p>An object with a list of the user's device permissions.</p>
 	 */
 	@Deprecated
 	private DevicePermissions devicePermissions;
 
 	/**
-	 * A unique identifier for this group.
+	 * <p>A unique identifier for this group.</p>
 	 */
 	private int id;
 
 	/**
-	 * The name of the group.
+	 * <p>The name of the group.</p>
 	 */
 	private String name;
 
 	/**
-	 * An object containing user roles for this group.
+	 * <p>An object containing user roles for this group.</p>
 	 */
 	private Roles roles;
 
 	/**
-	 * A URL linking to this resource.
+	 * <p>A URL linking to this resource.</p>
 	 */
 	private String self;
 
 	/**
-	 * The list of users in this group.
+	 * <p>The list of users in this group.</p>
 	 */
 	private Users users;
 
@@ -139,24 +139,24 @@ public class Group {
 	}
 
 	/**
-	 * An object containing user roles for this group.
+	 * <p>An object containing user roles for this group.</p>
 	 */
 	@JsonIgnoreProperties(ignoreUnknown = true)
 	@JsonInclude(Include.NON_NULL)
 	public static class Roles {
 	
 		/**
-		 * A URL linking to this resource.
+		 * <p>A URL linking to this resource.</p>
 		 */
 		private String self;
 	
 		/**
-		 * A list of user role references.
+		 * <p>A list of user role references.</p>
 		 */
 		private RoleReference[] references;
 	
 		/**
-		 * Information about paging statistics.
+		 * <p>Information about paging statistics.</p>
 		 */
 		private PageStatistics statistics;
 	
@@ -187,7 +187,6 @@ public class Group {
 		@Override
 		public String toString() {
 			try {
-				// TODO thats an extensive operation, which only helps debugging
 				return new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(this);
 			} catch (final JsonProcessingException e) {
 			}
@@ -207,19 +206,19 @@ public class Group {
 	}
 
 	/**
-	 * The list of users in this group.
+	 * <p>The list of users in this group.</p>
 	 */
 	@JsonIgnoreProperties(ignoreUnknown = true)
 	@JsonInclude(Include.NON_NULL)
 	public static class Users {
 	
 		/**
-		 * A URL linking to this resource.
+		 * <p>A URL linking to this resource.</p>
 		 */
 		private String self;
 	
 		/**
-		 * The list of users in this group.
+		 * <p>The list of users in this group.</p>
 		 */
 		private User[] references;
 	
@@ -242,7 +241,6 @@ public class Group {
 		@Override
 		public String toString() {
 			try {
-				// TODO thats an extensive operation, which only helps debugging
 				return new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(this);
 			} catch (final JsonProcessingException e) {
 			}
@@ -264,7 +262,6 @@ public class Group {
 	@Override
 	public String toString() {
 		try {
-			// TODO thats an extensive operation, which only helps debugging
 			return new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(this);
 		} catch (final JsonProcessingException e) {
 		}

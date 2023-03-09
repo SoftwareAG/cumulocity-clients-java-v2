@@ -1,4 +1,4 @@
-// Copyright (c) 2014-2022 Software AG, Darmstadt, Germany and/or Software AG USA Inc., Reston, VA, USA, and/or its subsidiaries and/or its affiliates and/or their licensors.
+// Copyright (c) 2014-2023 Software AG, Darmstadt, Germany and/or Software AG USA Inc., Reston, VA, USA, and/or its subsidiaries and/or its affiliates and/or their licensors.
 // Use, reproduction, transfer, publication or disclosure is prohibited except as specifically provided for in your License Agreement with Software AG.	
 
 package com.cumulocity.client.model;
@@ -11,29 +11,29 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
- * Represents a predicate for verification. It acts as a condition which is necessary to assign a user to the given groups and permit access to the specified applications.
+ * <p>Represents a predicate for verification. It acts as a condition which is necessary to assign a user to the given groups and permit access to the specified applications.</p>
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(Include.NON_NULL)
 public class JSONPredicateRepresentation {
 
 	/**
-	 * Nested predicates.
+	 * <p>Nested predicates.</p>
 	 */
 	private JSONPredicateRepresentation[] childPredicates;
 
 	/**
-	 * Operator executed on the parameter from the JWT access token claim pointed by `parameterPath` and the provided parameter `value`.
+	 * <p>Operator executed on the parameter from the JWT access token claim pointed by <code>parameterPath</code> and the provided parameter <code>value</code>.</p>
 	 */
 	private Operator operator;
 
 	/**
-	 * Path to the claim from the JWT access token from the external authorization server.
+	 * <p>Path to the claim from the JWT access token from the external authorization server.</p>
 	 */
 	private String parameterPath;
 
 	/**
-	 * Given value used for parameter verification.
+	 * <p>Given value used for parameter verification.</p>
 	 */
 	private String value;
 
@@ -71,8 +71,7 @@ public class JSONPredicateRepresentation {
 
 	
 	/**
-	 * Operator executed on the parameter from the JWT access token claim pointed by `parameterPath` and the provided parameter `value`.
-	 * [EQ, NEQ, GT, LT, GTE, LTE, IN, AND, OR]
+	 * <p>Operator executed on the parameter from the JWT access token claim pointed by <code>parameterPath</code> and the provided parameter <code>value</code>.</p>
 	 */
 	public enum Operator {
 		@JsonProperty("EQ")
@@ -109,7 +108,6 @@ public class JSONPredicateRepresentation {
 	@Override
 	public String toString() {
 		try {
-			// TODO thats an extensive operation, which only helps debugging
 			return new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(this);
 		} catch (final JsonProcessingException e) {
 		}

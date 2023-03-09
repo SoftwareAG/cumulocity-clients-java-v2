@@ -1,4 +1,4 @@
-// Copyright (c) 2014-2022 Software AG, Darmstadt, Germany and/or Software AG USA Inc., Reston, VA, USA, and/or its subsidiaries and/or its affiliates and/or their licensors.
+// Copyright (c) 2014-2023 Software AG, Darmstadt, Germany and/or Software AG USA Inc., Reston, VA, USA, and/or its subsidiaries and/or its affiliates and/or their licensors.
 // Use, reproduction, transfer, publication or disclosure is prohibited except as specifically provided for in your License Agreement with Software AG.	
 
 package com.cumulocity.client.model;
@@ -10,24 +10,24 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
- * For basic authentication case only.
+ * <p>For basic authentication case only.</p>
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(Include.NON_NULL)
 public class BasicAuthenticationRestrictions {
 
 	/**
-	 * List of types of clients which are not allowed to use basic authentication. Currently the only supported option is WEB_BROWSERS.
+	 * <p>List of types of clients which are not allowed to use basic authentication. Currently the only supported option is WEB_BROWSERS.</p>
 	 */
 	private String[] forbiddenClients;
 
 	/**
-	 * List of user agents, passed in `User-Agent` HTTP header, which are blocked if basic authentication is used.
+	 * <p>List of user agents, passed in <code>User-Agent</code> HTTP header, which are blocked if basic authentication is used.</p>
 	 */
 	private String[] forbiddenUserAgents;
 
 	/**
-	 * List of user agents, passed in `User-Agent` HTTP header, which are allowed to use basic authentication.
+	 * <p>List of user agents, passed in <code>User-Agent</code> HTTP header, which are allowed to use basic authentication.</p>
 	 */
 	private String[] trustedUserAgents;
 
@@ -58,7 +58,6 @@ public class BasicAuthenticationRestrictions {
 	@Override
 	public String toString() {
 		try {
-			// TODO thats an extensive operation, which only helps debugging
 			return new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(this);
 		} catch (final JsonProcessingException e) {
 		}

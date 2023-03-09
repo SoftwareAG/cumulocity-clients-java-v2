@@ -1,4 +1,4 @@
-// Copyright (c) 2014-2022 Software AG, Darmstadt, Germany and/or Software AG USA Inc., Reston, VA, USA, and/or its subsidiaries and/or its affiliates and/or their licensors.
+// Copyright (c) 2014-2023 Software AG, Darmstadt, Germany and/or Software AG USA Inc., Reston, VA, USA, and/or its subsidiaries and/or its affiliates and/or their licensors.
 // Use, reproduction, transfer, publication or disclosure is prohibited except as specifically provided for in your License Agreement with Software AG.	
 
 package com.cumulocity.client.model;
@@ -14,37 +14,37 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class ApplicationApiResource {
 
 	/**
-	 * Collection of all applications..
+	 * <p>Collection of all applications..</p>
 	 */
 	private String applications;
 
 	/**
-	 * A reference to a resource of type Application.
+	 * <p>A reference to a resource of type Application.</p>
 	 */
 	private String applicationById;
 
 	/**
-	 * Read-only collection of all applications with a particular name.
+	 * <p>Read-only collection of all applications with a particular name.</p>
 	 */
 	private String applicationsByName;
 
 	/**
-	 * Read-only collection of all applications subscribed by a particular tenant.
+	 * <p>Read-only collection of all applications subscribed by a particular tenant.</p>
 	 */
 	private String applicationsByTenant;
 
 	/**
-	 * Read-only collection of all applications owned by a particular tenant.
+	 * <p>Read-only collection of all applications owned by a particular tenant.</p>
 	 */
 	private String applicationsByOwner;
 
 	/**
-	 * Read-only collection of all applications owned by a particular user.
+	 * <p>Read-only collection of all applications owned by a particular user.</p>
 	 */
 	private String applicationsByUser;
 
 	/**
-	 * A URL linking to this resource.
+	 * <p>A URL linking to this resource.</p>
 	 */
 	private String self;
 
@@ -107,7 +107,6 @@ public class ApplicationApiResource {
 	@Override
 	public String toString() {
 		try {
-			// TODO thats an extensive operation, which only helps debugging
 			return new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(this);
 		} catch (final JsonProcessingException e) {
 		}

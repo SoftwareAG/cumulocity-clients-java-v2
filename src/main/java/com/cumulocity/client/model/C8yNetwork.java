@@ -1,4 +1,4 @@
-// Copyright (c) 2014-2022 Software AG, Darmstadt, Germany and/or Software AG USA Inc., Reston, VA, USA, and/or its subsidiaries and/or its affiliates and/or their licensors.
+// Copyright (c) 2014-2023 Software AG, Darmstadt, Germany and/or Software AG USA Inc., Reston, VA, USA, and/or its subsidiaries and/or its affiliates and/or their licensors.
 // Use, reproduction, transfer, publication or disclosure is prohibited except as specifically provided for in your License Agreement with Software AG.	
 
 package com.cumulocity.client.model;
@@ -11,26 +11,26 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
- * Device capability to either display or display and manage the WAN, LAN, and DHCP settings.
+ * <p>Device capability to either display or display and manage the WAN, LAN, and DHCP settings.</p>
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(Include.NON_NULL)
 public class C8yNetwork {
 
 	/**
-	 * Local network information.
+	 * <p>Local network information.</p>
 	 */
 	@JsonProperty(value = "c8y_LAN")
 	private C8yLAN c8yLAN;
 
 	/**
-	 * Mobile internet connectivity interface status.
+	 * <p>Mobile internet connectivity interface status.</p>
 	 */
 	@JsonProperty(value = "c8y_WAN")
 	private C8yWAN c8yWAN;
 
 	/**
-	 * Information for DHCP server status.
+	 * <p>Information for DHCP server status.</p>
 	 */
 	@JsonProperty(value = "c8y_DHCP")
 	private C8yDHCP c8yDHCP;
@@ -60,34 +60,34 @@ public class C8yNetwork {
 	}
 
 	/**
-	 * Local network information.
+	 * <p>Local network information.</p>
 	 */
 	@JsonIgnoreProperties(ignoreUnknown = true)
 	@JsonInclude(Include.NON_NULL)
 	public static class C8yLAN {
 	
 		/**
-		 * Subnet mask configured for the network interface.
+		 * <p>Subnet mask configured for the network interface.</p>
 		 */
 		private String netmask;
 	
 		/**
-		 * IP address configured for the network interface.
+		 * <p>IP address configured for the network interface.</p>
 		 */
 		private String ip;
 	
 		/**
-		 * Identifier for the network interface.
+		 * <p>Identifier for the network interface.</p>
 		 */
 		private String name;
 	
 		/**
-		 * Indicator showing if the interface is enabled.
+		 * <p>Indicator showing if the interface is enabled.</p>
 		 */
 		private int enabled;
 	
 		/**
-		 * MAC address of the network interface.
+		 * <p>MAC address of the network interface.</p>
 		 */
 		private String mac;
 	
@@ -134,7 +134,6 @@ public class C8yNetwork {
 		@Override
 		public String toString() {
 			try {
-				// TODO thats an extensive operation, which only helps debugging
 				return new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(this);
 			} catch (final JsonProcessingException e) {
 			}
@@ -154,34 +153,34 @@ public class C8yNetwork {
 	}
 
 	/**
-	 * Mobile internet connectivity interface status.
+	 * <p>Mobile internet connectivity interface status.</p>
 	 */
 	@JsonIgnoreProperties(ignoreUnknown = true)
 	@JsonInclude(Include.NON_NULL)
 	public static class C8yWAN {
 	
 		/**
-		 * SIM connectivity password.
+		 * <p>SIM connectivity password.</p>
 		 */
 		private String password;
 	
 		/**
-		 * SIM connection status.
+		 * <p>SIM connection status.</p>
 		 */
 		private String simStatus;
 	
 		/**
-		 * Authentication type used by the SIM connectivity.
+		 * <p>Authentication type used by the SIM connectivity.</p>
 		 */
 		private String authType;
 	
 		/**
-		 * APN used for internet access.
+		 * <p>APN used for internet access.</p>
 		 */
 		private String apn;
 	
 		/**
-		 * SIM connectivity username.
+		 * <p>SIM connectivity username.</p>
 		 */
 		private String username;
 	
@@ -228,7 +227,6 @@ public class C8yNetwork {
 		@Override
 		public String toString() {
 			try {
-				// TODO thats an extensive operation, which only helps debugging
 				return new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(this);
 			} catch (final JsonProcessingException e) {
 			}
@@ -248,34 +246,34 @@ public class C8yNetwork {
 	}
 
 	/**
-	 * Information for DHCP server status.
+	 * <p>Information for DHCP server status.</p>
 	 */
 	@JsonIgnoreProperties(ignoreUnknown = true)
 	@JsonInclude(Include.NON_NULL)
 	public static class C8yDHCP {
 	
 		/**
-		 * First configured DNS server.
+		 * <p>First configured DNS server.</p>
 		 */
 		private String dns1;
 	
 		/**
-		 * Second configured DNS server.
+		 * <p>Second configured DNS server.</p>
 		 */
 		private String dns2;
 	
 		/**
-		 * Domain name configured for the device.
+		 * <p>Domain name configured for the device.</p>
 		 */
 		private String domainName;
 	
 		/**
-		 * IP address range.
+		 * <p>IP address range.</p>
 		 */
 		private AddressRange addressRange;
 	
 		/**
-		 * Indicator showing if the DHCP server is enabled.
+		 * <p>Indicator showing if the DHCP server is enabled.</p>
 		 */
 		private int enabled;
 	
@@ -320,19 +318,19 @@ public class C8yNetwork {
 		}
 	
 		/**
-		 * IP address range.
+		 * <p>IP address range.</p>
 		 */
 		@JsonIgnoreProperties(ignoreUnknown = true)
 		@JsonInclude(Include.NON_NULL)
 		public static class AddressRange {
 		
 			/**
-			 * Start of address range assigned to DHCP clients.
+			 * <p>Start of address range assigned to DHCP clients.</p>
 			 */
 			private String start;
 		
 			/**
-			 * End of address range assigned to DHCP clients.
+			 * <p>End of address range assigned to DHCP clients.</p>
 			 */
 			private String end;
 		
@@ -355,7 +353,6 @@ public class C8yNetwork {
 			@Override
 			public String toString() {
 				try {
-					// TODO thats an extensive operation, which only helps debugging
 					return new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(this);
 				} catch (final JsonProcessingException e) {
 				}
@@ -377,7 +374,6 @@ public class C8yNetwork {
 		@Override
 		public String toString() {
 			try {
-				// TODO thats an extensive operation, which only helps debugging
 				return new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(this);
 			} catch (final JsonProcessingException e) {
 			}
@@ -399,7 +395,6 @@ public class C8yNetwork {
 	@Override
 	public String toString() {
 		try {
-			// TODO thats an extensive operation, which only helps debugging
 			return new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(this);
 		} catch (final JsonProcessingException e) {
 		}

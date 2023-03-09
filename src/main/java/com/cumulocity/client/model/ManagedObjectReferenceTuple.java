@@ -1,4 +1,4 @@
-// Copyright (c) 2014-2022 Software AG, Darmstadt, Germany and/or Software AG USA Inc., Reston, VA, USA, and/or its subsidiaries and/or its affiliates and/or their licensors.
+// Copyright (c) 2014-2023 Software AG, Darmstadt, Germany and/or Software AG USA Inc., Reston, VA, USA, and/or its subsidiaries and/or its affiliates and/or their licensors.
 // Use, reproduction, transfer, publication or disclosure is prohibited except as specifically provided for in your License Agreement with Software AG.	
 
 package com.cumulocity.client.model;
@@ -14,12 +14,12 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class ManagedObjectReferenceTuple {
 
 	/**
-	 * Details of the referenced managed object.
+	 * <p>Details of the referenced managed object.</p>
 	 */
 	private ManagedObject managedObject;
 
 	/**
-	 * A URL linking to this resource.
+	 * <p>A URL linking to this resource.</p>
 	 */
 	private String self;
 
@@ -40,24 +40,24 @@ public class ManagedObjectReferenceTuple {
 	}
 
 	/**
-	 * Details of the referenced managed object.
+	 * <p>Details of the referenced managed object.</p>
 	 */
 	@JsonIgnoreProperties(ignoreUnknown = true)
 	@JsonInclude(Include.NON_NULL)
 	public static class ManagedObject {
 	
 		/**
-		 * Unique identifier of the object.
+		 * <p>Unique identifier of the object.</p>
 		 */
 		private String id;
 	
 		/**
-		 * Human-readable name that is used for representing the object in user interfaces.
+		 * <p>Human-readable name that is used for representing the object in user interfaces.</p>
 		 */
 		private String name;
 	
 		/**
-		 * A URL linking to this resource.
+		 * <p>A URL linking to this resource.</p>
 		 */
 		private String self;
 	
@@ -88,7 +88,6 @@ public class ManagedObjectReferenceTuple {
 		@Override
 		public String toString() {
 			try {
-				// TODO thats an extensive operation, which only helps debugging
 				return new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(this);
 			} catch (final JsonProcessingException e) {
 			}
@@ -110,7 +109,6 @@ public class ManagedObjectReferenceTuple {
 	@Override
 	public String toString() {
 		try {
-			// TODO thats an extensive operation, which only helps debugging
 			return new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(this);
 		} catch (final JsonProcessingException e) {
 		}

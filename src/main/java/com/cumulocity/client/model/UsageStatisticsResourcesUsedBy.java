@@ -1,4 +1,4 @@
-// Copyright (c) 2014-2022 Software AG, Darmstadt, Germany and/or Software AG USA Inc., Reston, VA, USA, and/or its subsidiaries and/or its affiliates and/or their licensors.
+// Copyright (c) 2014-2023 Software AG, Darmstadt, Germany and/or Software AG USA Inc., Reston, VA, USA, and/or its subsidiaries and/or its affiliates and/or their licensors.
 // Use, reproduction, transfer, publication or disclosure is prohibited except as specifically provided for in your License Agreement with Software AG.	
 
 package com.cumulocity.client.model;
@@ -14,22 +14,22 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class UsageStatisticsResourcesUsedBy {
 
 	/**
-	 * Reason for calculating statistics of the specified microservice.
+	 * <p>Reason for calculating statistics of the specified microservice.</p>
 	 */
 	private String cause;
 
 	/**
-	 * Number of CPU usage for a single microservice.
+	 * <p>Number of CPU usage for a single microservice.</p>
 	 */
 	private int cpu;
 
 	/**
-	 * Number of memory usage for a single microservice.
+	 * <p>Number of memory usage for a single microservice.</p>
 	 */
 	private int memory;
 
 	/**
-	 * Name of the microservice.
+	 * <p>Name of the microservice.</p>
 	 */
 	private String name;
 
@@ -68,7 +68,6 @@ public class UsageStatisticsResourcesUsedBy {
 	@Override
 	public String toString() {
 		try {
-			// TODO thats an extensive operation, which only helps debugging
 			return new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(this);
 		} catch (final JsonProcessingException e) {
 		}

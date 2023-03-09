@@ -1,4 +1,4 @@
-// Copyright (c) 2014-2022 Software AG, Darmstadt, Germany and/or Software AG USA Inc., Reston, VA, USA, and/or its subsidiaries and/or its affiliates and/or their licensors.
+// Copyright (c) 2014-2023 Software AG, Darmstadt, Germany and/or Software AG USA Inc., Reston, VA, USA, and/or its subsidiaries and/or its affiliates and/or their licensors.
 // Use, reproduction, transfer, publication or disclosure is prohibited except as specifically provided for in your License Agreement with Software AG.	
 
 package com.cumulocity.client.model;
@@ -27,70 +27,68 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class Alarm {
 
 	/**
-	 * Number of times that this alarm has been triggered.
+	 * <p>Number of times that this alarm has been triggered.</p>
 	 */
 	private int count;
 
 	/**
-	 * The date and time when the alarm was created.
+	 * <p>The date and time when the alarm was created.</p>
 	 */
 	private String creationTime;
 
 	/**
-	 * The time at which the alarm occurred for the first time. Only present when `count` is greater than 1.
+	 * <p>The time at which the alarm occurred for the first time. Only present when <code>count</code> is greater than 1.</p>
 	 */
 	private String firstOccurrenceTime;
 
 	/**
-	 * Unique identifier of the alarm.
+	 * <p>Unique identifier of the alarm.</p>
 	 */
 	private String id;
 
 	/**
-	 * The date and time when the alarm was last updated.
+	 * <p>The date and time when the alarm was last updated.</p>
 	 */
 	private String lastUpdated;
 
 	/**
-	 * A URL linking to this resource.
+	 * <p>A URL linking to this resource.</p>
 	 */
 	private String self;
 
 	/**
-	 * The severity of the alarm.
+	 * <p>The severity of the alarm.</p>
 	 */
 	private Severity severity;
 
 	/**
-	 * The managed object to which the alarm is associated.
+	 * <p>The managed object to which the alarm is associated.</p>
 	 */
 	private Source source;
 
 	/**
-	 * The status of the alarm. If not specified, a new alarm will be created as ACTIVE.
+	 * <p>The status of the alarm. If not specified, a new alarm will be created as ACTIVE.</p>
 	 */
 	private Status status;
 
 	/**
-	 * Description of the alarm.
+	 * <p>Description of the alarm.</p>
 	 */
 	private String text;
 
 	/**
-	 * The date and time when the alarm is triggered.
+	 * <p>The date and time when the alarm is triggered.</p>
 	 */
 	private String time;
 
 	/**
-	 * Identifies the type of this alarm.
+	 * <p>Identifies the type of this alarm.</p>
 	 */
 	private String type;
 
 	/**
-	 * It is possible to add an arbitrary number of additional properties as a list of key-value pairs, for example, `"property1": {}`, `"property2": "value"`. These properties are known as custom fragments and can be of any type, for example, object or string. Each custom fragment is identified by a unique name.
-	 * 
-	 * Review the [Naming conventions of fragments](https://cumulocity.com/guides/concepts/domain-model/#naming-conventions-of-fragments) as there are characters that can not be used when naming custom fragments.
-	 * 
+	 * <p>It is possible to add an arbitrary number of additional properties as a list of key-value pairs, for example, <code>"property1": {}</code>, <code>"property2": "value"</code>. These properties are known as custom fragments and can be of any type, for example, object or string. Each custom fragment is identified by a unique name.</p>
+	 * <p>Review the <a href="https://cumulocity.com/guides/concepts/domain-model/#naming-conventions-of-fragments">Naming conventions of fragments</a> as there are characters that can not be used when naming custom fragments.</p>
 	 */
 	private Map<String, Object> customFragments;
 
@@ -201,8 +199,7 @@ public class Alarm {
 
 	
 	/**
-	 * The severity of the alarm.
-	 * [CRITICAL, MAJOR, MINOR, WARNING]
+	 * <p>The severity of the alarm.</p>
 	 */
 	public enum Severity {
 		@JsonProperty("CRITICAL")
@@ -227,8 +224,7 @@ public class Alarm {
 
 	
 	/**
-	 * The status of the alarm. If not specified, a new alarm will be created as ACTIVE.
-	 * [ACTIVE, ACKNOWLEDGED, CLEARED]
+	 * <p>The status of the alarm. If not specified, a new alarm will be created as ACTIVE.</p>
 	 */
 	public enum Status {
 		@JsonProperty("ACTIVE")
@@ -251,24 +247,24 @@ public class Alarm {
 
 
 	/**
-	 * The managed object to which the alarm is associated.
+	 * <p>The managed object to which the alarm is associated.</p>
 	 */
 	@JsonIgnoreProperties(ignoreUnknown = true)
 	@JsonInclude(Include.NON_NULL)
 	public static class Source {
 	
 		/**
-		 * Unique identifier of the object.
+		 * <p>Unique identifier of the object.</p>
 		 */
 		private String id;
 	
 		/**
-		 * Human-readable name that is used for representing the object in user interfaces.
+		 * <p>Human-readable name that is used for representing the object in user interfaces.</p>
 		 */
 		private String name;
 	
 		/**
-		 * A URL linking to this resource.
+		 * <p>A URL linking to this resource.</p>
 		 */
 		private String self;
 	
@@ -299,7 +295,6 @@ public class Alarm {
 		@Override
 		public String toString() {
 			try {
-				// TODO thats an extensive operation, which only helps debugging
 				return new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(this);
 			} catch (final JsonProcessingException e) {
 			}
@@ -365,7 +360,6 @@ public class Alarm {
 	@Override
 	public String toString() {
 		try {
-			// TODO thats an extensive operation, which only helps debugging
 			return new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(this);
 		} catch (final JsonProcessingException e) {
 		}

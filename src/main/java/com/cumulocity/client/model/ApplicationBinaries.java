@@ -1,4 +1,4 @@
-// Copyright (c) 2014-2022 Software AG, Darmstadt, Germany and/or Software AG USA Inc., Reston, VA, USA, and/or its subsidiaries and/or its affiliates and/or their licensors.
+// Copyright (c) 2014-2023 Software AG, Darmstadt, Germany and/or Software AG USA Inc., Reston, VA, USA, and/or its subsidiaries and/or its affiliates and/or their licensors.
 // Use, reproduction, transfer, publication or disclosure is prohibited except as specifically provided for in your License Agreement with Software AG.	
 
 package com.cumulocity.client.model;
@@ -14,7 +14,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class ApplicationBinaries {
 
 	/**
-	 * An array of attachments.
+	 * <p>An array of attachments.</p>
 	 */
 	private Attachments[] attachments;
 
@@ -31,37 +31,37 @@ public class ApplicationBinaries {
 	public static class Attachments {
 	
 		/**
-		 * The application context path.
+		 * <p>The application context path.</p>
 		 */
 		private String contextPath;
 	
 		/**
-		 * The date and time when the attachment was created.
+		 * <p>The date and time when the attachment was created.</p>
 		 */
 		private String created;
 	
 		/**
-		 * A description for the attachment.
+		 * <p>A description for the attachment.</p>
 		 */
 		private String description;
 	
 		/**
-		 * A download URL for the attachment.
+		 * <p>A download URL for the attachment.</p>
 		 */
 		private String downloadUrl;
 	
 		/**
-		 * The ID of the attachment.
+		 * <p>The ID of the attachment.</p>
 		 */
 		private String id;
 	
 		/**
-		 * The length of the attachment, in bytes.
+		 * <p>The length of the attachment, in bytes.</p>
 		 */
 		private int length;
 	
 		/**
-		 * The name of the attachment.
+		 * <p>The name of the attachment.</p>
 		 */
 		private String name;
 	
@@ -124,7 +124,6 @@ public class ApplicationBinaries {
 		@Override
 		public String toString() {
 			try {
-				// TODO thats an extensive operation, which only helps debugging
 				return new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(this);
 			} catch (final JsonProcessingException e) {
 			}
@@ -146,7 +145,6 @@ public class ApplicationBinaries {
 	@Override
 	public String toString() {
 		try {
-			// TODO thats an extensive operation, which only helps debugging
 			return new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(this);
 		} catch (final JsonProcessingException e) {
 		}

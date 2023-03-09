@@ -1,4 +1,4 @@
-// Copyright (c) 2014-2022 Software AG, Darmstadt, Germany and/or Software AG USA Inc., Reston, VA, USA, and/or its subsidiaries and/or its affiliates and/or their licensors.
+// Copyright (c) 2014-2023 Software AG, Darmstadt, Germany and/or Software AG USA Inc., Reston, VA, USA, and/or its subsidiaries and/or its affiliates and/or their licensors.
 // Use, reproduction, transfer, publication or disclosure is prohibited except as specifically provided for in your License Agreement with Software AG.	
 
 package com.cumulocity.client.model;
@@ -14,146 +14,153 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class SummaryAllTenantsUsageStatistics {
 
 	/**
-	 * Number of created alarms.
+	 * <p>Number of created alarms.</p>
 	 */
 	private int alarmsCreatedCount;
 
 	/**
-	 * Number of updates made to the alarms.
+	 * <p>Number of updates made to the alarms.</p>
 	 */
 	private int alarmsUpdatedCount;
 
 	/**
-	 * Date and time of the tenant's creation.
+	 * <p>Date and time of the tenant's creation.</p>
 	 */
 	private String creationTime;
 
 	/**
-	 * Number of devices in the tenant identified by the fragment `c8y_IsDevice`. Updated only three times a day starting at 8:57, 16:57 and 23:57.
+	 * <p>Number of devices in the tenant identified by the fragment <code>c8y_IsDevice</code>. Updated only three times a day starting at 8:57, 16:57 and 23:57.</p>
 	 */
 	private int deviceCount;
 
 	/**
-	 * Number of devices which do not have child devices. Updated only three times a day starting at 8:57, 16:57 and 23:57.
+	 * <p>Number of devices which do not have child devices. Updated only three times a day starting at 8:57, 16:57 and 23:57.</p>
 	 */
 	private int deviceEndpointCount;
 
 	/**
-	 * Number of requests that were issued only by devices against the tenant. Updated every 5 minutes. The following requests are not included:
-	 * 
-	 * * Requests made to <kbd>/user</kbd>, <kbd>/tenant</kbd> and <kbd>/application</kbd> APIs
-	 * * Application related requests (with `X-Cumulocity-Application-Key` header)
-	 * 
+	 * <p>Number of requests that were issued only by devices against the tenant. Updated every 5 minutes. The following requests are not included:</p>
+	 * <ul>
+	 * 	<li><p>Requests made to <kbd>/user</kbd>, <kbd>/tenant</kbd> and <kbd>/application</kbd> APIs</p>
+	 * 	</li>
+	 * 	<li><p>Application related requests (with <code>X-Cumulocity-Application-Key</code> header)</p>
+	 * 	</li>
+	 * </ul>
 	 */
 	private int deviceRequestCount;
 
 	/**
-	 * Number of devices with children. Updated only three times a day starting at 8:57, 16:57 and 23:57.
+	 * <p>Number of devices with children. Updated only three times a day starting at 8:57, 16:57 and 23:57.</p>
 	 */
 	private int deviceWithChildrenCount;
 
 	/**
-	 * Tenant external reference.
+	 * <p>Tenant external reference.</p>
 	 */
 	private String externalReference;
 
 	/**
-	 * Number of created events.
+	 * <p>Number of created events.</p>
 	 */
 	private int eventsCreatedCount;
 
 	/**
-	 * Number of updates made to the events.
+	 * <p>Number of updates made to the events.</p>
 	 */
 	private int eventsUpdatedCount;
 
 	/**
-	 * Number of created managed objects.
+	 * <p>Number of created managed objects.</p>
 	 */
 	private int inventoriesCreatedCount;
 
 	/**
-	 * Number of updates made to the managed objects.
+	 * <p>Number of updates made to the managed objects.</p>
 	 */
 	private int inventoriesUpdatedCount;
 
 	/**
-	 * Number of created measurements.
-	 * 
-	 * > **&#9432; Info:** Bulk creation of measurements is handled in a way that each measurement is counted individually.
-	 * 
+	 * <p>Number of created measurements.</p>
+	 * <blockquote>
+	 * <p><strong>ⓘ Info:</strong> Bulk creation of measurements is handled in a way that each measurement is counted individually.</p>
+	 * </blockquote>
 	 */
 	private int measurementsCreatedCount;
 
 	/**
-	 * ID of the parent tenant.
+	 * <p>ID of the parent tenant.</p>
 	 */
 	private String parentTenantId;
 
 	/**
-	 * Peak value of `deviceCount` calculated for the requested time period of the summary.
+	 * <p>Peak value of <code>deviceCount</code> calculated for the requested time period of the summary.</p>
 	 */
 	private int peakDeviceCount;
 
 	/**
-	 * Peak value of `deviceWithChildrenCount` calculated for the requested time period of the summary.
+	 * <p>Peak value of <code>deviceWithChildrenCount</code> calculated for the requested time period of the summary.</p>
 	 */
 	private int peakDeviceWithChildrenCount;
 
 	/**
-	 * Peak value of used storage size in bytes, calculated for the requested time period of the summary.
+	 * <p>Peak value of used storage size in bytes, calculated for the requested time period of the summary.</p>
 	 */
 	private int peakStorageSize;
 
 	/**
-	 * Number of requests that were made against the tenant. Updated every 5 minutes. The following requests are not included:
-	 * 
-	 * *  Internal SmartREST requests used to resolve templates
-	 * *  Internal SLA monitoring requests
-	 * *  Calls to any <kbd>/health</kbd> endpoint
-	 * *  Device bootstrap process requests related to configuring and retrieving device credentials
-	 * *  Microservice SDK internal calls for applications and subscriptions
-	 * 
+	 * <p>Number of requests that were made against the tenant. Updated every 5 minutes. The following requests are not included:</p>
+	 * <ul>
+	 * 	<li><p>Internal SmartREST requests used to resolve templates</p>
+	 * 	</li>
+	 * 	<li><p>Internal SLA monitoring requests</p>
+	 * 	</li>
+	 * 	<li><p>Calls to any <kbd>/health</kbd> endpoint</p>
+	 * 	</li>
+	 * 	<li><p>Device bootstrap process requests related to configuring and retrieving device credentials</p>
+	 * 	</li>
+	 * 	<li><p>Microservice SDK internal calls for applications and subscriptions</p>
+	 * 	</li>
+	 * </ul>
 	 */
 	private int requestCount;
 
 	/**
-	 * Resources usage for each subscribed microservice application.
+	 * <p>Resources usage for each subscribed microservice application.</p>
 	 */
 	private UsageStatisticsResources resources;
 
 	/**
-	 * Database storage in use, specified in bytes. It is affected by your retention rules and by the regularly running database optimization functions in Cumulocity IoT. If the size decreases, it does not necessarily mean that data was deleted. Updated only three times a day starting at 8:57, 16:57 and 23:57.
+	 * <p>Database storage in use, specified in bytes. It is affected by your retention rules and by the regularly running database optimization functions in Cumulocity IoT. If the size decreases, it does not necessarily mean that data was deleted. Updated only three times a day starting at 8:57, 16:57 and 23:57.</p>
 	 */
 	private int storageSize;
 
 	/**
-	 * Names of the tenant subscribed applications. Updated only three times a day starting at 8:57, 16:57 and 23:57.
+	 * <p>Names of the tenant subscribed applications. Updated only three times a day starting at 8:57, 16:57 and 23:57.</p>
 	 */
 	private String[] subscribedApplications;
 
 	/**
-	 * The tenant's company name.
+	 * <p>The tenant's company name.</p>
 	 */
 	private String tenantCompany;
 
 	/**
-	 * An object with a list of custom properties.
+	 * <p>An object with a list of custom properties.</p>
 	 */
 	private CustomProperties tenantCustomProperties;
 
 	/**
-	 * URL of the tenant's domain. The domain name permits only the use of alphanumeric characters separated by dots `.`, hyphens `-` and underscores `_`.
+	 * <p>URL of the tenant's domain. The domain name permits only the use of alphanumeric characters separated by dots <code>.</code>, hyphens <code>-</code> and underscores <code>_</code>.</p>
 	 */
 	private String tenantDomain;
 
 	/**
-	 * Unique identifier of a Cumulocity IoT tenant.
+	 * <p>Unique identifier of a Cumulocity IoT tenant.</p>
 	 */
 	private String tenantId;
 
 	/**
-	 * Sum of all inbound transfers.
+	 * <p>Sum of all inbound transfers.</p>
 	 */
 	private int totalResourceCreateAndUpdateCount;
 
@@ -368,7 +375,6 @@ public class SummaryAllTenantsUsageStatistics {
 	@Override
 	public String toString() {
 		try {
-			// TODO thats an extensive operation, which only helps debugging
 			return new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(this);
 		} catch (final JsonProcessingException e) {
 		}

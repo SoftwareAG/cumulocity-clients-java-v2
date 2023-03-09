@@ -1,4 +1,4 @@
-// Copyright (c) 2014-2022 Software AG, Darmstadt, Germany and/or Software AG USA Inc., Reston, VA, USA, and/or its subsidiaries and/or its affiliates and/or their licensors.
+// Copyright (c) 2014-2023 Software AG, Darmstadt, Germany and/or Software AG USA Inc., Reston, VA, USA, and/or its subsidiaries and/or its affiliates and/or their licensors.
 // Use, reproduction, transfer, publication or disclosure is prohibited except as specifically provided for in your License Agreement with Software AG.	
 
 package com.cumulocity.client.model;
@@ -14,27 +14,27 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class InventoryApiResource {
 
 	/**
-	 * Read-only collection of all managed objects with a particular fragment type or capability (placeholder {fragmentType}).
+	 * <p>Read-only collection of all managed objects with a particular fragment type or capability (placeholder {fragmentType}).</p>
 	 */
 	private String managedObjectsForFragmentType;
 
 	/**
-	 * Read-only collection of all managed objects of a particular type (placeholder {type}).
+	 * <p>Read-only collection of all managed objects of a particular type (placeholder {type}).</p>
 	 */
 	private String managedObjectsForType;
 
 	/**
-	 * Read-only collection of managed objects fetched for a given list of ids, for example, “ids=41,43,68”.
+	 * <p>Read-only collection of managed objects fetched for a given list of ids, for example, “ids=41,43,68”.</p>
 	 */
 	private String managedObjectsForListOfIds;
 
 	/**
-	 * Collection of all managed objects
+	 * <p>Collection of all managed objects</p>
 	 */
 	private ManagedObjects managedObjects;
 
 	/**
-	 * A URL linking to this resource.
+	 * <p>A URL linking to this resource.</p>
 	 */
 	private String self;
 
@@ -79,19 +79,19 @@ public class InventoryApiResource {
 	}
 
 	/**
-	 * Collection of all managed objects
+	 * <p>Collection of all managed objects</p>
 	 */
 	@JsonIgnoreProperties(ignoreUnknown = true)
 	@JsonInclude(Include.NON_NULL)
 	public static class ManagedObjects {
 	
 		/**
-		 * An array containing the referenced managed objects.
+		 * <p>An array containing the referenced managed objects.</p>
 		 */
 		private ManagedObject[] references;
 	
 		/**
-		 * A URL linking to this resource.
+		 * <p>A URL linking to this resource.</p>
 		 */
 		private String self;
 	
@@ -114,7 +114,6 @@ public class InventoryApiResource {
 		@Override
 		public String toString() {
 			try {
-				// TODO thats an extensive operation, which only helps debugging
 				return new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(this);
 			} catch (final JsonProcessingException e) {
 			}
@@ -136,7 +135,6 @@ public class InventoryApiResource {
 	@Override
 	public String toString() {
 		try {
-			// TODO thats an extensive operation, which only helps debugging
 			return new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(this);
 		} catch (final JsonProcessingException e) {
 		}

@@ -1,9 +1,9 @@
-// Copyright (c) 2014-2022 Software AG, Darmstadt, Germany and/or Software AG USA Inc., Reston, VA, USA, and/or its subsidiaries and/or its affiliates and/or their licensors.
+// Copyright (c) 2014-2023 Software AG, Darmstadt, Germany and/or Software AG USA Inc., Reston, VA, USA, and/or its subsidiaries and/or its affiliates and/or their licensors.
 // Use, reproduction, transfer, publication or disclosure is prohibited except as specifically provided for in your License Agreement with Software AG.	
 
 package com.cumulocity.client.api;
 
-import java.util.concurrent.Future;
+import java.util.concurrent.CompletionStage;
 import com.fasterxml.jackson.databind.JsonNode;
 import jakarta.ws.rs.client.Entity;
 import jakarta.ws.rs.client.WebTarget;
@@ -14,14 +14,14 @@ import com.cumulocity.client.model.UserGroupCollection;
 import com.cumulocity.client.model.GroupReferenceCollection;
 
 /**
- * API methods to create, retrieve, update and delete user groups.
- * 
- * > **⚠️ Important:** In the Cumulocity IoT user interface, user groups are referred to as "global roles". Global roles are not to be confused with user roles.
- * 
- * > **&#9432; Info:** The Accept header should be provided in all POST/PUT requests, otherwise an empty response body will be returned.
- *  </br>
- * 
- */ 
+ * <p>API methods to create, retrieve, update and delete user groups.</p>
+ * <blockquote>
+ * <p><strong>⚠️ Important:</strong> In the Cumulocity IoT user interface, user groups are referred to as "global roles". Global roles are not to be confused with user roles.</p>
+ * </blockquote>
+ * <blockquote>
+ * <p><strong>ⓘ Info:</strong> The Accept header should be provided in all POST/PUT requests, otherwise an empty response body will be returned.</p>
+ * </blockquote>
+ */
 public class GroupsApi extends AdaptableApi {
 
 	public GroupsApi(final WebTarget rootTarget) {
@@ -29,53 +29,71 @@ public class GroupsApi extends AdaptableApi {
 	}
 
 	/**
-	 * Retrieve all user groups of a specific tenant </br>
-	 * Retrieve all user groups of a specific tenant (by a given tenant ID).  <section><h5>Required roles</h5> ROLE_USER_MANAGEMENT_READ <b>OR</b> ROLE_USER_MANAGEMENT_CREATE </section> 
-	 *
-	 * <br>The following table gives an overview of the possible response codes and their meanings:</br>
+	 * <p>Retrieve all user groups of a specific tenant</p>
+	 * <p>Retrieve all user groups of a specific tenant (by a given tenant ID).</p>
+	 * <section><h5>Required roles</h5>
+	 * ROLE_USER_MANAGEMENT_READ <b>OR</b> ROLE_USER_MANAGEMENT_CREATE
+	 * </section>
+	 * <h5>Response Codes</h5>
+	 * <p>The following table gives an overview of the possible response codes and their meanings:</p>
 	 * <ul>
-	 * <li>200 The request has succeeded and all user groups are sent in the response.</li>
-	 * <li>401 Authentication information is missing or invalid.</li>
-	 * <li>403 Not enough permissions/roles to perform this operation.</li>
+	 * 	<li><p>HTTP 200 <p>The request has succeeded and all user groups are sent in the response.</p></p>
+	 * 	</li>
+	 * 	<li><p>HTTP 401 <p>Authentication information is missing or invalid.</p></p>
+	 * 	</li>
+	 * 	<li><p>HTTP 403 <p>Not enough permissions/roles to perform this operation.</p></p>
+	 * 	</li>
 	 * </ul>
-	 * <p>
-	 * @param tenantId Unique identifier of a Cumulocity IoT tenant.
-	 * @param currentPage The current page of the paginated results.
-	 * @param pageSize Indicates how many entries of the collection shall be returned. The upper limit for one page is 2,000 objects.
-	 * @param withTotalElements When set to `true`, the returned result will contain in the statistics object the total number of elements. Only applicable on [range queries](https://en.wikipedia.org/wiki/Range_query_(database)).
-	 * @param withTotalPages When set to `true`, the returned result will contain in the statistics object the total number of pages. Only applicable on [range queries](https://en.wikipedia.org/wiki/Range_query_(database)).
-	 * @return
+	 * 
+	 * @param tenantId
+	 * <p>Unique identifier of a Cumulocity IoT tenant.</p>
+	 * @param currentPage
+	 * <p>The current page of the paginated results.</p>
+	 * @param pageSize
+	 * <p>Indicates how many entries of the collection shall be returned. The upper limit for one page is 2,000 objects.</p>
+	 * @param withTotalElements
+	 * <p>When set to <code>true</code>, the returned result will contain in the statistics object the total number of elements. Only applicable on <a href="https://en.wikipedia.org/wiki/Range_query_(database)">range queries</a>.</p>
+	 * @param withTotalPages
+	 * <p>When set to <code>true</code>, the returned result will contain in the statistics object the total number of pages. Only applicable on <a href="https://en.wikipedia.org/wiki/Range_query_(database)">range queries</a>.</p>
 	 */
-	public Future<UserGroupCollection> getTenantUserGroups(final String tenantId, final int currentPage, final int pageSize, final boolean withTotalElements, final boolean withTotalPages) {
-		return getRootTarget().path("user").path(valueOf(tenantId)).path("groups")
-			.queryParam("currentPage", valueOf(currentPage))
-			.queryParam("pageSize", valueOf(pageSize))
-			.queryParam("withTotalElements", valueOf(withTotalElements))
-			.queryParam("withTotalPages", valueOf(withTotalPages))
-				.request()
-				.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.groupcollection+json")
-				.build("GET")
-				.submit(UserGroupCollection.class);
+	public CompletionStage<UserGroupCollection> getTenantUserGroups(final String tenantId, final int currentPage, final int pageSize, final boolean withTotalElements, final boolean withTotalPages) {
+		return adapt().path("user").path(valueOf(tenantId)).path("groups")
+			.queryParam("currentPage", currentPage)
+			.queryParam("pageSize", pageSize)
+			.queryParam("withTotalElements", withTotalElements)
+			.queryParam("withTotalPages", withTotalPages)
+			.request()
+			.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.groupcollection+json")
+			.rx()
+			.method("GET", UserGroupCollection.class);
 	}
 	
 	/**
-	 * Create a user group for a specific tenant </br>
-	 * Create a user group for a specific tenant (by a given tenant ID).  <section><h5>Required roles</h5> ROLE_USER_MANAGEMENT_ADMIN </section> 
-	 *
-	 * <br>The following table gives an overview of the possible response codes and their meanings:</br>
+	 * <p>Create a user group for a specific tenant</p>
+	 * <p>Create a user group for a specific tenant (by a given tenant ID).</p>
+	 * <section><h5>Required roles</h5>
+	 * ROLE_USER_MANAGEMENT_ADMIN
+	 * </section>
+	 * <h5>Response Codes</h5>
+	 * <p>The following table gives an overview of the possible response codes and their meanings:</p>
 	 * <ul>
-	 * <li>201 A user group was created.</li>
-	 * <li>401 Authentication information is missing or invalid.</li>
-	 * <li>403 Not enough permissions/roles to perform this operation.</li>
-	 * <li>409 Duplicate – Group name already exists.</li>
-	 * <li>422 Unprocessable Entity – invalid payload.</li>
+	 * 	<li><p>HTTP 201 <p>A user group was created.</p></p>
+	 * 	</li>
+	 * 	<li><p>HTTP 401 <p>Authentication information is missing or invalid.</p></p>
+	 * 	</li>
+	 * 	<li><p>HTTP 403 <p>Not enough permissions/roles to perform this operation.</p></p>
+	 * 	</li>
+	 * 	<li><p>HTTP 409 <p>Duplicate – Group name already exists.</p></p>
+	 * 	</li>
+	 * 	<li><p>HTTP 422 <p>Unprocessable Entity – invalid payload.</p></p>
+	 * 	</li>
 	 * </ul>
-	 * <p>
-	 * @param body 
-	 * @param tenantId Unique identifier of a Cumulocity IoT tenant.
-	 * @return
+	 * 
+	 * @param body
+	 * @param tenantId
+	 * <p>Unique identifier of a Cumulocity IoT tenant.</p>
 	 */
-	public Future<Group> createUserGroup(final Group body, final String tenantId) {
+	public CompletionStage<Group> createUserGroup(final Group body, final String tenantId) {
 		final JsonNode jsonNode = toJsonNode(body);
 		removeFromNode(jsonNode, "roles");
 		removeFromNode(jsonNode, "self");
@@ -83,57 +101,74 @@ public class GroupsApi extends AdaptableApi {
 		removeFromNode(jsonNode, "devicePermissions");
 		removeFromNode(jsonNode, "users");
 		removeFromNode(jsonNode, "applications");
-		return getRootTarget().path("user").path(valueOf(tenantId)).path("groups")
-				.request()
-				.header("Content-Type", "application/vnd.com.nsn.cumulocity.group+json")
-				.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.group+json")
-				.build("POST", Entity.json(jsonNode))
-				.submit(Group.class);
+		return adapt().path("user").path(valueOf(tenantId)).path("groups")
+			.request()
+			.header("Content-Type", "application/vnd.com.nsn.cumulocity.group+json")
+			.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.group+json")
+			.rx()
+			.method("POST", Entity.json(jsonNode), Group.class);
 	}
 	
 	/**
-	 * Retrieve a specific user group for a specific tenant </br>
-	 * Retrieve a specific user group (by a given user group ID) for a specific tenant (by a given tenant ID).  <section><h5>Required roles</h5> ROLE_USER_MANAGEMENT_ADMIN <b>OR</b> ROLE_USER_MANAGEMENT_CREATE <b>AND</b> is parent of the user <b>AND</b> is not the current user </section> 
-	 *
-	 * <br>The following table gives an overview of the possible response codes and their meanings:</br>
+	 * <p>Retrieve a specific user group for a specific tenant</p>
+	 * <p>Retrieve a specific user group (by a given user group ID) for a specific tenant (by a given tenant ID).</p>
+	 * <section><h5>Required roles</h5>
+	 * ROLE_USER_MANAGEMENT_ADMIN <b>OR</b> ROLE_USER_MANAGEMENT_CREATE <b>AND</b> is parent of the user <b>AND</b> is not the current user
+	 * </section>
+	 * <h5>Response Codes</h5>
+	 * <p>The following table gives an overview of the possible response codes and their meanings:</p>
 	 * <ul>
-	 * <li>200 The request succeeded and the user group is sent in the response.</li>
-	 * <li>401 Authentication information is missing or invalid.</li>
-	 * <li>403 Not enough permissions/roles to perform this operation.</li>
-	 * <li>404 Group not found.</li>
+	 * 	<li><p>HTTP 200 <p>The request succeeded and the user group is sent in the response.</p></p>
+	 * 	</li>
+	 * 	<li><p>HTTP 401 <p>Authentication information is missing or invalid.</p></p>
+	 * 	</li>
+	 * 	<li><p>HTTP 403 <p>Not enough permissions/roles to perform this operation.</p></p>
+	 * 	</li>
+	 * 	<li><p>HTTP 404 <p>Group not found.</p></p>
+	 * 	</li>
 	 * </ul>
-	 * <p>
-	 * @param tenantId Unique identifier of a Cumulocity IoT tenant.
-	 * @param groupId Unique identifier of the user group.
-	 * @return
+	 * 
+	 * @param tenantId
+	 * <p>Unique identifier of a Cumulocity IoT tenant.</p>
+	 * @param groupId
+	 * <p>Unique identifier of the user group.</p>
 	 */
-	public Future<Group> getUserGroup(final String tenantId, final int groupId) {
-		return getRootTarget().path("user").path(valueOf(tenantId)).path("groups").path(valueOf(groupId))
-				.request()
-				.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.group+json")
-				.build("GET")
-				.submit(Group.class);
+	public CompletionStage<Group> getUserGroup(final String tenantId, final int groupId) {
+		return adapt().path("user").path(valueOf(tenantId)).path("groups").path(valueOf(groupId))
+			.request()
+			.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.group+json")
+			.rx()
+			.method("GET", Group.class);
 	}
 	
 	/**
-	 * Update a specific user group for a specific tenant </br>
-	 * Update a specific user group (by a given user group ID) for a specific tenant (by a given tenant ID).  <section><h5>Required roles</h5> ROLE_USER_MANAGEMENT_ADMIN </section> 
-	 *
-	 * <br>The following table gives an overview of the possible response codes and their meanings:</br>
+	 * <p>Update a specific user group for a specific tenant</p>
+	 * <p>Update a specific user group (by a given user group ID) for a specific tenant (by a given tenant ID).</p>
+	 * <section><h5>Required roles</h5>
+	 * ROLE_USER_MANAGEMENT_ADMIN
+	 * </section>
+	 * <h5>Response Codes</h5>
+	 * <p>The following table gives an overview of the possible response codes and their meanings:</p>
 	 * <ul>
-	 * <li>200 A user group was updated.</li>
-	 * <li>401 Authentication information is missing or invalid.</li>
-	 * <li>403 Not enough permissions/roles to perform this operation.</li>
-	 * <li>404 Group not found.</li>
-	 * <li>422 Unprocessable Entity – invalid payload.</li>
+	 * 	<li><p>HTTP 200 <p>A user group was updated.</p></p>
+	 * 	</li>
+	 * 	<li><p>HTTP 401 <p>Authentication information is missing or invalid.</p></p>
+	 * 	</li>
+	 * 	<li><p>HTTP 403 <p>Not enough permissions/roles to perform this operation.</p></p>
+	 * 	</li>
+	 * 	<li><p>HTTP 404 <p>Group not found.</p></p>
+	 * 	</li>
+	 * 	<li><p>HTTP 422 <p>Unprocessable Entity – invalid payload.</p></p>
+	 * 	</li>
 	 * </ul>
-	 * <p>
-	 * @param body 
-	 * @param tenantId Unique identifier of a Cumulocity IoT tenant.
-	 * @param groupId Unique identifier of the user group.
-	 * @return
+	 * 
+	 * @param body
+	 * @param tenantId
+	 * <p>Unique identifier of a Cumulocity IoT tenant.</p>
+	 * @param groupId
+	 * <p>Unique identifier of the user group.</p>
 	 */
-	public Future<Group> updateUserGroup(final Group body, final String tenantId, final int groupId) {
+	public CompletionStage<Group> updateUserGroup(final Group body, final String tenantId, final int groupId) {
 		final JsonNode jsonNode = toJsonNode(body);
 		removeFromNode(jsonNode, "roles");
 		removeFromNode(jsonNode, "self");
@@ -141,90 +176,119 @@ public class GroupsApi extends AdaptableApi {
 		removeFromNode(jsonNode, "devicePermissions");
 		removeFromNode(jsonNode, "users");
 		removeFromNode(jsonNode, "applications");
-		return getRootTarget().path("user").path(valueOf(tenantId)).path("groups").path(valueOf(groupId))
-				.request()
-				.header("Content-Type", "application/vnd.com.nsn.cumulocity.group+json")
-				.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.group+json")
-				.build("PUT", Entity.json(jsonNode))
-				.submit(Group.class);
+		return adapt().path("user").path(valueOf(tenantId)).path("groups").path(valueOf(groupId))
+			.request()
+			.header("Content-Type", "application/vnd.com.nsn.cumulocity.group+json")
+			.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.group+json")
+			.rx()
+			.method("PUT", Entity.json(jsonNode), Group.class);
 	}
 	
 	/**
-	 * Delete a specific user group for a specific tenant </br>
-	 * Delete a specific user group (by a given user group ID) for a specific tenant (by a given tenant ID).  <section><h5>Required roles</h5> ROLE_USER_MANAGEMENT_ADMIN </section> 
-	 *
-	 * <br>The following table gives an overview of the possible response codes and their meanings:</br>
+	 * <p>Delete a specific user group for a specific tenant</p>
+	 * <p>Delete a specific user group (by a given user group ID) for a specific tenant (by a given tenant ID).</p>
+	 * <section><h5>Required roles</h5>
+	 * ROLE_USER_MANAGEMENT_ADMIN
+	 * </section>
+	 * <h5>Response Codes</h5>
+	 * <p>The following table gives an overview of the possible response codes and their meanings:</p>
 	 * <ul>
-	 * <li>204 A user group was removed.</li>
-	 * <li>401 Authentication information is missing or invalid.</li>
-	 * <li>403 Not authorized to perform this operation.</li>
-	 * <li>404 Group not found.</li>
+	 * 	<li><p>HTTP 204 <p>A user group was removed.</p></p>
+	 * 	</li>
+	 * 	<li><p>HTTP 401 <p>Authentication information is missing or invalid.</p></p>
+	 * 	</li>
+	 * 	<li><p>HTTP 403 <p>Not authorized to perform this operation.</p></p>
+	 * 	</li>
+	 * 	<li><p>HTTP 404 <p>Group not found.</p></p>
+	 * 	</li>
 	 * </ul>
-	 * <p>
-	 * @param tenantId Unique identifier of a Cumulocity IoT tenant.
-	 * @param groupId Unique identifier of the user group.
+	 * 
+	 * @param tenantId
+	 * <p>Unique identifier of a Cumulocity IoT tenant.</p>
+	 * @param groupId
+	 * <p>Unique identifier of the user group.</p>
 	 */
-	public Future<Response> deleteUserGroup(final String tenantId, final int groupId) {
-		return getRootTarget().path("user").path(valueOf(tenantId)).path("groups").path(valueOf(groupId))
-				.request()
-				.header("Accept", "application/json")
-				.build("DELETE")
-				.submit();
+	public CompletionStage<Response> deleteUserGroup(final String tenantId, final int groupId) {
+		return adapt().path("user").path(valueOf(tenantId)).path("groups").path(valueOf(groupId))
+			.request()
+			.header("Accept", "application/json")
+			.rx()
+			.method("DELETE");
 	}
 	
 	/**
-	 * Retrieve a user group by group name for a specific tenant </br>
-	 * Retrieve a user group by group name for a specific tenant (by a given tenant ID).  <section><h5>Required roles</h5> ROLE_USER_MANAGEMENT_READ <b>OR</b> ROLE_USER_MANAGEMENT_CREATE <b>AND</b> has access to groups </section> 
-	 *
-	 * <br>The following table gives an overview of the possible response codes and their meanings:</br>
+	 * <p>Retrieve a user group by group name for a specific tenant</p>
+	 * <p>Retrieve a user group by group name for a specific tenant (by a given tenant ID).</p>
+	 * <section><h5>Required roles</h5>
+	 * ROLE_USER_MANAGEMENT_READ <b>OR</b> ROLE_USER_MANAGEMENT_CREATE <b>AND</b> has access to groups
+	 * </section>
+	 * <h5>Response Codes</h5>
+	 * <p>The following table gives an overview of the possible response codes and their meanings:</p>
 	 * <ul>
-	 * <li>200 The request succeeded and the user group is sent in the response.</li>
-	 * <li>401 Authentication information is missing or invalid.</li>
-	 * <li>403 Not enough permissions/roles to perform this operation.</li>
-	 * <li>404 Group not found.</li>
+	 * 	<li><p>HTTP 200 <p>The request succeeded and the user group is sent in the response.</p></p>
+	 * 	</li>
+	 * 	<li><p>HTTP 401 <p>Authentication information is missing or invalid.</p></p>
+	 * 	</li>
+	 * 	<li><p>HTTP 403 <p>Not enough permissions/roles to perform this operation.</p></p>
+	 * 	</li>
+	 * 	<li><p>HTTP 404 <p>Group not found.</p></p>
+	 * 	</li>
 	 * </ul>
-	 * <p>
-	 * @param tenantId Unique identifier of a Cumulocity IoT tenant.
-	 * @param groupName The name of the user group.
-	 * @return
+	 * 
+	 * @param tenantId
+	 * <p>Unique identifier of a Cumulocity IoT tenant.</p>
+	 * @param groupName
+	 * <p>The name of the user group.</p>
 	 */
-	public Future<Group> getUserGroupByName(final String tenantId, final String groupName) {
-		return getRootTarget().path("user").path(valueOf(tenantId)).path("groupByName").path(valueOf(groupName))
-				.request()
-				.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.group+json")
-				.build("GET")
-				.submit(Group.class);
+	public CompletionStage<Group> getUserGroupByName(final String tenantId, final String groupName) {
+		return adapt().path("user").path(valueOf(tenantId)).path("groupByName").path(valueOf(groupName))
+			.request()
+			.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.group+json")
+			.rx()
+			.method("GET", Group.class);
 	}
 	
 	/**
-	 * Get all user groups for specific user in a specific tenant </br>
-	 * Get all user groups for a specific user (by a given user ID) in a specific tenant (by a given tenant ID).  <section><h5>Required roles</h5> ROLE_USER_MANAGEMENT_READ <b>OR</b> ROLE_USER_MANAGEMENT_CREATE <b>AND</b> is parent of the user </section> 
-	 *
-	 * <br>The following table gives an overview of the possible response codes and their meanings:</br>
+	 * <p>Get all user groups for specific user in a specific tenant</p>
+	 * <p>Get all user groups for a specific user (by a given user ID) in a specific tenant (by a given tenant ID).</p>
+	 * <section><h5>Required roles</h5>
+	 * ROLE_USER_MANAGEMENT_READ <b>OR</b> ROLE_USER_MANAGEMENT_CREATE <b>AND</b> is parent of the user
+	 * </section>
+	 * <h5>Response Codes</h5>
+	 * <p>The following table gives an overview of the possible response codes and their meanings:</p>
 	 * <ul>
-	 * <li>200 The request succeeded and all groups for the user are sent in the response.</li>
-	 * <li>401 Authentication information is missing or invalid.</li>
-	 * <li>403 Not enough permissions/roles to perform this operation.</li>
-	 * <li>404 User not found.</li>
+	 * 	<li><p>HTTP 200 <p>The request succeeded and all groups for the user are sent in the response.</p></p>
+	 * 	</li>
+	 * 	<li><p>HTTP 401 <p>Authentication information is missing or invalid.</p></p>
+	 * 	</li>
+	 * 	<li><p>HTTP 403 <p>Not enough permissions/roles to perform this operation.</p></p>
+	 * 	</li>
+	 * 	<li><p>HTTP 404 <p>User not found.</p></p>
+	 * 	</li>
 	 * </ul>
-	 * <p>
-	 * @param tenantId Unique identifier of a Cumulocity IoT tenant.
-	 * @param userId Unique identifier of the a user.
-	 * @param currentPage The current page of the paginated results.
-	 * @param pageSize Indicates how many entries of the collection shall be returned. The upper limit for one page is 2,000 objects.
-	 * @param withTotalElements When set to `true`, the returned result will contain in the statistics object the total number of elements. Only applicable on [range queries](https://en.wikipedia.org/wiki/Range_query_(database)).
-	 * @param withTotalPages When set to `true`, the returned result will contain in the statistics object the total number of pages. Only applicable on [range queries](https://en.wikipedia.org/wiki/Range_query_(database)).
-	 * @return
+	 * 
+	 * @param tenantId
+	 * <p>Unique identifier of a Cumulocity IoT tenant.</p>
+	 * @param userId
+	 * <p>Unique identifier of the a user.</p>
+	 * @param currentPage
+	 * <p>The current page of the paginated results.</p>
+	 * @param pageSize
+	 * <p>Indicates how many entries of the collection shall be returned. The upper limit for one page is 2,000 objects.</p>
+	 * @param withTotalElements
+	 * <p>When set to <code>true</code>, the returned result will contain in the statistics object the total number of elements. Only applicable on <a href="https://en.wikipedia.org/wiki/Range_query_(database)">range queries</a>.</p>
+	 * @param withTotalPages
+	 * <p>When set to <code>true</code>, the returned result will contain in the statistics object the total number of pages. Only applicable on <a href="https://en.wikipedia.org/wiki/Range_query_(database)">range queries</a>.</p>
 	 */
-	public Future<GroupReferenceCollection> getUserGroups(final String tenantId, final String userId, final int currentPage, final int pageSize, final boolean withTotalElements, final boolean withTotalPages) {
-		return getRootTarget().path("user").path(valueOf(tenantId)).path("users").path(valueOf(userId)).path("groups")
-			.queryParam("currentPage", valueOf(currentPage))
-			.queryParam("pageSize", valueOf(pageSize))
-			.queryParam("withTotalElements", valueOf(withTotalElements))
-			.queryParam("withTotalPages", valueOf(withTotalPages))
-				.request()
-				.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.groupreferencecollection+json")
-				.build("GET")
-				.submit(GroupReferenceCollection.class);
+	public CompletionStage<GroupReferenceCollection> getUserGroups(final String tenantId, final String userId, final int currentPage, final int pageSize, final boolean withTotalElements, final boolean withTotalPages) {
+		return adapt().path("user").path(valueOf(tenantId)).path("users").path(valueOf(userId)).path("groups")
+			.queryParam("currentPage", currentPage)
+			.queryParam("pageSize", pageSize)
+			.queryParam("withTotalElements", withTotalElements)
+			.queryParam("withTotalPages", withTotalPages)
+			.request()
+			.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.groupreferencecollection+json")
+			.rx()
+			.method("GET", GroupReferenceCollection.class);
 	}
 }

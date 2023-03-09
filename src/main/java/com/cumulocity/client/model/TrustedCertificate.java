@@ -1,4 +1,4 @@
-// Copyright (c) 2014-2022 Software AG, Darmstadt, Germany and/or Software AG USA Inc., Reston, VA, USA, and/or its subsidiaries and/or its affiliates and/or their licensors.
+// Copyright (c) 2014-2023 Software AG, Darmstadt, Germany and/or Software AG USA Inc., Reston, VA, USA, and/or its subsidiaries and/or its affiliates and/or their licensors.
 // Use, reproduction, transfer, publication or disclosure is prohibited except as specifically provided for in your License Agreement with Software AG.	
 
 package com.cumulocity.client.model;
@@ -15,67 +15,67 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class TrustedCertificate {
 
 	/**
-	 * Algorithm used to decode/encode the certificate.
+	 * <p>Algorithm used to decode/encode the certificate.</p>
 	 */
 	private String algorithmName;
 
 	/**
-	 * Indicates whether the automatic device registration is enabled or not.
+	 * <p>Indicates whether the automatic device registration is enabled or not.</p>
 	 */
 	private boolean autoRegistrationEnabled;
 
 	/**
-	 * Trusted certificate in PEM format.
+	 * <p>Trusted certificate in PEM format.</p>
 	 */
 	private String certInPemFormat;
 
 	/**
-	 * Unique identifier of the trusted certificate.
+	 * <p>Unique identifier of the trusted certificate.</p>
 	 */
 	private String fingerprint;
 
 	/**
-	 * The name of the organization which signed the certificate.
+	 * <p>The name of the organization which signed the certificate.</p>
 	 */
 	private String issuer;
 
 	/**
-	 * Name of the certificate.
+	 * <p>Name of the certificate.</p>
 	 */
 	private String name;
 
 	/**
-	 * The end date and time of the certificate's validity.
+	 * <p>The end date and time of the certificate's validity.</p>
 	 */
 	private String notAfter;
 
 	/**
-	 * The start date and time of the certificate's validity.
+	 * <p>The start date and time of the certificate's validity.</p>
 	 */
 	private String notBefore;
 
 	/**
-	 * A URL linking to this resource.
+	 * <p>A URL linking to this resource.</p>
 	 */
 	private String self;
 
 	/**
-	 * The certificate's serial number.
+	 * <p>The certificate's serial number.</p>
 	 */
 	private String serialNumber;
 
 	/**
-	 * Indicates if the certificate is active and can be used by the device to establish a connection to the Cumulocity IoT platform.
+	 * <p>Indicates if the certificate is active and can be used by the device to establish a connection to the Cumulocity IoT platform.</p>
 	 */
 	private Status status;
 
 	/**
-	 * Name of the organization to which the certificate belongs.
+	 * <p>Name of the organization to which the certificate belongs.</p>
 	 */
 	private String subject;
 
 	/**
-	 * Version of the X.509 certificate standard.
+	 * <p>Version of the X.509 certificate standard.</p>
 	 */
 	private int version;
 
@@ -185,8 +185,7 @@ public class TrustedCertificate {
 
 	
 	/**
-	 * Indicates if the certificate is active and can be used by the device to establish a connection to the Cumulocity IoT platform.
-	 * [ENABLED, DISABLED]
+	 * <p>Indicates if the certificate is active and can be used by the device to establish a connection to the Cumulocity IoT platform.</p>
 	 */
 	public enum Status {
 		@JsonProperty("ENABLED")
@@ -209,7 +208,6 @@ public class TrustedCertificate {
 	@Override
 	public String toString() {
 		try {
-			// TODO thats an extensive operation, which only helps debugging
 			return new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(this);
 		} catch (final JsonProcessingException e) {
 		}

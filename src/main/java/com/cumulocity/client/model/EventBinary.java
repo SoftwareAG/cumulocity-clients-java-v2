@@ -1,4 +1,4 @@
-// Copyright (c) 2014-2022 Software AG, Darmstadt, Germany and/or Software AG USA Inc., Reston, VA, USA, and/or its subsidiaries and/or its affiliates and/or their licensors.
+// Copyright (c) 2014-2023 Software AG, Darmstadt, Germany and/or Software AG USA Inc., Reston, VA, USA, and/or its subsidiaries and/or its affiliates and/or their licensors.
 // Use, reproduction, transfer, publication or disclosure is prohibited except as specifically provided for in your License Agreement with Software AG.	
 
 package com.cumulocity.client.model;
@@ -14,22 +14,22 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class EventBinary {
 
 	/**
-	 * Name of the attachment. If it is not provided in the request, it will be set as the event ID.
+	 * <p>Name of the attachment. If it is not provided in the request, it will be set as the event ID.</p>
 	 */
 	private String name;
 
 	/**
-	 * A URL linking to this resource.
+	 * <p>A URL linking to this resource.</p>
 	 */
 	private String self;
 
 	/**
-	 * Unique identifier of the event.
+	 * <p>Unique identifier of the event.</p>
 	 */
 	private String source;
 
 	/**
-	 * Media type of the attachment.
+	 * <p>Media type of the attachment.</p>
 	 */
 	private String type;
 
@@ -68,7 +68,6 @@ public class EventBinary {
 	@Override
 	public String toString() {
 		try {
-			// TODO thats an extensive operation, which only helps debugging
 			return new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(this);
 		} catch (final JsonProcessingException e) {
 		}

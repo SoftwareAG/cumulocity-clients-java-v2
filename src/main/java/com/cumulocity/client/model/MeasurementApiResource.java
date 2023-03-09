@@ -1,4 +1,4 @@
-// Copyright (c) 2014-2022 Software AG, Darmstadt, Germany and/or Software AG USA Inc., Reston, VA, USA, and/or its subsidiaries and/or its affiliates and/or their licensors.
+// Copyright (c) 2014-2023 Software AG, Darmstadt, Germany and/or Software AG USA Inc., Reston, VA, USA, and/or its subsidiaries and/or its affiliates and/or their licensors.
 // Use, reproduction, transfer, publication or disclosure is prohibited except as specifically provided for in your License Agreement with Software AG.	
 
 package com.cumulocity.client.model;
@@ -14,52 +14,52 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class MeasurementApiResource {
 
 	/**
-	 * Collection of all measurements
+	 * <p>Collection of all measurements</p>
 	 */
 	private Measurements measurements;
 
 	/**
-	 * Read-only collection of all measurements for a specific source object. The placeholder {source} must be a unique ID of an object in the inventory.
+	 * <p>Read-only collection of all measurements for a specific source object. The placeholder {source} must be a unique ID of an object in the inventory.</p>
 	 */
 	private String measurementsForSource;
 
 	/**
-	 * Read-only collection of all measurements of a particular type and a specific source object.
+	 * <p>Read-only collection of all measurements of a particular type and a specific source object.</p>
 	 */
 	private String measurementsForSourceAndType;
 
 	/**
-	 * Read-only collection of all measurements of a particular type.
+	 * <p>Read-only collection of all measurements of a particular type.</p>
 	 */
 	private String measurementsForType;
 
 	/**
-	 * Read-only collection of all measurements containing a particular fragment type.
+	 * <p>Read-only collection of all measurements containing a particular fragment type.</p>
 	 */
 	private String measurementsForValueFragmentType;
 
 	/**
-	 * Read-only collection of all measurements for a particular time range.
+	 * <p>Read-only collection of all measurements for a particular time range.</p>
 	 */
 	private String measurementsForDate;
 
 	/**
-	 * Read-only collection of all measurements for a specific source object in a particular time range.
+	 * <p>Read-only collection of all measurements for a specific source object in a particular time range.</p>
 	 */
 	private String measurementsForSourceAndDate;
 
 	/**
-	 * Read-only collection of all measurements for a specific fragment type and a particular time range.
+	 * <p>Read-only collection of all measurements for a specific fragment type and a particular time range.</p>
 	 */
 	private String measurementsForDateAndFragmentType;
 
 	/**
-	 * Read-only collection of all measurements for a specific source object, particular fragment type and series, and an event type.
+	 * <p>Read-only collection of all measurements for a specific source object, particular fragment type and series, and an event type.</p>
 	 */
 	private String measurementsForSourceAndValueFragmentTypeAndValueFragmentSeries;
 
 	/**
-	 * A URL linking to this resource.
+	 * <p>A URL linking to this resource.</p>
 	 */
 	private String self;
 
@@ -144,7 +144,7 @@ public class MeasurementApiResource {
 	}
 
 	/**
-	 * Collection of all measurements
+	 * <p>Collection of all measurements</p>
 	 */
 	@JsonIgnoreProperties(ignoreUnknown = true)
 	@JsonInclude(Include.NON_NULL)
@@ -153,7 +153,7 @@ public class MeasurementApiResource {
 		private Measurement[] measurements;
 	
 		/**
-		 * A URL linking to this resource.
+		 * <p>A URL linking to this resource.</p>
 		 */
 		private String self;
 	
@@ -176,7 +176,6 @@ public class MeasurementApiResource {
 		@Override
 		public String toString() {
 			try {
-				// TODO thats an extensive operation, which only helps debugging
 				return new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(this);
 			} catch (final JsonProcessingException e) {
 			}
@@ -198,7 +197,6 @@ public class MeasurementApiResource {
 	@Override
 	public String toString() {
 		try {
-			// TODO thats an extensive operation, which only helps debugging
 			return new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(this);
 		} catch (final JsonProcessingException e) {
 		}

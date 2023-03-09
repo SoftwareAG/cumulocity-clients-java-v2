@@ -1,4 +1,4 @@
-// Copyright (c) 2014-2022 Software AG, Darmstadt, Germany and/or Software AG USA Inc., Reston, VA, USA, and/or its subsidiaries and/or its affiliates and/or their licensors.
+// Copyright (c) 2014-2023 Software AG, Darmstadt, Germany and/or Software AG USA Inc., Reston, VA, USA, and/or its subsidiaries and/or its affiliates and/or their licensors.
 // Use, reproduction, transfer, publication or disclosure is prohibited except as specifically provided for in your License Agreement with Software AG.	
 
 package com.cumulocity.client.model;
@@ -11,84 +11,84 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
- * Login option properties.
+ * <p>Login option properties.</p>
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(Include.NON_NULL)
 public class LoginOption {
 
 	/**
-	 * For basic authentication case only.
+	 * <p>For basic authentication case only.</p>
 	 */
 	private BasicAuthenticationRestrictions authenticationRestrictions;
 
 	/**
-	 * Indicates if password strength is enforced.
+	 * <p>Indicates if password strength is enforced.</p>
 	 */
 	private boolean enforceStrength;
 
 	/**
-	 * The grant type of the OAuth configuration.
+	 * <p>The grant type of the OAuth configuration.</p>
 	 */
 	private GrantType grantType;
 
 	/**
-	 * Minimum length for the password when the strength validation is enforced.
+	 * <p>Minimum length for the password when the strength validation is enforced.</p>
 	 */
 	private int greenMinLength;
 
 	/**
-	 * Unique identifier of this login option.
+	 * <p>Unique identifier of this login option.</p>
 	 */
 	private String id;
 
 	/**
-	 * A URL linking to the token generating endpoint.
+	 * <p>A URL linking to the token generating endpoint.</p>
 	 */
 	private String initRequest;
 
 	/**
-	 * The tenant domain.
+	 * <p>The tenant domain.</p>
 	 */
 	private String loginRedirectDomain;
 
 	/**
-	 * A URL linking to this resource.
+	 * <p>A URL linking to this resource.</p>
 	 */
 	private String self;
 
 	/**
-	 * The session configuration properties are only available for OAuth internal. See [Changing settings > OAuth internal](https://cumulocity.com/guides/users-guide/administration/#oauth-internal) for more details.
+	 * <p>The session configuration properties are only available for OAuth internal. See <a href="https://cumulocity.com/guides/users-guide/administration/#oauth-internal">Changing settings > OAuth internal</a> for more details.</p>
 	 */
 	private OAuthSessionConfiguration sessionConfiguration;
 
 	/**
-	 * Enforce password strength validation on subtenant level. `enforceStrength` enforces it on all tenants in the platform.
+	 * <p>Enforce password strength validation on subtenant level. <code>enforceStrength</code> enforces it on all tenants in the platform.</p>
 	 */
 	private boolean strengthValidity;
 
 	/**
-	 * Two-factor authentication being used by this login option. TFA supported: SMS and TOTP.
+	 * <p>Two-factor authentication being used by this login option. TFA supported: SMS and TOTP.</p>
 	 */
 	private String tfaStrategy;
 
 	/**
-	 * The type of authentication. See [Authentication](#section/Authentication) for more details.
+	 * <p>The type of authentication. See <a href="#section/Authentication">Authentication</a> for more details.</p>
 	 */
 	private String type;
 
 	/**
-	 * Specifies if the users are managed internally by Cumulocity IoT (`INTERNAL`) or if the users data are managed by a external system (`REMOTE`).
+	 * <p>Specifies if the users are managed internally by Cumulocity IoT (<code>INTERNAL</code>) or if the users data are managed by a external system (<code>REMOTE</code>).</p>
 	 */
 	private String userManagementSource;
 
 	/**
-	 * Indicates if this login option is available in the login page (only for SSO).
+	 * <p>Indicates if this login option is available in the login page (only for SSO).</p>
 	 */
 	private boolean visibleOnLoginPage;
 
 	/**
-	 * The type of authentication.
+	 * <p>The type of authentication.</p>
 	 */
 	@Deprecated
 	private String pType;
@@ -215,8 +215,7 @@ public class LoginOption {
 
 	
 	/**
-	 * The grant type of the OAuth configuration.
-	 * [PASSWORD, AUTHORIZATION_CODE]
+	 * <p>The grant type of the OAuth configuration.</p>
 	 */
 	public enum GrantType {
 		@JsonProperty("PASSWORD")
@@ -239,7 +238,6 @@ public class LoginOption {
 	@Override
 	public String toString() {
 		try {
-			// TODO thats an extensive operation, which only helps debugging
 			return new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(this);
 		} catch (final JsonProcessingException e) {
 		}

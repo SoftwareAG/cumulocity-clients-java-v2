@@ -1,4 +1,4 @@
-// Copyright (c) 2014-2022 Software AG, Darmstadt, Germany and/or Software AG USA Inc., Reston, VA, USA, and/or its subsidiaries and/or its affiliates and/or their licensors.
+// Copyright (c) 2014-2023 Software AG, Darmstadt, Germany and/or Software AG USA Inc., Reston, VA, USA, and/or its subsidiaries and/or its affiliates and/or their licensors.
 // Use, reproduction, transfer, publication or disclosure is prohibited except as specifically provided for in your License Agreement with Software AG.	
 
 package com.cumulocity.client.model;
@@ -14,17 +14,17 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class NotificationTokenClaims {
 
 	/**
-	 * The token expiration duration.
+	 * <p>The token expiration duration.</p>
 	 */
 	private int expiresInMinutes;
 
 	/**
-	 * The subscriber name which the client wishes to be identified with.
+	 * <p>The subscriber name which the client wishes to be identified with.</p>
 	 */
 	private String subscriber;
 
 	/**
-	 * The subscription name. This value must match the same that was used when the subscription was created.
+	 * <p>The subscription name. This value must match the same that was used when the subscription was created.</p>
 	 */
 	private String subscription;
 
@@ -63,7 +63,6 @@ public class NotificationTokenClaims {
 	@Override
 	public String toString() {
 		try {
-			// TODO thats an extensive operation, which only helps debugging
 			return new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(this);
 		} catch (final JsonProcessingException e) {
 		}

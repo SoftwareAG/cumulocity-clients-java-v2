@@ -1,4 +1,4 @@
-// Copyright (c) 2014-2022 Software AG, Darmstadt, Germany and/or Software AG USA Inc., Reston, VA, USA, and/or its subsidiaries and/or its affiliates and/or their licensors.
+// Copyright (c) 2014-2023 Software AG, Darmstadt, Germany and/or Software AG USA Inc., Reston, VA, USA, and/or its subsidiaries and/or its affiliates and/or their licensors.
 // Use, reproduction, transfer, publication or disclosure is prohibited except as specifically provided for in your License Agreement with Software AG.	
 
 package com.cumulocity.client.model;
@@ -10,29 +10,29 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
- * The session configuration properties are only available for OAuth internal. See [Changing settings > OAuth internal](https://cumulocity.com/guides/users-guide/administration/#oauth-internal) for more details.
+ * <p>The session configuration properties are only available for OAuth internal. See <a href="https://cumulocity.com/guides/users-guide/administration/#oauth-internal">Changing settings > OAuth internal</a> for more details.</p>
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(Include.NON_NULL)
 public class OAuthSessionConfiguration {
 
 	/**
-	 * Maximum session duration (in milliseconds) during which a user does not have to login again.
+	 * <p>Maximum session duration (in milliseconds) during which a user does not have to login again.</p>
 	 */
 	private int absoluteTimeoutMillis;
 
 	/**
-	 * Maximum number of parallel sessions for one user.
+	 * <p>Maximum number of parallel sessions for one user.</p>
 	 */
 	private int maximumNumberOfParallelSessions;
 
 	/**
-	 * Amount of time before a token expires (in milliseconds) during which the token may be renewed.
+	 * <p>Amount of time before a token expires (in milliseconds) during which the token may be renewed.</p>
 	 */
 	private int renewalTimeoutMillis;
 
 	/**
-	 * Switch to turn additional user agent verification on or off during the session.
+	 * <p>Switch to turn additional user agent verification on or off during the session.</p>
 	 */
 	private boolean userAgentValidationRequired;
 
@@ -71,7 +71,6 @@ public class OAuthSessionConfiguration {
 	@Override
 	public String toString() {
 		try {
-			// TODO thats an extensive operation, which only helps debugging
 			return new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(this);
 		} catch (final JsonProcessingException e) {
 		}

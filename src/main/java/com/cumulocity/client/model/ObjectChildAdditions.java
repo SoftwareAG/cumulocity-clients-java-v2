@@ -1,4 +1,4 @@
-// Copyright (c) 2014-2022 Software AG, Darmstadt, Germany and/or Software AG USA Inc., Reston, VA, USA, and/or its subsidiaries and/or its affiliates and/or their licensors.
+// Copyright (c) 2014-2023 Software AG, Darmstadt, Germany and/or Software AG USA Inc., Reston, VA, USA, and/or its subsidiaries and/or its affiliates and/or their licensors.
 // Use, reproduction, transfer, publication or disclosure is prohibited except as specifically provided for in your License Agreement with Software AG.	
 
 package com.cumulocity.client.model;
@@ -10,24 +10,24 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
- * A collection of references to child additions.
+ * <p>A collection of references to child additions.</p>
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(Include.NON_NULL)
 public class ObjectChildAdditions {
 
 	/**
-	 * The total number of child additions. Only present if the value is greater than 0.
+	 * <p>The total number of child additions. Only present if the value is greater than 0.</p>
 	 */
 	private int count;
 
 	/**
-	 * An array with the references to child devices.
+	 * <p>An array with the references to child devices.</p>
 	 */
 	private ManagedObjectReferenceTuple[] references;
 
 	/**
-	 * Link to this resource's child additions.
+	 * <p>Link to this resource's child additions.</p>
 	 */
 	private String self;
 
@@ -58,7 +58,6 @@ public class ObjectChildAdditions {
 	@Override
 	public String toString() {
 		try {
-			// TODO thats an extensive operation, which only helps debugging
 			return new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(this);
 		} catch (final JsonProcessingException e) {
 		}

@@ -1,4 +1,4 @@
-// Copyright (c) 2014-2022 Software AG, Darmstadt, Germany and/or Software AG USA Inc., Reston, VA, USA, and/or its subsidiaries and/or its affiliates and/or their licensors.
+// Copyright (c) 2014-2023 Software AG, Darmstadt, Germany and/or Software AG USA Inc., Reston, VA, USA, and/or its subsidiaries and/or its affiliates and/or their licensors.
 // Use, reproduction, transfer, publication or disclosure is prohibited except as specifically provided for in your License Agreement with Software AG.	
 
 package com.cumulocity.client.model;
@@ -15,17 +15,17 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class NewDeviceRequest {
 
 	/**
-	 * External ID of the device.
+	 * <p>External ID of the device.</p>
 	 */
 	private String id;
 
 	/**
-	 * A URL linking to this resource.
+	 * <p>A URL linking to this resource.</p>
 	 */
 	private String self;
 
 	/**
-	 * Status of this new device request.
+	 * <p>Status of this new device request.</p>
 	 */
 	private Status status;
 
@@ -55,8 +55,7 @@ public class NewDeviceRequest {
 
 	
 	/**
-	 * Status of this new device request.
-	 * [WAITING_FOR_CONNECTION, PENDING_ACCEPTANCE, ACCEPTED]
+	 * <p>Status of this new device request.</p>
 	 */
 	public enum Status {
 		@JsonProperty("WAITING_FOR_CONNECTION")
@@ -81,7 +80,6 @@ public class NewDeviceRequest {
 	@Override
 	public String toString() {
 		try {
-			// TODO thats an extensive operation, which only helps debugging
 			return new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(this);
 		} catch (final JsonProcessingException e) {
 		}

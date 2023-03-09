@@ -1,4 +1,4 @@
-// Copyright (c) 2014-2022 Software AG, Darmstadt, Germany and/or Software AG USA Inc., Reston, VA, USA, and/or its subsidiaries and/or its affiliates and/or their licensors.
+// Copyright (c) 2014-2023 Software AG, Darmstadt, Germany and/or Software AG USA Inc., Reston, VA, USA, and/or its subsidiaries and/or its affiliates and/or their licensors.
 // Use, reproduction, transfer, publication or disclosure is prohibited except as specifically provided for in your License Agreement with Software AG.	
 
 package com.cumulocity.client.model;
@@ -10,34 +10,34 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
- * An inventory role.
+ * <p>An inventory role.</p>
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(Include.NON_NULL)
 public class InventoryRole {
 
 	/**
-	 * A description for this inventory role.
+	 * <p>A description for this inventory role.</p>
 	 */
 	private String description;
 
 	/**
-	 * A unique identifier for this inventory role.
+	 * <p>A unique identifier for this inventory role.</p>
 	 */
 	private int id;
 
 	/**
-	 * The name of this inventory role.
+	 * <p>The name of this inventory role.</p>
 	 */
 	private String name;
 
 	/**
-	 * A set of permissions for this inventory role.
+	 * <p>A set of permissions for this inventory role.</p>
 	 */
 	private InventoryRolePermission[] permissions;
 
 	/**
-	 * A URL linking to this resource.
+	 * <p>A URL linking to this resource.</p>
 	 */
 	private String self;
 
@@ -84,7 +84,6 @@ public class InventoryRole {
 	@Override
 	public String toString() {
 		try {
-			// TODO thats an extensive operation, which only helps debugging
 			return new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(this);
 		} catch (final JsonProcessingException e) {
 		}

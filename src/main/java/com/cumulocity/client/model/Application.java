@@ -1,4 +1,4 @@
-// Copyright (c) 2014-2022 Software AG, Darmstadt, Germany and/or Software AG USA Inc., Reston, VA, USA, and/or its subsidiaries and/or its affiliates and/or their licensors.
+// Copyright (c) 2014-2023 Software AG, Darmstadt, Germany and/or Software AG USA Inc., Reston, VA, USA, and/or its subsidiaries and/or its affiliates and/or their licensors.
 // Use, reproduction, transfer, publication or disclosure is prohibited except as specifically provided for in your License Agreement with Software AG.	
 
 package com.cumulocity.client.model;
@@ -15,118 +15,125 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class Application {
 
 	/**
-	 * Application access level for other tenants.
+	 * <p>Application access level for other tenants.</p>
 	 */
 	private Availability availability;
 
 	/**
-	 * The context path in the URL makes the application accessible. Mandatory when the type of the application is `HOSTED`.
+	 * <p>The context path in the URL makes the application accessible. Mandatory when the type of the application is <code>HOSTED</code>.</p>
 	 */
 	private String contextPath;
 
 	/**
-	 * Description of the application.
+	 * <p>Description of the application.</p>
 	 */
 	private String description;
 
 	/**
-	 * Unique identifier of the application.
+	 * <p>Unique identifier of the application.</p>
 	 */
 	private String id;
 
 	/**
-	 * Applications, regardless of their form, are identified by an application key.
+	 * <p>Applications, regardless of their form, are identified by an application key.</p>
 	 */
 	private String key;
 
 	/**
-	 * Name of the application.
+	 * <p>Name of the application.</p>
 	 */
 	private String name;
 
 	/**
-	 * Reference to the tenant owning this application. The default value is a reference to the current tenant.
+	 * <p>Reference to the tenant owning this application. The default value is a reference to the current tenant.</p>
 	 */
 	private ApplicationOwner owner;
 
 	/**
-	 * A URL linking to this resource.
+	 * <p>A URL linking to this resource.</p>
 	 */
 	private String self;
 
 	/**
-	 * The type of the application.
+	 * <p>The type of the application.</p>
 	 */
 	private Type type;
 
 	private Object manifest;
 
 	/**
-	 * Roles provided by the microservice.
+	 * <p>Roles provided by the microservice.</p>
 	 */
 	private String[] roles;
 
 	/**
-	 * List of permissions required by a microservice to work.
+	 * <p>List of permissions required by a microservice to work.</p>
 	 */
 	private String[] requiredRoles;
 
 	/**
-	 * A flag to indicate if the application has a breadcrumbs navigation on the UI.
-	 * > **&#9432; Info:** This property is specific to the web application type.
-	 * 
+	 * <p>A flag to indicate if the application has a breadcrumbs navigation on the UI.</p>
+	 * <blockquote>
+	 * <p><strong>ⓘ Info:</strong> This property is specific to the web application type.</p>
+	 * </blockquote>
 	 */
 	private boolean breadcrumbs;
 
 	/**
-	 * The content security policy of the application.
-	 * > **&#9432; Info:** This property is specific to the web application type.
-	 * 
+	 * <p>The content security policy of the application.</p>
+	 * <blockquote>
+	 * <p><strong>ⓘ Info:</strong> This property is specific to the web application type.</p>
+	 * </blockquote>
 	 */
 	private String contentSecurityPolicy;
 
 	/**
-	 * A URL to a JSON object with dynamic content options.
-	 * > **&#9432; Info:** This property is specific to the web application type.
-	 * 
+	 * <p>A URL to a JSON object with dynamic content options.</p>
+	 * <blockquote>
+	 * <p><strong>ⓘ Info:</strong> This property is specific to the web application type.</p>
+	 * </blockquote>
 	 */
 	private String dynamicOptionsUrl;
 
 	/**
-	 * The global title of the application.
-	 * > **&#9432; Info:** This property is specific to the web application type.
-	 * 
+	 * <p>The global title of the application.</p>
+	 * <blockquote>
+	 * <p><strong>ⓘ Info:</strong> This property is specific to the web application type.</p>
+	 * </blockquote>
 	 */
 	private String globalTitle;
 
 	/**
-	 * A flag that shows if the application is a legacy application or not.
-	 * > **&#9432; Info:** This property is specific to the web application type.
-	 * 
+	 * <p>A flag that shows if the application is a legacy application or not.</p>
+	 * <blockquote>
+	 * <p><strong>ⓘ Info:</strong> This property is specific to the web application type.</p>
+	 * </blockquote>
 	 */
 	private boolean legacy;
 
 	/**
-	 * A flag to indicate if the application uses the UI context menu on the right side.
-	 * > **&#9432; Info:** This property is specific to the web application type.
-	 * 
+	 * <p>A flag to indicate if the application uses the UI context menu on the right side.</p>
+	 * <blockquote>
+	 * <p><strong>ⓘ Info:</strong> This property is specific to the web application type.</p>
+	 * </blockquote>
 	 */
 	private boolean rightDrawer;
 
 	/**
-	 * A flag that shows if the application is hybrid and using Angular and AngularJS simultaneously.
-	 * > **&#9432; Info:** This property is specific to the web application type.
-	 * 
+	 * <p>A flag that shows if the application is hybrid and using Angular and AngularJS simultaneously.</p>
+	 * <blockquote>
+	 * <p><strong>ⓘ Info:</strong> This property is specific to the web application type.</p>
+	 * </blockquote>
 	 */
 	private boolean upgrade;
 
 	/**
-	 * The active version ID of the application. For microservice applications the active version ID is the microservice manifest version ID.
+	 * <p>The active version ID of the application. For microservice applications the active version ID is the microservice manifest version ID.</p>
 	 */
 	private String activeVersionId;
 
 	/**
-	 * URL to the application base directory hosted on an external server. Only present in legacy hosted applications.
+	 * <p>URL to the application base directory hosted on an external server. Only present in legacy hosted applications.</p>
 	 */
 	@Deprecated
 	private String resourcesUrl;
@@ -301,8 +308,7 @@ public class Application {
 
 	
 	/**
-	 * Application access level for other tenants.
-	 * [MARKET, PRIVATE]
+	 * <p>Application access level for other tenants.</p>
 	 */
 	public enum Availability {
 		@JsonProperty("MARKET")
@@ -323,8 +329,7 @@ public class Application {
 
 	
 	/**
-	 * The type of the application.
-	 * [EXTERNAL, HOSTED, MICROSERVICE]
+	 * <p>The type of the application.</p>
 	 */
 	public enum Type {
 		@JsonProperty("EXTERNAL")
@@ -350,7 +355,6 @@ public class Application {
 	@Override
 	public String toString() {
 		try {
-			// TODO thats an extensive operation, which only helps debugging
 			return new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(this);
 		} catch (final JsonProcessingException e) {
 		}

@@ -1,4 +1,4 @@
-// Copyright (c) 2014-2022 Software AG, Darmstadt, Germany and/or Software AG USA Inc., Reston, VA, USA, and/or its subsidiaries and/or its affiliates and/or their licensors.
+// Copyright (c) 2014-2023 Software AG, Darmstadt, Germany and/or Software AG USA Inc., Reston, VA, USA, and/or its subsidiaries and/or its affiliates and/or their licensors.
 // Use, reproduction, transfer, publication or disclosure is prohibited except as specifically provided for in your License Agreement with Software AG.	
 
 package com.cumulocity.client.model;
@@ -14,27 +14,27 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class ApplicationSettings {
 
 	/**
-	 * The name of the setting.
+	 * <p>The name of the setting.</p>
 	 */
 	private String key;
 
 	/**
-	 * The value schema determines the values that the microservice can process.
+	 * <p>The value schema determines the values that the microservice can process.</p>
 	 */
 	private ValueSchema valueSchema;
 
 	/**
-	 * The default value.
+	 * <p>The default value.</p>
 	 */
 	private String defaultValue;
 
 	/**
-	 * Indicates if the value is editable.
+	 * <p>Indicates if the value is editable.</p>
 	 */
 	private boolean editable;
 
 	/**
-	 * Indicated wether this setting is inherited.
+	 * <p>Indicated wether this setting is inherited.</p>
 	 */
 	private boolean inheritFromOwner;
 
@@ -79,14 +79,14 @@ public class ApplicationSettings {
 	}
 
 	/**
-	 * The value schema determines the values that the microservice can process.
+	 * <p>The value schema determines the values that the microservice can process.</p>
 	 */
 	@JsonIgnoreProperties(ignoreUnknown = true)
 	@JsonInclude(Include.NON_NULL)
 	public static class ValueSchema {
 	
 		/**
-		 * The value schema type.
+		 * <p>The value schema type.</p>
 		 */
 		private String type;
 	
@@ -101,7 +101,6 @@ public class ApplicationSettings {
 		@Override
 		public String toString() {
 			try {
-				// TODO thats an extensive operation, which only helps debugging
 				return new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(this);
 			} catch (final JsonProcessingException e) {
 			}
@@ -123,7 +122,6 @@ public class ApplicationSettings {
 	@Override
 	public String toString() {
 		try {
-			// TODO thats an extensive operation, which only helps debugging
 			return new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(this);
 		} catch (final JsonProcessingException e) {
 		}

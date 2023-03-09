@@ -1,4 +1,4 @@
-// Copyright (c) 2014-2022 Software AG, Darmstadt, Germany and/or Software AG USA Inc., Reston, VA, USA, and/or its subsidiaries and/or its affiliates and/or their licensors.
+// Copyright (c) 2014-2023 Software AG, Darmstadt, Germany and/or Software AG USA Inc., Reston, VA, USA, and/or its subsidiaries and/or its affiliates and/or their licensors.
 // Use, reproduction, transfer, publication or disclosure is prohibited except as specifically provided for in your License Agreement with Software AG.	
 
 package com.cumulocity.client.model;
@@ -14,22 +14,22 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class ExternalId {
 
 	/**
-	 * The identifier used in the external system that Cumulocity IoT interfaces with.
+	 * <p>The identifier used in the external system that Cumulocity IoT interfaces with.</p>
 	 */
 	private String externalId;
 
 	/**
-	 * The managed object linked to the external ID.
+	 * <p>The managed object linked to the external ID.</p>
 	 */
 	private ManagedObject managedObject;
 
 	/**
-	 * A URL linking to this resource.
+	 * <p>A URL linking to this resource.</p>
 	 */
 	private String self;
 
 	/**
-	 * The type of the external identifier.
+	 * <p>The type of the external identifier.</p>
 	 */
 	private String type;
 
@@ -74,19 +74,19 @@ public class ExternalId {
 	}
 
 	/**
-	 * The managed object linked to the external ID.
+	 * <p>The managed object linked to the external ID.</p>
 	 */
 	@JsonIgnoreProperties(ignoreUnknown = true)
 	@JsonInclude(Include.NON_NULL)
 	public static class ManagedObject {
 	
 		/**
-		 * Unique identifier of the object.
+		 * <p>Unique identifier of the object.</p>
 		 */
 		private String id;
 	
 		/**
-		 * A URL linking to this resource.
+		 * <p>A URL linking to this resource.</p>
 		 */
 		private String self;
 	
@@ -109,7 +109,6 @@ public class ExternalId {
 		@Override
 		public String toString() {
 			try {
-				// TODO thats an extensive operation, which only helps debugging
 				return new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(this);
 			} catch (final JsonProcessingException e) {
 			}
@@ -131,7 +130,6 @@ public class ExternalId {
 	@Override
 	public String toString() {
 		try {
-			// TODO thats an extensive operation, which only helps debugging
 			return new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(this);
 		} catch (final JsonProcessingException e) {
 		}

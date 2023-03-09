@@ -1,4 +1,4 @@
-// Copyright (c) 2014-2022 Software AG, Darmstadt, Germany and/or Software AG USA Inc., Reston, VA, USA, and/or its subsidiaries and/or its affiliates and/or their licensors.
+// Copyright (c) 2014-2023 Software AG, Darmstadt, Germany and/or Software AG USA Inc., Reston, VA, USA, and/or its subsidiaries and/or its affiliates and/or their licensors.
 // Use, reproduction, transfer, publication or disclosure is prohibited except as specifically provided for in your License Agreement with Software AG.	
 
 package com.cumulocity.client.model;
@@ -26,50 +26,48 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class Event {
 
 	/**
-	 * The date and time when the event was created.
+	 * <p>The date and time when the event was created.</p>
 	 */
 	private String creationTime;
 
 	/**
-	 * The date and time when the event was last updated.
+	 * <p>The date and time when the event was last updated.</p>
 	 */
 	private String lastUpdated;
 
 	/**
-	 * Unique identifier of the event.
+	 * <p>Unique identifier of the event.</p>
 	 */
 	private String id;
 
 	/**
-	 * A URL linking to this resource.
+	 * <p>A URL linking to this resource.</p>
 	 */
 	private String self;
 
 	/**
-	 * The managed object to which the event is associated.
+	 * <p>The managed object to which the event is associated.</p>
 	 */
 	private Source source;
 
 	/**
-	 * Description of the event.
+	 * <p>Description of the event.</p>
 	 */
 	private String text;
 
 	/**
-	 * The date and time when the event is updated.
+	 * <p>The date and time when the event is updated.</p>
 	 */
 	private String time;
 
 	/**
-	 * Identifies the type of this event.
+	 * <p>Identifies the type of this event.</p>
 	 */
 	private String type;
 
 	/**
-	 * It is possible to add an arbitrary number of additional properties as a list of key-value pairs, for example, `"property1": {}`, `"property2": "value"`. These properties are known as custom fragments and can be of any type, for example, object or string. Each custom fragment is identified by a unique name.
-	 * 
-	 * Review the [Naming conventions of fragments](https://cumulocity.com/guides/concepts/domain-model/#naming-conventions-of-fragments) as there are characters that can not be used when naming custom fragments.
-	 * 
+	 * <p>It is possible to add an arbitrary number of additional properties as a list of key-value pairs, for example, <code>"property1": {}</code>, <code>"property2": "value"</code>. These properties are known as custom fragments and can be of any type, for example, object or string. Each custom fragment is identified by a unique name.</p>
+	 * <p>Review the <a href="https://cumulocity.com/guides/concepts/domain-model/#naming-conventions-of-fragments">Naming conventions of fragments</a> as there are characters that can not be used when naming custom fragments.</p>
 	 */
 	private Map<String, Object> customFragments;
 
@@ -147,19 +145,19 @@ public class Event {
 	}
 
 	/**
-	 * The managed object to which the event is associated.
+	 * <p>The managed object to which the event is associated.</p>
 	 */
 	@JsonIgnoreProperties(ignoreUnknown = true)
 	@JsonInclude(Include.NON_NULL)
 	public static class Source {
 	
 		/**
-		 * Unique identifier of the object.
+		 * <p>Unique identifier of the object.</p>
 		 */
 		private String id;
 	
 		/**
-		 * A URL linking to this resource.
+		 * <p>A URL linking to this resource.</p>
 		 */
 		private String self;
 	
@@ -182,7 +180,6 @@ public class Event {
 		@Override
 		public String toString() {
 			try {
-				// TODO thats an extensive operation, which only helps debugging
 				return new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(this);
 			} catch (final JsonProcessingException e) {
 			}
@@ -247,7 +244,6 @@ public class Event {
 	@Override
 	public String toString() {
 		try {
-			// TODO thats an extensive operation, which only helps debugging
 			return new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(this);
 		} catch (final JsonProcessingException e) {
 		}

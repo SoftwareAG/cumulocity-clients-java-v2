@@ -1,4 +1,4 @@
-// Copyright (c) 2014-2022 Software AG, Darmstadt, Germany and/or Software AG USA Inc., Reston, VA, USA, and/or its subsidiaries and/or its affiliates and/or their licensors.
+// Copyright (c) 2014-2023 Software AG, Darmstadt, Germany and/or Software AG USA Inc., Reston, VA, USA, and/or its subsidiaries and/or its affiliates and/or their licensors.
 // Use, reproduction, transfer, publication or disclosure is prohibited except as specifically provided for in your License Agreement with Software AG.	
 
 package com.cumulocity.client.model;
@@ -10,54 +10,54 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
- * Detailed information about a neighbouring cell tower.
+ * <p>Detailed information about a neighbouring cell tower.</p>
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(Include.NON_NULL)
 public class C8yCellTower {
 
 	/**
-	 * The radio type of this cell tower. Can also be put directly in root JSON element if all cellTowers have same radioType.
+	 * <p>The radio type of this cell tower. Can also be put directly in root JSON element if all cellTowers have same radioType.</p>
 	 */
 	private String radioType;
 
 	/**
-	 * The Mobile Country Code (MCC).
+	 * <p>The Mobile Country Code (MCC).</p>
 	 */
 	private Number mobileCountryCode;
 
 	/**
-	 * The Mobile Network Code (MNC) for GSM, WCDMA and LTE. The SystemID (sid) for CDMA.
+	 * <p>The Mobile Network Code (MNC) for GSM, WCDMA and LTE. The SystemID (sid) for CDMA.</p>
 	 */
 	private Number mobileNetworkCode;
 
 	/**
-	 * The Location Area Code (LAC) for GSM, WCDMA and LTE. The Network ID for CDMA.
+	 * <p>The Location Area Code (LAC) for GSM, WCDMA and LTE. The Network ID for CDMA.</p>
 	 */
 	private Number locationAreaCode;
 
 	/**
-	 * The Cell ID (CID) for GSM, WCDMA and LTE. The base station ID for CDMA.
+	 * <p>The Cell ID (CID) for GSM, WCDMA and LTE. The base station ID for CDMA.</p>
 	 */
 	private Number cellId;
 
 	/**
-	 * The timing advance value for this cell tower when available.
+	 * <p>The timing advance value for this cell tower when available.</p>
 	 */
 	private Number timingAdvance;
 
 	/**
-	 * The signal strength for this cell tower in dBm.
+	 * <p>The signal strength for this cell tower in dBm.</p>
 	 */
 	private Number signalStrength;
 
 	/**
-	 * The primary scrambling code for WCDMA and physical CellId for LTE.
+	 * <p>The primary scrambling code for WCDMA and physical CellId for LTE.</p>
 	 */
 	private Number primaryScramblingCode;
 
 	/**
-	 * Specify with 0/1 if the cell is serving or not. If not specified, the first cell is assumed to be serving.
+	 * <p>Specify with 0/1 if the cell is serving or not. If not specified, the first cell is assumed to be serving.</p>
 	 */
 	private Number serving;
 
@@ -146,7 +146,6 @@ public class C8yCellTower {
 	@Override
 	public String toString() {
 		try {
-			// TODO thats an extensive operation, which only helps debugging
 			return new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(this);
 		} catch (final JsonProcessingException e) {
 		}

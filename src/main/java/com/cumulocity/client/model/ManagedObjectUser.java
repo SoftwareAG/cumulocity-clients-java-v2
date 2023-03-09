@@ -1,4 +1,4 @@
-// Copyright (c) 2014-2022 Software AG, Darmstadt, Germany and/or Software AG USA Inc., Reston, VA, USA, and/or its subsidiaries and/or its affiliates and/or their licensors.
+// Copyright (c) 2014-2023 Software AG, Darmstadt, Germany and/or Software AG USA Inc., Reston, VA, USA, and/or its subsidiaries and/or its affiliates and/or their licensors.
 // Use, reproduction, transfer, publication or disclosure is prohibited except as specifically provided for in your License Agreement with Software AG.	
 
 package com.cumulocity.client.model;
@@ -14,17 +14,17 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class ManagedObjectUser {
 
 	/**
-	 * Specifies if the device's owner is enabled or not.
+	 * <p>Specifies if the device's owner is enabled or not.</p>
 	 */
 	private boolean enabled;
 
 	/**
-	 * A URL linking to this resource.
+	 * <p>A URL linking to this resource.</p>
 	 */
 	private String self;
 
 	/**
-	 * The username of the device's owner.
+	 * <p>The username of the device's owner.</p>
 	 */
 	private String userName;
 
@@ -55,7 +55,6 @@ public class ManagedObjectUser {
 	@Override
 	public String toString() {
 		try {
-			// TODO thats an extensive operation, which only helps debugging
 			return new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(this);
 		} catch (final JsonProcessingException e) {
 		}

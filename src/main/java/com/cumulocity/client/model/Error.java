@@ -1,4 +1,4 @@
-// Copyright (c) 2014-2022 Software AG, Darmstadt, Germany and/or Software AG USA Inc., Reston, VA, USA, and/or its subsidiaries and/or its affiliates and/or their licensors.
+// Copyright (c) 2014-2023 Software AG, Darmstadt, Germany and/or Software AG USA Inc., Reston, VA, USA, and/or its subsidiaries and/or its affiliates and/or their licensors.
 // Use, reproduction, transfer, publication or disclosure is prohibited except as specifically provided for in your License Agreement with Software AG.	
 
 package com.cumulocity.client.model;
@@ -14,17 +14,17 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class Error {
 
 	/**
-	 * The type of error returned.
+	 * <p>The type of error returned.</p>
 	 */
 	private String error;
 
 	/**
-	 * A human-readable message providing more details about the error.
+	 * <p>A human-readable message providing more details about the error.</p>
 	 */
 	private String message;
 
 	/**
-	 * A URI reference [[RFC3986](https://tools.ietf.org/html/rfc3986)] that identifies the error code reported.
+	 * <p>A URI reference [<a href="https://tools.ietf.org/html/rfc3986">RFC3986</a>] that identifies the error code reported.</p>
 	 */
 	private String info;
 
@@ -55,7 +55,6 @@ public class Error {
 	@Override
 	public String toString() {
 		try {
-			// TODO thats an extensive operation, which only helps debugging
 			return new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(this);
 		} catch (final JsonProcessingException e) {
 		}

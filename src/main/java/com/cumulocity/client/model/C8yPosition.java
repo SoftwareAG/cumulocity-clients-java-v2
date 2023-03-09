@@ -1,4 +1,4 @@
-// Copyright (c) 2014-2022 Software AG, Darmstadt, Germany and/or Software AG USA Inc., Reston, VA, USA, and/or its subsidiaries and/or its affiliates and/or their licensors.
+// Copyright (c) 2014-2023 Software AG, Darmstadt, Germany and/or Software AG USA Inc., Reston, VA, USA, and/or its subsidiaries and/or its affiliates and/or their licensors.
 // Use, reproduction, transfer, publication or disclosure is prohibited except as specifically provided for in your License Agreement with Software AG.	
 
 package com.cumulocity.client.model;
@@ -10,17 +10,15 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
- * Reports the geographical location of an asset in terms of latitude, longitude and altitude.
- * 
- * Altitude is given in meters. To report the current location of an asset or a device, `c8y_Position` is added to the managed object representing the asset or device. To trace the position of an asset or a device, `c8y_Position` is sent as part of an event of type `c8y_LocationUpdate`.
- * 
+ * <p>Reports the geographical location of an asset in terms of latitude, longitude and altitude.</p>
+ * <p>Altitude is given in meters. To report the current location of an asset or a device, <code>c8y_Position</code> is added to the managed object representing the asset or device. To trace the position of an asset or a device, <code>c8y_Position</code> is sent as part of an event of type <code>c8y_LocationUpdate</code>.</p>
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(Include.NON_NULL)
 public class C8yPosition {
 
 	/**
-	 * In meters.
+	 * <p>In meters.</p>
 	 */
 	private Number alt;
 
@@ -29,12 +27,12 @@ public class C8yPosition {
 	private Number lat;
 
 	/**
-	 * Describes in which protocol the tracking context of a positioning report was sent.
+	 * <p>Describes in which protocol the tracking context of a positioning report was sent.</p>
 	 */
 	private String trackingProtocol;
 
 	/**
-	 * Describes why the tracking context of a positioning report was sent.
+	 * <p>Describes why the tracking context of a positioning report was sent.</p>
 	 */
 	private String reportReason;
 
@@ -81,7 +79,6 @@ public class C8yPosition {
 	@Override
 	public String toString() {
 		try {
-			// TODO thats an extensive operation, which only helps debugging
 			return new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(this);
 		} catch (final JsonProcessingException e) {
 		}

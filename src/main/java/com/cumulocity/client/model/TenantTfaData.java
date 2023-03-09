@@ -1,4 +1,4 @@
-// Copyright (c) 2014-2022 Software AG, Darmstadt, Germany and/or Software AG USA Inc., Reston, VA, USA, and/or its subsidiaries and/or its affiliates and/or their licensors.
+// Copyright (c) 2014-2023 Software AG, Darmstadt, Germany and/or Software AG USA Inc., Reston, VA, USA, and/or its subsidiaries and/or its affiliates and/or their licensors.
 // Use, reproduction, transfer, publication or disclosure is prohibited except as specifically provided for in your License Agreement with Software AG.	
 
 package com.cumulocity.client.model;
@@ -15,32 +15,32 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class TenantTfaData {
 
 	/**
-	 * Indicates whether two-factor authentication is enabled on system level or not.
+	 * <p>Indicates whether two-factor authentication is enabled on system level or not.</p>
 	 */
 	private boolean enabledOnSystemLevel;
 
 	/**
-	 * Indicates whether two-factor authentication is enabled on tenant level or not.
+	 * <p>Indicates whether two-factor authentication is enabled on tenant level or not.</p>
 	 */
 	private boolean enabledOnTenantLevel;
 
 	/**
-	 * Indicates whether two-factor authentication is enforced on system level or not.
+	 * <p>Indicates whether two-factor authentication is enforced on system level or not.</p>
 	 */
 	private boolean enforcedOnSystemLevel;
 
 	/**
-	 * Two-factor authentication is enforced for the specified group.
+	 * <p>Two-factor authentication is enforced for the specified group.</p>
 	 */
 	private String enforcedUsersGroup;
 
 	/**
-	 * Two-factor authentication strategy.
+	 * <p>Two-factor authentication strategy.</p>
 	 */
 	private Strategy strategy;
 
 	/**
-	 * Indicates whether two-factor authentication is enforced on tenant level or not.
+	 * <p>Indicates whether two-factor authentication is enforced on tenant level or not.</p>
 	 */
 	private boolean totpEnforcedOnTenantLevel;
 
@@ -94,8 +94,7 @@ public class TenantTfaData {
 
 	
 	/**
-	 * Two-factor authentication strategy.
-	 * [SMS, TOTP]
+	 * <p>Two-factor authentication strategy.</p>
 	 */
 	public enum Strategy {
 		@JsonProperty("SMS")
@@ -118,7 +117,6 @@ public class TenantTfaData {
 	@Override
 	public String toString() {
 		try {
-			// TODO thats an extensive operation, which only helps debugging
 			return new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(this);
 		} catch (final JsonProcessingException e) {
 		}

@@ -1,4 +1,4 @@
-// Copyright (c) 2014-2022 Software AG, Darmstadt, Germany and/or Software AG USA Inc., Reston, VA, USA, and/or its subsidiaries and/or its affiliates and/or their licensors.
+// Copyright (c) 2014-2023 Software AG, Darmstadt, Germany and/or Software AG USA Inc., Reston, VA, USA, and/or its subsidiaries and/or its affiliates and/or their licensors.
 // Use, reproduction, transfer, publication or disclosure is prohibited except as specifically provided for in your License Agreement with Software AG.	
 
 package com.cumulocity.client.model;
@@ -14,17 +14,17 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class IdentityApiResource {
 
 	/**
-	 * Single external ID, represented by the type and the value of the external ID.
+	 * <p>Single external ID, represented by the type and the value of the external ID.</p>
 	 */
 	private String externalId;
 
 	/**
-	 * Represents a collection of external IDs for a specified global ID.
+	 * <p>Represents a collection of external IDs for a specified global ID.</p>
 	 */
 	private String externalIdsOfGlobalId;
 
 	/**
-	 * A URL linking to this resource.
+	 * <p>A URL linking to this resource.</p>
 	 */
 	private String self;
 
@@ -55,7 +55,6 @@ public class IdentityApiResource {
 	@Override
 	public String toString() {
 		try {
-			// TODO thats an extensive operation, which only helps debugging
 			return new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(this);
 		} catch (final JsonProcessingException e) {
 		}

@@ -1,9 +1,9 @@
-// Copyright (c) 2014-2022 Software AG, Darmstadt, Germany and/or Software AG USA Inc., Reston, VA, USA, and/or its subsidiaries and/or its affiliates and/or their licensors.
+// Copyright (c) 2014-2023 Software AG, Darmstadt, Germany and/or Software AG USA Inc., Reston, VA, USA, and/or its subsidiaries and/or its affiliates and/or their licensors.
 // Use, reproduction, transfer, publication or disclosure is prohibited except as specifically provided for in your License Agreement with Software AG.	
 
 package com.cumulocity.client.api;
 
-import java.util.concurrent.Future;
+import java.util.concurrent.CompletionStage;
 import com.fasterxml.jackson.databind.JsonNode;
 import jakarta.ws.rs.client.Entity;
 import jakarta.ws.rs.client.WebTarget;
@@ -13,12 +13,11 @@ import com.cumulocity.client.model.Event;
 import com.cumulocity.client.model.EventCollection;
 
 /**
- * Events are used to pass real-time information through Cumulocity IoT.
- * 
- * > **&#9432; Info:** The Accept header should be provided in all POST/PUT requests, otherwise an empty response body will be returned.
- *  </br>
- * 
- */ 
+ * <p>Events are used to pass real-time information through Cumulocity IoT.</p>
+ * <blockquote>
+ * <p><strong>ⓘ Info:</strong> The Accept header should be provided in all POST/PUT requests, otherwise an empty response body will be returned.</p>
+ * </blockquote>
+ */
 public class EventsApi extends AdaptableApi {
 
 	public EventsApi(final WebTarget rootTarget) {
@@ -26,113 +25,171 @@ public class EventsApi extends AdaptableApi {
 	}
 
 	/**
-	 * Retrieve all events </br>
-	 * Retrieve all events on your tenant.  In case of executing [range queries](https://en.wikipedia.org/wiki/Range_query_(database)) between an upper and lower boundary, for example, querying using `dateFrom`–`dateTo` or `createdFrom`–`createdTo`, the newest registered events are returned first. It is possible to change the order using the query parameter `revert=true`.  <section><h5>Required roles</h5> ROLE_EVENT_READ </section> 
-	 *
-	 * <br>The following table gives an overview of the possible response codes and their meanings:</br>
+	 * <p>Retrieve all events</p>
+	 * <p>Retrieve all events on your tenant.</p>
+	 * <p>In case of executing <a href="https://en.wikipedia.org/wiki/Range_query_(database)">range queries</a> between an upper and lower boundary, for example, querying using <code>dateFrom</code>–<code>dateTo</code> or <code>createdFrom</code>–<code>createdTo</code>, the newest registered events are returned first. It is possible to change the order using the query parameter <code>revert=true</code>.</p>
+	 * <section><h5>Required roles</h5>
+	 * ROLE_EVENT_READ
+	 * </section>
+	 * <h5>Response Codes</h5>
+	 * <p>The following table gives an overview of the possible response codes and their meanings:</p>
 	 * <ul>
-	 * <li>200 The request has succeeded and all events are sent in the response.</li>
-	 * <li>401 Authentication information is missing or invalid.</li>
+	 * 	<li><p>HTTP 200 <p>The request has succeeded and all events are sent in the response.</p></p>
+	 * 	</li>
+	 * 	<li><p>HTTP 401 <p>Authentication information is missing or invalid.</p></p>
+	 * 	</li>
 	 * </ul>
-	 * <p>
-	 * @param createdFrom Start date or date and time of the event's creation (set by the platform during creation).
-	 * @param createdTo End date or date and time of the event's creation (set by the platform during creation).
-	 * @param currentPage The current page of the paginated results.
-	 * @param dateFrom Start date or date and time of the event occurrence (provided by the device).
-	 * @param dateTo End date or date and time of the event occurrence (provided by the device).
-	 * @param fragmentType A characteristic which identifies a managed object or event, for example, geolocation, electricity sensor, relay state.
-	 * @param fragmentValue Allows filtering events by the fragment's value, but only when provided together with `fragmentType`.  > **⚠️ Important:** Only fragments with a string value are supported. 
-	 * @param lastUpdatedFrom Start date or date and time of the last update made.
-	 * @param lastUpdatedTo End date or date and time of the last update made.
-	 * @param pageSize Indicates how many entries of the collection shall be returned. The upper limit for one page is 2,000 objects.
-	 * @param revert If you are using a range query (that is, at least one of the `dateFrom` or `dateTo` parameters is included in the request), then setting `revert=true` will sort the results by the oldest events first. By default, the results are sorted by the newest events first. 
-	 * @param source The managed object ID to which the event is associated.
-	 * @param type The type of event to search for.
-	 * @param withSourceAssets When set to `true` also events for related source assets will be included in the request. When this parameter is provided a `source` must be specified.
-	 * @param withSourceDevices When set to `true` also events for related source devices will be included in the request. When this parameter is provided a `source` must be specified.
-	 * @param withTotalElements When set to `true`, the returned result will contain in the statistics object the total number of elements. Only applicable on [range queries](https://en.wikipedia.org/wiki/Range_query_(database)).
-	 * @param withTotalPages When set to `true`, the returned result will contain in the statistics object the total number of pages. Only applicable on [range queries](https://en.wikipedia.org/wiki/Range_query_(database)).
-	 * @return
+	 * 
+	 * @param createdFrom
+	 * <p>Start date or date and time of the event's creation (set by the platform during creation).</p>
+	 * @param createdTo
+	 * <p>End date or date and time of the event's creation (set by the platform during creation).</p>
+	 * @param currentPage
+	 * <p>The current page of the paginated results.</p>
+	 * @param dateFrom
+	 * <p>Start date or date and time of the event occurrence (provided by the device).</p>
+	 * @param dateTo
+	 * <p>End date or date and time of the event occurrence (provided by the device).</p>
+	 * @param fragmentType
+	 * <p>A characteristic which identifies a managed object or event, for example, geolocation, electricity sensor, relay state.</p>
+	 * @param fragmentValue
+	 * <p>Allows filtering events by the fragment's value, but only when provided together with <code>fragmentType</code>.</p>
+	 * <p><strong>⚠️ Important:</strong> Only fragments with a string value are supported.</p>
+	 * @param lastUpdatedFrom
+	 * <p>Start date or date and time of the last update made.</p>
+	 * @param lastUpdatedTo
+	 * <p>End date or date and time of the last update made.</p>
+	 * @param pageSize
+	 * <p>Indicates how many entries of the collection shall be returned. The upper limit for one page is 2,000 objects.</p>
+	 * @param revert
+	 * <p>If you are using a range query (that is, at least one of the <code>dateFrom</code> or <code>dateTo</code> parameters is included in the request), then setting <code>revert=true</code> will sort the results by the oldest events first.By default, the results are sorted by the newest events first.</p>
+	 * @param source
+	 * <p>The managed object ID to which the event is associated.</p>
+	 * @param type
+	 * <p>The type of event to search for.</p>
+	 * @param withSourceAssets
+	 * <p>When set to <code>true</code> also events for related source assets will be included in the request. When this parameter is provided a <code>source</code> must be specified.</p>
+	 * @param withSourceDevices
+	 * <p>When set to <code>true</code> also events for related source devices will be included in the request. When this parameter is provided a <code>source</code> must be specified.</p>
+	 * @param withTotalElements
+	 * <p>When set to <code>true</code>, the returned result will contain in the statistics object the total number of elements. Only applicable on <a href="https://en.wikipedia.org/wiki/Range_query_(database)">range queries</a>.</p>
+	 * @param withTotalPages
+	 * <p>When set to <code>true</code>, the returned result will contain in the statistics object the total number of pages. Only applicable on <a href="https://en.wikipedia.org/wiki/Range_query_(database)">range queries</a>.</p>
 	 */
-	public Future<EventCollection> getEvents(final String createdFrom, final String createdTo, final int currentPage, final String dateFrom, final String dateTo, final String fragmentType, final String fragmentValue, final String lastUpdatedFrom, final String lastUpdatedTo, final int pageSize, final boolean revert, final String source, final String type, final boolean withSourceAssets, final boolean withSourceDevices, final boolean withTotalElements, final boolean withTotalPages) {
-		return getRootTarget().path("event").path("events")
+	public CompletionStage<EventCollection> getEvents(final String createdFrom, final String createdTo, final int currentPage, final String dateFrom, final String dateTo, final String fragmentType, final String fragmentValue, final String lastUpdatedFrom, final String lastUpdatedTo, final int pageSize, final boolean revert, final String source, final String type, final boolean withSourceAssets, final boolean withSourceDevices, final boolean withTotalElements, final boolean withTotalPages) {
+		return adapt().path("event").path("events")
 			.queryParam("createdFrom", createdFrom)
 			.queryParam("createdTo", createdTo)
-			.queryParam("currentPage", valueOf(currentPage))
+			.queryParam("currentPage", currentPage)
 			.queryParam("dateFrom", dateFrom)
 			.queryParam("dateTo", dateTo)
 			.queryParam("fragmentType", fragmentType)
 			.queryParam("fragmentValue", fragmentValue)
 			.queryParam("lastUpdatedFrom", lastUpdatedFrom)
 			.queryParam("lastUpdatedTo", lastUpdatedTo)
-			.queryParam("pageSize", valueOf(pageSize))
-			.queryParam("revert", valueOf(revert))
+			.queryParam("pageSize", pageSize)
+			.queryParam("revert", revert)
 			.queryParam("source", source)
 			.queryParam("type", type)
-			.queryParam("withSourceAssets", valueOf(withSourceAssets))
-			.queryParam("withSourceDevices", valueOf(withSourceDevices))
-			.queryParam("withTotalElements", valueOf(withTotalElements))
-			.queryParam("withTotalPages", valueOf(withTotalPages))
-				.request()
-				.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.eventcollection+json")
-				.build("GET")
-				.submit(EventCollection.class);
+			.queryParam("withSourceAssets", withSourceAssets)
+			.queryParam("withSourceDevices", withSourceDevices)
+			.queryParam("withTotalElements", withTotalElements)
+			.queryParam("withTotalPages", withTotalPages)
+			.request()
+			.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.eventcollection+json")
+			.rx()
+			.method("GET", EventCollection.class);
 	}
 	
 	/**
-	 * Create an event </br>
-	 * An event must be associated with a source (managed object) identified by an ID.<br> In general, each event consists of:  *  A type to identify the nature of the event. *  A time stamp to indicate when the event was last updated. *  A description of the event. *  The managed object which originated the event.  <section><h5>Required roles</h5> ROLE_EVENT_ADMIN <b>OR</b> owner of the source <b>OR</b> EVENT_ADMIN permission on the source </section> 
-	 *
-	 * <br>The following table gives an overview of the possible response codes and their meanings:</br>
+	 * <p>Create an event</p>
+	 * <p>An event must be associated with a source (managed object) identified by an ID.<br>In general, each event consists of:</p>
 	 * <ul>
-	 * <li>201 An event was created.</li>
-	 * <li>401 Authentication information is missing or invalid.</li>
-	 * <li>403 Not authorized to perform this operation.</li>
-	 * <li>422 Unprocessable Entity – invalid payload.</li>
+	 * 	<li><p>A type to identify the nature of the event.</p>
+	 * 	</li>
+	 * 	<li><p>A time stamp to indicate when the event was last updated.</p>
+	 * 	</li>
+	 * 	<li><p>A description of the event.</p>
+	 * 	</li>
+	 * 	<li><p>The managed object which originated the event.</p>
+	 * 	</li>
 	 * </ul>
-	 * <p>
-	 * @param body 
-	 * @param xCumulocityProcessingMode Used to explicitly control the processing mode of the request. See [Processing mode](#processing-mode) for more details.
-	 * @return
+	 * <section><h5>Required roles</h5>
+	 * ROLE_EVENT_ADMIN <b>OR</b> owner of the source <b>OR</b> EVENT_ADMIN permission on the source
+	 * </section>
+	 * <h5>Response Codes</h5>
+	 * <p>The following table gives an overview of the possible response codes and their meanings:</p>
+	 * <ul>
+	 * 	<li><p>HTTP 201 <p>An event was created.</p></p>
+	 * 	</li>
+	 * 	<li><p>HTTP 401 <p>Authentication information is missing or invalid.</p></p>
+	 * 	</li>
+	 * 	<li><p>HTTP 403 <p>Not authorized to perform this operation.</p></p>
+	 * 	</li>
+	 * 	<li><p>HTTP 422 <p>Unprocessable Entity – invalid payload.</p></p>
+	 * 	</li>
+	 * </ul>
+	 * 
+	 * @param body
+	 * @param xCumulocityProcessingMode
+	 * <p>Used to explicitly control the processing mode of the request. See <a href="#processing-mode">Processing mode</a> for more details.</p>
 	 */
-	public Future<Event> createEvent(final Event body, final String xCumulocityProcessingMode) {
+	public CompletionStage<Event> createEvent(final Event body, final String xCumulocityProcessingMode) {
 		final JsonNode jsonNode = toJsonNode(body);
 		removeFromNode(jsonNode, "lastUpdated");
 		removeFromNode(jsonNode, "creationTime");
 		removeFromNode(jsonNode, "self");
 		removeFromNode(jsonNode, "id");
 		removeFromNode(jsonNode, "source", "self");
-		return getRootTarget().path("event").path("events")
-				.request()
-				.header("X-Cumulocity-Processing-Mode", xCumulocityProcessingMode)
-				.header("Content-Type", "application/vnd.com.nsn.cumulocity.event+json")
-				.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.event+json")
-				.build("POST", Entity.json(jsonNode))
-				.submit(Event.class);
+		return adapt().path("event").path("events")
+			.request()
+			.header("X-Cumulocity-Processing-Mode", xCumulocityProcessingMode)
+			.header("Content-Type", "application/vnd.com.nsn.cumulocity.event+json")
+			.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.event+json")
+			.rx()
+			.method("POST", Entity.json(jsonNode), Event.class);
 	}
 	
 	/**
-	 * Remove event collections </br>
-	 * Remove event collections specified by query parameters.  DELETE requests are not synchronous. The response could be returned before the delete request has been completed. This may happen especially when the deleted event has a lot of associated data. After sending the request, the platform starts deleting the associated data in an asynchronous way. Finally, the requested event is deleted after all associated data has been deleted.  > **⚠️ Important:** Note that it is possible to call this endpoint without providing any parameter - it will result in deleting all events and it is not recommended.  <section><h5>Required roles</h5> ROLE_EVENT_ADMIN </section> 
-	 *
-	 * <br>The following table gives an overview of the possible response codes and their meanings:</br>
+	 * <p>Remove event collections</p>
+	 * <p>Remove event collections specified by query parameters.</p>
+	 * <p>DELETE requests are not synchronous. The response could be returned before the delete request has been completed. This may happen especially when the deleted event has a lot of associated data. After sending the request, the platform starts deleting the associated data in an asynchronous way. Finally, the requested event is deleted after all associated data has been deleted.</p>
+	 * <blockquote>
+	 * <p><strong>⚠️ Important:</strong> Note that it is possible to call this endpoint without providing any parameter - it will result in deleting all events and it is not recommended.</p>
+	 * </blockquote>
+	 * <section><h5>Required roles</h5>
+	 * ROLE_EVENT_ADMIN
+	 * </section>
+	 * <h5>Response Codes</h5>
+	 * <p>The following table gives an overview of the possible response codes and their meanings:</p>
 	 * <ul>
-	 * <li>204 A collection of events was removed.</li>
-	 * <li>401 Authentication information is missing or invalid.</li>
-	 * <li>403 Not authorized to perform this operation.</li>
+	 * 	<li><p>HTTP 204 <p>A collection of events was removed.</p></p>
+	 * 	</li>
+	 * 	<li><p>HTTP 401 <p>Authentication information is missing or invalid.</p></p>
+	 * 	</li>
+	 * 	<li><p>HTTP 403 <p>Not authorized to perform this operation.</p></p>
+	 * 	</li>
 	 * </ul>
-	 * <p>
-	 * @param xCumulocityProcessingMode Used to explicitly control the processing mode of the request. See [Processing mode](#processing-mode) for more details.
-	 * @param createdFrom Start date or date and time of the event's creation (set by the platform during creation).
-	 * @param createdTo End date or date and time of the event's creation (set by the platform during creation).
-	 * @param dateFrom Start date or date and time of the event occurrence (provided by the device).
-	 * @param dateTo End date or date and time of the event occurrence (provided by the device).
-	 * @param fragmentType A characteristic which identifies a managed object or event, for example, geolocation, electricity sensor, relay state.
-	 * @param source The managed object ID to which the event is associated.
-	 * @param type The type of event to search for.
+	 * 
+	 * @param xCumulocityProcessingMode
+	 * <p>Used to explicitly control the processing mode of the request. See <a href="#processing-mode">Processing mode</a> for more details.</p>
+	 * @param createdFrom
+	 * <p>Start date or date and time of the event's creation (set by the platform during creation).</p>
+	 * @param createdTo
+	 * <p>End date or date and time of the event's creation (set by the platform during creation).</p>
+	 * @param dateFrom
+	 * <p>Start date or date and time of the event occurrence (provided by the device).</p>
+	 * @param dateTo
+	 * <p>End date or date and time of the event occurrence (provided by the device).</p>
+	 * @param fragmentType
+	 * <p>A characteristic which identifies a managed object or event, for example, geolocation, electricity sensor, relay state.</p>
+	 * @param source
+	 * <p>The managed object ID to which the event is associated.</p>
+	 * @param type
+	 * <p>The type of event to search for.</p>
 	 */
-	public Future<Response> deleteEvents(final String xCumulocityProcessingMode, final String createdFrom, final String createdTo, final String dateFrom, final String dateTo, final String fragmentType, final String source, final String type) {
-		return getRootTarget().path("event").path("events")
+	public CompletionStage<Response> deleteEvents(final String xCumulocityProcessingMode, final String createdFrom, final String createdTo, final String dateFrom, final String dateTo, final String fragmentType, final String source, final String type) {
+		return adapt().path("event").path("events")
 			.queryParam("createdFrom", createdFrom)
 			.queryParam("createdTo", createdTo)
 			.queryParam("dateFrom", dateFrom)
@@ -140,53 +197,67 @@ public class EventsApi extends AdaptableApi {
 			.queryParam("fragmentType", fragmentType)
 			.queryParam("source", source)
 			.queryParam("type", type)
-				.request()
-				.header("X-Cumulocity-Processing-Mode", xCumulocityProcessingMode)
-				.header("Accept", "application/json")
-				.build("DELETE")
-				.submit();
+			.request()
+			.header("X-Cumulocity-Processing-Mode", xCumulocityProcessingMode)
+			.header("Accept", "application/json")
+			.rx()
+			.method("DELETE");
 	}
 	
 	/**
-	 * Retrieve a specific event </br>
-	 * Retrieve a specific event by a given ID.  <section><h5>Required roles</h5> ROLE_EVENT_READ <b>OR</b> owner of the source <b>OR</b> EVENT_READ permission on the source </section> 
-	 *
-	 * <br>The following table gives an overview of the possible response codes and their meanings:</br>
+	 * <p>Retrieve a specific event</p>
+	 * <p>Retrieve a specific event by a given ID.</p>
+	 * <section><h5>Required roles</h5>
+	 * ROLE_EVENT_READ <b>OR</b> owner of the source <b>OR</b> EVENT_READ permission on the source
+	 * </section>
+	 * <h5>Response Codes</h5>
+	 * <p>The following table gives an overview of the possible response codes and their meanings:</p>
 	 * <ul>
-	 * <li>200 The request has succeeded and the event is sent in the response.</li>
-	 * <li>401 Authentication information is missing or invalid.</li>
-	 * <li>404 Event not found.</li>
+	 * 	<li><p>HTTP 200 <p>The request has succeeded and the event is sent in the response.</p></p>
+	 * 	</li>
+	 * 	<li><p>HTTP 401 <p>Authentication information is missing or invalid.</p></p>
+	 * 	</li>
+	 * 	<li><p>HTTP 404 <p>Event not found.</p></p>
+	 * 	</li>
 	 * </ul>
-	 * <p>
-	 * @param id Unique identifier of the event.
-	 * @return
+	 * 
+	 * @param id
+	 * <p>Unique identifier of the event.</p>
 	 */
-	public Future<Event> getEvent(final String id) {
-		return getRootTarget().path("event").path("events").path(valueOf(id))
-				.request()
-				.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.event+json")
-				.build("GET")
-				.submit(Event.class);
+	public CompletionStage<Event> getEvent(final String id) {
+		return adapt().path("event").path("events").path(valueOf(id))
+			.request()
+			.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.event+json")
+			.rx()
+			.method("GET", Event.class);
 	}
 	
 	/**
-	 * Update a specific event </br>
-	 * Update a specific event by a given ID. Only its text description and custom fragments can be updated.  <section><h5>Required roles</h5> ROLE_EVENT_ADMIN <b>OR</b> owner of the source <b>OR</b> EVENT_ADMIN permission on the source </section> 
-	 *
-	 * <br>The following table gives an overview of the possible response codes and their meanings:</br>
+	 * <p>Update a specific event</p>
+	 * <p>Update a specific event by a given ID. Only its text description and custom fragments can be updated.</p>
+	 * <section><h5>Required roles</h5>
+	 * ROLE_EVENT_ADMIN <b>OR</b> owner of the source <b>OR</b> EVENT_ADMIN permission on the source
+	 * </section>
+	 * <h5>Response Codes</h5>
+	 * <p>The following table gives an overview of the possible response codes and their meanings:</p>
 	 * <ul>
-	 * <li>200 An event was updated.</li>
-	 * <li>401 Authentication information is missing or invalid.</li>
-	 * <li>404 Event not found.</li>
-	 * <li>422 Unprocessable Entity – invalid payload.</li>
+	 * 	<li><p>HTTP 200 <p>An event was updated.</p></p>
+	 * 	</li>
+	 * 	<li><p>HTTP 401 <p>Authentication information is missing or invalid.</p></p>
+	 * 	</li>
+	 * 	<li><p>HTTP 404 <p>Event not found.</p></p>
+	 * 	</li>
+	 * 	<li><p>HTTP 422 <p>Unprocessable Entity – invalid payload.</p></p>
+	 * 	</li>
 	 * </ul>
-	 * <p>
-	 * @param body 
-	 * @param id Unique identifier of the event.
-	 * @param xCumulocityProcessingMode Used to explicitly control the processing mode of the request. See [Processing mode](#processing-mode) for more details.
-	 * @return
+	 * 
+	 * @param body
+	 * @param id
+	 * <p>Unique identifier of the event.</p>
+	 * @param xCumulocityProcessingMode
+	 * <p>Used to explicitly control the processing mode of the request. See <a href="#processing-mode">Processing mode</a> for more details.</p>
 	 */
-	public Future<Event> updateEvent(final Event body, final String id, final String xCumulocityProcessingMode) {
+	public CompletionStage<Event> updateEvent(final Event body, final String id, final String xCumulocityProcessingMode) {
 		final JsonNode jsonNode = toJsonNode(body);
 		removeFromNode(jsonNode, "lastUpdated");
 		removeFromNode(jsonNode, "creationTime");
@@ -195,36 +266,45 @@ public class EventsApi extends AdaptableApi {
 		removeFromNode(jsonNode, "source");
 		removeFromNode(jsonNode, "time");
 		removeFromNode(jsonNode, "type");
-		return getRootTarget().path("event").path("events").path(valueOf(id))
-				.request()
-				.header("X-Cumulocity-Processing-Mode", xCumulocityProcessingMode)
-				.header("Content-Type", "application/vnd.com.nsn.cumulocity.event+json")
-				.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.event+json")
-				.build("PUT", Entity.json(jsonNode))
-				.submit(Event.class);
+		return adapt().path("event").path("events").path(valueOf(id))
+			.request()
+			.header("X-Cumulocity-Processing-Mode", xCumulocityProcessingMode)
+			.header("Content-Type", "application/vnd.com.nsn.cumulocity.event+json")
+			.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.event+json")
+			.rx()
+			.method("PUT", Entity.json(jsonNode), Event.class);
 	}
 	
 	/**
-	 * Remove a specific event </br>
-	 * Remove a specific event by a given ID.  <section><h5>Required roles</h5> ROLE_EVENT_ADMIN <b>OR</b> owner of the source <b>OR</b> EVENT_ADMIN permission on the source </section> 
-	 *
-	 * <br>The following table gives an overview of the possible response codes and their meanings:</br>
+	 * <p>Remove a specific event</p>
+	 * <p>Remove a specific event by a given ID.</p>
+	 * <section><h5>Required roles</h5>
+	 * ROLE_EVENT_ADMIN <b>OR</b> owner of the source <b>OR</b> EVENT_ADMIN permission on the source
+	 * </section>
+	 * <h5>Response Codes</h5>
+	 * <p>The following table gives an overview of the possible response codes and their meanings:</p>
 	 * <ul>
-	 * <li>204 An event was removed.</li>
-	 * <li>401 Authentication information is missing or invalid.</li>
-	 * <li>403 Not authorized to perform this operation.</li>
-	 * <li>404 Event not found.</li>
+	 * 	<li><p>HTTP 204 <p>An event was removed.</p></p>
+	 * 	</li>
+	 * 	<li><p>HTTP 401 <p>Authentication information is missing or invalid.</p></p>
+	 * 	</li>
+	 * 	<li><p>HTTP 403 <p>Not authorized to perform this operation.</p></p>
+	 * 	</li>
+	 * 	<li><p>HTTP 404 <p>Event not found.</p></p>
+	 * 	</li>
 	 * </ul>
-	 * <p>
-	 * @param id Unique identifier of the event.
-	 * @param xCumulocityProcessingMode Used to explicitly control the processing mode of the request. See [Processing mode](#processing-mode) for more details.
+	 * 
+	 * @param id
+	 * <p>Unique identifier of the event.</p>
+	 * @param xCumulocityProcessingMode
+	 * <p>Used to explicitly control the processing mode of the request. See <a href="#processing-mode">Processing mode</a> for more details.</p>
 	 */
-	public Future<Response> deleteEvent(final String id, final String xCumulocityProcessingMode) {
-		return getRootTarget().path("event").path("events").path(valueOf(id))
-				.request()
-				.header("X-Cumulocity-Processing-Mode", xCumulocityProcessingMode)
-				.header("Accept", "application/json")
-				.build("DELETE")
-				.submit();
+	public CompletionStage<Response> deleteEvent(final String id, final String xCumulocityProcessingMode) {
+		return adapt().path("event").path("events").path(valueOf(id))
+			.request()
+			.header("X-Cumulocity-Processing-Mode", xCumulocityProcessingMode)
+			.header("Accept", "application/json")
+			.rx()
+			.method("DELETE");
 	}
 }

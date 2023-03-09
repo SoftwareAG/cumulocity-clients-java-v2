@@ -1,4 +1,4 @@
-// Copyright (c) 2014-2022 Software AG, Darmstadt, Germany and/or Software AG USA Inc., Reston, VA, USA, and/or its subsidiaries and/or its affiliates and/or their licensors.
+// Copyright (c) 2014-2023 Software AG, Darmstadt, Germany and/or Software AG USA Inc., Reston, VA, USA, and/or its subsidiaries and/or its affiliates and/or their licensors.
 // Use, reproduction, transfer, publication or disclosure is prohibited except as specifically provided for in your License Agreement with Software AG.	
 
 package com.cumulocity.client.model;
@@ -10,29 +10,29 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
- * Statistics of a specific device (identified by an ID).
+ * <p>Statistics of a specific device (identified by an ID).</p>
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(Include.NON_NULL)
 public class DeviceStatistics {
 
 	/**
-	 * Sum of measurements, events and alarms created and updated for the specified device.
+	 * <p>Sum of measurements, events and alarms created and updated for the specified device.</p>
 	 */
 	private int count;
 
 	/**
-	 * Unique identifier of the device.
+	 * <p>Unique identifier of the device.</p>
 	 */
 	private String deviceId;
 
 	/**
-	 * List of unique identifiers of parents for the corresponding device. Available only with monthly data.
+	 * <p>List of unique identifiers of parents for the corresponding device. Available only with monthly data.</p>
 	 */
 	private String[] deviceParents;
 
 	/**
-	 * Value of the `type` field from the corresponding device. Available only with monthly data.
+	 * <p>Value of the <code>type</code> field from the corresponding device. Available only with monthly data.</p>
 	 */
 	private String deviceType;
 
@@ -71,7 +71,6 @@ public class DeviceStatistics {
 	@Override
 	public String toString() {
 		try {
-			// TODO thats an extensive operation, which only helps debugging
 			return new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(this);
 		} catch (final JsonProcessingException e) {
 		}

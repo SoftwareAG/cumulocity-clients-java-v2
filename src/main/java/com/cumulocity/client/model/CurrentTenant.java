@@ -1,4 +1,4 @@
-// Copyright (c) 2014-2022 Software AG, Darmstadt, Germany and/or Software AG USA Inc., Reston, VA, USA, and/or its subsidiaries and/or its affiliates and/or their licensors.
+// Copyright (c) 2014-2023 Software AG, Darmstadt, Germany and/or Software AG USA Inc., Reston, VA, USA, and/or its subsidiaries and/or its affiliates and/or their licensors.
 // Use, reproduction, transfer, publication or disclosure is prohibited except as specifically provided for in your License Agreement with Software AG.	
 
 package com.cumulocity.client.model;
@@ -14,37 +14,37 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class CurrentTenant {
 
 	/**
-	 * Indicates if this tenant can create subtenants.
+	 * <p>Indicates if this tenant can create subtenants.</p>
 	 */
 	private boolean allowCreateTenants;
 
 	/**
-	 * Collection of the subscribed applications.
+	 * <p>Collection of the subscribed applications.</p>
 	 */
 	private Applications applications;
 
 	/**
-	 * An object with a list of custom properties.
+	 * <p>An object with a list of custom properties.</p>
 	 */
 	private CustomProperties customProperties;
 
 	/**
-	 * URL of the tenant's domain. The domain name permits only the use of alphanumeric characters separated by dots `.`, hyphens `-` and underscores `_`.
+	 * <p>URL of the tenant's domain. The domain name permits only the use of alphanumeric characters separated by dots <code>.</code>, hyphens <code>-</code> and underscores <code>_</code>.</p>
 	 */
 	private String domainName;
 
 	/**
-	 * Unique identifier of a Cumulocity IoT tenant.
+	 * <p>Unique identifier of a Cumulocity IoT tenant.</p>
 	 */
 	private String name;
 
 	/**
-	 * ID of the parent tenant.
+	 * <p>ID of the parent tenant.</p>
 	 */
 	private String parent;
 
 	/**
-	 * A URL linking to this resource.
+	 * <p>A URL linking to this resource.</p>
 	 */
 	private String self;
 
@@ -105,14 +105,14 @@ public class CurrentTenant {
 	}
 
 	/**
-	 * Collection of the subscribed applications.
+	 * <p>Collection of the subscribed applications.</p>
 	 */
 	@JsonIgnoreProperties(ignoreUnknown = true)
 	@JsonInclude(Include.NON_NULL)
 	public static class Applications {
 	
 		/**
-		 * An array containing all subscribed applications.
+		 * <p>An array containing all subscribed applications.</p>
 		 */
 		private Application[] references;
 	
@@ -127,7 +127,6 @@ public class CurrentTenant {
 		@Override
 		public String toString() {
 			try {
-				// TODO thats an extensive operation, which only helps debugging
 				return new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(this);
 			} catch (final JsonProcessingException e) {
 			}
@@ -149,7 +148,6 @@ public class CurrentTenant {
 	@Override
 	public String toString() {
 		try {
-			// TODO thats an extensive operation, which only helps debugging
 			return new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(this);
 		} catch (final JsonProcessingException e) {
 		}

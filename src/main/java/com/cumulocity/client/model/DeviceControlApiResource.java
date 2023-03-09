@@ -1,4 +1,4 @@
-// Copyright (c) 2014-2022 Software AG, Darmstadt, Germany and/or Software AG USA Inc., Reston, VA, USA, and/or its subsidiaries and/or its affiliates and/or their licensors.
+// Copyright (c) 2014-2023 Software AG, Darmstadt, Germany and/or Software AG USA Inc., Reston, VA, USA, and/or its subsidiaries and/or its affiliates and/or their licensors.
 // Use, reproduction, transfer, publication or disclosure is prohibited except as specifically provided for in your License Agreement with Software AG.	
 
 package com.cumulocity.client.model;
@@ -14,37 +14,37 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class DeviceControlApiResource {
 
 	/**
-	 * Collection of all operations.
+	 * <p>Collection of all operations.</p>
 	 */
 	private Operations operations;
 
 	/**
-	 * Read-only collection of all operations with a particular status.
+	 * <p>Read-only collection of all operations with a particular status.</p>
 	 */
 	private String operationsByStatus;
 
 	/**
-	 * Read-only collection of all operations targeting a particular agent.
+	 * <p>Read-only collection of all operations targeting a particular agent.</p>
 	 */
 	private String operationsByAgentId;
 
 	/**
-	 * Read-only collection of all operations targeting a particular agent and with a particular status.
+	 * <p>Read-only collection of all operations targeting a particular agent and with a particular status.</p>
 	 */
 	private String operationsByAgentIdAndStatus;
 
 	/**
-	 * Read-only collection of all operations to be executed on a particular device.
+	 * <p>Read-only collection of all operations to be executed on a particular device.</p>
 	 */
 	private String operationsByDeviceId;
 
 	/**
-	 * Read-only collection of all operations with a particular status, that should be executed on a particular device.
+	 * <p>Read-only collection of all operations with a particular status, that should be executed on a particular device.</p>
 	 */
 	private String operationsByDeviceIdAndStatus;
 
 	/**
-	 * A URL linking to this resource.
+	 * <p>A URL linking to this resource.</p>
 	 */
 	private String self;
 
@@ -105,19 +105,19 @@ public class DeviceControlApiResource {
 	}
 
 	/**
-	 * Collection of all operations.
+	 * <p>Collection of all operations.</p>
 	 */
 	@JsonIgnoreProperties(ignoreUnknown = true)
 	@JsonInclude(Include.NON_NULL)
 	public static class Operations {
 	
 		/**
-		 * A URL linking to this resource.
+		 * <p>A URL linking to this resource.</p>
 		 */
 		private String self;
 	
 		/**
-		 * An array containing the registered operations.
+		 * <p>An array containing the registered operations.</p>
 		 */
 		private OperationReference[] operations;
 	
@@ -140,7 +140,6 @@ public class DeviceControlApiResource {
 		@Override
 		public String toString() {
 			try {
-				// TODO thats an extensive operation, which only helps debugging
 				return new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(this);
 			} catch (final JsonProcessingException e) {
 			}
@@ -162,7 +161,6 @@ public class DeviceControlApiResource {
 	@Override
 	public String toString() {
 		try {
-			// TODO thats an extensive operation, which only helps debugging
 			return new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(this);
 		} catch (final JsonProcessingException e) {
 		}

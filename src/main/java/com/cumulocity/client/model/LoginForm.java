@@ -1,4 +1,4 @@
-// Copyright (c) 2014-2022 Software AG, Darmstadt, Germany and/or Software AG USA Inc., Reston, VA, USA, and/or its subsidiaries and/or its affiliates and/or their licensors.
+// Copyright (c) 2014-2023 Software AG, Darmstadt, Germany and/or Software AG USA Inc., Reston, VA, USA, and/or its subsidiaries and/or its affiliates and/or their licensors.
 // Use, reproduction, transfer, publication or disclosure is prohibited except as specifically provided for in your License Agreement with Software AG.	
 
 package com.cumulocity.client.model;
@@ -15,29 +15,29 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class LoginForm {
 
 	/**
-	 * Used in case of SSO login. A code received from the external authentication server is exchanged to an internal access token.
+	 * <p>Used in case of SSO login. A code received from the external authentication server is exchanged to an internal access token.</p>
 	 */
 	private String code;
 
 	/**
-	 * Dependent on the authentication type. PASSWORD is used for OAI-Secure.
+	 * <p>Dependent on the authentication type. PASSWORD is used for OAI-Secure.</p>
 	 */
 	@JsonProperty(value = "grant_type")
 	private GrantType grantType;
 
 	/**
-	 * Used in cases of basic or OAI-Secure authentication.
+	 * <p>Used in cases of basic or OAI-Secure authentication.</p>
 	 */
 	private String password;
 
 	/**
-	 * Current TFA code, sent by the user, if a TFA code is required to log in.
+	 * <p>Current TFA code, sent by the user, if a TFA code is required to log in.</p>
 	 */
 	@JsonProperty(value = "tfa_code")
 	private String tfaCode;
 
 	/**
-	 * Used in cases of basic or OAI-Secure authentication.
+	 * <p>Used in cases of basic or OAI-Secure authentication.</p>
 	 */
 	private String username;
 
@@ -83,8 +83,7 @@ public class LoginForm {
 
 	
 	/**
-	 * Dependent on the authentication type. PASSWORD is used for OAI-Secure.
-	 * [PASSWORD, AUTHORIZATION_CODE, REFRESH_TOKEN]
+	 * <p>Dependent on the authentication type. PASSWORD is used for OAI-Secure.</p>
 	 */
 	public enum GrantType {
 		@JsonProperty("PASSWORD")
@@ -109,7 +108,6 @@ public class LoginForm {
 	@Override
 	public String toString() {
 		try {
-			// TODO thats an extensive operation, which only helps debugging
 			return new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(this);
 		} catch (final JsonProcessingException e) {
 		}

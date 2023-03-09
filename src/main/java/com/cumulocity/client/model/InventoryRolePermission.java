@@ -1,4 +1,4 @@
-// Copyright (c) 2014-2022 Software AG, Darmstadt, Germany and/or Software AG USA Inc., Reston, VA, USA, and/or its subsidiaries and/or its affiliates and/or their licensors.
+// Copyright (c) 2014-2023 Software AG, Darmstadt, Germany and/or Software AG USA Inc., Reston, VA, USA, and/or its subsidiaries and/or its affiliates and/or their licensors.
 // Use, reproduction, transfer, publication or disclosure is prohibited except as specifically provided for in your License Agreement with Software AG.	
 
 package com.cumulocity.client.model;
@@ -11,29 +11,29 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
- * A permission object of an inventory role.
+ * <p>A permission object of an inventory role.</p>
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(Include.NON_NULL)
 public class InventoryRolePermission {
 
 	/**
-	 * A unique identifier for this permission.
+	 * <p>A unique identifier for this permission.</p>
 	 */
 	private int id;
 
 	/**
-	 * The permission level.
+	 * <p>The permission level.</p>
 	 */
 	private Permission permission;
 
 	/**
-	 * The scope of this permission.
+	 * <p>The scope of this permission.</p>
 	 */
 	private Scope scope;
 
 	/**
-	 * The type of this permission. It can be the name of a fragment, for example, `c8y_Restart`.
+	 * <p>The type of this permission. It can be the name of a fragment, for example, <code>c8y_Restart</code>.</p>
 	 */
 	private String type;
 
@@ -71,8 +71,7 @@ public class InventoryRolePermission {
 
 	
 	/**
-	 * The permission level.
-	 * [ADMIN, READ, *]
+	 * <p>The permission level.</p>
 	 */
 	public enum Permission {
 		@JsonProperty("ADMIN")
@@ -95,8 +94,7 @@ public class InventoryRolePermission {
 
 	
 	/**
-	 * The scope of this permission.
-	 * [ALARM, AUDIT, EVENT, MANAGED_OBJECT, MEASUREMENT, OPERATION, *]
+	 * <p>The scope of this permission.</p>
 	 */
 	public enum Scope {
 		@JsonProperty("ALARM")
@@ -130,7 +128,6 @@ public class InventoryRolePermission {
 	@Override
 	public String toString() {
 		try {
-			// TODO thats an extensive operation, which only helps debugging
 			return new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(this);
 		} catch (final JsonProcessingException e) {
 		}

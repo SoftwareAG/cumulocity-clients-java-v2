@@ -1,4 +1,4 @@
-// Copyright (c) 2014-2022 Software AG, Darmstadt, Germany and/or Software AG USA Inc., Reston, VA, USA, and/or its subsidiaries and/or its affiliates and/or their licensors.
+// Copyright (c) 2014-2023 Software AG, Darmstadt, Germany and/or Software AG USA Inc., Reston, VA, USA, and/or its subsidiaries and/or its affiliates and/or their licensors.
 // Use, reproduction, transfer, publication or disclosure is prohibited except as specifically provided for in your License Agreement with Software AG.	
 
 package com.cumulocity.client.model;
@@ -15,22 +15,22 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class UserTfaData {
 
 	/**
-	 * Latest date and time when the user has used two-factor authentication to log in.
+	 * <p>Latest date and time when the user has used two-factor authentication to log in.</p>
 	 */
 	private String lastTfaRequestTime;
 
 	/**
-	 * Two-factor authentication strategy.
+	 * <p>Two-factor authentication strategy.</p>
 	 */
 	private Strategy strategy;
 
 	/**
-	 * Indicates whether the user has enabled two-factor authentication or not.
+	 * <p>Indicates whether the user has enabled two-factor authentication or not.</p>
 	 */
 	private boolean tfaEnabled;
 
 	/**
-	 * Indicates whether two-factor authentication is enforced by the tenant admin or not.
+	 * <p>Indicates whether two-factor authentication is enforced by the tenant admin or not.</p>
 	 */
 	private boolean tfaEnforced;
 
@@ -68,8 +68,7 @@ public class UserTfaData {
 
 	
 	/**
-	 * Two-factor authentication strategy.
-	 * [SMS, TOTP]
+	 * <p>Two-factor authentication strategy.</p>
 	 */
 	public enum Strategy {
 		@JsonProperty("SMS")
@@ -92,7 +91,6 @@ public class UserTfaData {
 	@Override
 	public String toString() {
 		try {
-			// TODO thats an extensive operation, which only helps debugging
 			return new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(this);
 		} catch (final JsonProcessingException e) {
 		}

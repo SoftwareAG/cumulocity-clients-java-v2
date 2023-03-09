@@ -1,4 +1,4 @@
-// Copyright (c) 2014-2022 Software AG, Darmstadt, Germany and/or Software AG USA Inc., Reston, VA, USA, and/or its subsidiaries and/or its affiliates and/or their licensors.
+// Copyright (c) 2014-2023 Software AG, Darmstadt, Germany and/or Software AG USA Inc., Reston, VA, USA, and/or its subsidiaries and/or its affiliates and/or their licensors.
 // Use, reproduction, transfer, publication or disclosure is prohibited except as specifically provided for in your License Agreement with Software AG.	
 
 package com.cumulocity.client.model;
@@ -14,37 +14,37 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class UserApiResource {
 
 	/**
-	 * A URL linking to this resource.
+	 * <p>A URL linking to this resource.</p>
 	 */
 	private String self;
 
 	/**
-	 * Collection of all users belonging to a given tenant.
+	 * <p>Collection of all users belonging to a given tenant.</p>
 	 */
 	private String users;
 
 	/**
-	 * Reference to a resource of type user.
+	 * <p>Reference to a resource of type user.</p>
 	 */
 	private String userByName;
 
 	/**
-	 * Reference to the resource of the logged in user.
+	 * <p>Reference to the resource of the logged in user.</p>
 	 */
 	private String currentUser;
 
 	/**
-	 * Collection of all users belonging to a given tenant.
+	 * <p>Collection of all users belonging to a given tenant.</p>
 	 */
 	private String groups;
 
 	/**
-	 * Reference to a resource of type group.
+	 * <p>Reference to a resource of type group.</p>
 	 */
 	private String groupByName;
 
 	/**
-	 * Collection of all roles.
+	 * <p>Collection of all roles.</p>
 	 */
 	private String roles;
 
@@ -107,7 +107,6 @@ public class UserApiResource {
 	@Override
 	public String toString() {
 		try {
-			// TODO thats an extensive operation, which only helps debugging
 			return new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(this);
 		} catch (final JsonProcessingException e) {
 		}

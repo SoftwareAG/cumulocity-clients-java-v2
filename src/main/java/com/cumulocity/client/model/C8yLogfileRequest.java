@@ -1,4 +1,4 @@
-// Copyright (c) 2014-2022 Software AG, Darmstadt, Germany and/or Software AG USA Inc., Reston, VA, USA, and/or its subsidiaries and/or its affiliates and/or their licensors.
+// Copyright (c) 2014-2023 Software AG, Darmstadt, Germany and/or Software AG USA Inc., Reston, VA, USA, and/or its subsidiaries and/or its affiliates and/or their licensors.
 // Use, reproduction, transfer, publication or disclosure is prohibited except as specifically provided for in your License Agreement with Software AG.	
 
 package com.cumulocity.client.model;
@@ -10,39 +10,39 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
- * Request a device to send a log file and view it in Cumulocity IoT's log viewer.
+ * <p>Request a device to send a log file and view it in Cumulocity IoT's log viewer.</p>
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(Include.NON_NULL)
 public class C8yLogfileRequest {
 
 	/**
-	 * Indicates the log file to select.
+	 * <p>Indicates the log file to select.</p>
 	 */
 	private String logFile;
 
 	/**
-	 * Start date and time of log entries in the log file to be sent.
+	 * <p>Start date and time of log entries in the log file to be sent.</p>
 	 */
 	private String dateFrom;
 
 	/**
-	 * End date and time of log entries in the log file to be sent.
+	 * <p>End date and time of log entries in the log file to be sent.</p>
 	 */
 	private String dateTo;
 
 	/**
-	 * Provide a text that needs to be present in the log entry.
+	 * <p>Provide a text that needs to be present in the log entry.</p>
 	 */
 	private String searchText;
 
 	/**
-	 * Upper limit of the number of lines that should be sent to Cumulocity IoT after filtering.
+	 * <p>Upper limit of the number of lines that should be sent to Cumulocity IoT after filtering.</p>
 	 */
 	private int maximumLines;
 
 	/**
-	 * A link to the log file request.
+	 * <p>A link to the log file request.</p>
 	 */
 	private String file;
 
@@ -97,7 +97,6 @@ public class C8yLogfileRequest {
 	@Override
 	public String toString() {
 		try {
-			// TODO thats an extensive operation, which only helps debugging
 			return new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(this);
 		} catch (final JsonProcessingException e) {
 		}

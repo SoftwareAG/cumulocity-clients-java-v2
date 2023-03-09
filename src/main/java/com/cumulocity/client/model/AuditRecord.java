@@ -1,4 +1,4 @@
-// Copyright (c) 2014-2022 Software AG, Darmstadt, Germany and/or Software AG USA Inc., Reston, VA, USA, and/or its subsidiaries and/or its affiliates and/or their licensors.
+// Copyright (c) 2014-2023 Software AG, Darmstadt, Germany and/or Software AG USA Inc., Reston, VA, USA, and/or its subsidiaries and/or its affiliates and/or their licensors.
 // Use, reproduction, transfer, publication or disclosure is prohibited except as specifically provided for in your License Agreement with Software AG.	
 
 package com.cumulocity.client.model;
@@ -27,74 +27,73 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class AuditRecord {
 
 	/**
-	 * Summary of the action that was carried out.
+	 * <p>Summary of the action that was carried out.</p>
 	 */
 	private String activity;
 
 	/**
-	 * Name of the application that performed the action.
+	 * <p>Name of the application that performed the action.</p>
 	 */
 	private String application;
 
 	/**
-	 * Metadata of the audit record.
+	 * <p>Metadata of the audit record.</p>
 	 */
 	@JsonProperty(value = "c8y_Metadata")
 	private C8yMetadata c8yMetadata;
 
 	/**
-	 * Collection of objects describing the changes that were carried out.
+	 * <p>Collection of objects describing the changes that were carried out.</p>
 	 */
 	private Changes[] changes;
 
 	/**
-	 * The date and time when the audit record was created.
+	 * <p>The date and time when the audit record was created.</p>
 	 */
 	private String creationTime;
 
 	/**
-	 * Unique identifier of the audit record.
+	 * <p>Unique identifier of the audit record.</p>
 	 */
 	private String id;
 
 	/**
-	 * A URL linking to this resource.
+	 * <p>A URL linking to this resource.</p>
 	 */
 	private String self;
 
 	/**
-	 * The severity of the audit action.
+	 * <p>The severity of the audit action.</p>
 	 */
 	private Severity severity;
 
 	/**
-	 * The managed object to which the audit is associated.
+	 * <p>The managed object to which the audit is associated.</p>
 	 */
 	private Source source;
 
 	/**
-	 * Details of the action that was carried out.
+	 * <p>Details of the action that was carried out.</p>
 	 */
 	private String text;
 
 	/**
-	 * The date and time when the audit is updated.
+	 * <p>The date and time when the audit is updated.</p>
 	 */
 	private String time;
 
 	/**
-	 * Identifies the platform component of the audit.
+	 * <p>Identifies the platform component of the audit.</p>
 	 */
 	private Type type;
 
 	/**
-	 * The user who carried out the activity.
+	 * <p>The user who carried out the activity.</p>
 	 */
 	private String user;
 
 	/**
-	 * It is possible to add an arbitrary number of additional properties as a list of key-value pairs, for example, `"property1": {}`, `"property2": "value"`. These properties can be of any type, for example, object or string.
-	 * 
+	 * <p>It is possible to add an arbitrary number of additional properties as a list of key-value pairs, for example, <code>"property1": {}</code>, <code>"property2": "value"</code>. These properties can be of any type, for example, object or string.</p>
 	 */
 	private Map<String, Object> customProperties;
 
@@ -224,8 +223,7 @@ public class AuditRecord {
 
 	
 	/**
-	 * The severity of the audit action.
-	 * [CRITICAL, MAJOR, MINOR, WARNING, INFORMATION]
+	 * <p>The severity of the audit action.</p>
 	 */
 	public enum Severity {
 		@JsonProperty("CRITICAL")
@@ -252,8 +250,7 @@ public class AuditRecord {
 
 	
 	/**
-	 * Identifies the platform component of the audit.
-	 * [Alarm, Application, BulkOperation, CepModule, Connector, Event, Group, Inventory, InventoryRole, Operation, Option, Report, SingleSignOn, SmartRule, SYSTEM, Tenant, TenantAuthConfig, TrustedCertificates, User, UserAuthentication]
+	 * <p>Identifies the platform component of the audit.</p>
 	 */
 	public enum Type {
 		@JsonProperty("Alarm")
@@ -309,14 +306,14 @@ public class AuditRecord {
 	}
 
 	/**
-	 * Metadata of the audit record.
+	 * <p>Metadata of the audit record.</p>
 	 */
 	@JsonIgnoreProperties(ignoreUnknown = true)
 	@JsonInclude(Include.NON_NULL)
 	public static class C8yMetadata {
 	
 		/**
-		 * The action that was carried out.
+		 * <p>The action that was carried out.</p>
 		 */
 		private Action action;
 	
@@ -330,8 +327,7 @@ public class AuditRecord {
 	
 		
 		/**
-		 * The action that was carried out.
-		 * [SUBSCRIBE, DEPLOY, SCALE, DELETE]
+		 * <p>The action that was carried out.</p>
 		 */
 		public enum Action {
 			@JsonProperty("SUBSCRIBE")
@@ -358,7 +354,6 @@ public class AuditRecord {
 		@Override
 		public String toString() {
 			try {
-				// TODO thats an extensive operation, which only helps debugging
 				return new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(this);
 			} catch (final JsonProcessingException e) {
 			}
@@ -382,27 +377,27 @@ public class AuditRecord {
 	public static class Changes {
 	
 		/**
-		 * The attribute that was changed.
+		 * <p>The attribute that was changed.</p>
 		 */
 		private String attribute;
 	
 		/**
-		 * The type of change that was carried out.
+		 * <p>The type of change that was carried out.</p>
 		 */
 		private ChangeType changeType;
 	
 		/**
-		 * The new value of the object.
+		 * <p>The new value of the object.</p>
 		 */
 		private Object newValue;
 	
 		/**
-		 * The previous value of the object.
+		 * <p>The previous value of the object.</p>
 		 */
 		private Object previousValue;
 	
 		/**
-		 * The type of the object.
+		 * <p>The type of the object.</p>
 		 */
 		private String type;
 	
@@ -448,8 +443,7 @@ public class AuditRecord {
 	
 		
 		/**
-		 * The type of change that was carried out.
-		 * [ADDED, REPLACED]
+		 * <p>The type of change that was carried out.</p>
 		 */
 		public enum ChangeType {
 			@JsonProperty("ADDED")
@@ -472,7 +466,6 @@ public class AuditRecord {
 		@Override
 		public String toString() {
 			try {
-				// TODO thats an extensive operation, which only helps debugging
 				return new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(this);
 			} catch (final JsonProcessingException e) {
 			}
@@ -493,19 +486,19 @@ public class AuditRecord {
 
 
 	/**
-	 * The managed object to which the audit is associated.
+	 * <p>The managed object to which the audit is associated.</p>
 	 */
 	@JsonIgnoreProperties(ignoreUnknown = true)
 	@JsonInclude(Include.NON_NULL)
 	public static class Source {
 	
 		/**
-		 * Unique identifier of the object.
+		 * <p>Unique identifier of the object.</p>
 		 */
 		private String id;
 	
 		/**
-		 * A URL linking to this resource.
+		 * <p>A URL linking to this resource.</p>
 		 */
 		private String self;
 	
@@ -535,7 +528,6 @@ public class AuditRecord {
 		@Override
 		public String toString() {
 			try {
-				// TODO thats an extensive operation, which only helps debugging
 				return new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(this);
 			} catch (final JsonProcessingException e) {
 			}
@@ -601,7 +593,6 @@ public class AuditRecord {
 	@Override
 	public String toString() {
 		try {
-			// TODO thats an extensive operation, which only helps debugging
 			return new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(this);
 		} catch (final JsonProcessingException e) {
 		}

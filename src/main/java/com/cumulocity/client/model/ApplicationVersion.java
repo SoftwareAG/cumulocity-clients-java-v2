@@ -1,4 +1,4 @@
-// Copyright (c) 2014-2022 Software AG, Darmstadt, Germany and/or Software AG USA Inc., Reston, VA, USA, and/or its subsidiaries and/or its affiliates and/or their licensors.
+// Copyright (c) 2014-2023 Software AG, Darmstadt, Germany and/or Software AG USA Inc., Reston, VA, USA, and/or its subsidiaries and/or its affiliates and/or their licensors.
 // Use, reproduction, transfer, publication or disclosure is prohibited except as specifically provided for in your License Agreement with Software AG.	
 
 package com.cumulocity.client.model;
@@ -14,17 +14,17 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class ApplicationVersion {
 
 	/**
-	 * Unique identifier of the version.
+	 * <p>Unique identifier of the version.</p>
 	 */
 	private String version;
 
 	/**
-	 * Unique identifier of the binary file assigned to the version.
+	 * <p>Unique identifier of the binary file assigned to the version.</p>
 	 */
 	private String binaryId;
 
 	/**
-	 * Tag assigned to the version. Version tags must be unique across all versions and version fields of application versions.
+	 * <p>Tag assigned to the version. Version tags must be unique across all versions and version fields of application versions.</p>
 	 */
 	private String[] tag;
 
@@ -55,7 +55,6 @@ public class ApplicationVersion {
 	@Override
 	public String toString() {
 		try {
-			// TODO thats an extensive operation, which only helps debugging
 			return new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(this);
 		} catch (final JsonProcessingException e) {
 		}

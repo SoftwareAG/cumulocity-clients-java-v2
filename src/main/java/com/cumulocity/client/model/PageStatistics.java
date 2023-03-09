@@ -1,4 +1,4 @@
-// Copyright (c) 2014-2022 Software AG, Darmstadt, Germany and/or Software AG USA Inc., Reston, VA, USA, and/or its subsidiaries and/or its affiliates and/or their licensors.
+// Copyright (c) 2014-2023 Software AG, Darmstadt, Germany and/or Software AG USA Inc., Reston, VA, USA, and/or its subsidiaries and/or its affiliates and/or their licensors.
 // Use, reproduction, transfer, publication or disclosure is prohibited except as specifically provided for in your License Agreement with Software AG.	
 
 package com.cumulocity.client.model;
@@ -10,32 +10,32 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
- * Information about paging statistics.
+ * <p>Information about paging statistics.</p>
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(Include.NON_NULL)
 public class PageStatistics {
 
 	/**
-	 * The current page of the paginated results.
+	 * <p>The current page of the paginated results.</p>
 	 */
 	private int currentPage;
 
 	/**
-	 * Indicates the number of objects that the collection may contain per page. The upper limit for one page is 2,000 objects.
+	 * <p>Indicates the number of objects that the collection may contain per page. The upper limit for one page is 2,000 objects.</p>
 	 */
 	private int pageSize;
 
 	/**
-	 * The total number of results (elements).
+	 * <p>The total number of results (elements).</p>
 	 */
 	private int totalElements;
 
 	/**
-	 * The total number of paginated results (pages).
-	 * 
-	 * > **&#9432; Info:** This property is returned by default except when an operation retrieves all records where values are between an upper and lower boundary, for example, querying ranges using `dateFrom`–`dateTo`. In such cases, the query parameter `withTotalPages=true` should be used to include the total number of pages (at the expense of slightly slower performance).
-	 * 
+	 * <p>The total number of paginated results (pages).</p>
+	 * <blockquote>
+	 * <p><strong>ⓘ Info:</strong> This property is returned by default except when an operation retrieves all records where values are between an upper and lower boundary, for example, querying ranges using <code>dateFrom</code>–<code>dateTo</code>. In such cases, the query parameter <code>withTotalPages=true</code> should be used to include the total number of pages (at the expense of slightly slower performance).</p>
+	 * </blockquote>
 	 */
 	private int totalPages;
 
@@ -74,7 +74,6 @@ public class PageStatistics {
 	@Override
 	public String toString() {
 		try {
-			// TODO thats an extensive operation, which only helps debugging
 			return new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(this);
 		} catch (final JsonProcessingException e) {
 		}

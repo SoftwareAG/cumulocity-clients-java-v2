@@ -1,4 +1,4 @@
-// Copyright (c) 2014-2022 Software AG, Darmstadt, Germany and/or Software AG USA Inc., Reston, VA, USA, and/or its subsidiaries and/or its affiliates and/or their licensors.
+// Copyright (c) 2014-2023 Software AG, Darmstadt, Germany and/or Software AG USA Inc., Reston, VA, USA, and/or its subsidiaries and/or its affiliates and/or their licensors.
 // Use, reproduction, transfer, publication or disclosure is prohibited except as specifically provided for in your License Agreement with Software AG.	
 
 package com.cumulocity.client.model;
@@ -10,74 +10,74 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
- * The current user.
+ * <p>The current user.</p>
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(Include.NON_NULL)
 public class CurrentUser {
 
 	/**
-	 * A list of user roles.
+	 * <p>A list of user roles.</p>
 	 */
 	private Role[] effectiveRoles;
 
 	/**
-	 * The user's email address.
+	 * <p>The user's email address.</p>
 	 */
 	private String email;
 
 	/**
-	 * The user's first name.
+	 * <p>The user's first name.</p>
 	 */
 	private String firstName;
 
 	/**
-	 * A unique identifier for this user.
+	 * <p>A unique identifier for this user.</p>
 	 */
 	private String id;
 
 	/**
-	 * The user's last name.
+	 * <p>The user's last name.</p>
 	 */
 	private String lastName;
 
 	/**
-	 * The date and time when the user's password was last changed, in [ISO 8601 datetime format](https://www.w3.org/TR/NOTE-datetime).
+	 * <p>The date and time when the user's password was last changed, in <a href="https://www.w3.org/TR/NOTE-datetime">ISO 8601 datetime format</a>.</p>
 	 */
 	private String lastPasswordChange;
 
 	/**
-	 * The user's password. Only Latin1 characters are allowed.
+	 * <p>The user's password. Only Latin1 characters are allowed.</p>
 	 */
 	private String password;
 
 	/**
-	 * The user's phone number.
+	 * <p>The user's phone number.</p>
 	 */
 	private String phone;
 
 	/**
-	 * A URL linking to this resource.
+	 * <p>A URL linking to this resource.</p>
 	 */
 	private String self;
 
 	/**
-	 * Indicates if the user should reset the password on the next login.
+	 * <p>Indicates if the user should reset the password on the next login.</p>
 	 */
 	private boolean shouldResetPassword;
 
 	/**
-	 * Indicates if the user has to use two-factor authentication to log in.
+	 * <p>Indicates if the user has to use two-factor authentication to log in.</p>
 	 */
 	private boolean twoFactorAuthenticationEnabled;
 
 	/**
-	 * The user's username. It can have a maximum of 1000 characters.
+	 * <p>The user's username. It can have a maximum of 1000 characters.</p>
 	 */
 	private String userName;
 
 	/**
-	 * An object with a list of the user's device permissions.
+	 * <p>An object with a list of the user's device permissions.</p>
 	 */
 	@Deprecated
 	private DevicePermissions devicePermissions;
@@ -189,7 +189,6 @@ public class CurrentUser {
 	@Override
 	public String toString() {
 		try {
-			// TODO thats an extensive operation, which only helps debugging
 			return new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(this);
 		} catch (final JsonProcessingException e) {
 		}

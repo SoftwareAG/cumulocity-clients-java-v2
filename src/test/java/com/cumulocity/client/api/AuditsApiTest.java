@@ -26,7 +26,7 @@ public class AuditsApiTest {
 		final HttpAuthenticationFeature feature = HttpAuthenticationFeature.basic("userName", "password");
 		clientConfig.register(feature);
 		final Client client = ClientBuilder.newClient(clientConfig);
-		final WebTarget webTarget = client.target("endpoint");
+		final WebTarget webTarget = client.target("https://endpoint");
 		service = new AuditsApi(webTarget);
 	}
 

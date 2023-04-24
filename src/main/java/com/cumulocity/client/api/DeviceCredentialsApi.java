@@ -111,13 +111,13 @@ public class DeviceCredentialsApi extends AdaptableApi {
 	 * <p>Example file:</p>
 	 * <pre>
 	 * ID;CREDENTIALS;TYPE;NAME;ICCID;IDTYPE;PATH;SHELL
-	 * id_101;abcd1234;type_of_device;Device 101;111111111;;csv device/subgroup0;1
-	 * id_102;abcd1234;type_of_device;Device 102;222222222;;csv device/subgroup0;0
-	 * id_111;abcd1234;type_of_device;Device 111;333333333;c8y_Imei;csv device1/subgroup1;0
-	 * id_112;abcd1234;type_of_device;Device 112;444444444;;csv device1/subgroup1;1
-	 * id_121;abcd1234;type_of_device;Device 121;555555555;;csv device1/subgroup2;1
-	 * id_122;abcd1234;type_of_device;Device 122;;;csv device1/subgroup2;
-	 * id_131;abcd1234;type_of_device;Device 131;;;csv device1/subgroup3;
+	 * id_101;AbcD1234!1234AbcD;type_of_device;Device 101;111111111;;csv device/subgroup0;1
+	 * id_102;AbcD1234!1234AbcD;type_of_device;Device 102;222222222;;csv device/subgroup0;0
+	 * id_111;AbcD1234!1234AbcD;type_of_device;Device 111;333333333;c8y_Imei;csv device1/subgroup1;0
+	 * id_112;AbcD1234!1234AbcD;type_of_device;Device 112;444444444;;csv device1/subgroup1;1
+	 * id_121;AbcD1234!1234AbcD;type_of_device;Device 121;555555555;;csv device1/subgroup2;1
+	 * id_122;AbcD1234!1234AbcD;type_of_device;Device 122;;;csv device1/subgroup2;
+	 * id_131;AbcD1234!1234AbcD;type_of_device;Device 131;;;csv device1/subgroup3;
 	 * </pre>
 	 * <p>There is also a simple registration method that creates all registration requests at once, then each one needs to go through regular acceptance.This simple registration only makes use of the ID and PATH fields from the list above.</p>
 	 * <section><h5>Required roles</h5>

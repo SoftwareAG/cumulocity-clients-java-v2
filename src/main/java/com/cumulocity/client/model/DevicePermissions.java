@@ -10,11 +10,31 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
- * <p>An object with a list of the user's device permissions.</p>
+ * <p>A list of device permissions.</p>
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(Include.NON_NULL)
 public class DevicePermissions {
+
+	private User[] users;
+
+	private Group[] groups;
+
+	public User[] getUsers() {
+		return users;
+	}
+	
+	public void setUsers(final User[] users) {
+		this.users = users;
+	}
+
+	public Group[] getGroups() {
+		return groups;
+	}
+	
+	public void setGroups(final Group[] groups) {
+		this.groups = groups;
+	}
 
 	@Override
 	public String toString() {
@@ -25,4 +45,14 @@ public class DevicePermissions {
 		return super.toString();
 	}
 
+	@Override
+	public boolean equals(final Object r) {
+		if (r != null && r instanceof DevicePermissions) {
+			DevicePermissions comparer = (DevicePermissions) r;
+			if (comparer.getUsers().equals(this.getUsers()) && comparer.getGroups().equals(this.getGroups())) {
+				return true;
+			}
+		}
+		return false;
+	}
 }

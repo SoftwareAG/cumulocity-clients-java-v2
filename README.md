@@ -11,7 +11,7 @@ import jakarta.ws.rs.client.WebTarget;
 
 final Client client = ClientBuilder.newClient();
 final WebTarget webTarget = client.target("endpoint");
-final SystemOptionsApi service = new SystemOptionsApi(webTarget);
+final CurrentUserApi service = new CurrentUserApi(webTarget);
 ```
 
 The resource implementation returns an instance of `java.util.concurrent.CompletionStage<T>` to allow developers to process a response using reactive concepts. Convert the `CompletionStage` into a completeable `Future` using `#toCompletableFuture()` and invoke either `#get()` or `#join()` on the `Future`. Both methods will wait until a response is received.  

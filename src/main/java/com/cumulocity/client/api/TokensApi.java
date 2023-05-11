@@ -32,6 +32,14 @@ public class TokensApi extends AdaptableApi {
 	 * 	</li>
 	 * 	<li><p>The token expiration duration.</p>
 	 * 	</li>
+	 * 	<li><p>The option to disable signing of the token by the Cumulocity IoT platform.</p>
+	 * 	</li>
+	 * 	<li><p>The subscription type that the token should be associated with.</p>
+	 * 	</li>
+	 * 	<li><p>The option to use the token to create shared consumers of the subscription.</p>
+	 * 	</li>
+	 * 	<li><p>The option to select the non-persistent variant of the subscription, if one exists.</p>
+	 * 	</li>
 	 * </ul>
 	 * <section><h5>Required roles</h5>
 	 * ROLE_NOTIFICATION_2_ADMIN

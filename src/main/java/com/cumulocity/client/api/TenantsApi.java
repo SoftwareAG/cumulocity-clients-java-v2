@@ -63,13 +63,22 @@ public class TenantsApi extends AdaptableApi {
 	 * <p>When set to <code>true</code>, the returned result will contain in the statistics object the total number of elements. Only applicable on <a href="https://en.wikipedia.org/wiki/Range_query_(database)">range queries</a>.</p>
 	 * @param withTotalPages
 	 * <p>When set to <code>true</code>, the returned result will contain in the statistics object the total number of pages. Only applicable on <a href="https://en.wikipedia.org/wiki/Range_query_(database)">range queries</a>.</p>
+	 * @param company
+	 * <p>Company name associated with the Cumulocity IoT tenant.</p>
+	 * @param domain
+	 * <p>Domain name of the Cumulocity IoT tenant.</p>
+	 * @param parent
+	 * <p>Identifier of the Cumulocity IoT tenant's parent.</p>
 	 */
-	public CompletionStage<TenantCollection> getTenants(final int currentPage, final int pageSize, final boolean withTotalElements, final boolean withTotalPages) {
+	public CompletionStage<TenantCollection> getTenants(final int currentPage, final int pageSize, final boolean withTotalElements, final boolean withTotalPages, final String company, final String domain, final String parent) {
 		return adapt().path("tenant").path("tenants")
 			.queryParam("currentPage", currentPage)
 			.queryParam("pageSize", pageSize)
 			.queryParam("withTotalElements", withTotalElements)
 			.queryParam("withTotalPages", withTotalPages)
+			.queryParam("company", company)
+			.queryParam("domain", domain)
+			.queryParam("parent", parent)
 			.request()
 			.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.tenantcollection+json")
 			.rx()
@@ -148,7 +157,7 @@ public class TenantsApi extends AdaptableApi {
 	 * <p>Retrieve a specific tenant</p>
 	 * <p>Retrieve a specific tenant by a given ID.</p>
 	 * <section><h5>Required roles</h5>
-	 * ROLE_TENANT_MANAGEMENT_READ <b>AND</b> the current tenant is its parent <b>OR</b> is the management tenant
+	 * ROLE_TENANT_MANAGEMENT_READ <b>AND</b> (the current tenant is its parent <b>OR</b> is the management tenant)
 	 * </section>
 	 * <h5>Response Codes</h5>
 	 * <p>The following table gives an overview of the possible response codes and their meanings:</p>
@@ -178,7 +187,8 @@ public class TenantsApi extends AdaptableApi {
 	 * <p>Update a specific tenant</p>
 	 * <p>Update a specific tenant by a given ID.</p>
 	 * <section><h5>Required roles</h5>
-	 * (ROLE_TENANT_MANAGEMENT_ADMIN <b>OR</b> ROLE_TENANT_MANAGEMENT_UPDATE) <b>AND</b> (the current tenant is its parent <b>AND</b> the current tenant is allowed to create subtenants) <b>OR</b> is the management tenant
+	 * (ROLE_TENANT_MANAGEMENT_ADMIN <b>OR</b> ROLE_TENANT_MANAGEMENT_UPDATE) <b>AND</b><br>
+	 * ((the current tenant is its parent <b>AND</b> the current tenant is allowed to create subtenants) <b>OR</b> is the management tenant)
 	 * </section>
 	 * <h5>Response Codes</h5>
 	 * <p>The following table gives an overview of the possible response codes and their meanings:</p>

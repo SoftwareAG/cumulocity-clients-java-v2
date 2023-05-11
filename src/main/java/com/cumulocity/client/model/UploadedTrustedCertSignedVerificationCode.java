@@ -21,6 +21,13 @@ public class UploadedTrustedCertSignedVerificationCode {
 	 */
 	private String proofOfPossessionSignedVerificationCode;
 
+	public UploadedTrustedCertSignedVerificationCode() {
+	}
+
+	public UploadedTrustedCertSignedVerificationCode(final String proofOfPossessionSignedVerificationCode) {
+		this.proofOfPossessionSignedVerificationCode = proofOfPossessionSignedVerificationCode;
+	}
+
 	public String getProofOfPossessionSignedVerificationCode() {
 		return proofOfPossessionSignedVerificationCode;
 	}

@@ -9,9 +9,11 @@ import jakarta.ws.rs.client.Entity;
 import jakarta.ws.rs.client.WebTarget;
 import jakarta.ws.rs.core.Response;
 import com.cumulocity.client.supplementary.AdaptableApi;
+import com.cumulocity.client.model.UploadedTrustedCertificate;
+import com.cumulocity.client.model.UploadedTrustedCertificateCollection;
 import com.cumulocity.client.model.TrustedCertificate;
-import com.cumulocity.client.model.TrustedCertificateCollection;
 import com.cumulocity.client.model.UploadedTrustedCertSignedVerificationCode;
+import com.cumulocity.client.model.TrustedCertificateCollection;
 
 /**
  * <p>API methods for managing trusted certificates used to establish device connections via MQTT.</p>
@@ -92,20 +94,18 @@ public class TrustedCertificatesApi extends AdaptableApi {
 	 * @param body
 	 * @param tenantId
 	 * <p>Unique identifier of a Cumulocity IoT tenant.</p>
+	 * @param xCumulocityProcessingMode
+	 * <p>Used to explicitly control the processing mode of the request. See <a href="#processing-mode">Processing mode</a> for more details.</p>
+	 * @param addToTrustStore
+	 * <p>If set to <code>true</code> the certificate is added to the truststore.</p>
+	 * <p>The truststore contains all trusted certificates. A connection to a device is only established if it connects to Cumulocity IoT with a certificate in the truststore.</p>
 	 */
-	public CompletionStage<TrustedCertificate> addTrustedCertificate(final TrustedCertificate body, final String tenantId) {
+	public CompletionStage<TrustedCertificate> addTrustedCertificate(final UploadedTrustedCertificate body, final String tenantId, final String xCumulocityProcessingMode, final boolean addToTrustStore) {
 		final JsonNode jsonNode = toJsonNode(body);
-		removeFromNode(jsonNode, "notAfter");
-		removeFromNode(jsonNode, "serialNumber");
-		removeFromNode(jsonNode, "subject");
-		removeFromNode(jsonNode, "fingerprint");
-		removeFromNode(jsonNode, "self");
-		removeFromNode(jsonNode, "algorithmName");
-		removeFromNode(jsonNode, "version");
-		removeFromNode(jsonNode, "issuer");
-		removeFromNode(jsonNode, "notBefore");
 		return adapt().path("tenant").path("tenants").path(valueOf(tenantId)).path("trusted-certificates")
+			.queryParam("addToTrustStore", addToTrustStore)
 			.request()
+			.header("X-Cumulocity-Processing-Mode", xCumulocityProcessingMode)
 			.header("Content-Type", "application/json")
 			.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/json")
 			.rx()
@@ -136,14 +136,18 @@ public class TrustedCertificatesApi extends AdaptableApi {
 	 * @param body
 	 * @param tenantId
 	 * <p>Unique identifier of a Cumulocity IoT tenant.</p>
+	 * @param addToTrustStore
+	 * <p>If set to <code>true</code> the certificate is added to the truststore.</p>
+	 * <p>The truststore contains all trusted certificates. A connection to a device is only established if it connects to Cumulocity IoT with a certificate in the truststore.</p>
 	 */
-	public CompletionStage<TrustedCertificateCollection> addTrustedCertificates(final TrustedCertificateCollection body, final String tenantId) {
+	public CompletionStage<TrustedCertificateCollection> addTrustedCertificates(final UploadedTrustedCertificateCollection body, final String tenantId, final boolean addToTrustStore) {
 		final JsonNode jsonNode = toJsonNode(body);
 		removeFromNode(jsonNode, "next");
 		removeFromNode(jsonNode, "prev");
 		removeFromNode(jsonNode, "self");
 		removeFromNode(jsonNode, "statistics");
 		return adapt().path("tenant").path("tenants").path(valueOf(tenantId)).path("trusted-certificates").path("bulk")
+			.queryParam("addToTrustStore", addToTrustStore)
 			.request()
 			.header("Content-Type", "application/json")
 			.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/json")
@@ -206,16 +210,19 @@ public class TrustedCertificatesApi extends AdaptableApi {
 	 */
 	public CompletionStage<TrustedCertificate> updateTrustedCertificate(final TrustedCertificate body, final String tenantId, final String fingerprint) {
 		final JsonNode jsonNode = toJsonNode(body);
+		removeFromNode(jsonNode, "proofOfPossessionValid");
 		removeFromNode(jsonNode, "notAfter");
 		removeFromNode(jsonNode, "serialNumber");
+		removeFromNode(jsonNode, "proofOfPossessionVerificationCodeUsableUntil");
 		removeFromNode(jsonNode, "subject");
-		removeFromNode(jsonNode, "fingerprint");
-		removeFromNode(jsonNode, "self");
-		removeFromNode(jsonNode, "certInPemFormat");
 		removeFromNode(jsonNode, "algorithmName");
 		removeFromNode(jsonNode, "version");
 		removeFromNode(jsonNode, "issuer");
 		removeFromNode(jsonNode, "notBefore");
+		removeFromNode(jsonNode, "proofOfPossessionUnsignedVerificationCode");
+		removeFromNode(jsonNode, "fingerprint");
+		removeFromNode(jsonNode, "self");
+		removeFromNode(jsonNode, "certInPemFormat");
 		return adapt().path("tenant").path("tenants").path(valueOf(tenantId)).path("trusted-certificates").path(valueOf(fingerprint))
 			.request()
 			.header("Content-Type", "application/json")

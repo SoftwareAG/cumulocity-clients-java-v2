@@ -218,10 +218,10 @@ public class ApplicationsApi extends AdaptableApi {
 	 * 
 	 * @param id
 	 * <p>Unique identifier of the application.</p>
-	 * @param force
-	 * <p>Force deletion by unsubscribing all tenants from the application first and then deleting the application itself.</p>
 	 * @param xCumulocityProcessingMode
 	 * <p>Used to explicitly control the processing mode of the request. See <a href="#processing-mode">Processing mode</a> for more details.</p>
+	 * @param force
+	 * <p>Force deletion by unsubscribing all tenants from the application first and then deleting the application itself.</p>
 	 */
 	public CompletionStage<Response> deleteApplication(final String id, final boolean force, final String xCumulocityProcessingMode) {
 		return adapt().path("application").path("applications").path(valueOf(id))

@@ -55,6 +55,21 @@ public class TrustedCertificate {
 	private String notBefore;
 
 	/**
+	 * <p>Indicates whether the proof of possession for the certificate was provided.</p>
+	 */
+	private boolean proofOfPossessionValid;
+
+	/**
+	 * <p>An unsigned verification code that provides proof of possession for the certificate after signing.</p>
+	 */
+	private String proofOfPossessionUnsignedVerificationCode;
+
+	/**
+	 * <p>Validity of the verification code.</p>
+	 */
+	private String proofOfPossessionVerificationCodeUsableUntil;
+
+	/**
 	 * <p>A URL linking to this resource.</p>
 	 */
 	private String self;
@@ -143,6 +158,30 @@ public class TrustedCertificate {
 		this.notBefore = notBefore;
 	}
 
+	public boolean getProofOfPossessionValid() {
+		return proofOfPossessionValid;
+	}
+	
+	public void setProofOfPossessionValid(final boolean proofOfPossessionValid) {
+		this.proofOfPossessionValid = proofOfPossessionValid;
+	}
+
+	public String getProofOfPossessionUnsignedVerificationCode() {
+		return proofOfPossessionUnsignedVerificationCode;
+	}
+	
+	public void setProofOfPossessionUnsignedVerificationCode(final String proofOfPossessionUnsignedVerificationCode) {
+		this.proofOfPossessionUnsignedVerificationCode = proofOfPossessionUnsignedVerificationCode;
+	}
+
+	public String getProofOfPossessionVerificationCodeUsableUntil() {
+		return proofOfPossessionVerificationCodeUsableUntil;
+	}
+	
+	public void setProofOfPossessionVerificationCodeUsableUntil(final String proofOfPossessionVerificationCodeUsableUntil) {
+		this.proofOfPossessionVerificationCodeUsableUntil = proofOfPossessionVerificationCodeUsableUntil;
+	}
+
 	public String getSelf() {
 		return self;
 	}
@@ -218,7 +257,7 @@ public class TrustedCertificate {
 	public boolean equals(final Object r) {
 		if (r != null && r instanceof TrustedCertificate) {
 			TrustedCertificate comparer = (TrustedCertificate) r;
-			if (String.valueOf(comparer.getAlgorithmName()).equals(String.valueOf(this.getAlgorithmName())) && Boolean.valueOf(comparer.getAutoRegistrationEnabled()).equals(Boolean.valueOf(this.getAutoRegistrationEnabled())) && String.valueOf(comparer.getCertInPemFormat()).equals(String.valueOf(this.getCertInPemFormat())) && String.valueOf(comparer.getFingerprint()).equals(String.valueOf(this.getFingerprint())) && String.valueOf(comparer.getIssuer()).equals(String.valueOf(this.getIssuer())) && String.valueOf(comparer.getName()).equals(String.valueOf(this.getName())) && String.valueOf(comparer.getNotAfter()).equals(String.valueOf(this.getNotAfter())) && String.valueOf(comparer.getNotBefore()).equals(String.valueOf(this.getNotBefore())) && String.valueOf(comparer.getSelf()).equals(String.valueOf(this.getSelf())) && String.valueOf(comparer.getSerialNumber()).equals(String.valueOf(this.getSerialNumber())) && comparer.getStatus().equals(this.getStatus()) && String.valueOf(comparer.getSubject()).equals(String.valueOf(this.getSubject())) && Integer.valueOf(comparer.getVersion()).equals(Integer.valueOf(this.getVersion()))) {
+			if (String.valueOf(comparer.getAlgorithmName()).equals(String.valueOf(this.getAlgorithmName())) && Boolean.valueOf(comparer.getAutoRegistrationEnabled()).equals(Boolean.valueOf(this.getAutoRegistrationEnabled())) && String.valueOf(comparer.getCertInPemFormat()).equals(String.valueOf(this.getCertInPemFormat())) && String.valueOf(comparer.getFingerprint()).equals(String.valueOf(this.getFingerprint())) && String.valueOf(comparer.getIssuer()).equals(String.valueOf(this.getIssuer())) && String.valueOf(comparer.getName()).equals(String.valueOf(this.getName())) && String.valueOf(comparer.getNotAfter()).equals(String.valueOf(this.getNotAfter())) && String.valueOf(comparer.getNotBefore()).equals(String.valueOf(this.getNotBefore())) && Boolean.valueOf(comparer.getProofOfPossessionValid()).equals(Boolean.valueOf(this.getProofOfPossessionValid())) && String.valueOf(comparer.getProofOfPossessionUnsignedVerificationCode()).equals(String.valueOf(this.getProofOfPossessionUnsignedVerificationCode())) && String.valueOf(comparer.getProofOfPossessionVerificationCodeUsableUntil()).equals(String.valueOf(this.getProofOfPossessionVerificationCodeUsableUntil())) && String.valueOf(comparer.getSelf()).equals(String.valueOf(this.getSelf())) && String.valueOf(comparer.getSerialNumber()).equals(String.valueOf(this.getSerialNumber())) && comparer.getStatus().equals(this.getStatus()) && String.valueOf(comparer.getSubject()).equals(String.valueOf(this.getSubject())) && Integer.valueOf(comparer.getVersion()).equals(Integer.valueOf(this.getVersion()))) {
 				return true;
 			}
 		}

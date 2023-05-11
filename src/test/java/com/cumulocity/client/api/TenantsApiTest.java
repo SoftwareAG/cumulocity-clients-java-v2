@@ -34,7 +34,7 @@ public class TenantsApiTest {
     public void testGetTenants() {
     	Object response = null;
     	try {
-    		response = service.getTenants(1, 5, false, false).toCompletableFuture().get();
+    		response = service.getTenants(1, 5, false, false, null, null, null).toCompletableFuture().get();
     	} catch (InterruptedException | ExecutionException e) {
     		e.printStackTrace();
     	}

@@ -201,6 +201,22 @@ public class MeasurementsApi extends AdaptableApi {
 	 * <blockquote>
 	 * <p><strong>⚠️ Important:</strong> Note that it is possible to call this endpoint without providing any parameter - it may result in deleting all measurements and it is not recommended.</p>
 	 * </blockquote>
+	 * <p>In case of enhanced time series measurements, both <code>dateFrom</code> and <code>dateTo</code> parameters must be truncated to full hours (for example, 2022-08-19T14:00:00.000Z), otherwise an error will be returned.The <code>fragmentType</code> parameter allows to delete measurements only by a measurement fragment when enhanced time series measurements are used.It's not possible to delete by a custom (non-measurement) fragment.</p>
+	 * <p>Example for a valid measurement value fragment:</p>
+	 * <pre>
+	 * "c8y_TemperatureMeasurement": {
+	 *     "T": {
+	 *       "value": 28,
+	 *       "unit": "C"
+	 *     }
+	 * }
+	 * </pre>
+	 * <p>In the example above <code>c8y_TemperatureMeasurement</code> is called fragment and <code>T</code> is called series.</p>
+	 * <p>Example for a non-measurement fragment:</p>
+	 * <pre>
+	 * "c8y_TemperatureMeasurement": 28
+	 * </pre>
+	 * <p>Enhanced Time series measurements will not allow to delete by fragment specific like above.</p>
 	 * <section><h5>Required roles</h5>
 	 * ROLE_MEASUREMENT_ADMIN
 	 * </section>
@@ -212,6 +228,8 @@ public class MeasurementsApi extends AdaptableApi {
 	 * 	<li><p>HTTP 401 <p>Authentication information is missing or invalid.</p></p>
 	 * 	</li>
 	 * 	<li><p>HTTP 403 <p>Not authorized to perform this operation.</p></p>
+	 * 	</li>
+	 * 	<li><p>HTTP 422 <p>Unprocessable Entity – invalid payload.</p></p>
 	 * 	</li>
 	 * </ul>
 	 * 
@@ -244,7 +262,7 @@ public class MeasurementsApi extends AdaptableApi {
 	
 	/**
 	 * <p>Retrieve a specific measurement</p>
-	 * <p>Retrieve a specific measurement by a given ID.</p>
+	 * <p>Retrieve a specific measurement by a given ID.Note that you cannot retrieve time series measurements by ID.Instead you can search for such measurements via query parameters.No behavior changes for tenants which do not have time series enabled.</p>
 	 * <section><h5>Required roles</h5>
 	 * ROLE_MEASUREMENT_READ <b>OR</b> owner of the source <b>OR</b> MEASUREMENT_READ permission on the source
 	 * </section>
@@ -272,7 +290,7 @@ public class MeasurementsApi extends AdaptableApi {
 	
 	/**
 	 * <p>Remove a specific measurement</p>
-	 * <p>Remove a specific measurement by a given ID.</p>
+	 * <p>Remove a specific measurement by a given ID.Note that you cannot delete time series measurements by ID.Instead, you can delete by query or use the retention rules to remove expired measurements data from the Operational Store.No behavior changes for tenants which do not have time series enabled.</p>
 	 * <section><h5>Required roles</h5>
 	 * ROLE_MEASUREMENT_ADMIN <b>OR</b> owner of the source <b>OR</b> MEASUREMENT_ADMIN permission on the source
 	 * </section>

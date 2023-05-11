@@ -46,15 +46,25 @@ public class SubscriptionsApi extends AdaptableApi {
 	 * <p>Indicates how many entries of the collection shall be returned. The upper limit for one page is 2,000 objects.</p>
 	 * @param source
 	 * <p>The managed object ID to which the subscription is associated.</p>
+	 * @param subscription
+	 * <p>The subscription name by which filtering will be done.</p>
+	 * @param typeFilter
+	 * <p>The type used to filter subscriptions. This will check the subscription's <code>subscriptionFilter.typeFilter</code> field.</p>
+	 * <p><strong>ⓘ Info:</strong> Filtering by <code>typeFilter</code> may affect paging. Additional post filtering may be performed if OData-like expressions are used in the subscriptions.</p>
+	 * @param withTotalElements
+	 * <p>When set to <code>true</code>, the returned result will contain in the statistics object the total number of elements. Only applicable on <a href="https://en.wikipedia.org/wiki/Range_query_(database)">range queries</a>.</p>
 	 * @param withTotalPages
 	 * <p>When set to <code>true</code>, the returned result will contain in the statistics object the total number of pages. Only applicable on <a href="https://en.wikipedia.org/wiki/Range_query_(database)">range queries</a>.</p>
 	 */
-	public CompletionStage<NotificationSubscriptionCollection> getSubscriptions(final String context, final int currentPage, final int pageSize, final String source, final boolean withTotalPages) {
+	public CompletionStage<NotificationSubscriptionCollection> getSubscriptions(final String context, final int currentPage, final int pageSize, final String source, final String subscription, final String typeFilter, final boolean withTotalElements, final boolean withTotalPages) {
 		return adapt().path("notification2").path("subscriptions")
 			.queryParam("context", context)
 			.queryParam("currentPage", currentPage)
 			.queryParam("pageSize", pageSize)
 			.queryParam("source", source)
+			.queryParam("subscription", subscription)
+			.queryParam("typeFilter", typeFilter)
+			.queryParam("withTotalElements", withTotalElements)
 			.queryParam("withTotalPages", withTotalPages)
 			.request()
 			.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.subscriptioncollection+json")
@@ -76,6 +86,8 @@ public class SubscriptionsApi extends AdaptableApi {
 	 * 	<li><p>The applicable filter criteria.</p>
 	 * 	</li>
 	 * 	<li><p>The option to only include specific custom fragments in the forwarded data.</p>
+	 * 	</li>
+	 * 	<li><p>The option to use persistent or non-persistent message storage.</p>
 	 * 	</li>
 	 * </ul>
 	 * <section><h5>Required roles</h5>

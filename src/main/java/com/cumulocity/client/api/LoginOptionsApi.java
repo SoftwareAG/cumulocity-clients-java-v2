@@ -7,6 +7,7 @@ import java.util.concurrent.CompletionStage;
 import com.fasterxml.jackson.databind.JsonNode;
 import jakarta.ws.rs.client.Entity;
 import jakarta.ws.rs.client.WebTarget;
+import jakarta.ws.rs.core.Response;
 import com.cumulocity.client.supplementary.AdaptableApi;
 import com.cumulocity.client.model.AuthConfig;
 import com.cumulocity.client.model.AuthConfigAccess;
@@ -26,8 +27,8 @@ public class LoginOptionsApi extends AdaptableApi {
 	}
 
 	/**
-	 * <p>Retrieve the login options</p>
-	 * <p>Retrieve the login options available in the tenant.</p>
+	 * <p>Retrieve all login options</p>
+	 * <p>Retrieve all login options available in the tenant.</p>
 	 * <h5>Response Codes</h5>
 	 * <p>The following table gives an overview of the possible response codes and their meanings:</p>
 	 * <ul>
@@ -77,12 +78,113 @@ public class LoginOptionsApi extends AdaptableApi {
 	public CompletionStage<AuthConfig> createLoginOption(final AuthConfig body) {
 		final JsonNode jsonNode = toJsonNode(body);
 		removeFromNode(jsonNode, "self");
+		removeFromNode(jsonNode, "id");
 		return adapt().path("tenant").path("loginOptions")
 			.request()
 			.header("Content-Type", "application/vnd.com.nsn.cumulocity.authconfig+json")
 			.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.authconfig+json")
 			.rx()
 			.method("POST", Entity.json(jsonNode), AuthConfig.class);
+	}
+	
+	/**
+	 * <p>Retrieve a specific login option</p>
+	 * <p>Retrieve a specific login option in the tenant by the given type or ID.</p>
+	 * <section><h5>Required roles</h5>
+	 * ((ROLE_TENANT_ADMIN <b>OR</b> ROLE_TENANT_MANAGEMENT_ADMIN <b>OR</b> ROLE_USER_MANAGEMENT_OWN_ADMIN <b>OR</b> ROLE_USER_MANAGEMENT_CREATE)
+	 * <b>AND</b> tenant access to login option is not restricted by management tenant)
+	 * </section>
+	 * <h5>Response Codes</h5>
+	 * <p>The following table gives an overview of the possible response codes and their meanings:</p>
+	 * <ul>
+	 * 	<li><p>HTTP 200 <p>The request has succeeded and the login option is sent in the response.</p></p>
+	 * 	</li>
+	 * 	<li><p>HTTP 401 <p>Authentication information is missing or invalid.</p></p>
+	 * 	</li>
+	 * 	<li><p>HTTP 403 <p>Not authorized to perform this operation.</p></p>
+	 * 	</li>
+	 * 	<li><p>HTTP 404 <p>Login option not found.</p></p>
+	 * 	</li>
+	 * </ul>
+	 * 
+	 * @param typeOrId
+	 * <p>The type or ID of the login option. The type's value is case insensitive and can be <code>OAUTH2</code>, <code>OAUTH2_INTERNAL</code> or <code>BASIC</code>.</p>
+	 */
+	public CompletionStage<AuthConfig> getLoginOption(final String typeOrId) {
+		return adapt().path("tenant").path("loginOptions").path(valueOf(typeOrId))
+			.request()
+			.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.authConfig+json")
+			.rx()
+			.method("GET", AuthConfig.class);
+	}
+	
+	/**
+	 * <p>Update a specific login option</p>
+	 * <p>Update a specific login option in the tenant by a given type or ID.</p>
+	 * <section><h5>Required roles</h5>
+	 * ((ROLE_TENANT_ADMIN <b>OR</b> ROLE_TENANT_MANAGEMENT_ADMIN)
+	 * <b>AND</b> tenant access to login option is not restricted by management tenant)
+	 * </section>
+	 * <h5>Response Codes</h5>
+	 * <p>The following table gives an overview of the possible response codes and their meanings:</p>
+	 * <ul>
+	 * 	<li><p>HTTP 200 <p>A login option was updated.</p></p>
+	 * 	</li>
+	 * 	<li><p>HTTP 401 <p>Authentication information is missing or invalid.</p></p>
+	 * 	</li>
+	 * 	<li><p>HTTP 403 <p>Not authorized to perform this operation.</p></p>
+	 * 	</li>
+	 * 	<li><p>HTTP 404 <p>Login option not found.</p></p>
+	 * 	</li>
+	 * </ul>
+	 * 
+	 * @param body
+	 * @param typeOrId
+	 * <p>The type or ID of the login option. The type's value is case insensitive and can be <code>OAUTH2</code>, <code>OAUTH2_INTERNAL</code> or <code>BASIC</code>.</p>
+	 * @param xCumulocityProcessingMode
+	 * <p>Used to explicitly control the processing mode of the request. See <a href="#processing-mode">Processing mode</a> for more details.</p>
+	 */
+	public CompletionStage<AuthConfig> updateLoginOption(final AuthConfig body, final String typeOrId, final String xCumulocityProcessingMode) {
+		final JsonNode jsonNode = toJsonNode(body);
+		removeFromNode(jsonNode, "self");
+		return adapt().path("tenant").path("loginOptions").path(valueOf(typeOrId))
+			.request()
+			.header("X-Cumulocity-Processing-Mode", xCumulocityProcessingMode)
+			.header("Content-Type", "application/vnd.com.nsn.cumulocity.authconfig+json")
+			.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.authconfig+json")
+			.rx()
+			.method("PUT", Entity.json(jsonNode), AuthConfig.class);
+	}
+	
+	/**
+	 * <p>Delete a specific login option</p>
+	 * <p>Delete a specific login option in the tenant by a given type or ID.</p>
+	 * <section><h5>Required roles</h5>
+	 * ((ROLE_TENANT_ADMIN <b>OR</b> ROLE_TENANT_MANAGEMENT_ADMIN)
+	 * <b>AND</b> tenant access to login option is not restricted by management tenant)
+	 * </section>
+	 * <h5>Response Codes</h5>
+	 * <p>The following table gives an overview of the possible response codes and their meanings:</p>
+	 * <ul>
+	 * 	<li><p>HTTP 204 <p>A login option was removed.</p></p>
+	 * 	</li>
+	 * 	<li><p>HTTP 401 <p>Authentication information is missing or invalid.</p></p>
+	 * 	</li>
+	 * 	<li><p>HTTP 403 <p>Not authorized to perform this operation.</p></p>
+	 * 	</li>
+	 * 	<li><p>HTTP 404 <p>Login option not found.</p></p>
+	 * 	</li>
+	 * </ul>
+	 * 
+	 * @param typeOrId
+	 * <p>The type or ID of the login option. The type's value is case insensitive and can be <code>OAUTH2</code>, <code>OAUTH2_INTERNAL</code> or <code>BASIC</code>.</p>
+	 */
+	public CompletionStage<Response> deleteLoginOption(final String typeOrId) {
+		return adapt().path("tenant").path("loginOptions").path(valueOf(typeOrId))
+			.request()
+			.header("Accept", "application/json")
+			.rx()
+			.method("DELETE");
 	}
 	
 	/**
@@ -108,7 +210,7 @@ public class LoginOptionsApi extends AdaptableApi {
 	 * @param targetTenant
 	 * <p>Unique identifier of a Cumulocity IoT tenant.</p>
 	 */
-	public CompletionStage<AuthConfig> updateLoginOption(final AuthConfigAccess body, final String typeOrId, final String targetTenant) {
+	public CompletionStage<AuthConfig> updateLoginOptionAccess(final AuthConfigAccess body, final String typeOrId, final String targetTenant) {
 		final JsonNode jsonNode = toJsonNode(body);
 		return adapt().path("tenant").path("loginOptions").path(valueOf(typeOrId)).path("restrict")
 			.queryParam("targetTenant", targetTenant)

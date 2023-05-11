@@ -52,6 +52,11 @@ public class NotificationSubscription {
 	 */
 	private SubscriptionFilter subscriptionFilter;
 
+	/**
+	 * <p>Indicates whether the messages for this subscription are persistent or non-persistent, meaning they can be lost if consumer is not connected.</p>
+	 */
+	private boolean nonPersistent;
+
 	public NotificationSubscription() {
 	}
 
@@ -114,6 +119,14 @@ public class NotificationSubscription {
 	
 	public void setSubscriptionFilter(final SubscriptionFilter subscriptionFilter) {
 		this.subscriptionFilter = subscriptionFilter;
+	}
+
+	public boolean getNonPersistent() {
+		return nonPersistent;
+	}
+	
+	public void setNonPersistent(final boolean nonPersistent) {
+		this.nonPersistent = nonPersistent;
 	}
 
 	
@@ -216,15 +229,24 @@ public class NotificationSubscription {
 	public static class SubscriptionFilter {
 	
 		/**
-		 * <p>The Notifications are available for Alarms, Alarms with children, Device control, Events, Events with children, Inventory and Measurements for the <code>mo</code> context and for Alarms and Inventory for the <code>tenant</code> context. Alternatively, the wildcard <code>*</code> can be used to match all the permissible APIs within the bound context.</p>
+		 * <p>The Notifications are available for Alarms, Alarms with children, Device control, Events, Events with children, Inventory and Measurements for the <code>mo</code> context and for Alarms, Events and Inventory for the <code>tenant</code> context. Alternatively, the wildcard <code>*</code> can be used to match all the permissible APIs within the bound context.</p>
 		 * <blockquote>
-		 * <p><strong>ⓘ Info:</strong> the wildcard <code>*</code> cannot be used in conjunction with other values.</p>
+		 * <p><strong>ⓘ Info:</strong> The wildcard <code>*</code> cannot be used in conjunction with other values.</p>
+		 * </blockquote>
+		 * <blockquote>
+		 * <p><strong>ⓘ Info:</strong> When filtering Events in the <code>tenant</code> context it is required to also specify the <code>typeFilter</code>.</p>
 		 * </blockquote>
 		 */
 		private String[] apis;
 	
 		/**
-		 * <p>The data needs to have the specified value in its <code>type</code> property to meet the filter criteria.</p>
+		 * <p>Used to match the <code>type</code> property of the data. An OData expression must be provided.</p>
+		 * <blockquote>
+		 * <p><strong>ⓘ Info:</strong> The use of a <code>type</code> attribute is assumed, for example when using only a string literal <code>'c8y_Temperature'</code> it is equivalent to a <code>type eq 'c8y_Temperature'</code> OData expression.</p>
+		 * </blockquote>
+		 * <blockquote>
+		 * <p><strong>ⓘ Info:</strong> Currently only the <code>or</code> operator is allowed in the expression mode. Example usage is <code>'c8y_Temperature' or 'c8y_Pressure'</code> which will match all the data with types <code>c8y_Temperature</code> or <code>c8y_Pressure</code>.</p>
+		 * </blockquote>
 		 */
 		private String typeFilter;
 	
@@ -278,7 +300,7 @@ public class NotificationSubscription {
 	public boolean equals(final Object r) {
 		if (r != null && r instanceof NotificationSubscription) {
 			NotificationSubscription comparer = (NotificationSubscription) r;
-			if (comparer.getContext().equals(this.getContext()) && comparer.getFragmentsToCopy().equals(this.getFragmentsToCopy()) && String.valueOf(comparer.getId()).equals(String.valueOf(this.getId())) && String.valueOf(comparer.getSelf()).equals(String.valueOf(this.getSelf())) && comparer.getSource().equals(this.getSource()) && String.valueOf(comparer.getSubscription()).equals(String.valueOf(this.getSubscription())) && comparer.getSubscriptionFilter().equals(this.getSubscriptionFilter())) {
+			if (comparer.getContext().equals(this.getContext()) && comparer.getFragmentsToCopy().equals(this.getFragmentsToCopy()) && String.valueOf(comparer.getId()).equals(String.valueOf(this.getId())) && String.valueOf(comparer.getSelf()).equals(String.valueOf(this.getSelf())) && comparer.getSource().equals(this.getSource()) && String.valueOf(comparer.getSubscription()).equals(String.valueOf(this.getSubscription())) && comparer.getSubscriptionFilter().equals(this.getSubscriptionFilter()) && Boolean.valueOf(comparer.getNonPersistent()).equals(Boolean.valueOf(this.getNonPersistent()))) {
 				return true;
 			}
 		}

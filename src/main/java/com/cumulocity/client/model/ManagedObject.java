@@ -98,6 +98,12 @@ public class ManagedObject {
 	private C8yIsDevice c8yIsDevice;
 
 	/**
+	 * <p>A fragment which identifies this managed object as a device group.</p>
+	 */
+	@JsonProperty(value = "c8y_IsDeviceGroup")
+	private C8yIsDeviceGroup c8yIsDeviceGroup;
+
+	/**
 	 * <p>This fragment must be added in order to publish sample commands for a subset of devices sharing the same device type. If the fragment is present, the list of sample commands for a device type will be extended with the sample commands for the <code>c8y_DeviceTypes</code>. New sample commands created from the user interface will be created in the context of the <code>c8y_DeviceTypes</code>.</p>
 	 */
 	@JsonProperty(value = "c8y_DeviceTypes")
@@ -227,6 +233,14 @@ public class ManagedObject {
 		this.c8yIsDevice = c8yIsDevice;
 	}
 
+	public C8yIsDeviceGroup getC8yIsDeviceGroup() {
+		return c8yIsDeviceGroup;
+	}
+	
+	public void setC8yIsDeviceGroup(final C8yIsDeviceGroup c8yIsDeviceGroup) {
+		this.c8yIsDeviceGroup = c8yIsDeviceGroup;
+	}
+
 	public String[] getC8yDeviceTypes() {
 		return c8yDeviceTypes;
 	}
@@ -258,6 +272,24 @@ public class ManagedObject {
 	@JsonIgnoreProperties(ignoreUnknown = true)
 	@JsonInclude(Include.NON_NULL)
 	public static class C8yIsDevice {
+	
+		@Override
+		public String toString() {
+			try {
+				return new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(this);
+			} catch (final JsonProcessingException e) {
+			}
+			return super.toString();
+		}
+	
+	}
+
+	/**
+	 * <p>A fragment which identifies this managed object as a device group.</p>
+	 */
+	@JsonIgnoreProperties(ignoreUnknown = true)
+	@JsonInclude(Include.NON_NULL)
+	public static class C8yIsDeviceGroup {
 	
 		@Override
 		public String toString() {
@@ -326,7 +358,7 @@ public class ManagedObject {
 	public boolean equals(final Object r) {
 		if (r != null && r instanceof ManagedObject) {
 			ManagedObject comparer = (ManagedObject) r;
-			if (String.valueOf(comparer.getCreationTime()).equals(String.valueOf(this.getCreationTime())) && String.valueOf(comparer.getId()).equals(String.valueOf(this.getId())) && String.valueOf(comparer.getLastUpdated()).equals(String.valueOf(this.getLastUpdated())) && String.valueOf(comparer.getName()).equals(String.valueOf(this.getName())) && String.valueOf(comparer.getOwner()).equals(String.valueOf(this.getOwner())) && String.valueOf(comparer.getSelf()).equals(String.valueOf(this.getSelf())) && String.valueOf(comparer.getType()).equals(String.valueOf(this.getType())) && comparer.getChildAdditions().equals(this.getChildAdditions()) && comparer.getChildAssets().equals(this.getChildAssets()) && comparer.getChildDevices().equals(this.getChildDevices()) && comparer.getAdditionParents().equals(this.getAdditionParents()) && comparer.getAssetParents().equals(this.getAssetParents()) && comparer.getDeviceParents().equals(this.getDeviceParents()) && comparer.getC8yIsDevice().equals(this.getC8yIsDevice()) && comparer.getC8yDeviceTypes().equals(this.getC8yDeviceTypes()) && comparer.getC8ySupportedOperations().equals(this.getC8ySupportedOperations()) && comparer.getCustomFragments().equals(this.getCustomFragments())) {
+			if (String.valueOf(comparer.getCreationTime()).equals(String.valueOf(this.getCreationTime())) && String.valueOf(comparer.getId()).equals(String.valueOf(this.getId())) && String.valueOf(comparer.getLastUpdated()).equals(String.valueOf(this.getLastUpdated())) && String.valueOf(comparer.getName()).equals(String.valueOf(this.getName())) && String.valueOf(comparer.getOwner()).equals(String.valueOf(this.getOwner())) && String.valueOf(comparer.getSelf()).equals(String.valueOf(this.getSelf())) && String.valueOf(comparer.getType()).equals(String.valueOf(this.getType())) && comparer.getChildAdditions().equals(this.getChildAdditions()) && comparer.getChildAssets().equals(this.getChildAssets()) && comparer.getChildDevices().equals(this.getChildDevices()) && comparer.getAdditionParents().equals(this.getAdditionParents()) && comparer.getAssetParents().equals(this.getAssetParents()) && comparer.getDeviceParents().equals(this.getDeviceParents()) && comparer.getC8yIsDevice().equals(this.getC8yIsDevice()) && comparer.getC8yIsDeviceGroup().equals(this.getC8yIsDeviceGroup()) && comparer.getC8yDeviceTypes().equals(this.getC8yDeviceTypes()) && comparer.getC8ySupportedOperations().equals(this.getC8ySupportedOperations()) && comparer.getCustomFragments().equals(this.getCustomFragments())) {
 				return true;
 			}
 		}

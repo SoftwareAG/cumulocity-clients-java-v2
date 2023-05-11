@@ -28,8 +28,8 @@ public class BinariesApi extends AdaptableApi {
 	}
 
 	/**
-	 * <p>Retrieve the stored files</p>
-	 * <p>Retrieve the stored files as a collections of managed objects.</p>
+	 * <p>Search for stored files</p>
+	 * <p>Retrieve metadata information about stored files. Search for files by query parameters. This will not download the files.</p>
 	 * <h5>Response Codes</h5>
 	 * <p>The following table gives an overview of the possible response codes and their meanings:</p>
 	 * <ul>

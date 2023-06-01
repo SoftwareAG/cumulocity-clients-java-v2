@@ -20,6 +20,7 @@ public class AdaptableApi {
 
 	protected AdaptableApi(final WebTarget rootTarget) {
 		this.rootTarget = rootTarget;
+		this.rootTarget.register(ObjectMapperProvider.class);
 	}
 
 	protected AdaptableApi.Builder adapt() {

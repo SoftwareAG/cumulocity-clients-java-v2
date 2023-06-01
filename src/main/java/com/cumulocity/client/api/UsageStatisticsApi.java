@@ -70,6 +70,50 @@ import com.cumulocity.client.model.StatisticsFile;
  * <h3>Microservice usage statistics</h3>
  * <p>The microservice usage statistics gathers information on the resource usage for tenants for each subscribed application which are collected on a daily base.</p>
  * <p>The microservice usage's information is stored in the <code>resources</code> object.</p>
+ * <h3>Frequently asked questions</h3>
+ * <h4>Which requests are counted as general "requestCount"?</h4>
+ * <p>All requests which the platform receives are counted, including,for example, UI requests, microservices requests, device requests and agents requests. Only a few internal endpoints are not counted:</p>
+ * <ul>
+ * 	<li><p><code>/health</code> (and all endpoints including this URI fragment, like <code>/tenant/health</code>)</p>
+ * 	</li>
+ * 	<li><p><code>/application/currentApplication</code> (and all subresources, like <code>/application/currentApplication/subscriptions</code>)</p>
+ * 	</li>
+ * 	<li><p><code>/tenant/limit</code></p>
+ * 	</li>
+ * 	<li><p><code>/devicecontrol/deviceCredentials</code></p>
+ * 	</li>
+ * 	<li><p><code>/inventory/templates</code> (and all subresources)</p>
+ * 	</li>
+ * </ul>
+ * <h4>My devices are not sending any data, but "requestCount" is increasing, and the total number is really big. Why is this happening?</h4>
+ * <p>Not only device requests are counted. Every user interaction with UI applications generates some requests to the backend API. Additionally you may have subscribed standard or custom microservices, which also regularly send requests to the platform.</p>
+ * <p>Example: If you have four microservices and each microservice sends five requests per minute, this setup creates <code>4 * 5 * 60 * 24 = 28800</code> requests per day. Similar numbers arise if there are multiple users working with the given tenant UI concurrently.</p>
+ * <h4>Which requests are counted as "deviceRequestCount"?</h4>
+ * <p>All requests from "requestCount" except the following:</p>
+ * <ul>
+ * 	<li><p>Tenant API requests</p>
+ * 	</li>
+ * 	<li><p>Application API requests</p>
+ * 	</li>
+ * 	<li><p>User API requests</p>
+ * 	</li>
+ * 	<li><p>Requests with the proper HTTP header <code>X-Cumulocity-Application-Key</code>, matching the application key of one of the applications used by a particular tenant</p>
+ * 	</li>
+ * </ul>
+ * <p>The exclusion of the APIs in the list above means that requests to endpoints which start with the mentioned API prefixes are not counted. For example, for the Tenant API the following endpoints are not counted (the list is incomplete):</p>
+ * <ul>
+ * 	<li><p><code>/tenant/tenants</code></p>
+ * 	</li>
+ * 	<li><p><code>/tenant/currentTenant</code></p>
+ * 	</li>
+ * 	<li><p><code>/tenant/statistics</code></p>
+ * 	</li>
+ * 	<li><p><code>/tenant/options</code></p>
+ * 	</li>
+ * </ul>
+ * <blockquote>
+ * <p><strong>ⓘ Info:</strong> Each microservice and web application must include the <code>X-Cumulocity-Application-Key</code> header in all requests.Otherwise such requests are counted as device requests which incorrectly affects the "deviceRequestCount" usage metric.</p>
+ * </blockquote>
  */
 public class UsageStatisticsApi extends AdaptableApi {
 

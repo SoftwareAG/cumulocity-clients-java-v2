@@ -173,55 +173,6 @@ public class ManagedObjectsApi extends AdaptableApi {
 	}
 	
 	/**
-	 * <p>Retrieve the total number of managed objects</p>
-	 * <p>Retrieve the total number of managed objects (for example, devices, assets, etc.) registered in your tenant, or a subset based on queries.</p>
-	 * <section><h5>Required roles</h5>
-	 * ROLE_INVENTORY_READ is not required, but if the current user doesn't have this role, the response will contain the number of inventory objects accessible for the user.
-	 * </section>
-	 * <h5>Response Codes</h5>
-	 * <p>The following table gives an overview of the possible response codes and their meanings:</p>
-	 * <ul>
-	 * 	<li><p>HTTP 200 <p>The request has succeeded and the number of managed objects is sent in the response.</p></p>
-	 * 	</li>
-	 * 	<li><p>HTTP 401 <p>Authentication information is missing or invalid.</p></p>
-	 * 	</li>
-	 * </ul>
-	 * 
-	 * @param childAdditionId
-	 * <p>Search for a specific child addition and list all the groups to which it belongs.</p>
-	 * @param childAssetId
-	 * <p>Search for a specific child asset and list all the groups to which it belongs.</p>
-	 * @param childDeviceId
-	 * <p>Search for a specific child device and list all the groups to which it belongs.</p>
-	 * @param fragmentType
-	 * <p>A characteristic which identifies a managed object or event, for example, geolocation, electricity sensor, relay state.</p>
-	 * @param ids
-	 * <p>The managed object IDs to search for.</p>
-	 * <p><strong>ⓘ Info:</strong> If you query for multiple IDs at once, comma-separate the values.</p>
-	 * @param owner
-	 * <p>Username of the owner of the managed objects.</p>
-	 * @param text
-	 * <p>Search for managed objects where any property value is equal to the given one. Only string values are supported.</p>
-	 * @param type
-	 * <p>The type of managed object to search for.</p>
-	 */
-	public CompletionStage<Integer> getNumberOfManagedObjects(final String childAdditionId, final String childAssetId, final String childDeviceId, final String fragmentType, final String[] ids, final String owner, final String text, final String type) {
-		return adapt().path("inventory").path("managedObjects").path("count")
-			.queryParam("childAdditionId", childAdditionId)
-			.queryParam("childAssetId", childAssetId)
-			.queryParam("childDeviceId", childDeviceId)
-			.queryParam("fragmentType", fragmentType)
-			.queryParam("ids", ids, false)
-			.queryParam("owner", owner)
-			.queryParam("text", text)
-			.queryParam("type", type)
-			.request()
-			.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, text/plain,application/json")
-			.rx()
-			.method("GET", Integer.class);
-	}
-	
-	/**
 	 * <p>Retrieve a specific managed object</p>
 	 * <p>Retrieve a specific managed object (for example, device, group, template) by a given ID.</p>
 	 * <section><h5>Required roles</h5>
@@ -313,6 +264,9 @@ public class ManagedObjectsApi extends AdaptableApi {
 	 * <p>Remove a specific managed object (for example, device) by a given ID.</p>
 	 * <blockquote>
 	 * <p><strong>ⓘ Info:</strong> Inventory DELETE requests are not synchronous. The response could be returned before the delete request has been completed. This may happen especially when the deleted managed object has a lot of associated data. After sending the request, the platform starts deleting the associated data in an asynchronous way. Finally, the requested managed object is deleted after all associated data has been deleted.</p>
+	 * </blockquote>
+	 * <blockquote>
+	 * <p><strong>ⓘ Info:</strong> By default, the delete operation is always propagated to the subgroups, but only if the deleted object is a group.</p>
 	 * </blockquote>
 	 * <section><h5>Required roles</h5>
 	 * ROLE_INVENTORY_ADMIN <b>OR</b> owner of the source <b>OR</b> MANAGE_OBJECT_ADMIN permission on the source

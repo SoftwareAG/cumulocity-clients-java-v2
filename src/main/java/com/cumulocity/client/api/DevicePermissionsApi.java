@@ -9,7 +9,8 @@ import jakarta.ws.rs.client.Entity;
 import jakarta.ws.rs.client.WebTarget;
 import jakarta.ws.rs.core.Response;
 import com.cumulocity.client.supplementary.AdaptableApi;
-import com.cumulocity.client.model.DevicePermissions;
+import com.cumulocity.client.model.UpdatedDevicePermissions;
+import com.cumulocity.client.model.DevicePermissionOwners;
 
 /**
  * <p>API methods to retrieve and update device permissions assignments.</p>
@@ -61,12 +62,12 @@ public class DevicePermissionsApi extends AdaptableApi {
 	 * @param id
 	 * <p>Unique identifier of the managed object.</p>
 	 */
-	public CompletionStage<DevicePermissions> getDevicePermissionAssignments(final String id) {
+	public CompletionStage<DevicePermissionOwners> getDevicePermissionAssignments(final String id) {
 		return adapt().path("user").path("devicePermissions").path(valueOf(id))
 			.request()
 			.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/json")
 			.rx()
-			.method("GET", DevicePermissions.class);
+			.method("GET", DevicePermissionOwners.class);
 	}
 	
 	/**
@@ -90,7 +91,7 @@ public class DevicePermissionsApi extends AdaptableApi {
 	 * @param id
 	 * <p>Unique identifier of the managed object.</p>
 	 */
-	public CompletionStage<Response> updateDevicePermissionAssignments(final DevicePermissions body, final String id) {
+	public CompletionStage<Response> updateDevicePermissionAssignments(final UpdatedDevicePermissions body, final String id) {
 		final JsonNode jsonNode = toJsonNode(body);
 		return adapt().path("user").path("devicePermissions").path(valueOf(id))
 			.request()

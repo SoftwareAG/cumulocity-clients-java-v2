@@ -16,7 +16,7 @@ import com.cumulocity.client.model.ApplicationCollection;
  * <p>API methods to retrieve, create, update and delete applications.</p>
  * <p>### Application names</p>
  * <p>For each tenant, Cumulocity IoT manages the subscribed applications and provides a number of applications of various types.In case you want to subscribe a tenant to an application using an API, you must use the application name in the argument (as name).</p>
- * <p>Refer to the tables in <a href="https://cumulocity.com/guides/10.7.0/users-guide/administration#managing-applications">Administration > Managing applications</a> in the User guide for the respective application name to be used.</p>
+ * <p>Refer to the tables in <a href="https://cumulocity.com/guides/users-guide/administration#managing-applications">Administration > Managing applications</a> in the <em>User guide</em> for the respective application name to be used.</p>
  * <blockquote>
  * <p><strong>ⓘ Info:</strong> The Accept header should be provided in all POST/PUT requests, otherwise an empty response body will be returned.</p>
  * </blockquote>
@@ -240,6 +240,7 @@ public class ApplicationsApi extends AdaptableApi {
 	 * <p>A request to the "clone" resource creates a new application based on an already existing one.</p>
 	 * <p>The properties are copied to the newly created application and the prefix "clone" is added to the properties <code>name</code>, <code>key</code> and <code>contextPath</code> in order to be unique.</p>
 	 * <p>If the target application is hosted and has an active version, the new application will have the active version with the same content.</p>
+	 * <p>If the original application is hosted with versions, then only one binary version is cloned. By default it is a version with the "latest" tag. You can also specify a target version directly by using exactly one of the query parameters <code>version</code> or <code>tag</code>.</p>
 	 * <section><h5>Required roles</h5>
 	 * ROLE_APPLICATION_MANAGEMENT_ADMIN
 	 * </section>
@@ -258,9 +259,15 @@ public class ApplicationsApi extends AdaptableApi {
 	 * <p>Unique identifier of the application.</p>
 	 * @param xCumulocityProcessingMode
 	 * <p>Used to explicitly control the processing mode of the request. See <a href="#processing-mode">Processing mode</a> for more details.</p>
+	 * @param version
+	 * <p>The version field of the application version.</p>
+	 * @param tag
+	 * <p>The tag of the application version.</p>
 	 */
-	public CompletionStage<Application> copyApplication(final String id, final String xCumulocityProcessingMode) {
+	public CompletionStage<Application> copyApplication(final String id, final String version, final String tag, final String xCumulocityProcessingMode) {
 		return adapt().path("application").path("applications").path(valueOf(id)).path("clone")
+			.queryParam("version", version)
+			.queryParam("tag", tag)
 			.request()
 			.header("X-Cumulocity-Processing-Mode", xCumulocityProcessingMode)
 			.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.application+json")

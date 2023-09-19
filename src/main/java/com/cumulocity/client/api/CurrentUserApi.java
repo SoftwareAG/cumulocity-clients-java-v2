@@ -77,7 +77,6 @@ public class CurrentUserApi extends AdaptableApi {
 		removeFromNode(jsonNode, "id");
 		removeFromNode(jsonNode, "lastPasswordChange");
 		removeFromNode(jsonNode, "twoFactorAuthenticationEnabled");
-		removeFromNode(jsonNode, "devicePermissions");
 		return adapt().path("user").path("currentUser")
 			.request()
 			.header("Content-Type", "application/vnd.com.nsn.cumulocity.currentuser+json")

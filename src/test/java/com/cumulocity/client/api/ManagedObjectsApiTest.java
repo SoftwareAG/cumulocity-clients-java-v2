@@ -40,15 +40,4 @@ public class ManagedObjectsApiTest {
     	}
     	assertNotNull(response);
     }
-    
-    @Test
-    public void testGetNumberOfManagedObjects() {
-    	Object response = null;
-    	try {
-    		response = service.getNumberOfManagedObjects(null, null, null, null, null, null, null, null).toCompletableFuture().get();
-    	} catch (InterruptedException | ExecutionException e) {
-    		e.printStackTrace();
-    	}
-    	assertNotNull(response);
-    }
 }

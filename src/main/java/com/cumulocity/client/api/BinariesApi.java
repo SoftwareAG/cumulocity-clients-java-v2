@@ -18,7 +18,7 @@ import com.cumulocity.client.model.Binary;
 /**
  * <p>Managed objects can perform operations to store, retrieve and delete binaries. One binary can store only one file. Together with the binary, a managed object is created which acts as a metadata information for the binary.</p>
  * <blockquote>
- * <p><strong>ⓘ Info:</strong> The Accept header should be provided in all POST/PUT requests, otherwise an empty response body will be returned.</p>
+ * <p><strong>ⓘ Info:</strong> Supports only HTTP 1.1 clients.<strong>ⓘ Info:</strong> The Accept header should be provided in all POST/PUT requests, otherwise an empty response body will be returned.</p>
  * </blockquote>
  */
 public class BinariesApi extends AdaptableApi {
@@ -123,7 +123,7 @@ public class BinariesApi extends AdaptableApi {
 	
 	/**
 	 * <p>Retrieve a stored file</p>
-	 * <p>Retrieve a stored file (managed object) by a given ID.</p>
+	 * <p>Retrieve a stored file (managed object) by a given ID.Supports chunk download and resuming an interrupted download using the <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Range"><code>Range</code> header</a>.</p>
 	 * <section><h5>Required roles</h5>
 	 * ROLE_INVENTORY_READ <b>OR</b> owner of the resource <b>OR</b> MANAGE_OBJECT_READ permission on the resource
 	 * </section>

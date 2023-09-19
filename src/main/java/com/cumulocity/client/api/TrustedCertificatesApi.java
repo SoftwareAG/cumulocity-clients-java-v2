@@ -233,7 +233,7 @@ public class TrustedCertificatesApi extends AdaptableApi {
 	
 	/**
 	 * <p>Remove a stored certificate</p>
-	 * <p>Remove a stored trusted certificate (by a given fingerprint) from a specific tenant (by a given ID).</p>
+	 * <p>Remove a stored trusted certificate (by a given fingerprint) from a specific tenant (by a given ID).When a trusted certificate is deleted, the established MQTT connection to all devices that are using the corresponding certificate are closed.</p>
 	 * <section><h5>Required roles</h5>
 	 * (ROLE_TENANT_MANAGEMENT_ADMIN <b>OR</b> ROLE_TENANT_ADMIN) <b>AND</b> (is the current tenant <b>OR</b> is the management tenant)
 	 * </section>

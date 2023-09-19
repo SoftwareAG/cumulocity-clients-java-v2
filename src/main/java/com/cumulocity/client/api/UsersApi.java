@@ -495,4 +495,33 @@ public class UsersApi extends AdaptableApi {
 			.rx()
 			.method("POST");
 	}
+	
+	/**
+	 * <p>Terminate all tenant users' sessions and invalidate tokens</p>
+	 * <p>The user with the role ROLE_USER_MANAGEMENT_ADMIN is authorized to log out all tenant users with a toked based access.</p>
+	 * <p>The request is responsible for terminating all tenant users' toked based sessions and invalidating internal platform access tokens.</p>
+	 * <section><h5>Required roles</h5>
+	 * ROLE_USER_MANAGEMENT_ADMIN <b>AND</b> is the current tenant
+	 * </section>
+	 * <h5>Response Codes</h5>
+	 * <p>The following table gives an overview of the possible response codes and their meanings:</p>
+	 * <ul>
+	 * 	<li><p>HTTP 200 <p>The request has succeeded and the users (with a token based access) are logged out.</p></p>
+	 * 	</li>
+	 * 	<li><p>HTTP 401 <p>Authentication information is missing or invalid.</p></p>
+	 * 	</li>
+	 * 	<li><p>HTTP 403 <p>Not enough permissions/roles to perform this operation.</p></p>
+	 * 	</li>
+	 * </ul>
+	 * 
+	 * @param tenantId
+	 * <p>Unique identifier of a Cumulocity IoT tenant.</p>
+	 */
+	public CompletionStage<Response> logoutAllUsers(final String tenantId) {
+		return adapt().path("user").path("logout").path(valueOf(tenantId)).path("allUsers")
+			.request()
+			.header("Accept", "application/json")
+			.rx()
+			.method("POST");
+	}
 }

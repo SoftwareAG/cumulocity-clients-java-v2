@@ -229,7 +229,10 @@ public class NotificationSubscription {
 	public static class SubscriptionFilter {
 	
 		/**
-		 * <p>The Notifications are available for Alarms, Alarms with children, Device control, Events, Events with children, Inventory and Measurements for the <code>mo</code> context and for Alarms, Events and Inventory for the <code>tenant</code> context. Alternatively, the wildcard <code>*</code> can be used to match all the permissible APIs within the bound context.</p>
+		 * <p>For the <code>mo</code> (Managed object) context, notifications from the <code>alarms</code>, <code>alarmsWithChildren</code>, <code>events</code>, <code>eventsWithChildren</code>, <code>managedobjects</code> (Inventory), <code>measurements</code> and <code>operations</code> (Device control) APIs can be subscribed to.<br />
+		 * The <code>alarmsWithChildren</code> and <code>eventsWithChildren</code> APIs subscribe to alarms and events respectively from the managed object identified by the <code>source.id</code> field, and all of its descendant managed objects.</p>
+		 * <p>For the <code>tenant</code> context, notifications from the <code>alarms</code>, <code>events</code> and <code>managedobjects</code> (Inventory) APIs can be subscribed to.</p>
+		 * <p>For all contexts, the <code>*</code> (wildcard) value can be used to subscribe to notifications from all of the available APIs in that context.</p>
 		 * <blockquote>
 		 * <p><strong>ⓘ Info:</strong> The wildcard <code>*</code> cannot be used in conjunction with other values.</p>
 		 * </blockquote>
@@ -240,12 +243,12 @@ public class NotificationSubscription {
 		private String[] apis;
 	
 		/**
-		 * <p>Used to match the <code>type</code> property of the data. An OData expression must be provided.</p>
+		 * <p>Used to match the <code>type</code> property of the data. This must either be a string to match one specific type exactly, or be an <code>or</code> OData expression, allowing the filter to match any one of a number of types.</p>
 		 * <blockquote>
-		 * <p><strong>ⓘ Info:</strong> The use of a <code>type</code> attribute is assumed, for example when using only a string literal <code>'c8y_Temperature'</code> it is equivalent to a <code>type eq 'c8y_Temperature'</code> OData expression.</p>
+		 * <p><strong>ⓘ Info:</strong> The use of a <code>type</code> attribute is assumed, for example when using only a string literal <code>'c8y_Temperature'</code> (or using <code>c8y_Temperature</code>, as quotes can be omitted when matching a single type) it is equivalent to a <code>type eq 'c8y_Temperature'</code> OData expression.</p>
 		 * </blockquote>
 		 * <blockquote>
-		 * <p><strong>ⓘ Info:</strong> Currently only the <code>or</code> operator is allowed in the expression mode. Example usage is <code>'c8y_Temperature' or 'c8y_Pressure'</code> which will match all the data with types <code>c8y_Temperature</code> or <code>c8y_Pressure</code>.</p>
+		 * <p><strong>ⓘ Info:</strong> Currently only the <code>or</code> operator is allowed when using an OData expression. Example usage is <code>'c8y_Temperature' or 'c8y_Pressure'</code> which will match all the data with types <code>c8y_Temperature</code> or <code>c8y_Pressure</code>.</p>
 		 * </blockquote>
 		 */
 		private String typeFilter;

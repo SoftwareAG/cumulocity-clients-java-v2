@@ -89,9 +89,7 @@ public class LoginForm {
 		@JsonProperty("PASSWORD")
 		PASSWORD("PASSWORD"),
 		@JsonProperty("AUTHORIZATION_CODE")
-		AUTHORIZATIONCODE("AUTHORIZATION_CODE"),
-		@JsonProperty("REFRESH_TOKEN")
-		REFRESHTOKEN("REFRESH_TOKEN");
+		AUTHORIZATIONCODE("AUTHORIZATION_CODE");
 	
 		private String value;
 	

@@ -236,7 +236,6 @@ public class OperationsApi extends AdaptableApi {
 		removeFromNode(jsonNode, "creationTime");
 		removeFromNode(jsonNode, "deviceExternalIDs", "self");
 		removeFromNode(jsonNode, "bulkOperationId");
-		removeFromNode(jsonNode, "failureReason");
 		removeFromNode(jsonNode, "self");
 		removeFromNode(jsonNode, "id");
 		removeFromNode(jsonNode, "deviceId");

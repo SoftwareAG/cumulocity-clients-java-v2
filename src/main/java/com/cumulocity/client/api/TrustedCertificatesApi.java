@@ -8,12 +8,15 @@ import com.fasterxml.jackson.databind.JsonNode;
 import jakarta.ws.rs.client.Entity;
 import jakarta.ws.rs.client.WebTarget;
 import jakarta.ws.rs.core.Response;
+import org.glassfish.jersey.media.multipart.FormDataMultiPart;
+import jakarta.ws.rs.core.MediaType;
 import com.cumulocity.client.supplementary.AdaptableApi;
 import com.cumulocity.client.model.UploadedTrustedCertificate;
 import com.cumulocity.client.model.UploadedTrustedCertificateCollection;
 import com.cumulocity.client.model.TrustedCertificate;
 import com.cumulocity.client.model.UploadedTrustedCertSignedVerificationCode;
 import com.cumulocity.client.model.TrustedCertificateCollection;
+import com.cumulocity.client.model.VerifyCertificateChain;
 
 /**
  * <p>API methods for managing trusted certificates used to establish device connections via MQTT.</p>
@@ -358,5 +361,74 @@ public class TrustedCertificatesApi extends AdaptableApi {
 			.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/json")
 			.rx()
 			.method("POST", TrustedCertificate.class);
+	}
+	
+	/**
+	 * <p>Verify a certificate chain via file upload</p>
+	 * <p>Verify a device certificate chain against a specific tenant. Max chain length support is <b>10</b>.The tenant ID is <code>optional</code> and this api will be further enhanced to resolve the tenant from the chain in future release.</p>
+	 * <section><h5>Required roles</h5>
+	 * (ROLE_TENANT_MANAGEMENT_ADMIN) <b>AND</b> (is the current tenant <b>OR</b> is current management tenant)
+	 * </section>
+	 * <h5>Response Codes</h5>
+	 * <p>The following table gives an overview of the possible response codes and their meanings:</p>
+	 * <ul>
+	 * 	<li><p>HTTP 200 <p>The request has succeeded and the validation result is sent in the response.</p></p>
+	 * 	</li>
+	 * 	<li><p>HTTP 400 <p>Unable to parse certificate chain.</p></p>
+	 * 	</li>
+	 * 	<li><p>HTTP 403 <p>Not enough permissions/roles to perform this operation.</p></p>
+	 * 	</li>
+	 * 	<li><p>HTTP 404 <p>The tenant ID does not exist.</p></p>
+	 * 	</li>
+	 * </ul>
+	 * 
+	 * @param tenantId
+	 * @param file
+	 * <p>File to be uploaded.</p>
+	 */
+	public CompletionStage<VerifyCertificateChain> validateChainByFileUpload(final String tenantId, final byte[] file) {
+		final FormDataMultiPart multiPartEntity = new FormDataMultiPart();
+		multiPartEntity.field("tenantId", tenantId, MediaType.valueOf("text/plain"));
+		multiPartEntity.field("file", file, MediaType.valueOf("text/plain"));
+		return adapt().path("tenant").path("tenants").path("verify-cert-chain").path("fileUpload")
+			.request()
+			.header("Content-Type", "multipart/form-data")
+			.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/json")
+			.rx()
+			.method("POST", Entity.entity(multiPartEntity, "multipart/form-data"), VerifyCertificateChain.class);
+	}
+	
+	/**
+	 * <p>Verify a certificate chain via HTTP header</p>
+	 * <p>Verify a device certificate chain against a specific tenant. Max chain length support is <b>6</b>.The tenant ID is <code>optional</code> and this api will be further enhanced to resolve the tenant from the chain in future release.</p>
+	 * <section><h5>Required roles</h5>
+	 * (ROLE_TENANT_MANAGEMENT_ADMIN) <b>AND</b> (is the current tenant <b>OR</b> is current management tenant)
+	 * </section>
+	 * <h5>Response Codes</h5>
+	 * <p>The following table gives an overview of the possible response codes and their meanings:</p>
+	 * <ul>
+	 * 	<li><p>HTTP 200 <p>The request has succeeded and the validation result is sent in the response.</p></p>
+	 * 	</li>
+	 * 	<li><p>HTTP 400 <p>Unable to parse certificate chain.</p></p>
+	 * 	</li>
+	 * 	<li><p>HTTP 403 <p>Not enough permissions/roles to perform this operation.</p></p>
+	 * 	</li>
+	 * 	<li><p>HTTP 404 <p>The tenant ID does not exist.</p></p>
+	 * 	</li>
+	 * </ul>
+	 * 
+	 * @param xCumulocityTenantId
+	 * <p>Used to send a tenant ID.</p>
+	 * @param xCumulocityClientCertChain
+	 * <p>Used to send a certificate chain in the header. Separate the chain with <code>,</code> and also each 64 bit block with <code> </code> (a space character).</p>
+	 */
+	public CompletionStage<VerifyCertificateChain> validateChainByHeader(final String xCumulocityTenantId, final String xCumulocityClientCertChain) {
+		return adapt().path("tenant").path("tenants").path("verify-cert-chain")
+			.request()
+			.header("X-Cumulocity-TenantId", xCumulocityTenantId)
+			.header("X-Cumulocity-Client-Cert-Chain", xCumulocityClientCertChain)
+			.header("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/json")
+			.rx()
+			.method("POST", VerifyCertificateChain.class);
 	}
 }

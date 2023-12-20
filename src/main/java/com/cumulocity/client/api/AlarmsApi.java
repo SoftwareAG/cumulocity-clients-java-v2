@@ -58,14 +58,14 @@ public class AlarmsApi extends AdaptableApi {
 	 * @param pageSize
 	 * <p>Indicates how many entries of the collection shall be returned. The upper limit for one page is 2,000 objects.</p>
 	 * @param resolved
-	 * <p>When set to <code>true</code> only alarms with status CLEARED will be fetched, whereas <code>false</code> will fetch all alarms with status ACTIVE or ACKNOWLEDGED.</p>
+	 * <p>When set to <code>true</code> only alarms with status CLEARED will be fetched, whereas <code>false</code> will fetch all alarms with status ACTIVE or ACKNOWLEDGED. Takes precedence over the <code>status</code> parameter.</p>
 	 * @param severity
 	 * <p>The severity of the alarm to search for.</p>
 	 * <p><strong>ⓘ Info:</strong> If you query for multiple alarm severities at once, comma-separate the values.</p>
 	 * @param source
 	 * <p>The managed object ID to which the alarm is associated.</p>
 	 * @param status
-	 * <p>The status of the alarm to search for.</p>
+	 * <p>The status of the alarm to search for. Should not be used when <code>resolved</code> parameter is provided.</p>
 	 * <p><strong>ⓘ Info:</strong> If you query for multiple alarm statuses at once, comma-separate the values.</p>
 	 * @param type
 	 * <p>The types of alarm to search for.</p>
@@ -140,14 +140,14 @@ public class AlarmsApi extends AdaptableApi {
 	 * @param dateTo
 	 * <p>End date or date and time of the alarm occurrence.</p>
 	 * @param resolved
-	 * <p>When set to <code>true</code> only alarms with status CLEARED will be fetched, whereas <code>false</code> will fetch all alarms with status ACTIVE or ACKNOWLEDGED.</p>
+	 * <p>When set to <code>true</code> only alarms with status CLEARED will be fetched, whereas <code>false</code> will fetch all alarms with status ACTIVE or ACKNOWLEDGED. Takes precedence over the <code>status</code> parameter.</p>
 	 * @param severity
 	 * <p>The severity of the alarm to search for.</p>
 	 * <p><strong>ⓘ Info:</strong> If you query for multiple alarm severities at once, comma-separate the values.</p>
 	 * @param source
 	 * <p>The managed object ID to which the alarm is associated.</p>
 	 * @param status
-	 * <p>The status of the alarm to search for.</p>
+	 * <p>The status of the alarm to search for. Should not be used when <code>resolved</code> parameter is provided.</p>
 	 * <p><strong>ⓘ Info:</strong> If you query for multiple alarm statuses at once, comma-separate the values.</p>
 	 * @param withSourceAssets
 	 * <p>When set to <code>true</code> also alarms for related source assets will be included in the request. When this parameter is provided a <code>source</code> must be specified.</p>
@@ -275,14 +275,14 @@ public class AlarmsApi extends AdaptableApi {
 	 * @param dateTo
 	 * <p>End date or date and time of the alarm occurrence.</p>
 	 * @param resolved
-	 * <p>When set to <code>true</code> only alarms with status CLEARED will be fetched, whereas <code>false</code> will fetch all alarms with status ACTIVE or ACKNOWLEDGED.</p>
+	 * <p>When set to <code>true</code> only alarms with status CLEARED will be fetched, whereas <code>false</code> will fetch all alarms with status ACTIVE or ACKNOWLEDGED. Takes precedence over the <code>status</code> parameter.</p>
 	 * @param severity
 	 * <p>The severity of the alarm to search for.</p>
 	 * <p><strong>ⓘ Info:</strong> If you query for multiple alarm severities at once, comma-separate the values.</p>
 	 * @param source
 	 * <p>The managed object ID to which the alarm is associated.</p>
 	 * @param status
-	 * <p>The status of the alarm to search for.</p>
+	 * <p>The status of the alarm to search for. Should not be used when <code>resolved</code> parameter is provided.</p>
 	 * <p><strong>ⓘ Info:</strong> If you query for multiple alarm statuses at once, comma-separate the values.</p>
 	 * @param type
 	 * <p>The types of alarm to search for.</p>
@@ -412,14 +412,14 @@ public class AlarmsApi extends AdaptableApi {
 	 * @param dateTo
 	 * <p>End date or date and time of the alarm occurrence.</p>
 	 * @param resolved
-	 * <p>When set to <code>true</code> only alarms with status CLEARED will be fetched, whereas <code>false</code> will fetch all alarms with status ACTIVE or ACKNOWLEDGED.</p>
+	 * <p>When set to <code>true</code> only alarms with status CLEARED will be fetched, whereas <code>false</code> will fetch all alarms with status ACTIVE or ACKNOWLEDGED. Takes precedence over the <code>status</code> parameter.</p>
 	 * @param severity
 	 * <p>The severity of the alarm to search for.</p>
 	 * <p><strong>ⓘ Info:</strong> If you query for multiple alarm severities at once, comma-separate the values.</p>
 	 * @param source
 	 * <p>The managed object ID to which the alarm is associated.</p>
 	 * @param status
-	 * <p>The status of the alarm to search for.</p>
+	 * <p>The status of the alarm to search for. Should not be used when <code>resolved</code> parameter is provided.</p>
 	 * <p><strong>ⓘ Info:</strong> If you query for multiple alarm statuses at once, comma-separate the values.</p>
 	 * @param type
 	 * <p>The types of alarm to search for.</p>

@@ -125,6 +125,11 @@ public class AuthConfig {
 	 */
 	private boolean visibleOnLoginPage;
 
+	/**
+	 * <p>A configuration for authentication with an access token from the authorization server.</p>
+	 */
+	private ExternalTokenConfig externalTokenConfig;
+
 	public AuthConfig() {
 	}
 
@@ -325,6 +330,14 @@ public class AuthConfig {
 		this.visibleOnLoginPage = visibleOnLoginPage;
 	}
 
+	public ExternalTokenConfig getExternalTokenConfig() {
+		return externalTokenConfig;
+	}
+	
+	public void setExternalTokenConfig(final ExternalTokenConfig externalTokenConfig) {
+		this.externalTokenConfig = externalTokenConfig;
+	}
+
 	
 	/**
 	 * <p>The authentication configuration grant type identifier.</p>
@@ -508,6 +521,11 @@ public class AuthConfig {
 			 */
 			private Mappings[] mappings;
 		
+			/**
+			 * <p>Represents rules used to assign inventory roles.</p>
+			 */
+			private InventoryMappings[] inventoryMappings;
+		
 			public Configuration getConfiguration() {
 				return configuration;
 			}
@@ -524,6 +542,14 @@ public class AuthConfig {
 				this.mappings = mappings;
 			}
 		
+			public InventoryMappings[] getInventoryMappings() {
+				return inventoryMappings;
+			}
+			
+			public void setInventoryMappings(final InventoryMappings[] inventoryMappings) {
+				this.inventoryMappings = inventoryMappings;
+			}
+		
 			/**
 			 * <p>Configuration of the mapping.</p>
 			 */
@@ -536,12 +562,25 @@ public class AuthConfig {
 				 */
 				private boolean mapRolesOnlyForNewUser;
 			
+				/**
+				 * <p>If set to <code>true</code>, dynamic access mapping is only managed for global roles, applications and inventory roles which are listed in the configuration. Others remain unchanged.</p>
+				 */
+				private boolean manageRolesOnlyFromAccessMapping;
+			
 				public boolean getMapRolesOnlyForNewUser() {
 					return mapRolesOnlyForNewUser;
 				}
 				
 				public void setMapRolesOnlyForNewUser(final boolean mapRolesOnlyForNewUser) {
 					this.mapRolesOnlyForNewUser = mapRolesOnlyForNewUser;
+				}
+			
+				public boolean getManageRolesOnlyFromAccessMapping() {
+					return manageRolesOnlyFromAccessMapping;
+				}
+				
+				public void setManageRolesOnlyFromAccessMapping(final boolean manageRolesOnlyFromAccessMapping) {
+					this.manageRolesOnlyFromAccessMapping = manageRolesOnlyFromAccessMapping;
 				}
 			
 				@Override
@@ -557,7 +596,7 @@ public class AuthConfig {
 				public boolean equals(final Object r) {
 					if (r != null && r instanceof Configuration) {
 						Configuration comparer = (Configuration) r;
-						if (Boolean.valueOf(comparer.getMapRolesOnlyForNewUser()).equals(Boolean.valueOf(this.getMapRolesOnlyForNewUser()))) {
+						if (Boolean.valueOf(comparer.getMapRolesOnlyForNewUser()).equals(Boolean.valueOf(this.getMapRolesOnlyForNewUser())) && Boolean.valueOf(comparer.getManageRolesOnlyFromAccessMapping()).equals(Boolean.valueOf(this.getManageRolesOnlyFromAccessMapping()))) {
 							return true;
 						}
 					}
@@ -573,7 +612,7 @@ public class AuthConfig {
 			public static class Mappings {
 			
 				/**
-				 * <p>Represents a predicate for verification. It acts as a condition which is necessary to assign a user to the given groups and permit access to the specified applications.</p>
+				 * <p>Represents a predicate for verification. It acts as a condition which is necessary to assign a user to the given groups, permit access to the specified applications or to assign specific inventory roles to device groups.</p>
 				 */
 				private JSONPredicateRepresentation when;
 			
@@ -632,6 +671,114 @@ public class AuthConfig {
 				}
 			}
 		
+			/**
+			 * <p>Represents information of mapping access to inventory roles.</p>
+			 */
+			@JsonIgnoreProperties(ignoreUnknown = true)
+			@JsonInclude(Include.NON_NULL)
+			public static class InventoryMappings {
+			
+				/**
+				 * <p>Represents a predicate for verification. It acts as a condition which is necessary to assign a user to the given groups, permit access to the specified applications or to assign specific inventory roles to device groups.</p>
+				 */
+				private JSONPredicateRepresentation when;
+			
+				/**
+				 * <p>List of the OAuth inventory assignments.</p>
+				 */
+				private ThenInventoryRoles[] thenInventoryRoles;
+			
+				public JSONPredicateRepresentation getWhen() {
+					return when;
+				}
+				
+				public void setWhen(final JSONPredicateRepresentation when) {
+					this.when = when;
+				}
+			
+				public ThenInventoryRoles[] getThenInventoryRoles() {
+					return thenInventoryRoles;
+				}
+				
+				public void setThenInventoryRoles(final ThenInventoryRoles[] thenInventoryRoles) {
+					this.thenInventoryRoles = thenInventoryRoles;
+				}
+			
+				/**
+				 * <p>Represents inventory roles for a specific device group.</p>
+				 */
+				@JsonIgnoreProperties(ignoreUnknown = true)
+				@JsonInclude(Include.NON_NULL)
+				public static class ThenInventoryRoles {
+				
+					/**
+					 * <p>A unique identifier for the managed object for which the roles are assigned.</p>
+					 */
+					private String managedObject;
+				
+					/**
+					 * <p>List of the inventory roles' identifiers.</p>
+					 */
+					private int[] roleIds;
+				
+					public String getManagedObject() {
+						return managedObject;
+					}
+					
+					public void setManagedObject(final String managedObject) {
+						this.managedObject = managedObject;
+					}
+				
+					public int[] getRoleIds() {
+						return roleIds;
+					}
+					
+					public void setRoleIds(final int[] roleIds) {
+						this.roleIds = roleIds;
+					}
+				
+					@Override
+					public String toString() {
+						try {
+							return new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(this);
+						} catch (final JsonProcessingException e) {
+						}
+						return super.toString();
+					}
+				
+					@Override
+					public boolean equals(final Object r) {
+						if (r != null && r instanceof ThenInventoryRoles) {
+							ThenInventoryRoles comparer = (ThenInventoryRoles) r;
+							if (String.valueOf(comparer.getManagedObject()).equals(String.valueOf(this.getManagedObject())) && comparer.getRoleIds().equals(this.getRoleIds())) {
+								return true;
+							}
+						}
+						return false;
+					}
+				}
+			
+				@Override
+				public String toString() {
+					try {
+						return new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(this);
+					} catch (final JsonProcessingException e) {
+					}
+					return super.toString();
+				}
+			
+				@Override
+				public boolean equals(final Object r) {
+					if (r != null && r instanceof InventoryMappings) {
+						InventoryMappings comparer = (InventoryMappings) r;
+						if (comparer.getWhen().equals(this.getWhen()) && comparer.getThenInventoryRoles().equals(this.getThenInventoryRoles())) {
+							return true;
+						}
+					}
+					return false;
+				}
+			}
+		
 			@Override
 			public String toString() {
 				try {
@@ -645,7 +792,7 @@ public class AuthConfig {
 			public boolean equals(final Object r) {
 				if (r != null && r instanceof DynamicMapping) {
 					DynamicMapping comparer = (DynamicMapping) r;
-					if (comparer.getConfiguration().equals(this.getConfiguration()) && comparer.getMappings().equals(this.getMappings())) {
+					if (comparer.getConfiguration().equals(this.getConfiguration()) && comparer.getMappings().equals(this.getMappings()) && comparer.getInventoryMappings().equals(this.getInventoryMappings())) {
 						return true;
 					}
 				}
@@ -1115,6 +1262,198 @@ public class AuthConfig {
 	}
 
 
+	/**
+	 * <p>A configuration for authentication with an access token from the authorization server.</p>
+	 */
+	@JsonIgnoreProperties(ignoreUnknown = true)
+	@JsonInclude(Include.NON_NULL)
+	public static class ExternalTokenConfig {
+	
+		/**
+		 * <p>Indicates whether authentication is enabled or disabled.</p>
+		 */
+		private boolean enabled;
+	
+		/**
+		 * <p>Points to the claim of the access token from the authorization server that must be used as the username in the Cumulocity IoT platform.</p>
+		 */
+		private UserOrAppIdConfig userOrAppIdConfig;
+	
+		/**
+		 * <p>If set to <code>true</code>, the access token is validated against the authorization server by way of introspection or user info request.</p>
+		 */
+		private boolean validationRequired;
+	
+		/**
+		 * <p>The method of validation of the access token.</p>
+		 */
+		private ValidationMethod validationMethod;
+	
+		private RequestRepresentation tokenValidationRequest;
+	
+		/**
+		 * <p>The frequency (in Minutes) in which Cumulocity sends a validation request to authorization server. The recommended frequency is 1 minute.</p>
+		 */
+		private int accessTokenValidityCheckIntervalInMinutes;
+	
+		public boolean getEnabled() {
+			return enabled;
+		}
+		
+		public void setEnabled(final boolean enabled) {
+			this.enabled = enabled;
+		}
+	
+		public UserOrAppIdConfig getUserOrAppIdConfig() {
+			return userOrAppIdConfig;
+		}
+		
+		public void setUserOrAppIdConfig(final UserOrAppIdConfig userOrAppIdConfig) {
+			this.userOrAppIdConfig = userOrAppIdConfig;
+		}
+	
+		public boolean getValidationRequired() {
+			return validationRequired;
+		}
+		
+		public void setValidationRequired(final boolean validationRequired) {
+			this.validationRequired = validationRequired;
+		}
+	
+		public ValidationMethod getValidationMethod() {
+			return validationMethod;
+		}
+		
+		public void setValidationMethod(final ValidationMethod validationMethod) {
+			this.validationMethod = validationMethod;
+		}
+	
+		public RequestRepresentation getTokenValidationRequest() {
+			return tokenValidationRequest;
+		}
+		
+		public void setTokenValidationRequest(final RequestRepresentation tokenValidationRequest) {
+			this.tokenValidationRequest = tokenValidationRequest;
+		}
+	
+		public int getAccessTokenValidityCheckIntervalInMinutes() {
+			return accessTokenValidityCheckIntervalInMinutes;
+		}
+		
+		public void setAccessTokenValidityCheckIntervalInMinutes(final int accessTokenValidityCheckIntervalInMinutes) {
+			this.accessTokenValidityCheckIntervalInMinutes = accessTokenValidityCheckIntervalInMinutes;
+		}
+	
+		
+		/**
+		 * <p>The method of validation of the access token.</p>
+		 */
+		public enum ValidationMethod {
+			@JsonProperty("INTROSPECTION")
+			INTROSPECTION("INTROSPECTION"),
+			@JsonProperty("USERINFO")
+			USERINFO("USERINFO");
+		
+			private String value;
+		
+			ValidationMethod(final String value) {
+				this.value = value;
+			}
+		
+			public String getValue() {
+				return value;
+			}
+		}
+	
+		/**
+		 * <p>Points to the claim of the access token from the authorization server that must be used as the username in the Cumulocity IoT platform.</p>
+		 */
+		@JsonIgnoreProperties(ignoreUnknown = true)
+		@JsonInclude(Include.NON_NULL)
+		public static class UserOrAppIdConfig {
+		
+			/**
+			 * <p>Used only if <code>useConstantValue</code> is set to <code>true</code>.</p>
+			 */
+			private String constantValue;
+		
+			/**
+			 * <p>The name of the field containing the JWT.</p>
+			 */
+			private String jwtField;
+		
+			/**
+			 * <p>Not recommended. If set to <code>true</code>, all users share a single account in the Cumulocity IoT platform.</p>
+			 */
+			private boolean useConstantValue;
+		
+			public String getConstantValue() {
+				return constantValue;
+			}
+			
+			public void setConstantValue(final String constantValue) {
+				this.constantValue = constantValue;
+			}
+		
+			public String getJwtField() {
+				return jwtField;
+			}
+			
+			public void setJwtField(final String jwtField) {
+				this.jwtField = jwtField;
+			}
+		
+			public boolean getUseConstantValue() {
+				return useConstantValue;
+			}
+			
+			public void setUseConstantValue(final boolean useConstantValue) {
+				this.useConstantValue = useConstantValue;
+			}
+		
+			@Override
+			public String toString() {
+				try {
+					return new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(this);
+				} catch (final JsonProcessingException e) {
+				}
+				return super.toString();
+			}
+		
+			@Override
+			public boolean equals(final Object r) {
+				if (r != null && r instanceof UserOrAppIdConfig) {
+					UserOrAppIdConfig comparer = (UserOrAppIdConfig) r;
+					if (String.valueOf(comparer.getConstantValue()).equals(String.valueOf(this.getConstantValue())) && String.valueOf(comparer.getJwtField()).equals(String.valueOf(this.getJwtField())) && Boolean.valueOf(comparer.getUseConstantValue()).equals(Boolean.valueOf(this.getUseConstantValue()))) {
+						return true;
+					}
+				}
+				return false;
+			}
+		}
+	
+	
+		@Override
+		public String toString() {
+			try {
+				return new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(this);
+			} catch (final JsonProcessingException e) {
+			}
+			return super.toString();
+		}
+	
+		@Override
+		public boolean equals(final Object r) {
+			if (r != null && r instanceof ExternalTokenConfig) {
+				ExternalTokenConfig comparer = (ExternalTokenConfig) r;
+				if (Boolean.valueOf(comparer.getEnabled()).equals(Boolean.valueOf(this.getEnabled())) && comparer.getUserOrAppIdConfig().equals(this.getUserOrAppIdConfig()) && Boolean.valueOf(comparer.getValidationRequired()).equals(Boolean.valueOf(this.getValidationRequired())) && comparer.getValidationMethod().equals(this.getValidationMethod()) && comparer.getTokenValidationRequest().equals(this.getTokenValidationRequest()) && Integer.valueOf(comparer.getAccessTokenValidityCheckIntervalInMinutes()).equals(Integer.valueOf(this.getAccessTokenValidityCheckIntervalInMinutes()))) {
+					return true;
+				}
+			}
+			return false;
+		}
+	}
+
 	@Override
 	public String toString() {
 		try {
@@ -1128,7 +1467,7 @@ public class AuthConfig {
 	public boolean equals(final Object r) {
 		if (r != null && r instanceof AuthConfig) {
 			AuthConfig comparer = (AuthConfig) r;
-			if (comparer.getAccessTokenToUserDataMapping().equals(this.getAccessTokenToUserDataMapping()) && String.valueOf(comparer.getAudience()).equals(String.valueOf(this.getAudience())) && comparer.getAuthorizationRequest().equals(this.getAuthorizationRequest()) && comparer.getAuthenticationRestrictions().equals(this.getAuthenticationRestrictions()) && String.valueOf(comparer.getButtonName()).equals(String.valueOf(this.getButtonName())) && String.valueOf(comparer.getClientId()).equals(String.valueOf(this.getClientId())) && comparer.getGrantType().equals(this.getGrantType()) && String.valueOf(comparer.getId()).equals(String.valueOf(this.getId())) && String.valueOf(comparer.getIssuer()).equals(String.valueOf(this.getIssuer())) && comparer.getLogoutRequest().equals(this.getLogoutRequest()) && Boolean.valueOf(comparer.getOnlyManagementTenantAccess()).equals(Boolean.valueOf(this.getOnlyManagementTenantAccess())) && comparer.getOnNewUser().equals(this.getOnNewUser()) && String.valueOf(comparer.getProviderName()).equals(String.valueOf(this.getProviderName())) && String.valueOf(comparer.getRedirectToPlatform()).equals(String.valueOf(this.getRedirectToPlatform())) && comparer.getRefreshRequest().equals(this.getRefreshRequest()) && String.valueOf(comparer.getSelf()).equals(String.valueOf(this.getSelf())) && comparer.getSessionConfiguration().equals(this.getSessionConfiguration()) && comparer.getSignatureVerificationConfig().equals(this.getSignatureVerificationConfig()) && String.valueOf(comparer.getTemplate()).equals(String.valueOf(this.getTemplate())) && comparer.getTokenRequest().equals(this.getTokenRequest()) && comparer.getType().equals(this.getType()) && comparer.getUserIdConfig().equals(this.getUserIdConfig()) && comparer.getUserManagementSource().equals(this.getUserManagementSource()) && Boolean.valueOf(comparer.getVisibleOnLoginPage()).equals(Boolean.valueOf(this.getVisibleOnLoginPage()))) {
+			if (comparer.getAccessTokenToUserDataMapping().equals(this.getAccessTokenToUserDataMapping()) && String.valueOf(comparer.getAudience()).equals(String.valueOf(this.getAudience())) && comparer.getAuthorizationRequest().equals(this.getAuthorizationRequest()) && comparer.getAuthenticationRestrictions().equals(this.getAuthenticationRestrictions()) && String.valueOf(comparer.getButtonName()).equals(String.valueOf(this.getButtonName())) && String.valueOf(comparer.getClientId()).equals(String.valueOf(this.getClientId())) && comparer.getGrantType().equals(this.getGrantType()) && String.valueOf(comparer.getId()).equals(String.valueOf(this.getId())) && String.valueOf(comparer.getIssuer()).equals(String.valueOf(this.getIssuer())) && comparer.getLogoutRequest().equals(this.getLogoutRequest()) && Boolean.valueOf(comparer.getOnlyManagementTenantAccess()).equals(Boolean.valueOf(this.getOnlyManagementTenantAccess())) && comparer.getOnNewUser().equals(this.getOnNewUser()) && String.valueOf(comparer.getProviderName()).equals(String.valueOf(this.getProviderName())) && String.valueOf(comparer.getRedirectToPlatform()).equals(String.valueOf(this.getRedirectToPlatform())) && comparer.getRefreshRequest().equals(this.getRefreshRequest()) && String.valueOf(comparer.getSelf()).equals(String.valueOf(this.getSelf())) && comparer.getSessionConfiguration().equals(this.getSessionConfiguration()) && comparer.getSignatureVerificationConfig().equals(this.getSignatureVerificationConfig()) && String.valueOf(comparer.getTemplate()).equals(String.valueOf(this.getTemplate())) && comparer.getTokenRequest().equals(this.getTokenRequest()) && comparer.getType().equals(this.getType()) && comparer.getUserIdConfig().equals(this.getUserIdConfig()) && comparer.getUserManagementSource().equals(this.getUserManagementSource()) && Boolean.valueOf(comparer.getVisibleOnLoginPage()).equals(Boolean.valueOf(this.getVisibleOnLoginPage())) && comparer.getExternalTokenConfig().equals(this.getExternalTokenConfig())) {
 				return true;
 			}
 		}

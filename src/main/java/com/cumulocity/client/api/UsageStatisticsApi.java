@@ -166,7 +166,7 @@ public class UsageStatisticsApi extends AdaptableApi {
 	/**
 	 * <p>Retrieve a usage statistics summary</p>
 	 * <p>Retrieve a usage statistics summary of a tenant.</p>
-	 * <section><h5>Required roles</h5> ROLE_TENANT_STATISTICS_READ <b>OR</b> ROLE_INVENTORY_READ <br/> If the `tenant` request parameter is specified, then the current tenant must be the management tenant <b>OR</b> the parent of the requested `tenant`. </section>
+	 * <section><h5>Required roles</h5> ROLE_TENANT_STATISTICS_READ <b>OR</b> ROLE_INVENTORY_READ <b>OR</b> ROLE_MANAGED_OBJECT_READ If the `tenant` request parameter is specified, then the current tenant must be the management tenant <b>OR</b> the parent of the requested `tenant`. </section>
 	 * <h5>Response Codes</h5>
 	 * <p>The following table gives an overview of the possible response codes and their meanings:</p>
 	 * <ul>

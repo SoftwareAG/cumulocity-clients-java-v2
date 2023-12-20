@@ -90,7 +90,7 @@ public class BinariesApi extends AdaptableApi {
 	 * </ul>
 	 * <p>After the file has been uploaded, the corresponding managed object will contain the fragment <code>c8y_IsBinary</code>.</p>
 	 * <section><h5>Required roles</h5>
-	 * ROLE_INVENTORY_ADMIN <b>OR</b> ROLE_INVENTORY_CREATE
+	 * ROLE_INVENTORY_ADMIN <b>OR</b> ROLE_INVENTORY_CREATE <b>OR</b> ROLE_BINARY_ADMIN <b>OR</b> ROLE_BINARY_CREATE
 	 * </section>
 	 * <h5>Response Codes</h5>
 	 * <p>The following table gives an overview of the possible response codes and their meanings:</p>
@@ -125,7 +125,7 @@ public class BinariesApi extends AdaptableApi {
 	 * <p>Retrieve a stored file</p>
 	 * <p>Retrieve a stored file (managed object) by a given ID.Supports chunk download and resuming an interrupted download using the <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Range"><code>Range</code> header</a>.</p>
 	 * <section><h5>Required roles</h5>
-	 * ROLE_INVENTORY_READ <b>OR</b> owner of the resource <b>OR</b> MANAGE_OBJECT_READ permission on the resource
+	 * ROLE_INVENTORY_READ <b>OR</b> ROLE_BINARY_READ <b>OR</b> owner of the resource <b>OR</b> MANAGE_OBJECT_READ permission on the resource
 	 * </section>
 	 * <h5>Response Codes</h5>
 	 * <p>The following table gives an overview of the possible response codes and their meanings:</p>
@@ -151,7 +151,7 @@ public class BinariesApi extends AdaptableApi {
 	 * <p>Replace a file</p>
 	 * <p>Upload and replace the attached file (binary) of a specific managed object by a given ID.<br></p>
 	 * <section><h5>Required roles</h5>
-	 * ROLE_INVENTORY_ADMIN <b>OR</b> owner of the resource <b>OR</b> MANAGE_OBJECT_ADMIN permission on the resource
+	 * ROLE_INVENTORY_ADMIN <b>OR</b> ROLE_BINARY_ADMIN <b>OR</b> owner of the resource <b>OR</b> MANAGE_OBJECT_ADMIN permission on the resource
 	 * </section>
 	 * <h5>Response Codes</h5>
 	 * <p>The following table gives an overview of the possible response codes and their meanings:</p>
@@ -179,7 +179,7 @@ public class BinariesApi extends AdaptableApi {
 	 * <p>Remove a stored file</p>
 	 * <p>Remove a managed object and its stored file by a given ID.</p>
 	 * <section><h5>Required roles</h5>
-	 * ROLE_INVENTORY_ADMIN <b>OR</b> owner of the resource <b>OR</b> MANAGE_OBJECT_ADMIN permission on the resource
+	 * ROLE_INVENTORY_ADMIN <b>OR</b> ROLE_BINARY_ADMIN <b>OR</b> owner of the resource <b>OR</b> MANAGE_OBJECT_ADMIN permission on the resource
 	 * </section>
 	 * <h5>Response Codes</h5>
 	 * <p>The following table gives an overview of the possible response codes and their meanings:</p>

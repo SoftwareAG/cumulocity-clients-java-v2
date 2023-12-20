@@ -133,7 +133,7 @@ public class ManagedObjectsApi extends AdaptableApi {
 	 * <p><strong>ⓘ Info:</strong> For more details about fragments with specific meanings, review the sections <a href="#section/Device-management-library">Device management library</a> and <a href="#section/Sensor-library">Sensor library</a>.</p>
 	 * </blockquote>
 	 * <section><h5>Required roles</h5>
-	 * ROLE_INVENTORY_ADMIN <b>OR</b> ROLE_INVENTORY_CREATE
+	 * ROLE_INVENTORY_ADMIN <b>OR</b> ROLE_INVENTORY_CREATE <b>OR</b> ROLE_MANAGED_OBJECT_ADMIN <b>OR</b> ROLE_MANAGED_OBJECT_CREATE
 	 * </section>
 	 * <h5>Response Codes</h5>
 	 * <p>The following table gives an overview of the possible response codes and their meanings:</p>
@@ -176,7 +176,7 @@ public class ManagedObjectsApi extends AdaptableApi {
 	 * <p>Retrieve a specific managed object</p>
 	 * <p>Retrieve a specific managed object (for example, device, group, template) by a given ID.</p>
 	 * <section><h5>Required roles</h5>
-	 * ROLE_INVENTORY_READ <b>OR</b> owner of the source <b>OR</b> MANAGE_OBJECT_READ permission on the source
+	 * ROLE_INVENTORY_READ <b>OR</b> ROLE_MANAGED_OBJECT_READ <b>OR</b> owner of the source <b>OR</b> MANAGE_OBJECT_READ permission on the source
 	 * </section>
 	 * <h5>Response Codes</h5>
 	 * <p>The following table gives an overview of the possible response codes and their meanings:</p>
@@ -218,7 +218,7 @@ public class ManagedObjectsApi extends AdaptableApi {
 	 * <p>For example, if you want to specify that your managed object is a device, you must add the fragment <code>c8y_IsDevice</code>.</p>
 	 * <p>The endpoint can also be used as a device availability heartbeat.If you only specifiy the <code>id</code>, it updates the date when the last message was received and no other property.The response then only contains the <code>id</code> instead of the full managed object.</p>
 	 * <section><h5>Required roles</h5>
-	 * ROLE_INVENTORY_ADMIN <b>OR</b> owner of the source <b>OR</b> MANAGE_OBJECT_ADMIN permission on the source
+	 * ROLE_INVENTORY_ADMIN <b>OR</b> ROLE_MANAGED_OBJECT_ADMIN <b>OR</b> owner of the source <b>OR</b> MANAGE_OBJECT_ADMIN permission on the source
 	 * </section>
 	 * <h5>Response Codes</h5>
 	 * <p>The following table gives an overview of the possible response codes and their meanings:</p>
@@ -269,7 +269,7 @@ public class ManagedObjectsApi extends AdaptableApi {
 	 * <p><strong>ⓘ Info:</strong> By default, the delete operation is always propagated to the subgroups, but only if the deleted object is a group.</p>
 	 * </blockquote>
 	 * <section><h5>Required roles</h5>
-	 * ROLE_INVENTORY_ADMIN <b>OR</b> owner of the source <b>OR</b> MANAGE_OBJECT_ADMIN permission on the source
+	 * ROLE_INVENTORY_ADMIN <b>OR</b> ROLE_MANAGED_OBJECT_ADMIN <b>OR</b> owner of the source <b>OR</b> MANAGE_OBJECT_ADMIN permission on the source
 	 * </section>
 	 * <h5>Response Codes</h5>
 	 * <p>The following table gives an overview of the possible response codes and their meanings:</p>
@@ -311,7 +311,7 @@ public class ManagedObjectsApi extends AdaptableApi {
 	 * <p>Retrieve the latest availability date of a specific managed object</p>
 	 * <p>Retrieve the date when a specific managed object (by a given ID) sent the last message to Cumulocity IoT.</p>
 	 * <section><h5>Required roles</h5>
-	 * ROLE_INVENTORY_READ
+	 * ROLE_INVENTORY_READ <b>OR</b> ROLE_MANAGED_OBJECT_READ
 	 * </section>
 	 * <h5>Response Codes</h5>
 	 * <p>The following table gives an overview of the possible response codes and their meanings:</p>
@@ -339,7 +339,7 @@ public class ManagedObjectsApi extends AdaptableApi {
 	 * <p>Retrieve all supported measurement fragments of a specific managed object</p>
 	 * <p>Retrieve all measurement types of a specific managed object by a given ID.</p>
 	 * <section><h5>Required roles</h5>
-	 * ROLE_INVENTORY_READ <b>OR</b> owner of the source <b>OR</b> MANAGE_OBJECT_READ permission on the source
+	 * ROLE_INVENTORY_READ <b>OR</b> ROLE_MANAGED_OBJECT_READ <b>OR</b> owner of the source <b>OR</b> MANAGE_OBJECT_READ permission on the source
 	 * </section>
 	 * <h5>Response Codes</h5>
 	 * <p>The following table gives an overview of the possible response codes and their meanings:</p>
@@ -367,7 +367,7 @@ public class ManagedObjectsApi extends AdaptableApi {
 	 * <p>Retrieve all supported measurement fragments and series of a specific managed object</p>
 	 * <p>Retrieve all supported measurement fragments and series of a specific managed object by a given ID.</p>
 	 * <section><h5>Required roles</h5>
-	 * ROLE_INVENTORY_READ <b>OR</b> owner of the source <b>OR</b> MANAGE_OBJECT_READ permission on the source
+	 * ROLE_INVENTORY_READ <b>OR</b> ROLE_MANAGED_OBJECT_READ <b>OR</b> owner of the source <b>OR</b> MANAGE_OBJECT_READ permission on the source
 	 * </section>
 	 * <h5>Response Codes</h5>
 	 * <p>The following table gives an overview of the possible response codes and their meanings:</p>
@@ -395,7 +395,7 @@ public class ManagedObjectsApi extends AdaptableApi {
 	 * <p>Retrieve the username and state of a specific managed object</p>
 	 * <p>Retrieve the device owner's username and state (enabled or disabled) of a specific managed object (by a given ID).</p>
 	 * <section><h5>Required roles</h5>
-	 * ROLE_INVENTORY_READ <b>OR</b> owner of the source <b>OR</b> MANAGE_OBJECT_READ permission on the source
+	 * ROLE_INVENTORY_READ <b>OR</b> ROLE_MANAGED_OBJECT_READ <b>OR</b> owner of the source <b>OR</b> MANAGE_OBJECT_READ permission on the source
 	 * </section>
 	 * <h5>Response Codes</h5>
 	 * <p>The following table gives an overview of the possible response codes and their meanings:</p>
@@ -423,7 +423,7 @@ public class ManagedObjectsApi extends AdaptableApi {
 	 * <p>Update the user's details of a specific managed object</p>
 	 * <p>Update the device owner's state (enabled or disabled) of a specific managed object (by a given ID).</p>
 	 * <section><h5>Required roles</h5>
-	 * ROLE_INVENTORY_ADMIN <b>OR</b> owner of the source <b>OR</b> MANAGE_OBJECT_ADMIN permission on the source
+	 * ROLE_INVENTORY_ADMIN <b>OR</b> ROLE_MANAGED_OBJECT_ADMIN <b>OR</b> owner of the source <b>OR</b> MANAGE_OBJECT_ADMIN permission on the source
 	 * </section>
 	 * <h5>Response Codes</h5>
 	 * <p>The following table gives an overview of the possible response codes and their meanings:</p>
